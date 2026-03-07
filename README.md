@@ -36,11 +36,22 @@ text### Примеры:
    git pull
    ```
 
-Создай ветку для задачи:Bashgit checkout -b feature/add-footer
-Делай осмысленные коммиты (желательно в стиле Conventional Commits):textfeat: добавлен компонент Footer
+Создай ветку для задачи:Bashgit 
+```
+checkout -b feature/add-footer
+```
+Делай осмысленные коммиты (желательно в стиле Conventional Commits):
+```
+textfeat: добавлен компонент Footer
 fix: исправлен отступ у блока Services
 refactor: переименованы переменные в utils/helpers
-Запушь ветку:Bashgit push -u origin feature/add-footer
+```
+
+Запушь ветку:Bashgit 
+```
+push -u origin feature/add-footer
+```
+
 Создай Pull Request:
 из твоей ветки → в develop
 
@@ -49,8 +60,10 @@ refactor: переименованы переменные в utils/helpers
 Все изменения в develop вливаются только через Pull Request
 PR должен быть проверен и одобрен тимлидом или его заместителем
 Запрещено:
+```
 git push --force в main / develop
 git merge --no-ff в main / develop
+```
 
 ## 4. Архитектура проекта
 
