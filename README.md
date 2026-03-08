@@ -45,15 +45,13 @@ checkout -b feature/add-footer
 textfeat: добавлен компонент Footer
 fix: исправлен отступ у блока Services
 refactor: переименованы переменные в utils/helpers
-```
 
+```
 Запушь ветку:Bashgit 
 ```
 push -u origin feature/add-footer
 ```
-
-Создай Pull Request:
-из твоей ветки → в develop
+Запушь ветку:Bashgit push -u origin feature/add-footer
 
 4. Code Review & слияние
 
@@ -65,34 +63,118 @@ git push --force в main / develop
 git merge --no-ff в main / develop
 ```
 
-## 4. Архитектура проекта
+## 4. Архитектура проекта - FSD
+
+```
+  src/
+ ├ app          # инициализация, провайдеры, глобальные стили
+ │  ├ providers
+ │  └ router
+ │
+ ├ pages         # главная, профайл, skill, favorites
+ │  └ UsersPage
+ │
+ ├ widgets        # готовые фич-блоки (SkillCard, FiltersBar)
+ │  └ UsersTable
+ │
+ ├ features       # пользовательские действия 
+ │  ├ edit-user
+ │  └ delete-user
+ │
+ ├ entities       # бизнес-сущности
+ │  └ user
+ │
+ └ shared    # переиспользуемый код без бизнес-логики
+    ├ ui
+    ├ hooks 
+    └ api
 
 
 ```
-src/
- ├── api/              # методы работы с мок-JSON (axios/fetch)
- ├── app/              # инициализация, провайдеры, глобальные стили
- ├── entities/         # модели домена (Skill, User, Request)
- ├── features/
- │    ├── auth/
- │    ├── skills/
- │    ├── favorites/
- │    └── requests/
- ├── widgets/          # готовые фич-блоки (SkillCard, FiltersBar)
- ├── pages/            # главная, профайл, skill, favorites
- ├── shared/
- │    ├── ui/          # атомы/молекулы
- │    ├── hooks/       # useDebounce, useLocalStorage ...
- │    └── lib/         # helpers, constants
- └── index.tsx
-public/
- db/
-  ├── skills.json
-  └── users.json
+#### Структура внутри slice
 
+Обычно выглядит так:
+```
+feature/
+ ├ ui
+ ├ model
+ ├ api
+ ├ lib
+ ├ config
+ └ types
+```
+
+**Не обязательно использовать все — только нужные**
+- **ui** - Компоненты интерфейса, здесь нет бизнес логики
+```
+ui/
+ ├ EditUserForm.tsx
+ └ EditUserButton.tsx
+```
+- **model** - Бизнес логика и состояние
+
+Тут находится:
+- Redux slices
+- selectors
+- thunks
+- state
 
 ```
+model/
+ ├ slice.ts
+ ├ selectors.ts
+ └ thunks.ts
+```
+- **types** - типы TS
+
+- **lib** - вспомогательные функции 
+
+```
+lib/
+ └ formatUserName.ts
+```
+
+### Реальный пример feature
+
+```
+features/edit-user
+ ├ ui
+ │   └ EditUserForm.tsx
+ │
+ ├ model
+ │   ├ slice.ts
+ │   └ thunks.ts
+ │
+ ├ api
+ │   └ updateUser.ts
+ │
+ └ types
+     └ types.ts
+```
+
+123
+
+### Реальный пример entity
+
+```
+entities/user
+ ├ ui
+ │   └ UserCard.tsx
+ │
+ ├ model
+ │   ├ slice.ts
+ │   └ selectors.ts
+ │
+ ├ api
+ │   └ getUser.ts
+ │
+ └ types
+     └ user.ts
+```
+
+
 ## 5. Работа со стилями
+
 Проект использует **CSS Modules** для изоляции стилей компонентов.
 
 ### Основные правила
@@ -108,9 +190,10 @@ features/AuthForm/AuthForm.module.css
 pages/HomePage/HomePage.tsx
 pages/HomePage/HomePage.module.css
 text- **Запрещено**:
-  - глобальные стили в `index.css` / `App.css` (кроме reset/normalize и глобальных переменных)
-  - использование обычных `.css` файлов для компонентов
-  - импорт стилей без `.module` в названии файла
+
+- глобальные стили в `index.css` / `App.css` (кроме reset/normalize и глобальных переменных)
+- использование обычных `.css` файлов для компонентов
+- импорт стилей без `.module` в названии файла
 
 ### Пример структуры и кода
 
@@ -153,3 +236,82 @@ CSS/* src/components/Button/Button.module.css */
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+```
+
+## 6. Установленные библиотеки
+
+- **lucide-react** - для иконок
+
+
+### Как обычно происходит создание проекта
+#### Этап 1 — UI Kit
+
+**Создаются все компоненты:**
+
+- Button
+- Input
+- Checkbox
+- Avatar
+- Tag
+- Card
+- Modal
+
+#### Этап 2 — Layout
+
+**Создаются части страницы:**
+
+- Header
+- Sidebar
+- CardsGrid
+
+
+#### Этап 3 — Страницы
+
+**Собирается интерфейс**
+
+Например:
+
+- HomePage
+- ProfilePage
+- SearchPage
+
+
+#### Этап 4 — Логика
+
+**Теперь подключается:**
+
+- API (у нас мок данные)
+- состояние
+- фильтры
+- поиск
+- авторизация
+
+
+
+
+### 1 Неделя: UI KIT
+
+**UI Kit** — это библиотека интерфейсных компонентов. 
+_То есть мы делаем строительные блоки_:
+
+- кнопки
+- инпуты
+- чекбоксы
+- карточки
+- модалки
+- теги
+- аватары
+
+** Без бизнес-логики**
+Храним компоненты в src/shared/ui
+
+Пример компонента:
+
+<Button variant="primary">
+  Регистрация
+</Button>
+
+Кнопка просто отображается и реагирует на hover / click.
+
+**UI Kit** — это не весь сверстанный проект, а набор переиспользуемых компонентов, из которых потом собираются страницы.
