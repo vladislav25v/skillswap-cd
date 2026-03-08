@@ -1,0 +1,77 @@
+:root {
+  --color-text-primary: #253017;
+  --color-text-secondary: #69735d;
+  --color-text-disabled: #9ca197;
+  --color-toggle: #b2b9a9;
+  --color-disabled: #e4e8df;
+  --color-surface: #ffffff;
+
+  --color-accent-dark: #508826;
+  --color-accent: #abd27a;
+  --color-accent-light: #deebc5;
+  --color-page-bg: #f9faf7;
+  --color-warning: #e0796e;
+  --color-error: #bf3920;
+
+  /* теги */
+  --color-tag-business: #eee7f7;
+  --color-tag-art: #f7e7f2;
+  --color-tag-languages: #ebe5c5;
+  --color-tag-education: #e7f2f6;
+  --color-tag-home: #f7ebe5;
+  --color-tag-health: #e9f7e7;
+  --color-tag-more: #e8ecf7;
+
+  /* font */
+  --font-family-base: 'Roboto', sans-serif;
+
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-h3: 20px;
+  --font-size-body: 16px;
+  --font-size-caption: 12px;
+
+  --line-height-h1: 32px;
+  --line-height-h2: 40px;
+  --line-height-h3: 28px;
+  --line-height-body: 24px;
+  --line-height-caption: 20px;
+
+  --font-weight-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+}
+
+body {
+  font-family: var(--font-family-base);
+}
+
+.h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-bold);
+}
+
+.h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-bold);
+}
+
+.h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-medium);
+}
+
+.body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+}
+
+.caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-regular);
+}
