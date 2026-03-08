@@ -63,7 +63,7 @@ git push --force в main / develop
 git merge --no-ff в main / develop
 ```
 
-## 4. Архитектура проекта
+## 4. Архитектура проекта - FSD
 
 ```
   src/
@@ -77,19 +77,100 @@ git merge --no-ff в main / develop
  ├ widgets        # готовые фич-блоки (SkillCard, FiltersBar)
  │  └ UsersTable
  │
- ├ features       #пользовательские действия.
+ ├ features       # пользовательские действия 
  │  ├ edit-user
  │  └ delete-user
  │
- ├ entities       #бизнес-сущности
+ ├ entities       # бизнес-сущности
  │  └ user
  │
  └ shared    # переиспользуемый код без бизнес-логики
     ├ ui
+    ├ hooks 
     └ api
 
 
 ```
+#### Структура внутри slice
+
+Обычно выглядит так:
+```
+feature/
+ ├ ui
+ ├ model
+ ├ api
+ ├ lib
+ ├ config
+ └ types
+```
+
+**Не обязательно использовать все — только нужные**
+- **ui** - Компоненты интерфейса, здесь нет бизнес логики
+```
+ui/
+ ├ EditUserForm.tsx
+ └ EditUserButton.tsx
+```
+- **model** - Бизнес логика и состояние
+
+Тут находится:
+- Redux slices
+- selectors
+- thunks
+- state
+
+```
+model/
+ ├ slice.ts
+ ├ selectors.ts
+ └ thunks.ts
+```
+- **types** - типы TS
+
+- **lib** - вспомогательные функции 
+
+```
+lib/
+ └ formatUserName.ts
+```
+
+### Реальный пример feature
+
+```
+features/edit-user
+ ├ ui
+ │   └ EditUserForm.tsx
+ │
+ ├ model
+ │   ├ slice.ts
+ │   └ thunks.ts
+ │
+ ├ api
+ │   └ updateUser.ts
+ │
+ └ types
+     └ types.ts
+```
+
+
+### Реальный пример entity
+
+```
+entities/user
+ ├ ui
+ │   └ UserCard.tsx
+ │
+ ├ model
+ │   ├ slice.ts
+ │   └ selectors.ts
+ │
+ ├ api
+ │   └ getUser.ts
+ │
+ └ types
+     └ user.ts
+```
+
 
 ## 5. Работа со стилями
 
