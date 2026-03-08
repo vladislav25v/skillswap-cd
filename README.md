@@ -152,6 +152,7 @@ features/edit-user
      └ types.ts
 ```
 
+123
 
 ### Реальный пример entity
 
