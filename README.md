@@ -41,6 +41,26 @@ text### Примеры:
 fix: исправлен отступ у блока Services
 refactor: переименованы переменные в utils/helpers
 Запушь ветку:Bashgit push -u origin feature/add-footer
+Создай ветку для задачи:Bashgit
+
+```
+checkout -b feature/add-footer
+```
+
+Делай осмысленные коммиты (желательно в стиле Conventional Commits):
+
+```
+textfeat: добавлен компонент Footer
+fix: исправлен отступ у блока Services
+refactor: переименованы переменные в utils/helpers
+```
+
+Запушь ветку:Bashgit
+
+```
+push -u origin feature/add-footer
+```
+
 Создай Pull Request:
 из твоей ветки → в develop
 
@@ -49,11 +69,12 @@ refactor: переименованы переменные в utils/helpers
 Все изменения в develop вливаются только через Pull Request
 PR должен быть проверен и одобрен тимлидом или его заместителем
 Запрещено:
+
+```
 git push --force в main / develop
 git merge --no-ff в main / develop
 
 ## 4. Архитектура проекта
-
 
 ```
 src/
@@ -79,7 +100,9 @@ public/
 
 
 ```
+
 ## 5. Работа со стилями
+
 Проект использует **CSS Modules** для изоляции стилей компонентов.
 
 ### Основные правила
@@ -95,9 +118,10 @@ features/AuthForm/AuthForm.module.css
 pages/HomePage/HomePage.tsx
 pages/HomePage/HomePage.module.css
 text- **Запрещено**:
-  - глобальные стили в `index.css` / `App.css` (кроме reset/normalize и глобальных переменных)
-  - использование обычных `.css` файлов для компонентов
-  - импорт стилей без `.module` в названии файла
+
+- глобальные стили в `index.css` / `App.css` (кроме reset/normalize и глобальных переменных)
+- использование обычных `.css` файлов для компонентов
+- импорт стилей без `.module` в названии файла
 
 ### Пример структуры и кода
 
@@ -140,3 +164,76 @@ CSS/* src/components/Button/Button.module.css */
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+```
+
+### Как обычно происходит создание проекта
+Этап 1 — UI Kit
+
+Создаются все компоненты.
+
+Button
+Input
+Checkbox
+Avatar
+Tag
+Card
+Modal
+
+Этап 2 — Layout
+
+Создаются части страницы:
+
+Header
+Sidebar
+CardsGrid
+
+
+Этап 3 — Страницы
+
+Собирается интерфейс.
+
+Например:
+
+HomePage
+ProfilePage
+SearchPage
+
+
+Этап 4 — Логика
+
+Теперь подключается:
+API (у нас мок данные)
+состояние
+фильтры
+поиск
+авторизация
+
+
+
+
+### 1 Неделя: UI KIT
+
+UI Kit — это библиотека интерфейсных компонентов. 
+То есть мы делаем строительные блоки:
+
+-кнопки
+-инпуты
+-чекбоксы
+-карточки
+-модалки
+-теги
+-аватары
+
+Без бизнес-логики.
+Храним компоненты в src/shared/ui
+
+Пример компонента:
+
+<Button variant="primary">
+  Регистрация
+</Button>
+
+Кнопка просто отображается и реагирует на hover / click.
+
+UI Kit — это не весь сверстанный проект, а набор переиспользуемых компонентов, из которых потом собираются страницы.
