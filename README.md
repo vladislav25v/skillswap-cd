@@ -43,81 +43,50 @@ checkout -b feature/add-footer
 Делай осмысленные коммиты (желательно в стиле Conventional Commits):
 ```
 textfeat: добавлен компонент Footer
-Создай ветку для задачи:Bashgit 
-```
-checkout -b feature/add-footer
-```
-Делай осмысленные коммиты (желательно в стиле Conventional Commits):
-```
-textfeat: добавлен компонент Footer
 fix: исправлен отступ у блока Services
 refactor: переименованы переменные в utils/helpers
-```
 
+```
 Запушь ветку:Bashgit 
 ```
 push -u origin feature/add-footer
 ```
-
 Запушь ветку:Bashgit push -u origin feature/add-footer
-Создай ветку для задачи:Bashgit
-
-```
-checkout -b feature/add-footer
-```
-
-Делай осмысленные коммиты (желательно в стиле Conventional Commits):
-
-```
-textfeat: добавлен компонент Footer
-fix: исправлен отступ у блока Services
-refactor: переименованы переменные в utils/helpers
-```
-
-Запушь ветку:Bashgit
-
-```
-push -u origin feature/add-footer
-```
-
-Создай Pull Request:
-из твоей ветки → в develop
 
 4. Code Review & слияние
 
 Все изменения в develop вливаются только через Pull Request
 PR должен быть проверен и одобрен тимлидом или его заместителем
 Запрещено:
-
 ```
 git push --force в main / develop
 git merge --no-ff в main / develop
-```
 ```
 
 ## 4. Архитектура проекта
 
 ```
-src/
- ├── api/              # методы работы с мок-JSON (axios/fetch)
- ├── app/              # инициализация, провайдеры, глобальные стили
- ├── entities/         # модели домена (Skill, User, Request)
- ├── features/
- │    ├── auth/
- │    ├── skills/
- │    ├── favorites/
- │    └── requests/
- ├── widgets/          # готовые фич-блоки (SkillCard, FiltersBar)
- ├── pages/            # главная, профайл, skill, favorites
- ├── shared/
- │    ├── ui/          # атомы/молекулы
- │    ├── hooks/       # useDebounce, useLocalStorage ...
- │    └── lib/         # helpers, constants
- └── index.tsx
-public/
- db/
-  ├── skills.json
-  └── users.json
+  src/
+ ├ app          # инициализация, провайдеры, глобальные стили
+ │  ├ providers
+ │  └ router
+ │
+ ├ pages         # главная, профайл, skill, favorites
+ │  └ UsersPage
+ │
+ ├ widgets        # готовые фич-блоки (SkillCard, FiltersBar)
+ │  └ UsersTable
+ │
+ ├ features       #пользовательские действия.
+ │  ├ edit-user
+ │  └ delete-user
+ │
+ ├ entities       #бизнес-сущности
+ │  └ user
+ │
+ └ shared    # переиспользуемый код без бизнес-логики
+    ├ ui
+    └ api
 
 
 ```
@@ -189,64 +158,65 @@ CSS/* src/components/Button/Button.module.css */
 ```
 
 ### Как обычно происходит создание проекта
-Этап 1 — UI Kit
+#### Этап 1 — UI Kit
 
-Создаются все компоненты.
+**Создаются все компоненты:**
 
-Button
-Input
-Checkbox
-Avatar
-Tag
-Card
-Modal
+- Button
+- Input
+- Checkbox
+- Avatar
+- Tag
+- Card
+- Modal
 
-Этап 2 — Layout
+#### Этап 2 — Layout
 
-Создаются части страницы:
+**Создаются части страницы:**
 
-Header
-Sidebar
-CardsGrid
+- Header
+- Sidebar
+- CardsGrid
 
 
-Этап 3 — Страницы
+#### Этап 3 — Страницы
 
-Собирается интерфейс.
+**Собирается интерфейс**
 
 Например:
 
-HomePage
-ProfilePage
-SearchPage
+- HomePage
+- ProfilePage
+- SearchPage
 
 
-Этап 4 — Логика
+#### Этап 4 — Логика
 
-Теперь подключается:
-API (у нас мок данные)
-состояние
-фильтры
-поиск
-авторизация
+**Теперь подключается:**
+
+- API (у нас мок данные)
+- состояние
+- фильтры
+- поиск
+- авторизация
 
 
 
 
 ### 1 Неделя: UI KIT
 
-UI Kit — это библиотека интерфейсных компонентов. 
-То есть мы делаем строительные блоки:
+**UI Kit** — это библиотека интерфейсных компонентов. 
+_То есть мы делаем строительные блоки_:
 
--кнопки
--инпуты
--чекбоксы
--карточки
--модалки
--теги
--аватары
+- кнопки
+- инпуты
+- чекбоксы
+- карточки
+- модалки
+- теги
+- аватары
 
-Без бизнес-логики.
+** Без бизнес-логики**
 Храним компоненты в src/shared/ui
 
 Пример компонента:
@@ -257,4 +227,4 @@ UI Kit — это библиотека интерфейсных компонен
 
 Кнопка просто отображается и реагирует на hover / click.
 
-UI Kit — это не весь сверстанный проект, а набор переиспользуемых компонентов, из которых потом собираются страницы.
+**UI Kit** — это не весь сверстанный проект, а набор переиспользуемых компонентов, из которых потом собираются страницы.
