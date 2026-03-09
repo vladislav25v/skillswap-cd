@@ -1,8 +1,46 @@
-.button {
-  background-color: var(--color-accent-dark);
-}
-
 .icon {
   width: 20px;
   height: 20px;
+}
+
+.button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: #9DC183;
+  color: #2d3748;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #8ab570;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #2d3748;
+  border: 1px solid #e2e8f0;
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #f7fafc;
+  border-color: #cbd5e0;
 }

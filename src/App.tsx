@@ -1,10 +1,17 @@
 import Button from './shared/ui/Button/Button';
 
 function App() {
+  const handleClick = () => {
+    console.log('Кнопка нажата!');
+  };
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
       <h1>Проектный месяц</h1>
-      <Button></Button>
+      <Button variant="secondary">Войти</Button>
+      <Button variant="primary" onClick={handleClick}>
+        Зарегистрироваться
+      </Button>
     </div>
   );
 }
