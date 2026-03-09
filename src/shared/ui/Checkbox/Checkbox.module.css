@@ -1,0 +1,90 @@
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 16px;
+  position: relative;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--color-text-disabled);
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.customCheckbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid black;
+  border-radius: 4px;
+  background: var(--color-surface);
+  transition: all 0.2s ease;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0; /* чтобы не сжимался */
+}
+
+/* Состояние при наведении */
+.checkbox:hover .customCheckbox {
+  border-color: color-mix(in srgb, var(--color-toggle) 80%, black);
+}
+
+/* Состояние checked */
+.input:checked + .customCheckbox {  
+  width: 20px;
+  height: 20px;
+  background: var(--color-accent);
+  border: none;
+}
+
+/* Галочка */
+.input:checked + .customCheckbox::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7.71px;
+  height: 10px;
+  border: solid var(--color-surface);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+  box-sizing: border-box;
+}
+
+/* Фокус (для доступности) */
+.input:focus + .customCheckbox {
+  outline: none;
+}
+
+/* Disabled состояния */
+.disabled .customCheckbox {
+  background: var(--color-disabled);
+  border-color: var(--color-toggle);
+}
+
+.disabled .input:checked + .customCheckbox {
+  background: var(--color-disabled);
+  border-color: var(--color-toggle);
+}
+
+.disabled .input:checked + .customCheckbox::after {
+  border-color: var(--color-text-disabled);
+}
+
+.label {
+  color: inherit;
+}
