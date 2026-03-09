@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './Input.module.css';
 
-interface InputProps {
+export interface InputProps {
   value: string;
   name?: string;
   id?: string;
