@@ -40,6 +40,22 @@
   --font-weight-bold: 600;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
+
+  --radius: 12px;
+  --radius-rounded: 200px;
+
+  --field-caret-color: var(--color-accent-dark);
+  --field-padding-block: 11px;
+  --field-padding-inline: 19px;
+  --field-text-color: var(--color-text-primary);
+  --field-font-family: var(--font-family-base);
+  --field-font-size: var(--font-size-body);
+  --field-line-height: 1.5;
+  --field-font-weight: var(--font-weight-regular);
+  --field-placeholder-color: var(--color-text-secondary);
+  --field-bg: var(--color-surface);
+  --field-border-color: var(--color-text-secondary);
+  --field-border-error-color: var(--color-error);
 }
 
 body {
