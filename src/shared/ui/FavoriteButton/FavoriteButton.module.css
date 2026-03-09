@@ -1,0 +1,40 @@
+.button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+}
+
+.default {
+  color: #2f3a2f;
+}
+
+.active {
+  color: #f27f8a;
+}
+
+.active .icon {
+  fill: currentColor;
+}
