@@ -1,0 +1,44 @@
+ .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.textNav {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.linkButton {
+  border: none;
+  background-color: transparent;
+}
+
+.navLinks a {
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+/* Триггер для открытия/закрытия меню */
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
