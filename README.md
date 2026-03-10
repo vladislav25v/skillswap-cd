@@ -3,7 +3,7 @@
 ## 1. Основные ветки
 
 - **main** — стабильная ветка, содержит только готовый к продакшену код
-- **develop** — основная ветка для разработки  
+- **develop** — основная ветка для разработки
   Никакие изменения **не вносятся напрямую** — только через Pull Request (PR)
 
 ## 2. Работа над задачами — через отдельные ветки
@@ -36,21 +36,27 @@ text### Примеры:
    git pull
    ```
 
-Создай ветку для задачи:Bashgit 
+Создай ветку для задачи:Bashgit
+
 ```
 checkout -b feature/add-footer
 ```
+
 Делай осмысленные коммиты (желательно в стиле Conventional Commits):
+
 ```
 textfeat: добавлен компонент Footer
 fix: исправлен отступ у блока Services
 refactor: переименованы переменные в utils/helpers
 
 ```
-Запушь ветку:Bashgit 
+
+Запушь ветку:Bashgit
+
 ```
 push -u origin feature/add-footer
 ```
+
 Запушь ветку:Bashgit push -u origin feature/add-footer
 
 4. Code Review & слияние
@@ -58,6 +64,7 @@ push -u origin feature/add-footer
 Все изменения в develop вливаются только через Pull Request
 PR должен быть проверен и одобрен тимлидом или его заместителем
 Запрещено:
+
 ```
 git push --force в main / develop
 git merge --no-ff в main / develop
@@ -77,7 +84,7 @@ git merge --no-ff в main / develop
  ├ widgets        # готовые фич-блоки (SkillCard, FiltersBar)
  │  └ UsersTable
  │
- ├ features       # пользовательские действия 
+ ├ features       # пользовательские действия
  │  ├ edit-user
  │  └ delete-user
  │
@@ -86,14 +93,16 @@ git merge --no-ff в main / develop
  │
  └ shared    # переиспользуемый код без бизнес-логики
     ├ ui
-    ├ hooks 
+    ├ hooks
     └ api
 
 
 ```
+
 #### Структура внутри slice
 
 Обычно выглядит так:
+
 ```
 feature/
  ├ ui
@@ -105,15 +114,19 @@ feature/
 ```
 
 **Не обязательно использовать все — только нужные**
+
 - **ui** - Компоненты интерфейса, здесь нет бизнес логики
+
 ```
 ui/
  ├ EditUserForm.tsx
  └ EditUserButton.tsx
 ```
+
 - **model** - Бизнес логика и состояние
 
 Тут находится:
+
 - Redux slices
 - selectors
 - thunks
@@ -125,9 +138,10 @@ model/
  ├ selectors.ts
  └ thunks.ts
 ```
+
 - **types** - типы TS
 
-- **lib** - вспомогательные функции 
+- **lib** - вспомогательные функции
 
 ```
 lib/
@@ -171,7 +185,6 @@ entities/user
  └ types
      └ user.ts
 ```
-
 
 ## 5. Работа со стилями
 
@@ -243,8 +256,8 @@ CSS/* src/components/Button/Button.module.css */
 
 - **lucide-react** - для иконок
 
-
 ### Как обычно происходит создание проекта
+
 #### Этап 1 — UI Kit
 
 **Создаются все компоненты:**
@@ -265,7 +278,6 @@ CSS/* src/components/Button/Button.module.css */
 - Sidebar
 - CardsGrid
 
-
 #### Этап 3 — Страницы
 
 **Собирается интерфейс**
@@ -275,7 +287,6 @@ CSS/* src/components/Button/Button.module.css */
 - HomePage
 - ProfilePage
 - SearchPage
-
 
 #### Этап 4 — Логика
 
@@ -287,12 +298,9 @@ CSS/* src/components/Button/Button.module.css */
 - поиск
 - авторизация
 
-
-
-
 ### 1 Неделя: UI KIT
 
-**UI Kit** — это библиотека интерфейсных компонентов. 
+**UI Kit** — это библиотека интерфейсных компонентов.
 _То есть мы делаем строительные блоки_:
 
 - кнопки
@@ -315,3 +323,116 @@ _То есть мы делаем строительные блоки_:
 Кнопка просто отображается и реагирует на hover / click.
 
 **UI Kit** — это не весь сверстанный проект, а набор переиспользуемых компонентов, из которых потом собираются страницы.
+
+#### Работа с api
+
+##### API Mock
+
+Для локального мокового API используется `json-server`.
+
+##### Установка
+
+```bash
+npm install -D json-server
+```
+
+##### Запуск
+
+```bash
+npx json-server --watch public/db/db.json --port 3001
+```
+
+Базовый адрес:
+
+```bash
+http://localhost:3001
+```
+
+##### Эндпоинты
+
+- `GET /users`
+- `GET /users/:id`
+- `GET /skills`
+- `GET /skills/:id`
+- `POST /skills`
+- `PATCH /skills/:id`
+- `DELETE /skills/:id`
+- `GET /skills?userId=:id`
+- `GET /skills?subcategoryId=:id`
+- `GET /categories`
+- `GET /categories/:id`
+- `GET /subcategories`
+- `GET /subcategories/:id`
+- `GET /subcategories?categoryId=:id`
+- `GET /cities`
+- `GET /cities/:id`
+
+##### CRUD
+
+`json-server` поддерживает в том числе `POST`, `PATCH` и `DELETE`.
+
+Пример `POST`:
+
+```js
+fetch('http://localhost:3001/skills', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    userId: 1,
+    title: 'Новый навык',
+    subcategoryId: 10,
+    description: 'Тестовое описание',
+    image: 'https://picsum.photos/400/300',
+  }),
+});
+```
+
+Пример `PATCH`:
+
+```js
+fetch('http://localhost:3001/skills/1', {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    title: 'Обновлённый навык',
+  }),
+});
+```
+
+Пример `DELETE`:
+
+```js
+fetch('http://localhost:3001/skills/1', {
+  method: 'DELETE',
+});
+```
+
+##### Структура данных
+
+В моках используются коллекции:
+
+- `users`
+- `skills`
+- `categories`
+- `subcategories`
+- `cities`
+
+users и skills это модели данных которые создаются/редактируются через формы, всё остальное словари, которые используется для фильтрации и бизнес логики и не должны редактироваться/удаляться/добавляться
+
+##### Проверка
+
+Проверить API можно в браузере:
+
+```bash
+http://localhost:3001/users
+```
+
+Или в консоли браузера:
+
+```js
+fetch('http://localhost:3001/users')
+  .then((res) => res.json())
+  .then(console.log);
+```
+
+Интерфейсы разнесены согласно по entities модулям
