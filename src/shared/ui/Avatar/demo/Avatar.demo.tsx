@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Avatar from '../Avatar';
 
 interface User {
@@ -6,15 +6,29 @@ interface User {
   photo?: string;
 }
 
+interface DbData {
+  users: User[];
+}
+
 const AvatarTest = () => {
   const [randomUser, setRandomUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetch('/db/users.json')
-      .then((res) => res.json())
-      .then((data: User[]) => {
-        const randomIndex = Math.floor(Math.random() * data.length);
-        setRandomUser(data[randomIndex]);
+    fetch('/db/db.json')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data: DbData) => {
+        const users = data.users;
+        if (users && users.length > 0) {
+          const randomIndex = Math.floor(Math.random() * users.length);
+          setRandomUser(users[randomIndex]);
+        } else {
+          console.error('Нет пользователей в данных');
+        }
       })
       .catch((err) => console.error('Ошибка загрузки:', err));
   }, []);
@@ -32,7 +46,7 @@ const AvatarTest = () => {
         minHeight: '100vh',
       }}
     >
-      <h1 style={{ marginBottom: '40px' }}>Тестирование Avatar компонента</h1>
+      <h1 style={{ marginBottom: '40px' }}>Демонстрация Avatar компонента</h1>
 
       <section style={{ marginBottom: '40px' }}>
         <h2>Photo</h2>

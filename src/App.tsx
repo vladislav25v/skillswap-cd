@@ -1,6 +1,7 @@
 import Button from './shared/ui/Button/Button';
 import Nav from './shared/ui/Nav/Nav';
-import AvatarTest from './shared/ui/Avatar/test/Avatar.test';
+import AvatarDemo from './shared/ui/Avatar/demo/Avatar.demo';
+import FilterCheckboxGroupDemo from './shared/ui/FilterCheckboxGroup/demo/FilterCheckboxGroup.demo';
 
 function App() {
   const handleClick = () => {
@@ -19,8 +20,9 @@ function App() {
         </Button>
       </div>
 
-      {/* Тесты Avatar */}
-      <AvatarTest />
+      {/* Демонстрация компонентов */}
+      <AvatarDemo />
+      <FilterCheckboxGroupDemo />
     </>
   );
 }
