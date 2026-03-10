@@ -4,6 +4,7 @@ import styles from './Input.module.css';
 export interface InputProps {
   value: string;
   name?: string;
+  className?: string;
   id?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -19,6 +20,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
   const {
     value,
     name,
+    className,
     id,
     placeholder,
     disabled,
@@ -32,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
 
   return (
     <span
-      className={`${styles.input} ${error && styles.inputError} ${bordered && styles.inputBordered}`.trim()}
+      className={`${styles.input} ${error && styles.inputError} ${bordered && styles.inputBordered} ${className}`.trim()}
     >
       {leftSlot}
       <input
