@@ -12,12 +12,20 @@
   gap: 24px;
 }
 
-.navLinks a {
+.textNav {
   color: var(--color-text-primary);
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-regular);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
+}
+
+.linkButton {
+  border: none;
+  background-color: transparent;
+}
+
+.navLinks a {
   text-decoration: none;
   transition: background-color 0.3s;
   cursor: pointer;
@@ -32,19 +40,5 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-/* Само выпадающее меню */
-.dropdownMenu {
-  position: absolute; /* чтобы появлялось поверх страницы */
-  margin-top: 24px;
-  background-color: #fff; /* фон меню */
-  padding: 60px; /* немного отступов внутри */
-  z-index: 1000; /* чтобы было поверх других элементов */
-  min-width: 200px; /* минимальная ширина, по желанию */
-  border: 1px solid #69735D;
-  border-radius: 12px; /* скругление углов */
-  display: flex;
-  flex-direction: column;
 }
  

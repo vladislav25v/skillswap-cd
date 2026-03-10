@@ -4,9 +4,6 @@ import styles from './Nav.module.css';
 const Nav: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  // Структура данных для пунктов меню (пока пустая)
-  const menuCategories: Array<{ label: string; link: string }> = [];
-
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
@@ -16,26 +13,24 @@ const Nav: React.FC = () => {
       <ul className={styles.navLinks}>
         {/* Ссылка "О проекте" */}
         <li>
-          <a href="#about">О проекте</a>
+          <a className={styles.textNav} href="#about">
+            О проекте
+          </a>
         </li>
         {/* Пункт "Все навыки" с выпадающим меню */}
         <li className={styles.dropdownContainer}>
-          <a href="#skills" onClick={toggleDropdown} className={styles.dropdownTrigger}>
+          <button
+            onClick={toggleDropdown}
+            className={`${styles.dropdownTrigger} ${styles.linkButton} ${styles.textNav}`}
+            aria-expanded={isDropdownOpen}
+            aria-controls="skills-dropdown"
+          >
             Все навыки <img src="/chevron-down.svg" alt="chevron-down" />
-          </a>
+          </button>
           {/* Выпадающее меню */}
           {isDropdownOpen && (
-            <ul className={styles.dropdownMenu}>
-              {/* Здесь можно динамически рендерить пункты меню */}
-              {menuCategories.length === 0 ? (
-                <li>Пункты меню еще не добавлены</li>
-              ) : (
-                menuCategories.map((item, index) => (
-                  <li key={index}>
-                    <a href={item.link}>{item.label}</a>
-                  </li>
-                ))
-              )}
+            <ul>
+              {/* Данный ul пока используется как заглушка, на его месте будет компонент DropMenu */}
             </ul>
           )}
         </li>

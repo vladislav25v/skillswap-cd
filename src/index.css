@@ -24,12 +24,16 @@
 
   /* font */
   --font-family-base: 'Roboto', sans-serif;
+  --font-family-highlight: 'Jost', sans-serif;
 
   --font-size-h1: 32px;
   --font-size-h2: 24px;
   --font-size-h3: 20px;
   --font-size-body: 16px;
   --font-size-caption: 12px;
+  --font-size-avatar-small: 24px;
+  --font-size-avatar-medium: 50px;
+  --font-size-avatar-large: 122px;
 
   --line-height-h1: 32px;
   --line-height-h2: 40px;
