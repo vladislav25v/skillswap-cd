@@ -1,1627 +1,1717 @@
 {
-    "users":  [
-                  {
-                      "id":  1,
-                      "name":  "Olivia Turner",
-                      "cityId":  1,
-                      "age":  28,
-                      "photo":  "https://randomuser.me/api/portraits/women/65.jpg",
-                      "registeredAt":  "2021-02-14T10:15:00.000Z",
-                      "likes":  38,
-                      "desiredSubcategoryIds":  [
-                                                    32,
-                                                    38,
-                                                    24,
-                                                    3
-                                                ]
-                  },
-                  {
-                      "id":  2,
-                      "name":  "Liam Wilson",
-                      "cityId":  2,
-                      "age":  31,
-                      "photo":  "https://randomuser.me/api/portraits/men/12.jpg",
-                      "registeredAt":  "2020-11-21T18:42:00.000Z",
-                      "likes":  21,
-                      "desiredSubcategoryIds":  [
-                                                    5,
-                                                    39
-                                                ]
-                  },
-                  {
-                      "id":  3,
-                      "name":  "Emma Johnson",
-                      "cityId":  3,
-                      "age":  23,
-                      "photo":  "https://randomuser.me/api/portraits/women/22.jpg",
-                      "registeredAt":  "2022-06-01T14:20:00.000Z",
-                      "likes":  47,
-                      "desiredSubcategoryIds":  [
-                                                    4
-                                                ]
-                  },
-                  {
-                      "id":  4,
-                      "name":  "Noah Smith",
-                      "cityId":  4,
-                      "age":  35,
-                      "photo":  "https://randomuser.me/api/portraits/men/33.jpg",
-                      "registeredAt":  "2019-09-10T12:10:00.000Z",
-                      "likes":  52,
-                      "desiredSubcategoryIds":  [
-                                                    31,
-                                                    27,
-                                                    12,
-                                                    21
-                                                ]
-                  },
-                  {
-                      "id":  5,
-                      "name":  "Ava Brown",
-                      "cityId":  5,
-                      "age":  27,
-                      "photo":  "https://randomuser.me/api/portraits/women/44.jpg",
-                      "registeredAt":  "2022-01-28T09:05:00.000Z",
-                      "likes":  29,
-                      "desiredSubcategoryIds":  [
-                                                    31,
-                                                    7
-                                                ]
-                  },
-                  {
-                      "id":  6,
-                      "name":  "William Davis",
-                      "cityId":  6,
-                      "age":  30,
-                      "photo":  "https://randomuser.me/api/portraits/men/45.jpg",
-                      "registeredAt":  "2021-08-15T17:35:00.000Z",
-                      "likes":  38,
-                      "desiredSubcategoryIds":  [
-                                                    12,
-                                                    20
-                                                ]
-                  },
-                  {
-                      "id":  7,
-                      "name":  "Sophia Martinez",
-                      "cityId":  7,
-                      "age":  26,
-                      "photo":  "https://randomuser.me/api/portraits/women/15.jpg",
-                      "registeredAt":  "2023-03-05T11:50:00.000Z",
-                      "likes":  41,
-                      "desiredSubcategoryIds":  [
-                                                    12,
-                                                    23,
-                                                    41
-                                                ]
-                  },
-                  {
-                      "id":  8,
-                      "name":  "James Garcia",
-                      "cityId":  8,
-                      "age":  29,
-                      "photo":  "https://randomuser.me/api/portraits/men/76.jpg",
-                      "registeredAt":  "2018-12-19T20:12:00.000Z",
-                      "likes":  63,
-                      "desiredSubcategoryIds":  [
-                                                    18,
-                                                    27,
-                                                    14
-                                                ]
-                  },
-                  {
-                      "id":  9,
-                      "name":  "Isabella Rodriguez",
-                      "cityId":  9,
-                      "age":  24,
-                      "photo":  "https://randomuser.me/api/portraits/women/82.jpg",
-                      "registeredAt":  "2024-01-11T13:25:00.000Z",
-                      "likes":  18,
-                      "desiredSubcategoryIds":  [
-                                                    24
-                                                ]
-                  },
-                  {
-                      "id":  10,
-                      "name":  "Benjamin Hernandez",
-                      "cityId":  10,
-                      "age":  33,
-                      "photo":  "https://randomuser.me/api/portraits/men/19.jpg",
-                      "registeredAt":  "2019-04-08T07:18:00.000Z",
-                      "likes":  49,
-                      "desiredSubcategoryIds":  [
-                                                    26,
-                                                    41,
-                                                    13,
-                                                    33
-                                                ]
-                  },
-                  {
-                      "id":  11,
-                      "name":  "Mia Lopez",
-                      "cityId":  16,
-                      "age":  29,
-                      "photo":  "https://randomuser.me/api/portraits/women/91.jpg",
-                      "registeredAt":  "2020-07-22T16:42:00.000Z",
-                      "likes":  32,
-                      "desiredSubcategoryIds":  [
-                                                    17,
-                                                    36
-                                                ]
-                  },
-                  {
-                      "id":  12,
-                      "name":  "Elijah Gonzalez",
-                      "cityId":  12,
-                      "age":  36,
-                      "photo":  "https://randomuser.me/api/portraits/men/58.jpg",
-                      "registeredAt":  "2017-10-30T08:30:00.000Z",
-                      "likes":  27,
-                      "desiredSubcategoryIds":  [
-                                                    8,
-                                                    23,
-                                                    11,
-                                                    41
-                                                ]
-                  },
-                  {
-                      "id":  13,
-                      "name":  "Charlotte Wilson",
-                      "cityId":  13,
-                      "age":  22,
-                      "photo":  "https://randomuser.me/api/portraits/women/35.jpg",
-                      "registeredAt":  "2023-05-17T19:40:00.000Z",
-                      "likes":  45,
-                      "desiredSubcategoryIds":  [
-                                                    6,
-                                                    25,
-                                                    32
-                                                ]
-                  },
-                  {
-                      "id":  14,
-                      "name":  "Alexander White",
-                      "cityId":  14,
-                      "age":  34,
-                      "photo":  "https://randomuser.me/api/portraits/men/23.jpg",
-                      "registeredAt":  "2021-11-09T14:10:00.000Z",
-                      "likes":  36,
-                      "desiredSubcategoryIds":  [
-                                                    4,
-                                                    29,
-                                                    7
-                                                ]
-                  },
-                  {
-                      "id":  15,
-                      "name":  "Amelia Hall",
-                      "cityId":  15,
-                      "age":  27,
-                      "photo":  "https://randomuser.me/api/portraits/women/53.jpg",
-                      "registeredAt":  "2022-08-21T09:50:00.000Z",
-                      "likes":  28,
-                      "desiredSubcategoryIds":  [
-                                                    34,
-                                                    14,
-                                                    6
-                                                ]
-                  },
-                  {
-                      "id":  16,
-                      "name":  "Ethan Allen",
-                      "cityId":  1,
-                      "age":  31,
-                      "photo":  "https://randomuser.me/api/portraits/men/77.jpg",
-                      "registeredAt":  "2020-04-13T12:35:00.000Z",
-                      "likes":  40,
-                      "desiredSubcategoryIds":  [
-                                                    40
-                                                ]
-                  },
-                  {
-                      "id":  17,
-                      "name":  "Harper Young",
-                      "cityId":  2,
-                      "age":  24,
-                      "photo":  "https://randomuser.me/api/portraits/women/61.jpg",
-                      "registeredAt":  "2023-09-05T11:20:00.000Z",
-                      "likes":  33,
-                      "desiredSubcategoryIds":  [
-                                                    41,
-                                                    24
-                                                ]
-                  },
-                  {
-                      "id":  18,
-                      "name":  "Daniel King",
-                      "cityId":  3,
-                      "age":  29,
-                      "photo":  "https://randomuser.me/api/portraits/men/30.jpg",
-                      "registeredAt":  "2021-01-27T08:45:00.000Z",
-                      "likes":  52,
-                      "desiredSubcategoryIds":  [
-                                                    2,
-                                                    25,
-                                                    18
-                                                ]
-                  },
-                  {
-                      "id":  19,
-                      "name":  "Ella Scott",
-                      "cityId":  4,
-                      "age":  26,
-                      "photo":  "https://randomuser.me/api/portraits/women/12.jpg",
-                      "registeredAt":  "2022-02-19T10:10:00.000Z",
-                      "likes":  41,
-                      "desiredSubcategoryIds":  [
-                                                    12,
-                                                    38
-                                                ]
-                  },
-                  {
-                      "id":  20,
-                      "name":  "Michael Green",
-                      "cityId":  5,
-                      "age":  32,
-                      "photo":  "https://randomuser.me/api/portraits/men/54.jpg",
-                      "registeredAt":  "2020-06-15T16:25:00.000Z",
-                      "likes":  44,
-                      "desiredSubcategoryIds":  [
-                                                    33,
-                                                    11,
-                                                    16,
-                                                    21
-                                                ]
-                  },
-                  {
-                      "id":  21,
-                      "name":  "Lily Adams",
-                      "cityId":  6,
-                      "age":  28,
-                      "photo":  "https://randomuser.me/api/portraits/women/29.jpg",
-                      "registeredAt":  "2023-03-30T09:45:00.000Z",
-                      "likes":  37,
-                      "desiredSubcategoryIds":  [
-                                                    16,
-                                                    14
-                                                ]
-                  },
-                  {
-                      "id":  22,
-                      "name":  "Jacob Baker",
-                      "cityId":  7,
-                      "age":  35,
-                      "photo":  "https://randomuser.me/api/portraits/men/67.jpg",
-                      "registeredAt":  "2019-12-11T18:05:00.000Z",
-                      "likes":  50,
-                      "desiredSubcategoryIds":  [
-                                                    4,
-                                                    28,
-                                                    16,
-                                                    21
-                                                ]
-                  },
-                  {
-                      "id":  23,
-                      "name":  "Mia Nelson",
-                      "cityId":  8,
-                      "age":  25,
-                      "photo":  "https://randomuser.me/api/portraits/women/20.jpg",
-                      "registeredAt":  "2024-01-15T14:30:00.000Z",
-                      "likes":  42,
-                      "desiredSubcategoryIds":  [
-                                                    1,
-                                                    19,
-                                                    18
-                                                ]
-                  },
-                  {
-                      "id":  24,
-                      "name":  "Alexander Carter",
-                      "cityId":  9,
-                      "age":  33,
-                      "photo":  "https://randomuser.me/api/portraits/men/88.jpg",
-                      "registeredAt":  "2020-09-02T10:50:00.000Z",
-                      "likes":  39,
-                      "desiredSubcategoryIds":  [
-                                                    27,
-                                                    19,
-                                                    40
-                                                ]
-                  },
-                  {
-                      "id":  25,
-                      "name":  "Emily Mitchell",
-                      "cityId":  10,
-                      "age":  27,
-                      "photo":  "https://randomuser.me/api/portraits/women/42.jpg",
-                      "registeredAt":  "2022-04-18T11:15:00.000Z",
-                      "likes":  36,
-                      "desiredSubcategoryIds":  [
-                                                    10,
-                                                    31,
-                                                    14
-                                                ]
-                  },
-                  {
-                      "id":  26,
-                      "name":  "Daniel Perez",
-                      "cityId":  16,
-                      "age":  30,
-                      "photo":  "https://randomuser.me/api/portraits/men/21.jpg",
-                      "registeredAt":  "2021-07-24T09:40:00.000Z",
-                      "likes":  48,
-                      "desiredSubcategoryIds":  [
-                                                    11,
-                                                    13,
-                                                    16
-                                                ]
-                  },
-                  {
-                      "id":  27,
-                      "name":  "Avery Roberts",
-                      "cityId":  12,
-                      "age":  24,
-                      "photo":  "https://randomuser.me/api/portraits/women/74.jpg",
-                      "registeredAt":  "2023-08-12T12:20:00.000Z",
-                      "likes":  31,
-                      "desiredSubcategoryIds":  [
-                                                    40
-                                                ]
-                  },
-                  {
-                      "id":  28,
-                      "name":  "Matthew Turner",
-                      "cityId":  13,
-                      "age":  29,
-                      "photo":  "https://randomuser.me/api/portraits/men/36.jpg",
-                      "registeredAt":  "2020-03-29T08:30:00.000Z",
-                      "likes":  45,
-                      "desiredSubcategoryIds":  [
-                                                    22,
-                                                    16,
-                                                    20
-                                                ]
-                  },
-                  {
-                      "id":  29,
-                      "name":  "Scarlett Phillips",
-                      "cityId":  14,
-                      "age":  26,
-                      "photo":  "https://randomuser.me/api/portraits/women/64.jpg",
-                      "registeredAt":  "2022-11-21T09:55:00.000Z",
-                      "likes":  38,
-                      "desiredSubcategoryIds":  [
-                                                    11,
-                                                    12,
-                                                    34,
-                                                    10
-                                                ]
-                  },
-                  {
-                      "id":  30,
-                      "name":  "Henry Campbell",
-                      "cityId":  15,
-                      "age":  32,
-                      "photo":  "https://randomuser.me/api/portraits/men/13.jpg",
-                      "registeredAt":  "2021-05-05T14:45:00.000Z",
-                      "likes":  43,
-                      "desiredSubcategoryIds":  [
-                                                    23,
-                                                    25,
-                                                    13
-                                                ]
-                  },
-                  {
-                      "id":  31,
-                      "name":  "Victoria Evans",
-                      "cityId":  1,
-                      "age":  28,
-                      "photo":  "https://randomuser.me/api/portraits/women/18.jpg",
-                      "registeredAt":  "2023-02-28T11:05:00.000Z",
-                      "likes":  35,
-                      "desiredSubcategoryIds":  [
-                                                    8,
-                                                    3,
-                                                    26
-                                                ]
-                  },
-                  {
-                      "id":  32,
-                      "name":  "Sebastian Edwards",
-                      "cityId":  2,
-                      "age":  34,
-                      "photo":  "https://randomuser.me/api/portraits/men/48.jpg",
-                      "registeredAt":  "2020-10-15T08:20:00.000Z",
-                      "likes":  41,
-                      "desiredSubcategoryIds":  [
-                                                    7,
-                                                    24
-                                                ]
-                  },
-                  {
-                      "id":  33,
-                      "name":  "Grace Collins",
-                      "cityId":  3,
-                      "age":  23,
-                      "photo":  "https://randomuser.me/api/portraits/women/30.jpg",
-                      "registeredAt":  "2024-01-08T12:10:00.000Z",
-                      "likes":  29,
-                      "desiredSubcategoryIds":  [
-                                                    35,
-                                                    28,
-                                                    8,
-                                                    7
-                                                ]
-                  },
-                  {
-                      "id":  34,
-                      "name":  "Jackson Stewart",
-                      "cityId":  4,
-                      "age":  31,
-                      "photo":  "https://randomuser.me/api/portraits/men/59.jpg",
-                      "registeredAt":  "2021-12-12T14:15:00.000Z",
-                      "likes":  46,
-                      "desiredSubcategoryIds":  [
-                                                    29,
-                                                    41,
-                                                    19
-                                                ]
-                  },
-                  {
-                      "id":  35,
-                      "name":  "Chloe Sanchez",
-                      "cityId":  5,
-                      "age":  27,
-                      "photo":  "https://randomuser.me/api/portraits/women/49.jpg",
-                      "registeredAt":  "2023-06-14T10:25:00.000Z",
-                      "likes":  34,
-                      "desiredSubcategoryIds":  [
-                                                    13
-                                                ]
-                  },
-                  {
-                      "id":  36,
-                      "name":  "Aiden Morris",
-                      "cityId":  6,
-                      "age":  29,
-                      "photo":  "https://randomuser.me/api/portraits/men/39.jpg",
-                      "registeredAt":  "2020-08-19T09:40:00.000Z",
-                      "likes":  50,
-                      "desiredSubcategoryIds":  [
-                                                    31
-                                                ]
-                  },
-                  {
-                      "id":  37,
-                      "name":  "Luna Rogers",
-                      "cityId":  7,
-                      "age":  25,
-                      "photo":  "https://randomuser.me/api/portraits/women/37.jpg",
-                      "registeredAt":  "2023-09-23T11:55:00.000Z",
-                      "likes":  36,
-                      "desiredSubcategoryIds":  [
-                                                    5,
-                                                    1
-                                                ]
-                  },
-                  {
-                      "id":  38,
-                      "name":  "Logan Reed",
-                      "cityId":  8,
-                      "age":  33,
-                      "photo":  "https://randomuser.me/api/portraits/men/62.jpg",
-                      "registeredAt":  "2021-06-28T08:50:00.000Z",
-                      "likes":  48,
-                      "desiredSubcategoryIds":  [
-                                                    40,
-                                                    1,
-                                                    16
-                                                ]
-                  },
-                  {
-                      "id":  39,
-                      "name":  "Zoe Cook",
-                      "cityId":  9,
-                      "age":  24,
-                      "photo":  "https://randomuser.me/api/portraits/women/56.jpg",
-                      "registeredAt":  "2023-11-10T10:10:00.000Z",
-                      "likes":  31,
-                      "desiredSubcategoryIds":  [
-                                                    7,
-                                                    20
-                                                ]
-                  },
-                  {
-                      "id":  40,
-                      "name":  "Lucas Morgan",
-                      "cityId":  10,
-                      "age":  30,
-                      "photo":  "https://randomuser.me/api/portraits/men/41.jpg",
-                      "registeredAt":  "2020-02-25T12:15:00.000Z",
-                      "likes":  45,
-                      "desiredSubcategoryIds":  [
-                                                    28
-                                                ]
-                  },
-                  {
-                      "id":  41,
-                      "name":  "Hannah Bell",
-                      "cityId":  11,
-                      "age":  26,
-                      "photo":  "https://randomuser.me/api/portraits/women/70.jpg",
-                      "registeredAt":  "2022-10-05T09:50:00.000Z",
-                      "likes":  38,
-                      "desiredSubcategoryIds":  [
-                                                    5,
-                                                    21,
-                                                    4,
-                                                    7
-                                                ]
-                  },
-                  {
-                      "id":  42,
-                      "name":  "Owen Bailey",
-                      "cityId":  12,
-                      "age":  32,
-                      "photo":  "https://randomuser.me/api/portraits/men/50.jpg",
-                      "registeredAt":  "2021-05-15T14:40:00.000Z",
-                      "likes":  43,
-                      "desiredSubcategoryIds":  [
-                                                    37,
-                                                    13,
-                                                    25,
-                                                    15
-                                                ]
-                  },
-                  {
-                      "id":  43,
-                      "name":  "Aria Rivera",
-                      "cityId":  13,
-                      "age":  28,
-                      "photo":  "https://randomuser.me/api/portraits/women/11.jpg",
-                      "registeredAt":  "2023-03-12T10:20:00.000Z",
-                      "likes":  35,
-                      "desiredSubcategoryIds":  [
-                                                    14
-                                                ]
-                  },
-                  {
-                      "id":  44,
-                      "name":  "Samuel Cooper",
-                      "cityId":  14,
-                      "age":  34,
-                      "photo":  "https://randomuser.me/api/portraits/men/17.jpg",
-                      "registeredAt":  "2020-10-28T08:25:00.000Z",
-                      "likes":  41,
-                      "desiredSubcategoryIds":  [
-                                                    39,
-                                                    31,
-                                                    16,
-                                                    41
-                                                ]
-                  },
-                  {
-                      "id":  45,
-                      "name":  "Ella Richardson",
-                      "cityId":  15,
-                      "age":  23,
-                      "photo":  "https://randomuser.me/api/portraits/women/9.jpg",
-                      "registeredAt":  "2024-01-05T12:05:00.000Z",
-                      "likes":  29,
-                      "desiredSubcategoryIds":  [
-                                                    37
-                                                ]
-                  }
-              ],
-    "skills":  [
-                   {
-                       "id":  1,
-                       "userId":  1,
-                       "title":  "Маркетинг и реклама",
-                       "subcategoryId":  2,
-                       "description":  "Если тема «Маркетинг и реклама» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  2,
-                       "userId":  1,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  3,
-                       "userId":  1,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "С «Продажи и переговоры» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  4,
-                       "userId":  2,
-                       "title":  "Управление командой",
-                       "subcategoryId":  1,
-                       "description":  "Могу помочь освоить «Управление командой» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  5,
-                       "userId":  2,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  6,
-                       "userId":  3,
-                       "title":  "Фотография",
-                       "subcategoryId":  10,
-                       "description":  "Навык «Фотография» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  7,
-                       "userId":  3,
-                       "title":  "Рисование и иллюстрация",
-                       "subcategoryId":  9,
-                       "description":  "По теме «Рисование и иллюстрация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  8,
-                       "userId":  4,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "Если «Тайм-менеджмент» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  9,
-                       "userId":  4,
-                       "title":  "Навыки обучения",
-                       "subcategoryId":  25,
-                       "description":  "Если тема «Навыки обучения» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  10,
-                       "userId":  5,
-                       "title":  "Приготовление еды",
-                       "subcategoryId":  32,
-                       "description":  "По навыку «Приготовление еды» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  11,
-                       "userId":  5,
-                       "title":  "Домашние растения",
-                       "subcategoryId":  33,
-                       "description":  "С «Домашние растения» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  12,
-                       "userId":  6,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "Могу помочь освоить «Предпринимательство» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  13,
-                       "userId":  7,
-                       "title":  "Йога и медитация",
-                       "subcategoryId":  36,
-                       "description":  "Если хочется разобраться в теме «Йога и медитация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  14,
-                       "userId":  8,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  15,
-                       "userId":  8,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "По теме «Личный бренд» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  16,
-                       "userId":  9,
-                       "title":  "Креативное письмо",
-                       "subcategoryId":  14,
-                       "description":  "Если «Креативное письмо» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  17,
-                       "userId":  9,
-                       "title":  "Актёрское мастерство",
-                       "subcategoryId":  13,
-                       "description":  "Если тема «Актёрское мастерство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  18,
-                       "userId":  10,
-                       "title":  "Маркетинг и реклама",
-                       "subcategoryId":  2,
-                       "description":  "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  19,
-                       "userId":  10,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "С «Предпринимательство» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  20,
-                       "userId":  11,
-                       "title":  "Ремонт",
-                       "subcategoryId":  34,
-                       "description":  "Могу помочь освоить «Ремонт» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  21,
-                       "userId":  11,
-                       "title":  "Уборка и организация",
-                       "subcategoryId":  30,
-                       "description":  "Если хочется разобраться в теме «Уборка и организация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  22,
-                       "userId":  12,
-                       "title":  "Физические тренировки",
-                       "subcategoryId":  40,
-                       "description":  "Навык «Физические тренировки» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  23,
-                       "userId":  12,
-                       "title":  "Питание и ЗОЖ",
-                       "subcategoryId":  37,
-                       "description":  "По теме «Питание и ЗОЖ» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  24,
-                       "userId":  13,
-                       "title":  "Личностное развитие",
-                       "subcategoryId":  24,
-                       "description":  "Если «Личностное развитие» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  25,
-                       "userId":  14,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  26,
-                       "userId":  14,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  27,
-                       "userId":  15,
-                       "title":  "Фотография",
-                       "subcategoryId":  10,
-                       "description":  "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  28,
-                       "userId":  15,
-                       "title":  "Видеомонтаж",
-                       "subcategoryId":  11,
-                       "description":  "Могу помочь освоить «Видеомонтаж» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  29,
-                       "userId":  16,
-                       "title":  "Управление командой",
-                       "subcategoryId":  1,
-                       "description":  "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  30,
-                       "userId":  16,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  31,
-                       "userId":  17,
-                       "title":  "Арт-терапия",
-                       "subcategoryId":  15,
-                       "description":  "По теме «Арт-терапия» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  32,
-                       "userId":  17,
-                       "title":  "Декор и DIY",
-                       "subcategoryId":  16,
-                       "description":  "Если «Декор и DIY» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  33,
-                       "userId":  18,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  34,
-                       "userId":  18,
-                       "title":  "Маркетинг и реклама",
-                       "subcategoryId":  2,
-                       "description":  "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  35,
-                       "userId":  19,
-                       "title":  "Приготовление еды",
-                       "subcategoryId":  32,
-                       "description":  "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  36,
-                       "userId":  19,
-                       "title":  "Домашние растения",
-                       "subcategoryId":  33,
-                       "description":  "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  37,
-                       "userId":  20,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  38,
-                       "userId":  20,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "Навык «Тайм-менеджмент» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  39,
-                       "userId":  21,
-                       "title":  "Йога и медитация",
-                       "subcategoryId":  36,
-                       "description":  "По теме «Йога и медитация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  40,
-                       "userId":  21,
-                       "title":  "Физические тренировки",
-                       "subcategoryId":  40,
-                       "description":  "Если «Физические тренировки» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  41,
-                       "userId":  22,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Если тема «Продажи и переговоры» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  42,
-                       "userId":  22,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  43,
-                       "userId":  23,
-                       "title":  "Фотография",
-                       "subcategoryId":  10,
-                       "description":  "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  44,
-                       "userId":  23,
-                       "title":  "Рисование и иллюстрация",
-                       "subcategoryId":  9,
-                       "description":  "Могу помочь освоить «Рисование и иллюстрация» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  45,
-                       "userId":  24,
-                       "title":  "Маркетинг и реклама",
-                       "subcategoryId":  2,
-                       "description":  "Если хочется разобраться в теме «Маркетинг и реклама», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  46,
-                       "userId":  24,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "Навык «Предпринимательство» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  47,
-                       "userId":  25,
-                       "title":  "Ремонт",
-                       "subcategoryId":  34,
-                       "description":  "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  48,
-                       "userId":  25,
-                       "title":  "Уборка и организация",
-                       "subcategoryId":  30,
-                       "description":  "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  49,
-                       "userId":  26,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  50,
-                       "userId":  26,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  51,
-                       "userId":  27,
-                       "title":  "Личностное развитие",
-                       "subcategoryId":  24,
-                       "description":  "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  52,
-                       "userId":  27,
-                       "title":  "Креативное письмо",
-                       "subcategoryId":  14,
-                       "description":  "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  53,
-                       "userId":  28,
-                       "title":  "Управление командой",
-                       "subcategoryId":  1,
-                       "description":  "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  54,
-                       "userId":  28,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  55,
-                       "userId":  29,
-                       "title":  "Фотография",
-                       "subcategoryId":  10,
-                       "description":  "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  56,
-                       "userId":  29,
-                       "title":  "Видеомонтаж",
-                       "subcategoryId":  11,
-                       "description":  "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  57,
-                       "userId":  30,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  58,
-                       "userId":  30,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  59,
-                       "userId":  31,
-                       "title":  "Приготовление еды",
-                       "subcategoryId":  32,
-                       "description":  "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  60,
-                       "userId":  31,
-                       "title":  "Домашние растения",
-                       "subcategoryId":  33,
-                       "description":  "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  61,
-                       "userId":  32,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  62,
-                       "userId":  32,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  63,
-                       "userId":  33,
-                       "title":  "Креативное письмо",
-                       "subcategoryId":  14,
-                       "description":  "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  64,
-                       "userId":  33,
-                       "title":  "Актёрское мастерство",
-                       "subcategoryId":  13,
-                       "description":  "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  65,
-                       "userId":  34,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  66,
-                       "userId":  34,
-                       "title":  "Маркетинг и реклама",
-                       "subcategoryId":  2,
-                       "description":  "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  67,
-                       "userId":  35,
-                       "title":  "Йога и медитация",
-                       "subcategoryId":  36,
-                       "description":  "С «Йога и медитация» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  68,
-                       "userId":  35,
-                       "title":  "Физические тренировки",
-                       "subcategoryId":  40,
-                       "description":  "Могу помочь освоить «Физические тренировки» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  69,
-                       "userId":  36,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Если хочется разобраться в теме «Продажи и переговоры», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  70,
-                       "userId":  36,
-                       "title":  "Личный бренд",
-                       "subcategoryId":  4,
-                       "description":  "Навык «Личный бренд» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  71,
-                       "userId":  37,
-                       "title":  "Ремонт",
-                       "subcategoryId":  34,
-                       "description":  "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  72,
-                       "userId":  37,
-                       "title":  "Уборка и организация",
-                       "subcategoryId":  30,
-                       "description":  "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  73,
-                       "userId":  38,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  74,
-                       "userId":  38,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  75,
-                       "userId":  39,
-                       "title":  "Личностное развитие",
-                       "subcategoryId":  24,
-                       "description":  "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  76,
-                       "userId":  39,
-                       "title":  "Креативное письмо",
-                       "subcategoryId":  14,
-                       "description":  "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  77,
-                       "userId":  40,
-                       "title":  "Управление командой",
-                       "subcategoryId":  1,
-                       "description":  "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  78,
-                       "userId":  40,
-                       "title":  "Продажи и переговоры",
-                       "subcategoryId":  3,
-                       "description":  "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  79,
-                       "userId":  41,
-                       "title":  "Фотография",
-                       "subcategoryId":  10,
-                       "description":  "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  80,
-                       "userId":  41,
-                       "title":  "Видеомонтаж",
-                       "subcategoryId":  11,
-                       "description":  "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  81,
-                       "userId":  42,
-                       "title":  "Предпринимательство",
-                       "subcategoryId":  8,
-                       "description":  "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  82,
-                       "userId":  42,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  83,
-                       "userId":  43,
-                       "title":  "Приготовление еды",
-                       "subcategoryId":  32,
-                       "description":  "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  84,
-                       "userId":  43,
-                       "title":  "Домашние растения",
-                       "subcategoryId":  33,
-                       "description":  "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  85,
-                       "userId":  44,
-                       "title":  "Тайм-менеджмент",
-                       "subcategoryId":  6,
-                       "description":  "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  86,
-                       "userId":  44,
-                       "title":  "Проектное управление",
-                       "subcategoryId":  7,
-                       "description":  "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-                       "image":  "https://placebear.com/400/300"
-                   },
-                   {
-                       "id":  87,
-                       "userId":  45,
-                       "title":  "Креативное письмо",
-                       "subcategoryId":  14,
-                       "description":  "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-                       "image":  "https://picsum.photos/400/300"
-                   },
-                   {
-                       "id":  88,
-                       "userId":  45,
-                       "title":  "Актёрское мастерство",
-                       "subcategoryId":  13,
-                       "description":  "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-                       "image":  "https://placebear.com/400/300"
-                   }
-               ],
-    "categories":  [
-                       {
-                           "id":  1,
-                           "name":  "Бизнес и карьера"
-                       },
-                       {
-                           "id":  2,
-                           "name":  "Творчество и искусство"
-                       },
-                       {
-                           "id":  3,
-                           "name":  "Иностранные языки"
-                       },
-                       {
-                           "id":  4,
-                           "name":  "Образование и развитие"
-                       },
-                       {
-                           "id":  5,
-                           "name":  "Дом и уют"
-                       },
-                       {
-                           "id":  6,
-                           "name":  "Здоровье и лайфстайл"
-                       }
-                   ],
-    "subcategories":  [
-                          {
-                              "id":  1,
-                              "categoryId":  1,
-                              "name":  "Управление командой"
-                          },
-                          {
-                              "id":  2,
-                              "categoryId":  1,
-                              "name":  "Маркетинг и реклама"
-                          },
-                          {
-                              "id":  3,
-                              "categoryId":  1,
-                              "name":  "Продажи и переговоры"
-                          },
-                          {
-                              "id":  4,
-                              "categoryId":  1,
-                              "name":  "Личный бренд"
-                          },
-                          {
-                              "id":  5,
-                              "categoryId":  1,
-                              "name":  "Резюме и собеседование"
-                          },
-                          {
-                              "id":  6,
-                              "categoryId":  1,
-                              "name":  "Тайм-менеджмент"
-                          },
-                          {
-                              "id":  7,
-                              "categoryId":  1,
-                              "name":  "Проектное управление"
-                          },
-                          {
-                              "id":  8,
-                              "categoryId":  1,
-                              "name":  "Предпринимательство"
-                          },
-                          {
-                              "id":  9,
-                              "categoryId":  2,
-                              "name":  "Рисование и иллюстрация"
-                          },
-                          {
-                              "id":  10,
-                              "categoryId":  2,
-                              "name":  "Фотография"
-                          },
-                          {
-                              "id":  11,
-                              "categoryId":  2,
-                              "name":  "Видеомонтаж"
-                          },
-                          {
-                              "id":  12,
-                              "categoryId":  2,
-                              "name":  "Музыка и звук"
-                          },
-                          {
-                              "id":  13,
-                              "categoryId":  2,
-                              "name":  "Актёрское мастерство"
-                          },
-                          {
-                              "id":  14,
-                              "categoryId":  2,
-                              "name":  "Креативное письмо"
-                          },
-                          {
-                              "id":  15,
-                              "categoryId":  2,
-                              "name":  "Арт-терапия"
-                          },
-                          {
-                              "id":  16,
-                              "categoryId":  2,
-                              "name":  "Декор и DIY"
-                          },
-                          {
-                              "id":  17,
-                              "categoryId":  3,
-                              "name":  "Английский"
-                          },
-                          {
-                              "id":  18,
-                              "categoryId":  3,
-                              "name":  "Французский"
-                          },
-                          {
-                              "id":  19,
-                              "categoryId":  3,
-                              "name":  "Испанский"
-                          },
-                          {
-                              "id":  20,
-                              "categoryId":  3,
-                              "name":  "Немецкий"
-                          },
-                          {
-                              "id":  21,
-                              "categoryId":  3,
-                              "name":  "Китайский"
-                          },
-                          {
-                              "id":  22,
-                              "categoryId":  3,
-                              "name":  "Японский"
-                          },
-                          {
-                              "id":  23,
-                              "categoryId":  3,
-                              "name":  "Подготовка к экзаменам (IELTS, TOEFL)"
-                          },
-                          {
-                              "id":  24,
-                              "categoryId":  4,
-                              "name":  "Личностное развитие"
-                          },
-                          {
-                              "id":  25,
-                              "categoryId":  4,
-                              "name":  "Навыки обучения"
-                          },
-                          {
-                              "id":  26,
-                              "categoryId":  4,
-                              "name":  "Когнитивные техники"
-                          },
-                          {
-                              "id":  27,
-                              "categoryId":  4,
-                              "name":  "Скорочтение"
-                          },
-                          {
-                              "id":  28,
-                              "categoryId":  4,
-                              "name":  "Навыки преподавания"
-                          },
-                          {
-                              "id":  29,
-                              "categoryId":  4,
-                              "name":  "Коучинг"
-                          },
-                          {
-                              "id":  30,
-                              "categoryId":  5,
-                              "name":  "Уборка и организация"
-                          },
-                          {
-                              "id":  31,
-                              "categoryId":  5,
-                              "name":  "Домашние финансы"
-                          },
-                          {
-                              "id":  32,
-                              "categoryId":  5,
-                              "name":  "Приготовление еды"
-                          },
-                          {
-                              "id":  33,
-                              "categoryId":  5,
-                              "name":  "Домашние растения"
-                          },
-                          {
-                              "id":  34,
-                              "categoryId":  5,
-                              "name":  "Ремонт"
-                          },
-                          {
-                              "id":  35,
-                              "categoryId":  5,
-                              "name":  "Хранение вещей"
-                          },
-                          {
-                              "id":  36,
-                              "categoryId":  6,
-                              "name":  "Йога и медитация"
-                          },
-                          {
-                              "id":  37,
-                              "categoryId":  6,
-                              "name":  "Питание и ЗОЖ"
-                          },
-                          {
-                              "id":  38,
-                              "categoryId":  6,
-                              "name":  "Ментальное здоровье"
-                          },
-                          {
-                              "id":  39,
-                              "categoryId":  6,
-                              "name":  "Осознанность"
-                          },
-                          {
-                              "id":  40,
-                              "categoryId":  6,
-                              "name":  "Физические тренировки"
-                          },
-                          {
-                              "id":  41,
-                              "categoryId":  6,
-                              "name":  "Сон и восстановление"
-                          },
-                          {
-                              "id":  42,
-                              "categoryId":  6,
-                              "name":  "Баланс жизни и работы"
-                          }
-                      ],
-    "cities":  [
-                   {
-                       "id":  1,
-                       "name":  "Москва"
-                   },
-                   {
-                       "id":  2,
-                       "name":  "Санкт‑Петербург"
-                   },
-                   {
-                       "id":  3,
-                       "name":  "Новосибирск"
-                   },
-                   {
-                       "id":  4,
-                       "name":  "Екатеринбург"
-                   },
-                   {
-                       "id":  5,
-                       "name":  "Казань"
-                   },
-                   {
-                       "id":  6,
-                       "name":  "Челябинск"
-                   },
-                   {
-                       "id":  7,
-                       "name":  "Омск"
-                   },
-                   {
-                       "id":  8,
-                       "name":  "Самара"
-                   },
-                   {
-                       "id":  9,
-                       "name":  "Ростов‑на‑Дону"
-                   },
-                   {
-                       "id":  10,
-                       "name":  "Уфа"
-                   },
-                   {
-                       "id":  11,
-                       "name":  "Красноярск"
-                   },
-                   {
-                       "id":  12,
-                       "name":  "Воронеж"
-                   },
-                   {
-                       "id":  13,
-                       "name":  "Пермь"
-                   },
-                   {
-                       "id":  14,
-                       "name":  "Волгоград"
-                   },
-                   {
-                       "id":  15,
-                       "name":  "Сочи"
-                   },
-                   {
-                       "id":  16,
-                       "name":  "Тында"
-                   }
-               ]
+  "users": [
+    {
+      "id": 1,
+      "name": "Olivia Turner",
+      "cityId": 1,
+      "age": 28,
+      "photo": "https://randomuser.me/api/portraits/women/65.jpg",
+      "registeredAt": "2021-02-14T10:15:00.000Z",
+      "likes": 38,
+      "desiredSubcategoryIds": [
+        32,
+        38,
+        24,
+        3
+      ],
+      "createdSkillIds": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Liam Wilson",
+      "cityId": 2,
+      "age": 31,
+      "photo": "https://randomuser.me/api/portraits/men/12.jpg",
+      "registeredAt": "2020-11-21T18:42:00.000Z",
+      "likes": 21,
+      "desiredSubcategoryIds": [
+        5,
+        39
+      ],
+      "createdSkillIds": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Emma Johnson",
+      "cityId": 3,
+      "age": 23,
+      "photo": "https://randomuser.me/api/portraits/women/22.jpg",
+      "registeredAt": "2022-06-01T14:20:00.000Z",
+      "likes": 47,
+      "desiredSubcategoryIds": [
+        4
+      ],
+      "createdSkillIds": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Noah Smith",
+      "cityId": 4,
+      "age": 35,
+      "photo": "https://randomuser.me/api/portraits/men/33.jpg",
+      "registeredAt": "2019-09-10T12:10:00.000Z",
+      "likes": 52,
+      "desiredSubcategoryIds": [
+        31,
+        27,
+        12,
+        21
+      ],
+      "createdSkillIds": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Ava Brown",
+      "cityId": 5,
+      "age": 27,
+      "photo": "https://randomuser.me/api/portraits/women/44.jpg",
+      "registeredAt": "2022-01-28T09:05:00.000Z",
+      "likes": 29,
+      "desiredSubcategoryIds": [
+        31,
+        7
+      ],
+      "createdSkillIds": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": 6,
+      "name": "William Davis",
+      "cityId": 6,
+      "age": 30,
+      "photo": "https://randomuser.me/api/portraits/men/45.jpg",
+      "registeredAt": "2021-08-15T17:35:00.000Z",
+      "likes": 38,
+      "desiredSubcategoryIds": [
+        12,
+        20
+      ],
+      "createdSkillIds": [
+        12
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Sophia Martinez",
+      "cityId": 7,
+      "age": 26,
+      "photo": "https://randomuser.me/api/portraits/women/15.jpg",
+      "registeredAt": "2023-03-05T11:50:00.000Z",
+      "likes": 41,
+      "desiredSubcategoryIds": [
+        12,
+        23,
+        41
+      ],
+      "createdSkillIds": [
+        13
+      ]
+    },
+    {
+      "id": 8,
+      "name": "James Garcia",
+      "cityId": 8,
+      "age": 29,
+      "photo": "https://randomuser.me/api/portraits/men/76.jpg",
+      "registeredAt": "2018-12-19T20:12:00.000Z",
+      "likes": 63,
+      "desiredSubcategoryIds": [
+        18,
+        27,
+        14
+      ],
+      "createdSkillIds": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Isabella Rodriguez",
+      "cityId": 9,
+      "age": 24,
+      "photo": "https://randomuser.me/api/portraits/women/82.jpg",
+      "registeredAt": "2024-01-11T13:25:00.000Z",
+      "likes": 18,
+      "desiredSubcategoryIds": [
+        24
+      ],
+      "createdSkillIds": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Benjamin Hernandez",
+      "cityId": 10,
+      "age": 33,
+      "photo": "https://randomuser.me/api/portraits/men/19.jpg",
+      "registeredAt": "2019-04-08T07:18:00.000Z",
+      "likes": 49,
+      "desiredSubcategoryIds": [
+        26,
+        41,
+        13,
+        33
+      ],
+      "createdSkillIds": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Mia Lopez",
+      "cityId": 16,
+      "age": 29,
+      "photo": "https://randomuser.me/api/portraits/women/91.jpg",
+      "registeredAt": "2020-07-22T16:42:00.000Z",
+      "likes": 32,
+      "desiredSubcategoryIds": [
+        17,
+        36
+      ],
+      "createdSkillIds": [
+        20,
+        21
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Elijah Gonzalez",
+      "cityId": 12,
+      "age": 36,
+      "photo": "https://randomuser.me/api/portraits/men/58.jpg",
+      "registeredAt": "2017-10-30T08:30:00.000Z",
+      "likes": 27,
+      "desiredSubcategoryIds": [
+        8,
+        23,
+        11,
+        41
+      ],
+      "createdSkillIds": [
+        22,
+        23
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Charlotte Wilson",
+      "cityId": 13,
+      "age": 22,
+      "photo": "https://randomuser.me/api/portraits/women/35.jpg",
+      "registeredAt": "2023-05-17T19:40:00.000Z",
+      "likes": 45,
+      "desiredSubcategoryIds": [
+        6,
+        25,
+        32
+      ],
+      "createdSkillIds": [
+        24
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Alexander White",
+      "cityId": 14,
+      "age": 34,
+      "photo": "https://randomuser.me/api/portraits/men/23.jpg",
+      "registeredAt": "2021-11-09T14:10:00.000Z",
+      "likes": 36,
+      "desiredSubcategoryIds": [
+        4,
+        29,
+        7
+      ],
+      "createdSkillIds": [
+        25,
+        26
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Amelia Hall",
+      "cityId": 15,
+      "age": 27,
+      "photo": "https://randomuser.me/api/portraits/women/53.jpg",
+      "registeredAt": "2022-08-21T09:50:00.000Z",
+      "likes": 28,
+      "desiredSubcategoryIds": [
+        34,
+        14,
+        6
+      ],
+      "createdSkillIds": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Ethan Allen",
+      "cityId": 1,
+      "age": 31,
+      "photo": "https://randomuser.me/api/portraits/men/77.jpg",
+      "registeredAt": "2020-04-13T12:35:00.000Z",
+      "likes": 40,
+      "desiredSubcategoryIds": [
+        40
+      ],
+      "createdSkillIds": [
+        29,
+        30
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Harper Young",
+      "cityId": 2,
+      "age": 24,
+      "photo": "https://randomuser.me/api/portraits/women/61.jpg",
+      "registeredAt": "2023-09-05T11:20:00.000Z",
+      "likes": 33,
+      "desiredSubcategoryIds": [
+        41,
+        24
+      ],
+      "createdSkillIds": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Daniel King",
+      "cityId": 3,
+      "age": 29,
+      "photo": "https://randomuser.me/api/portraits/men/30.jpg",
+      "registeredAt": "2021-01-27T08:45:00.000Z",
+      "likes": 52,
+      "desiredSubcategoryIds": [
+        2,
+        25,
+        18
+      ],
+      "createdSkillIds": [
+        33,
+        34
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Ella Scott",
+      "cityId": 4,
+      "age": 26,
+      "photo": "https://randomuser.me/api/portraits/women/12.jpg",
+      "registeredAt": "2022-02-19T10:10:00.000Z",
+      "likes": 41,
+      "desiredSubcategoryIds": [
+        12,
+        38
+      ],
+      "createdSkillIds": [
+        35,
+        36
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Michael Green",
+      "cityId": 5,
+      "age": 32,
+      "photo": "https://randomuser.me/api/portraits/men/54.jpg",
+      "registeredAt": "2020-06-15T16:25:00.000Z",
+      "likes": 44,
+      "desiredSubcategoryIds": [
+        33,
+        11,
+        16,
+        21
+      ],
+      "createdSkillIds": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Lily Adams",
+      "cityId": 6,
+      "age": 28,
+      "photo": "https://randomuser.me/api/portraits/women/29.jpg",
+      "registeredAt": "2023-03-30T09:45:00.000Z",
+      "likes": 37,
+      "desiredSubcategoryIds": [
+        16,
+        14
+      ],
+      "createdSkillIds": [
+        39,
+        40
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Jacob Baker",
+      "cityId": 7,
+      "age": 35,
+      "photo": "https://randomuser.me/api/portraits/men/67.jpg",
+      "registeredAt": "2019-12-11T18:05:00.000Z",
+      "likes": 50,
+      "desiredSubcategoryIds": [
+        4,
+        28,
+        16,
+        21
+      ],
+      "createdSkillIds": [
+        41,
+        42
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Mia Nelson",
+      "cityId": 8,
+      "age": 25,
+      "photo": "https://randomuser.me/api/portraits/women/20.jpg",
+      "registeredAt": "2024-01-15T14:30:00.000Z",
+      "likes": 42,
+      "desiredSubcategoryIds": [
+        1,
+        19,
+        18
+      ],
+      "createdSkillIds": [
+        43,
+        44
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Alexander Carter",
+      "cityId": 9,
+      "age": 33,
+      "photo": "https://randomuser.me/api/portraits/men/88.jpg",
+      "registeredAt": "2020-09-02T10:50:00.000Z",
+      "likes": 39,
+      "desiredSubcategoryIds": [
+        27,
+        19,
+        40
+      ],
+      "createdSkillIds": [
+        45,
+        46
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Emily Mitchell",
+      "cityId": 10,
+      "age": 27,
+      "photo": "https://randomuser.me/api/portraits/women/42.jpg",
+      "registeredAt": "2022-04-18T11:15:00.000Z",
+      "likes": 36,
+      "desiredSubcategoryIds": [
+        10,
+        31,
+        14
+      ],
+      "createdSkillIds": [
+        47,
+        48
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Daniel Perez",
+      "cityId": 16,
+      "age": 30,
+      "photo": "https://randomuser.me/api/portraits/men/21.jpg",
+      "registeredAt": "2021-07-24T09:40:00.000Z",
+      "likes": 48,
+      "desiredSubcategoryIds": [
+        11,
+        13,
+        16
+      ],
+      "createdSkillIds": [
+        49,
+        50
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Avery Roberts",
+      "cityId": 12,
+      "age": 24,
+      "photo": "https://randomuser.me/api/portraits/women/74.jpg",
+      "registeredAt": "2023-08-12T12:20:00.000Z",
+      "likes": 31,
+      "desiredSubcategoryIds": [
+        40
+      ],
+      "createdSkillIds": [
+        51,
+        52
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Matthew Turner",
+      "cityId": 13,
+      "age": 29,
+      "photo": "https://randomuser.me/api/portraits/men/36.jpg",
+      "registeredAt": "2020-03-29T08:30:00.000Z",
+      "likes": 45,
+      "desiredSubcategoryIds": [
+        22,
+        16,
+        20
+      ],
+      "createdSkillIds": [
+        53,
+        54
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Scarlett Phillips",
+      "cityId": 14,
+      "age": 26,
+      "photo": "https://randomuser.me/api/portraits/women/64.jpg",
+      "registeredAt": "2022-11-21T09:55:00.000Z",
+      "likes": 38,
+      "desiredSubcategoryIds": [
+        11,
+        12,
+        34,
+        10
+      ],
+      "createdSkillIds": [
+        55,
+        56
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Henry Campbell",
+      "cityId": 15,
+      "age": 32,
+      "photo": "https://randomuser.me/api/portraits/men/13.jpg",
+      "registeredAt": "2021-05-05T14:45:00.000Z",
+      "likes": 43,
+      "desiredSubcategoryIds": [
+        23,
+        25,
+        13
+      ],
+      "createdSkillIds": [
+        57,
+        58
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Victoria Evans",
+      "cityId": 1,
+      "age": 28,
+      "photo": "https://randomuser.me/api/portraits/women/18.jpg",
+      "registeredAt": "2023-02-28T11:05:00.000Z",
+      "likes": 35,
+      "desiredSubcategoryIds": [
+        8,
+        3,
+        26
+      ],
+      "createdSkillIds": [
+        59,
+        60
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Sebastian Edwards",
+      "cityId": 2,
+      "age": 34,
+      "photo": "https://randomuser.me/api/portraits/men/48.jpg",
+      "registeredAt": "2020-10-15T08:20:00.000Z",
+      "likes": 41,
+      "desiredSubcategoryIds": [
+        7,
+        24
+      ],
+      "createdSkillIds": [
+        61,
+        62
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Grace Collins",
+      "cityId": 3,
+      "age": 23,
+      "photo": "https://randomuser.me/api/portraits/women/30.jpg",
+      "registeredAt": "2024-01-08T12:10:00.000Z",
+      "likes": 29,
+      "desiredSubcategoryIds": [
+        35,
+        28,
+        8,
+        7
+      ],
+      "createdSkillIds": [
+        63,
+        64
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Jackson Stewart",
+      "cityId": 4,
+      "age": 31,
+      "photo": "https://randomuser.me/api/portraits/men/59.jpg",
+      "registeredAt": "2021-12-12T14:15:00.000Z",
+      "likes": 46,
+      "desiredSubcategoryIds": [
+        29,
+        41,
+        19
+      ],
+      "createdSkillIds": [
+        65,
+        66
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Chloe Sanchez",
+      "cityId": 5,
+      "age": 27,
+      "photo": "https://randomuser.me/api/portraits/women/49.jpg",
+      "registeredAt": "2023-06-14T10:25:00.000Z",
+      "likes": 34,
+      "desiredSubcategoryIds": [
+        13
+      ],
+      "createdSkillIds": [
+        67,
+        68
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Aiden Morris",
+      "cityId": 6,
+      "age": 29,
+      "photo": "https://randomuser.me/api/portraits/men/39.jpg",
+      "registeredAt": "2020-08-19T09:40:00.000Z",
+      "likes": 50,
+      "desiredSubcategoryIds": [
+        31
+      ],
+      "createdSkillIds": [
+        69,
+        70
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Luna Rogers",
+      "cityId": 7,
+      "age": 25,
+      "photo": "https://randomuser.me/api/portraits/women/37.jpg",
+      "registeredAt": "2023-09-23T11:55:00.000Z",
+      "likes": 36,
+      "desiredSubcategoryIds": [
+        5,
+        1
+      ],
+      "createdSkillIds": [
+        71,
+        72
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Logan Reed",
+      "cityId": 8,
+      "age": 33,
+      "photo": "https://randomuser.me/api/portraits/men/62.jpg",
+      "registeredAt": "2021-06-28T08:50:00.000Z",
+      "likes": 48,
+      "desiredSubcategoryIds": [
+        40,
+        1,
+        16
+      ],
+      "createdSkillIds": [
+        73,
+        74
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Zoe Cook",
+      "cityId": 9,
+      "age": 24,
+      "photo": "https://randomuser.me/api/portraits/women/56.jpg",
+      "registeredAt": "2023-11-10T10:10:00.000Z",
+      "likes": 31,
+      "desiredSubcategoryIds": [
+        7,
+        20
+      ],
+      "createdSkillIds": [
+        75,
+        76
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Lucas Morgan",
+      "cityId": 10,
+      "age": 30,
+      "photo": "https://randomuser.me/api/portraits/men/41.jpg",
+      "registeredAt": "2020-02-25T12:15:00.000Z",
+      "likes": 45,
+      "desiredSubcategoryIds": [
+        28
+      ],
+      "createdSkillIds": [
+        77,
+        78
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Hannah Bell",
+      "cityId": 11,
+      "age": 26,
+      "photo": "https://randomuser.me/api/portraits/women/70.jpg",
+      "registeredAt": "2022-10-05T09:50:00.000Z",
+      "likes": 38,
+      "desiredSubcategoryIds": [
+        5,
+        21,
+        4,
+        7
+      ],
+      "createdSkillIds": [
+        79,
+        80
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Owen Bailey",
+      "cityId": 12,
+      "age": 32,
+      "photo": "https://randomuser.me/api/portraits/men/50.jpg",
+      "registeredAt": "2021-05-15T14:40:00.000Z",
+      "likes": 43,
+      "desiredSubcategoryIds": [
+        37,
+        13,
+        25,
+        15
+      ],
+      "createdSkillIds": [
+        81,
+        82
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Aria Rivera",
+      "cityId": 13,
+      "age": 28,
+      "photo": "https://randomuser.me/api/portraits/women/11.jpg",
+      "registeredAt": "2023-03-12T10:20:00.000Z",
+      "likes": 35,
+      "desiredSubcategoryIds": [
+        14
+      ],
+      "createdSkillIds": [
+        83,
+        84
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Samuel Cooper",
+      "cityId": 14,
+      "age": 34,
+      "photo": "https://randomuser.me/api/portraits/men/17.jpg",
+      "registeredAt": "2020-10-28T08:25:00.000Z",
+      "likes": 41,
+      "desiredSubcategoryIds": [
+        39,
+        31,
+        16,
+        41
+      ],
+      "createdSkillIds": [
+        85,
+        86
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Ella Richardson",
+      "cityId": 15,
+      "age": 23,
+      "photo": "https://randomuser.me/api/portraits/women/9.jpg",
+      "registeredAt": "2024-01-05T12:05:00.000Z",
+      "likes": 29,
+      "desiredSubcategoryIds": [
+        37
+      ],
+      "createdSkillIds": [
+        87,
+        88
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "title": "Маркетинг и реклама",
+      "subcategoryId": 2,
+      "description": "Если тема «Маркетинг и реклама» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 2,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 3,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "С «Продажи и переговоры» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 4,
+      "title": "Управление командой",
+      "subcategoryId": 1,
+      "description": "Могу помочь освоить «Управление командой» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 5,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 6,
+      "title": "Фотография",
+      "subcategoryId": 10,
+      "description": "Навык «Фотография» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 7,
+      "title": "Рисование и иллюстрация",
+      "subcategoryId": 9,
+      "description": "По теме «Рисование и иллюстрация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 8,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "Если «Тайм-менеджмент» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 9,
+      "title": "Навыки обучения",
+      "subcategoryId": 25,
+      "description": "Если тема «Навыки обучения» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 10,
+      "title": "Приготовление еды",
+      "subcategoryId": 32,
+      "description": "По навыку «Приготовление еды» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 11,
+      "title": "Домашние растения",
+      "subcategoryId": 33,
+      "description": "С «Домашние растения» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 12,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "Могу помочь освоить «Предпринимательство» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 13,
+      "title": "Йога и медитация",
+      "subcategoryId": 36,
+      "description": "Если хочется разобраться в теме «Йога и медитация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 14,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 15,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "По теме «Личный бренд» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 16,
+      "title": "Креативное письмо",
+      "subcategoryId": 14,
+      "description": "Если «Креативное письмо» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 17,
+      "title": "Актёрское мастерство",
+      "subcategoryId": 13,
+      "description": "Если тема «Актёрское мастерство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 18,
+      "title": "Маркетинг и реклама",
+      "subcategoryId": 2,
+      "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 19,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "С «Предпринимательство» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 20,
+      "title": "Ремонт",
+      "subcategoryId": 34,
+      "description": "Могу помочь освоить «Ремонт» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 21,
+      "title": "Уборка и организация",
+      "subcategoryId": 30,
+      "description": "Если хочется разобраться в теме «Уборка и организация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 22,
+      "title": "Физические тренировки",
+      "subcategoryId": 40,
+      "description": "Навык «Физические тренировки» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 23,
+      "title": "Питание и ЗОЖ",
+      "subcategoryId": 37,
+      "description": "По теме «Питание и ЗОЖ» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 24,
+      "title": "Личностное развитие",
+      "subcategoryId": 24,
+      "description": "Если «Личностное развитие» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 25,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 26,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 27,
+      "title": "Фотография",
+      "subcategoryId": 10,
+      "description": "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 28,
+      "title": "Видеомонтаж",
+      "subcategoryId": 11,
+      "description": "Могу помочь освоить «Видеомонтаж» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 29,
+      "title": "Управление командой",
+      "subcategoryId": 1,
+      "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 30,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 31,
+      "title": "Арт-терапия",
+      "subcategoryId": 15,
+      "description": "По теме «Арт-терапия» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 32,
+      "title": "Декор и DIY",
+      "subcategoryId": 16,
+      "description": "Если «Декор и DIY» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 33,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 34,
+      "title": "Маркетинг и реклама",
+      "subcategoryId": 2,
+      "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 35,
+      "title": "Приготовление еды",
+      "subcategoryId": 32,
+      "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 36,
+      "title": "Домашние растения",
+      "subcategoryId": 33,
+      "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 37,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 38,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "Навык «Тайм-менеджмент» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 39,
+      "title": "Йога и медитация",
+      "subcategoryId": 36,
+      "description": "По теме «Йога и медитация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 40,
+      "title": "Физические тренировки",
+      "subcategoryId": 40,
+      "description": "Если «Физические тренировки» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 41,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Если тема «Продажи и переговоры» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 42,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 43,
+      "title": "Фотография",
+      "subcategoryId": 10,
+      "description": "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 44,
+      "title": "Рисование и иллюстрация",
+      "subcategoryId": 9,
+      "description": "Могу помочь освоить «Рисование и иллюстрация» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 45,
+      "title": "Маркетинг и реклама",
+      "subcategoryId": 2,
+      "description": "Если хочется разобраться в теме «Маркетинг и реклама», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 46,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "Навык «Предпринимательство» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 47,
+      "title": "Ремонт",
+      "subcategoryId": 34,
+      "description": "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 48,
+      "title": "Уборка и организация",
+      "subcategoryId": 30,
+      "description": "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 49,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 50,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 51,
+      "title": "Личностное развитие",
+      "subcategoryId": 24,
+      "description": "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 52,
+      "title": "Креативное письмо",
+      "subcategoryId": 14,
+      "description": "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 53,
+      "title": "Управление командой",
+      "subcategoryId": 1,
+      "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 54,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 55,
+      "title": "Фотография",
+      "subcategoryId": 10,
+      "description": "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 56,
+      "title": "Видеомонтаж",
+      "subcategoryId": 11,
+      "description": "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 57,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 58,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 59,
+      "title": "Приготовление еды",
+      "subcategoryId": 32,
+      "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 60,
+      "title": "Домашние растения",
+      "subcategoryId": 33,
+      "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 61,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 62,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 63,
+      "title": "Креативное письмо",
+      "subcategoryId": 14,
+      "description": "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 64,
+      "title": "Актёрское мастерство",
+      "subcategoryId": 13,
+      "description": "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 65,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 66,
+      "title": "Маркетинг и реклама",
+      "subcategoryId": 2,
+      "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 67,
+      "title": "Йога и медитация",
+      "subcategoryId": 36,
+      "description": "С «Йога и медитация» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 68,
+      "title": "Физические тренировки",
+      "subcategoryId": 40,
+      "description": "Могу помочь освоить «Физические тренировки» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 69,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Если хочется разобраться в теме «Продажи и переговоры», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 70,
+      "title": "Личный бренд",
+      "subcategoryId": 4,
+      "description": "Навык «Личный бренд» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 71,
+      "title": "Ремонт",
+      "subcategoryId": 34,
+      "description": "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 72,
+      "title": "Уборка и организация",
+      "subcategoryId": 30,
+      "description": "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 73,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 74,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 75,
+      "title": "Личностное развитие",
+      "subcategoryId": 24,
+      "description": "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 76,
+      "title": "Креативное письмо",
+      "subcategoryId": 14,
+      "description": "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 77,
+      "title": "Управление командой",
+      "subcategoryId": 1,
+      "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 78,
+      "title": "Продажи и переговоры",
+      "subcategoryId": 3,
+      "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 79,
+      "title": "Фотография",
+      "subcategoryId": 10,
+      "description": "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 80,
+      "title": "Видеомонтаж",
+      "subcategoryId": 11,
+      "description": "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 81,
+      "title": "Предпринимательство",
+      "subcategoryId": 8,
+      "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 82,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 83,
+      "title": "Приготовление еды",
+      "subcategoryId": 32,
+      "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 84,
+      "title": "Домашние растения",
+      "subcategoryId": 33,
+      "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 85,
+      "title": "Тайм-менеджмент",
+      "subcategoryId": 6,
+      "description": "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 86,
+      "title": "Проектное управление",
+      "subcategoryId": 7,
+      "description": "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
+      "image": "https://placebear.com/400/300"
+    },
+    {
+      "id": 87,
+      "title": "Креативное письмо",
+      "subcategoryId": 14,
+      "description": "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
+      "image": "https://picsum.photos/400/300"
+    },
+    {
+      "id": 88,
+      "title": "Актёрское мастерство",
+      "subcategoryId": 13,
+      "description": "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
+      "image": "https://placebear.com/400/300"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Бизнес и карьера"
+    },
+    {
+      "id": 2,
+      "name": "Творчество и искусство"
+    },
+    {
+      "id": 3,
+      "name": "Иностранные языки"
+    },
+    {
+      "id": 4,
+      "name": "Образование и развитие"
+    },
+    {
+      "id": 5,
+      "name": "Дом и уют"
+    },
+    {
+      "id": 6,
+      "name": "Здоровье и лайфстайл"
+    }
+  ],
+  "subcategories": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Управление командой"
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "name": "Маркетинг и реклама"
+    },
+    {
+      "id": 3,
+      "categoryId": 1,
+      "name": "Продажи и переговоры"
+    },
+    {
+      "id": 4,
+      "categoryId": 1,
+      "name": "Личный бренд"
+    },
+    {
+      "id": 5,
+      "categoryId": 1,
+      "name": "Резюме и собеседование"
+    },
+    {
+      "id": 6,
+      "categoryId": 1,
+      "name": "Тайм-менеджмент"
+    },
+    {
+      "id": 7,
+      "categoryId": 1,
+      "name": "Проектное управление"
+    },
+    {
+      "id": 8,
+      "categoryId": 1,
+      "name": "Предпринимательство"
+    },
+    {
+      "id": 9,
+      "categoryId": 2,
+      "name": "Рисование и иллюстрация"
+    },
+    {
+      "id": 10,
+      "categoryId": 2,
+      "name": "Фотография"
+    },
+    {
+      "id": 11,
+      "categoryId": 2,
+      "name": "Видеомонтаж"
+    },
+    {
+      "id": 12,
+      "categoryId": 2,
+      "name": "Музыка и звук"
+    },
+    {
+      "id": 13,
+      "categoryId": 2,
+      "name": "Актёрское мастерство"
+    },
+    {
+      "id": 14,
+      "categoryId": 2,
+      "name": "Креативное письмо"
+    },
+    {
+      "id": 15,
+      "categoryId": 2,
+      "name": "Арт-терапия"
+    },
+    {
+      "id": 16,
+      "categoryId": 2,
+      "name": "Декор и DIY"
+    },
+    {
+      "id": 17,
+      "categoryId": 3,
+      "name": "Английский"
+    },
+    {
+      "id": 18,
+      "categoryId": 3,
+      "name": "Французский"
+    },
+    {
+      "id": 19,
+      "categoryId": 3,
+      "name": "Испанский"
+    },
+    {
+      "id": 20,
+      "categoryId": 3,
+      "name": "Немецкий"
+    },
+    {
+      "id": 21,
+      "categoryId": 3,
+      "name": "Китайский"
+    },
+    {
+      "id": 22,
+      "categoryId": 3,
+      "name": "Японский"
+    },
+    {
+      "id": 23,
+      "categoryId": 3,
+      "name": "Подготовка к экзаменам (IELTS, TOEFL)"
+    },
+    {
+      "id": 24,
+      "categoryId": 4,
+      "name": "Личностное развитие"
+    },
+    {
+      "id": 25,
+      "categoryId": 4,
+      "name": "Навыки обучения"
+    },
+    {
+      "id": 26,
+      "categoryId": 4,
+      "name": "Когнитивные техники"
+    },
+    {
+      "id": 27,
+      "categoryId": 4,
+      "name": "Скорочтение"
+    },
+    {
+      "id": 28,
+      "categoryId": 4,
+      "name": "Навыки преподавания"
+    },
+    {
+      "id": 29,
+      "categoryId": 4,
+      "name": "Коучинг"
+    },
+    {
+      "id": 30,
+      "categoryId": 5,
+      "name": "Уборка и организация"
+    },
+    {
+      "id": 31,
+      "categoryId": 5,
+      "name": "Домашние финансы"
+    },
+    {
+      "id": 32,
+      "categoryId": 5,
+      "name": "Приготовление еды"
+    },
+    {
+      "id": 33,
+      "categoryId": 5,
+      "name": "Домашние растения"
+    },
+    {
+      "id": 34,
+      "categoryId": 5,
+      "name": "Ремонт"
+    },
+    {
+      "id": 35,
+      "categoryId": 5,
+      "name": "Хранение вещей"
+    },
+    {
+      "id": 36,
+      "categoryId": 6,
+      "name": "Йога и медитация"
+    },
+    {
+      "id": 37,
+      "categoryId": 6,
+      "name": "Питание и ЗОЖ"
+    },
+    {
+      "id": 38,
+      "categoryId": 6,
+      "name": "Ментальное здоровье"
+    },
+    {
+      "id": 39,
+      "categoryId": 6,
+      "name": "Осознанность"
+    },
+    {
+      "id": 40,
+      "categoryId": 6,
+      "name": "Физические тренировки"
+    },
+    {
+      "id": 41,
+      "categoryId": 6,
+      "name": "Сон и восстановление"
+    },
+    {
+      "id": 42,
+      "categoryId": 6,
+      "name": "Баланс жизни и работы"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Москва"
+    },
+    {
+      "id": 2,
+      "name": "Санкт‑Петербург"
+    },
+    {
+      "id": 3,
+      "name": "Новосибирск"
+    },
+    {
+      "id": 4,
+      "name": "Екатеринбург"
+    },
+    {
+      "id": 5,
+      "name": "Казань"
+    },
+    {
+      "id": 6,
+      "name": "Челябинск"
+    },
+    {
+      "id": 7,
+      "name": "Омск"
+    },
+    {
+      "id": 8,
+      "name": "Самара"
+    },
+    {
+      "id": 9,
+      "name": "Ростов‑на‑Дону"
+    },
+    {
+      "id": 10,
+      "name": "Уфа"
+    },
+    {
+      "id": 11,
+      "name": "Красноярск"
+    },
+    {
+      "id": 12,
+      "name": "Воронеж"
+    },
+    {
+      "id": 13,
+      "name": "Пермь"
+    },
+    {
+      "id": 14,
+      "name": "Волгоград"
+    },
+    {
+      "id": 15,
+      "name": "Сочи"
+    },
+    {
+      "id": 16,
+      "name": "Тында"
+    }
+  ]
 }

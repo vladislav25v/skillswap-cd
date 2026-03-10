@@ -357,7 +357,6 @@ http://localhost:3001
 - `POST /skills`
 - `PATCH /skills/:id`
 - `DELETE /skills/:id`
-- `GET /skills?userId=:id`
 - `GET /skills?subcategoryId=:id`
 - `GET /categories`
 - `GET /categories/:id`
@@ -378,7 +377,6 @@ fetch('http://localhost:3001/skills', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    userId: 1,
     title: 'Новый навык',
     subcategoryId: 10,
     description: 'Тестовое описание',
@@ -407,6 +405,20 @@ fetch('http://localhost:3001/skills/1', {
 });
 ```
 
+Привязка навыка к пользователю теперь хранится в `users.createdSkillIds`. После создания нового навыка нужно отдельно обновить пользователя, добавив в его `createdSkillIds` id созданной записи.
+
+Пример `PATCH /users/:id`:
+
+```js
+fetch('http://localhost:3001/users/1', {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    createdSkillIds: [1, 2, 3, 89],
+  }),
+});
+```
+
 ##### Структура данных
 
 В моках используются коллекции:
@@ -417,7 +429,15 @@ fetch('http://localhost:3001/skills/1', {
 - `subcategories`
 - `cities`
 
-users и skills это модели данных которые создаются/редактируются через формы, всё остальное словари, которые используется для фильтрации и бизнес логики и не должны редактироваться/удаляться/добавляться
+`users` и `skills` это модели данных, которые создаются и редактируются через формы. Всё остальное это словари для фильтрации и бизнес-логики, их не нужно редактировать, удалять или дополнять.
+
+Источник истины для связи "пользователь -> созданные навыки" хранится в `users.createdSkillIds`.
+
+Структура связи:
+
+- `users[].createdSkillIds` — массив id навыков, созданных пользователем
+
+Чтобы получить навыки пользователя, нужно брать `createdSkillIds` из `users` и по этим id находить записи в `skills`.
 
 ##### Проверка
 

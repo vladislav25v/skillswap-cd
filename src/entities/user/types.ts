@@ -7,4 +7,5 @@ export interface User {
   registeredAt: string;
   likes: number;
   desiredSubcategoryIds: number[];
+  createdSkillIds: number[];
 }
