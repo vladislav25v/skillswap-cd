@@ -25,10 +25,10 @@
 }
 
 .customCheckbox {
-  width: 24px;
-  height: 24px;
-  border: 2px solid black;
-  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
   background: var(--color-surface);
   transition: all 0.2s ease;
   display: inline-block;
@@ -44,25 +44,20 @@
 
 /* Состояние checked */
 .input:checked + .customCheckbox {  
-  width: 20px;
-  height: 20px;
   background: var(--color-accent);
-  border: none;
+  border-color: var(--color-accent);
 }
 
 /* Галочка */
 .input:checked + .customCheckbox::after {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 7.71px;
-  height: 10px;
-  border: solid var(--color-surface);
-  border-width: 0 2px 2px 0;
-  transform: translate(-50%, -50%) rotate(45deg);
-  transform-origin: center;
-  box-sizing: border-box;
+  width: 10px;
+  height: 8px;
+  left: 5px;
+  top: 5px;
+  background: url("/src/assets/check.svg") no-repeat;
+  background-size: 10px 8px;
 }
 
 /* Фокус (для доступности) */
