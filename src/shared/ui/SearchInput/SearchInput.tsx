@@ -9,7 +9,7 @@ export type SearchInputProps = Omit<InputProps, 'type' | 'leftSlot' | 'rightSlot
 
 const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
   function SearchInput(props, ref) {
-    const { value, onChange, className, ...rest } = props;
+    const { value, onChange, ...rest } = props;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!onChange) return;
@@ -26,7 +26,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     return (
       <Input
         {...rest}
-        className={[styles.searchInput, className].join(' ').trim()}
         ref={ref}
         value={value}
         onChange={handleChange}
