@@ -1,0 +1,81 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.title {
+	margin: 0;
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-body);
+	line-height: 24px;
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+}
+
+.tagsRow {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 8px;
+	overflow: hidden;
+}
+
+.tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	height: 32px;
+	padding: 8px 12px;
+	border-radius: 20px;
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-caption);
+	line-height: 16px;
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+	white-space: nowrap;
+}
+
+.business {
+	background-color: var(--color-tag-business);
+}
+
+.art {
+	background-color: var(--color-tag-art);
+}
+
+.languages {
+	background-color: var(--color-tag-languages);
+}
+
+.education {
+	background-color: var(--color-tag-education);
+}
+
+.home {
+	background-color: var(--color-tag-home);
+}
+
+.health {
+	background-color: var(--color-tag-health);
+}
+
+.moreTag {
+	background-color: var(--color-tag-more);
+}
+
+.measureContainer {
+	position: absolute;
+	visibility: hidden;
+	pointer-events: none;
+	white-space: nowrap;
+	height: 0;
+	overflow: hidden;
+}
