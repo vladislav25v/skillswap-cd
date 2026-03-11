@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import styles from './Input.module.css';
+import { FormFieldContext } from '@/shared/ui/FormField';
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
@@ -10,13 +12,14 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
-  const { value, className, error, bordered = true, leftSlot, rightSlot, ...rest } = props;
+  const { value, className, error, id, bordered = true, leftSlot, rightSlot, ...rest } = props;
+  const { fieldId, fieldError } = useContext(FormFieldContext);
 
   return (
     <span
       className={[
         styles.input,
-        error && styles.inputError,
+        (fieldError || error) && styles.inputError,
         bordered && styles.inputBordered,
         className,
       ]
@@ -24,7 +27,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
         .join(' ')}
     >
       {leftSlot}
-      <input {...rest} ref={ref} value={value} className={styles.inputField} />
+      <input
+        {...rest}
+        ref={ref}
+        value={value}
+        id={fieldId ?? id ?? null}
+        className={styles.inputField}
+      />
       {rightSlot}
     </span>
   );

@@ -1,0 +1,22 @@
+.formField {
+  display: grid;
+  color: var(--color-text-primary);
+}
+
+.label {
+  justify-self: start;
+  padding-block-end: 4px;
+  font-size: var(--font-size-body);
+}
+
+.tip,
+.error {
+  margin-block-start: 4px;
+  font-size: var(--font-size-caption);
+  line-height: 1.33;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: var(--font-size-caption);
+}
