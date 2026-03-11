@@ -9,7 +9,7 @@ export type SearchInputProps = Omit<InputProps, 'type' | 'leftSlot' | 'rightSlot
 
 const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
   function SearchInput(props, ref) {
-    const { value, onChange, ...rest } = props;
+    const { value, onChange, className, ...rest } = props;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!onChange) return;
@@ -26,10 +26,12 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     return (
       <Input
         {...rest}
-        className={styles.searchInput}
+        className={[styles.searchInput, className].join(' ').trim()}
         ref={ref}
         value={value}
         onChange={handleChange}
+        bordered={false}
+        type={'search'}
         leftSlot={<Search className={styles.searchIcon} />}
         rightSlot={
           value && (
@@ -38,8 +40,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             </button>
           )
         }
-        bordered={false}
-        type={'search'}
       />
     );
   },
