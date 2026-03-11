@@ -1,4 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
+import type { Skill } from '@/entities/skill/types';
+import type { Subcategory } from '@/entities/subcategory/types';
+import type { User } from '@/entities/user/types';
 import styles from './Skilltags.module.css';
 
 type SkillTagCategory = 'business' | 'art' | 'languages' | 'education' | 'home' | 'health';
@@ -9,22 +12,9 @@ interface SkillTagItem {
   category: SkillTagCategory;
 }
 
-interface UserSkillData {
-  createdSkillIds: number[];
-  desiredSubcategoryIds: number[];
-}
-
-interface SkillData {
-  id: number;
-  title: string;
-  subcategoryId: number;
-}
-
-interface SubcategoryData {
-  id: number;
-  name: string;
-  categoryId: number;
-}
+type UserSkillData = Pick<User, 'createdSkillIds' | 'desiredSubcategoryIds'>;
+type SkillData = Pick<Skill, 'id' | 'title' | 'subcategoryId'>;
+type SubcategoryData = Pick<Subcategory, 'id' | 'name' | 'categoryId'>;
 
 interface SkilltagsProps {
   teachingSkills: SkillTagItem[];
