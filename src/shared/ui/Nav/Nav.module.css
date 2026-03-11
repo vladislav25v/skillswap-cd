@@ -1,26 +1,28 @@
- .navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   z-index: 1;
 }
 
 .navLinks {
-  list-style: none;
   display: flex;
   gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .textNav {
   color: var(--color-text-primary);
   font-family: var(--font-family-base);
-  font-weight: var(--font-weight-regular);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
 }
 
 .linkButton {
+  padding: 0;
   border: none;
   background-color: transparent;
 }
@@ -32,13 +34,27 @@
 }
 
 .dropdownContainer {
-  position: relative;
+  position: static;
 }
 
-/* Триггер для открытия/закрытия меню */
 .dropdownTrigger {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
- 
+
+.dropdownTrigger svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .navLinks {
+    gap: 16px;
+  }
+}
