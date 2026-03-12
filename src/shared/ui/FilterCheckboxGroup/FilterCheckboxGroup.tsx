@@ -8,7 +8,7 @@ export interface FilterCheckboxGroupProps {
   name: string;
   className?: string;
   showAllLink?: boolean;
-  allLinkText?: React.ReactNode; // Оставляем React.ReactNode
+  allLinkText?: React.ReactNode;
   onAllLinkClick?: () => void;
   onChange?: (selectedValues: string[]) => void;
 }
@@ -93,6 +93,7 @@ const SubcategoryList: React.FC<SubcategoryListProps> = ({
             onChange={(checked) => onSubOptionChange(subOption.value, checked)}
             label={subOption.label}
             disabled={subOption.disabled}
+            className={styles.filterCheckboxGroup__subitemCheckbox}
           />
         </li>
       ))}
@@ -185,6 +186,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
           onChange={onCategoryChange(option.subOptions)}
           label=""
           disabled={option.disabled}
+          className={styles.filterCheckboxGroup__categoryCheckbox}
         />
 
         <CategoryButton

@@ -169,34 +169,22 @@
   opacity: 1;
 }
 
-/* Стили для чекбокса */
-.filterCheckboxGroup :global(.root) {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-  gap: 8px;
+
+.filterCheckboxGroup__subitemCheckbox {
+  width: 100%;   
 }
 
-.filterCheckboxGroup :global(.content) {
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  flex: 1;
-  min-width: 0;
-  transition: color 0.2s ease;
+.filterCheckboxGroup__subitemCheckbox .content { 
+  font-size: 0.95em;
+  opacity: 0.9;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.filterCheckboxGroup :global(.root:hover) .content {
+.filterCheckboxGroup__subitemCheckbox:hover .content {
   color: var(--color-accent-dark);
+  opacity: 1;
 }
 
-.filterCheckboxGroup :global(.clickArea) {
-  margin-top: 2px;
-  flex-shrink: 0;
-}
 
 /* Стили для ссылки "Все категории и.т.п" -вынести вотдельный компонент при необходимости  */
 .filterCheckboxGroup__allLink {

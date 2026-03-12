@@ -8,6 +8,7 @@ export interface CheckboxProps {
   label?: string;
   disabled?: boolean;
   id?: string;
+  className?: string;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -17,6 +18,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   disabled = false,
   id,
+  className = '',
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +33,10 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   };
 
   return (
-    <label htmlFor={id} className={`${styles.root} ${disabled ? styles.disabled : ''}`}>
+    <label
+      htmlFor={id}
+      className={`${styles.root} ${disabled ? styles.disabled : ''} ${className}`}
+    >
       <span className={styles.clickArea}>
         <input
           ref={inputRef}
@@ -47,7 +52,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           {indeterminate && <span className={styles.indeterminate} />}
         </span>
       </span>
-
       {label && <span className={styles.content}>{label}</span>}
     </label>
   );
