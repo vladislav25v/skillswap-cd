@@ -1,9 +1,11 @@
 .panel {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 40px;
-  border-radius: 28px;
+  gap: 24px;
+  min-height: 444px;
+  padding: 32px 52px;
+  border-radius: var(--radius);
+  border: 2px solid rgba(37, 48, 23, 0.08);
   background:
     radial-gradient(circle at top right, rgba(171, 210, 122, 0.18), transparent 30%),
     linear-gradient(180deg, #ffffff 0%, #f8faf4 100%);
@@ -21,9 +23,10 @@
 .headerTitle {
   margin: 0;
   font-family: var(--font-family-highlight);
-  font-size: 40px;
-  line-height: 1;
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.011em;
   color: var(--color-text-primary);
 }
 
@@ -110,7 +113,7 @@
   width: 40px;
   height: 40px;
   border: 1px solid rgba(37, 48, 23, 0.12);
-  border-radius: 50%;
+  border-radius: var(--radius-rounded);
   background: rgba(255, 255, 255, 0.88);
   color: var(--color-text-primary);
   cursor: pointer;
@@ -132,7 +135,8 @@
 
 @media (max-width: 1023px) {
   .panel {
-    padding: 28px;
+    min-height: 0;
+    padding: 28px 32px;
     gap: 24px;
   }
 
@@ -148,8 +152,8 @@
 
 @media (max-width: 767px) {
   .panel {
-    padding: 18px;
-    border-radius: 20px;
+    padding: 20px 16px;
+    border-radius: var(--radius);
   }
 
   .header {
@@ -159,6 +163,7 @@
 
   .headerTitle {
     font-size: 28px;
+    line-height: 1.25;
   }
 
   .title {

@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
-  width: min(1240px, 100%);
+  width: min(1020px, 100%);
   margin: 0 auto;
 }
 
@@ -31,7 +31,7 @@
   width: 40px;
   height: 40px;
   border: 1px solid rgba(37, 48, 23, 0.14);
-  border-radius: 50%;
+  border-radius: var(--radius-rounded);
   background: rgba(255, 255, 255, 0.9);
   color: var(--color-text-primary);
   cursor: pointer;
