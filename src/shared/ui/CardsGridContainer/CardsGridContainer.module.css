@@ -1,34 +1,5 @@
-.showAllButton {
-  border: none;
-  background: var(--color-surface);
-  color: var(--color-surface);
-}
-
 .container {
-  width: 100%;
-  max-width: 1020px;
-}
-
-.header {
   display: flex;
-  height: 48px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
-}
-
-.title {
-  margin: 0;
-  font-family: var(--font-family-highlight);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  letter-spacing: -0.011em;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  background: var(--color-surface);
-  border-radius: 12px;
+  flex-direction: column;
+  gap: 40px;
 }
