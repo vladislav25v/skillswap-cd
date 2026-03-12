@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sparkle } from 'lucide-react';
 import styles from './Footer.module.css';
 
