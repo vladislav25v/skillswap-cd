@@ -4,7 +4,7 @@ import { FormFieldContext } from '@/shared/ui/FormField/FormFieldContext.ts';
 
 export interface FormFieldProps {
   label?: string;
-  hiddenLabel?: boolean;
+  labelHidden?: boolean;
   htmlFor?: string;
   tip?: string;
   error?: string;
@@ -14,6 +14,7 @@ export interface FormFieldProps {
 
 const FormField: React.FC<FormFieldProps> = ({
   label,
+  labelHidden,
   htmlFor,
   tip,
   error,
@@ -28,7 +29,10 @@ const FormField: React.FC<FormFieldProps> = ({
   return (
     <div className={[styles.formField, className].filter(Boolean).join(' ')}>
       {label && (
-        <label className={styles.label} htmlFor={fieldId}>
+        <label
+          className={[styles.label, labelHidden && styles.labelHidden].filter(Boolean).join(' ')}
+          htmlFor={fieldId}
+        >
           {label}
         </label>
       )}
