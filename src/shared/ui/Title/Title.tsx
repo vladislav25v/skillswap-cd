@@ -1,7 +1,7 @@
 import styles from './Title.module.css';
 import type { FC, ReactNode } from 'react';
 
-type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4';
+export type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4';
 
 export interface TitleProps {
   text?: string;
