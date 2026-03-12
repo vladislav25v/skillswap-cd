@@ -62,7 +62,20 @@
   --field-border-error-color: var(--color-error);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
+  margin: 0;
   font-family: var(--font-family-base);
 }
 
