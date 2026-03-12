@@ -1,0 +1,24 @@
+.section {
+  display: grid;
+  gap: 32px;
+}
+
+.headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-highlight), sans-serif;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-h1);
+  line-height: 1.25;
+}
+
+.content {
+
+}
