@@ -1,0 +1,134 @@
+.footer {
+  width: 1440px;
+  max-width: 100%;  
+  margin: 0 auto;  
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  height: 232px;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.02em;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* Логотип */
+.logo {
+  position: absolute;
+  left: 30px;
+  top: 32px;
+  width: 159px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoCircle {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.starIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-page-bg); 
+}
+
+.logoText {
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* Навигация */
+.nav {
+  position: absolute;
+  left: 384px;
+  top: 92px;
+  right: 36px;
+  bottom: 80px;
+  display: flex;
+  gap: 24px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 324px;
+  text-align: left;
+}
+
+.columnWithMarkers .list {
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnWithMarkers .list li {
+  list-style-type: disc;
+  color: var(--color-text-primary);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+/* Нижняя часть */
+.bottom {
+  position: absolute;
+  left: 36px;
+  bottom: 32px;
+  text-align: left;
+}
+
+.copyright {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  margin: 0;
+}
