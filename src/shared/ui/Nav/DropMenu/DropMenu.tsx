@@ -7,7 +7,7 @@ import {
   Palette,
   type LucideIcon,
 } from 'lucide-react';
-import { useEffect, useRef, type RefObject } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 
 import styles from './DropMenu.module.css';
 
@@ -49,6 +49,15 @@ const sectionToneClasses: Record<number, string> = {
   6: styles.tagHealth,
 };
 
+const focusableSelector = [
+  'button:not([disabled])',
+  '[href]',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
 type SectionCardProps = {
   section: MenuSection;
 };
@@ -87,17 +96,95 @@ function DropMenu({
   error = null,
 }: DropMenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const [isMounted, setIsMounted] = useState(isOpen);
+  const [isVisible, setIsVisible] = useState(false);
   const leftColumnSections = sections.filter((_, index) => index % 2 === 0);
   const rightColumnSections = sections.filter((_, index) => index % 2 !== 0);
 
   useEffect(() => {
-    if (!isOpen) {
+    let frameId: number | null = null;
+
+    if (isOpen) {
+      frameId = requestAnimationFrame(() => {
+        setIsMounted(true);
+      });
+    } else {
+      frameId = requestAnimationFrame(() => {
+        setIsVisible(false);
+      });
+    }
+
+    return () => {
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isMounted || !isOpen) {
       return undefined;
     }
+
+    let firstFrameId: number | null = null;
+    let secondFrameId: number | null = null;
+
+    firstFrameId = requestAnimationFrame(() => {
+      setIsVisible(false);
+
+      secondFrameId = requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
+    });
+
+    return () => {
+      if (firstFrameId !== null) {
+        cancelAnimationFrame(firstFrameId);
+      }
+
+      if (secondFrameId !== null) {
+        cancelAnimationFrame(secondFrameId);
+      }
+    };
+  }, [isMounted, isOpen]);
+
+  useEffect(() => {
+    if (!isMounted) {
+      return undefined;
+    }
+
+    const focusFirstItem = () => {
+      const focusableElements = menuRef.current?.querySelectorAll<HTMLElement>(focusableSelector);
+      focusableElements?.[0]?.focus();
+    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
+        triggerRef?.current?.focus();
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = menuRef.current?.querySelectorAll<HTMLElement>(focusableSelector);
+
+      if (!focusableElements || focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     };
 
@@ -113,18 +200,24 @@ function DropMenu({
       }
 
       onClose();
+      triggerRef?.current?.focus();
     };
+
+    const focusFrameId = requestAnimationFrame(() => {
+      focusFirstItem();
+    });
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleDocumentClick);
 
     return () => {
+      cancelAnimationFrame(focusFrameId);
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('click', handleDocumentClick);
     };
-  }, [isOpen, onClose, triggerRef]);
+  }, [isMounted, onClose, triggerRef]);
 
-  if (!isOpen) {
+  if (!isMounted) {
     return null;
   }
 
@@ -132,8 +225,14 @@ function DropMenu({
     <div
       id="skills-dropdown"
       ref={menuRef}
-      className={styles.menu}
+      className={`${styles.menu} ${isVisible ? styles.menuOpen : styles.menuClosed}`}
       role="dialog"
+      aria-hidden={!isVisible}
+      onTransitionEnd={(event) => {
+        if (event.target === event.currentTarget && !isOpen) {
+          setIsMounted(false);
+        }
+      }}
       aria-label="Меню навыков"
     >
       {isLoading && <p className={styles.status}>Загрузка навыков...</p>}
