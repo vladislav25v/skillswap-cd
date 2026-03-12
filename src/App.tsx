@@ -1,7 +1,7 @@
 import Button from './shared/ui/Button/Button';
 import Nav from './shared/ui/Nav/Nav';
 import AvatarDemo from './shared/ui/Avatar/demo/Avatar.demo';
-import FilterCheckboxGroupDemo from './shared/ui/FilterCheckboxGroup/demo/FilterCheckboxGroup.demo';
+import FilterSidebarDemo from './widgets/FilterSidebar/demo/FilterSidebar.demo';
 
 function App() {
   const handleClick = () => {
@@ -22,7 +22,7 @@ function App() {
 
       {/* Демонстрация компонентов */}
       <AvatarDemo />
-      <FilterCheckboxGroupDemo />
+      <FilterSidebarDemo />
     </>
   );
 }
