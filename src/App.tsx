@@ -1,27 +1,91 @@
-import Button from './shared/ui/Button/Button';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+import type { Category } from './entities/category/types';
+import type { Subcategory } from './entities/subcategory/types';
 import Nav from './shared/ui/Nav/Nav';
-import AvatarTest from './shared/ui/Avatar/test/Avatar.test';
+import DropMenu, { type MenuSection } from './shared/ui/Nav/DropMenu';
+import { getCategories, getSubcategories } from './shared/ui/Nav/DropMenu/api';
+import './App.css';
 
 function App() {
-  const handleClick = () => {
-    console.log('Кнопка нажата!');
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadMenuData = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const [categoriesData, subcategoriesData] = await Promise.all([
+          getCategories(),
+          getSubcategories(),
+        ]);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setCategories(categoriesData);
+        setSubcategories(subcategoriesData);
+      } catch {
+        if (!isMounted) {
+          return;
+        }
+
+        setError('Не удалось загрузить список навыков.');
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    void loadMenuData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const testSections = useMemo<MenuSection[]>(
+    () =>
+      categories.map((category) => ({
+        id: category.id,
+        title: category.name,
+        items: subcategories
+          .filter((subcategory) => Number(subcategory.categoryId) === Number(category.id))
+          .map((subcategory) => ({
+            id: Number(subcategory.id),
+            name: subcategory.name,
+          })),
+      })),
+    [categories, subcategories],
+  );
 
   return (
-    <>
-      {/* Основной интерфейс */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+    <main className="app">
+      <div className="app__navTest">
         <Nav />
-        <h1>Проектный месяц</h1>
-        <Button variant="secondary">Войти</Button>
-        <Button variant="primary" onClick={handleClick}>
-          Зарегистрироваться
-        </Button>
       </div>
 
-      {/* Тесты Avatar */}
-      <AvatarTest />
-    </>
+      <div className="app__menuTest">
+        <DropMenu
+          isOpen={isOpen}
+          sections={testSections}
+          onClose={() => setIsOpen(false)}
+          triggerRef={triggerRef}
+          isLoading={isLoading}
+          error={error}
+        />
+      </div>
+    </main>
   );
 }
 

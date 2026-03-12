@@ -49,6 +49,14 @@
   height: 16px;
 }
 
+.chevron {
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
 @media (max-width: 768px) {
   .navbar {
     width: 100%;

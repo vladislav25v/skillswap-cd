@@ -92,7 +92,12 @@ function Nav() {
             aria-haspopup="dialog"
             type="button"
           >
-            Все навыки <ChevronDown aria-hidden="true" size={16} />
+            Все навыки{' '}
+            <ChevronDown
+              aria-hidden="true"
+              size={16}
+              className={`${styles.chevron} ${isDropdownOpen ? styles.chevronOpen : ''}`}
+            />
           </button>
           <DropMenu
             isOpen={isDropdownOpen}
