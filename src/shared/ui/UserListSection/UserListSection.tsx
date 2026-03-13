@@ -20,9 +20,9 @@ const UserListSection: React.FC<UserListSectionProps> = ({
   children,
 }) => {
   return (
-    <section className={[styles.section, className].join(' ')}>
+    <section className={[styles.section, className].filter(Boolean).join(' ')}>
       <div className={styles.headline}>
-        <Title tag={titleTag} looksLike={titleTagLooksLike ?? titleTag}>
+        <Title tag={titleTag} looksLike={titleTagLooksLike}>
           {title}
         </Title>
         {headlineExtraSlot}
