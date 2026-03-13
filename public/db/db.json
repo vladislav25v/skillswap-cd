@@ -798,616 +798,616 @@
       "title": "Маркетинг и реклама",
       "subcategoryId": 2,
       "description": "Если тема «Маркетинг и реклама» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 2,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 3,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "С «Продажи и переговоры» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 4,
       "title": "Управление командой",
       "subcategoryId": 1,
       "description": "Могу помочь освоить «Управление командой» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 5,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 6,
       "title": "Фотография",
       "subcategoryId": 10,
       "description": "Навык «Фотография» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 7,
       "title": "Рисование и иллюстрация",
       "subcategoryId": 9,
       "description": "По теме «Рисование и иллюстрация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 8,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "Если «Тайм-менеджмент» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 9,
       "title": "Навыки обучения",
       "subcategoryId": 25,
       "description": "Если тема «Навыки обучения» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 10,
       "title": "Приготовление еды",
       "subcategoryId": 32,
       "description": "По навыку «Приготовление еды» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 11,
       "title": "Домашние растения",
       "subcategoryId": 33,
       "description": "С «Домашние растения» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 12,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "Могу помочь освоить «Предпринимательство» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 13,
       "title": "Йога и медитация",
       "subcategoryId": 36,
       "description": "Если хочется разобраться в теме «Йога и медитация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 14,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 15,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "По теме «Личный бренд» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 16,
       "title": "Креативное письмо",
       "subcategoryId": 14,
       "description": "Если «Креативное письмо» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 17,
       "title": "Актёрское мастерство",
       "subcategoryId": 13,
       "description": "Если тема «Актёрское мастерство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 18,
       "title": "Маркетинг и реклама",
       "subcategoryId": 2,
       "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 19,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "С «Предпринимательство» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 20,
       "title": "Ремонт",
       "subcategoryId": 34,
       "description": "Могу помочь освоить «Ремонт» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 21,
       "title": "Уборка и организация",
       "subcategoryId": 30,
       "description": "Если хочется разобраться в теме «Уборка и организация», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 22,
       "title": "Физические тренировки",
       "subcategoryId": 40,
       "description": "Навык «Физические тренировки» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 23,
       "title": "Питание и ЗОЖ",
       "subcategoryId": 37,
       "description": "По теме «Питание и ЗОЖ» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 24,
       "title": "Личностное развитие",
       "subcategoryId": 24,
       "description": "Если «Личностное развитие» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 25,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 26,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 27,
       "title": "Фотография",
       "subcategoryId": 10,
       "description": "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 28,
       "title": "Видеомонтаж",
       "subcategoryId": 11,
       "description": "Могу помочь освоить «Видеомонтаж» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 29,
       "title": "Управление командой",
       "subcategoryId": 1,
       "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 30,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 31,
       "title": "Арт-терапия",
       "subcategoryId": 15,
       "description": "По теме «Арт-терапия» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 32,
       "title": "Декор и DIY",
       "subcategoryId": 16,
       "description": "Если «Декор и DIY» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 33,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 34,
       "title": "Маркетинг и реклама",
       "subcategoryId": 2,
       "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 35,
       "title": "Приготовление еды",
       "subcategoryId": 32,
       "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 36,
       "title": "Домашние растения",
       "subcategoryId": 33,
       "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 37,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Если хочется разобраться в теме «Проектное управление», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 38,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "Навык «Тайм-менеджмент» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 39,
       "title": "Йога и медитация",
       "subcategoryId": 36,
       "description": "По теме «Йога и медитация» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 40,
       "title": "Физические тренировки",
       "subcategoryId": 40,
       "description": "Если «Физические тренировки» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 41,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Если тема «Продажи и переговоры» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 42,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "По навыку «Личный бренд» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 43,
       "title": "Фотография",
       "subcategoryId": 10,
       "description": "С «Фотография» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 44,
       "title": "Рисование и иллюстрация",
       "subcategoryId": 9,
       "description": "Могу помочь освоить «Рисование и иллюстрация» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 45,
       "title": "Маркетинг и реклама",
       "subcategoryId": 2,
       "description": "Если хочется разобраться в теме «Маркетинг и реклама», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 46,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "Навык «Предпринимательство» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 47,
       "title": "Ремонт",
       "subcategoryId": 34,
       "description": "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 48,
       "title": "Уборка и организация",
       "subcategoryId": 30,
       "description": "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 49,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 50,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 51,
       "title": "Личностное развитие",
       "subcategoryId": 24,
       "description": "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 52,
       "title": "Креативное письмо",
       "subcategoryId": 14,
       "description": "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 53,
       "title": "Управление командой",
       "subcategoryId": 1,
       "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 54,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 55,
       "title": "Фотография",
       "subcategoryId": 10,
       "description": "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 56,
       "title": "Видеомонтаж",
       "subcategoryId": 11,
       "description": "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 57,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 58,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 59,
       "title": "Приготовление еды",
       "subcategoryId": 32,
       "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 60,
       "title": "Домашние растения",
       "subcategoryId": 33,
       "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 61,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 62,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 63,
       "title": "Креативное письмо",
       "subcategoryId": 14,
       "description": "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 64,
       "title": "Актёрское мастерство",
       "subcategoryId": 13,
       "description": "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 65,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "Если тема «Личный бренд» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 66,
       "title": "Маркетинг и реклама",
       "subcategoryId": 2,
       "description": "По навыку «Маркетинг и реклама» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 67,
       "title": "Йога и медитация",
       "subcategoryId": 36,
       "description": "С «Йога и медитация» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 68,
       "title": "Физические тренировки",
       "subcategoryId": 40,
       "description": "Могу помочь освоить «Физические тренировки» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 69,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Если хочется разобраться в теме «Продажи и переговоры», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 70,
       "title": "Личный бренд",
       "subcategoryId": 4,
       "description": "Навык «Личный бренд» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 71,
       "title": "Ремонт",
       "subcategoryId": 34,
       "description": "По теме «Ремонт» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 72,
       "title": "Уборка и организация",
       "subcategoryId": 30,
       "description": "Если «Уборка и организация» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 73,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Если тема «Проектное управление» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 74,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "По навыку «Тайм-менеджмент» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 75,
       "title": "Личностное развитие",
       "subcategoryId": 24,
       "description": "С «Личностное развитие» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 76,
       "title": "Креативное письмо",
       "subcategoryId": 14,
       "description": "Могу помочь освоить «Креативное письмо» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 77,
       "title": "Управление командой",
       "subcategoryId": 1,
       "description": "Если хочется разобраться в теме «Управление командой», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 78,
       "title": "Продажи и переговоры",
       "subcategoryId": 3,
       "description": "Навык «Продажи и переговоры» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 79,
       "title": "Фотография",
       "subcategoryId": 10,
       "description": "По теме «Фотография» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 80,
       "title": "Видеомонтаж",
       "subcategoryId": 11,
       "description": "Если «Видеомонтаж» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 81,
       "title": "Предпринимательство",
       "subcategoryId": 8,
       "description": "Если тема «Предпринимательство» давно откладывалась, помогу спокойно в неё войти без перегруза и скучных объяснений.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 82,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "По навыку «Проектное управление» могу объяснить всё по-человечески: от первых шагов до уверенной практики.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 83,
       "title": "Приготовление еды",
       "subcategoryId": 32,
       "description": "С «Приготовление еды» не оставлю один на один: разложу тему на понятные шаги, примеры и небольшую практику.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 84,
       "title": "Домашние растения",
       "subcategoryId": 33,
       "description": "Могу помочь освоить «Домашние растения» без магии и боли: с понятной логикой, примерами и рабочими приёмами.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 85,
       "title": "Тайм-менеджмент",
       "subcategoryId": 6,
       "description": "Если хочется разобраться в теме «Тайм-менеджмент», помогу пройти путь от «ничего не понимаю» до «кажется, у меня получается».",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 86,
       "title": "Проектное управление",
       "subcategoryId": 7,
       "description": "Навык «Проектное управление» можно освоить без хаоса. Покажу, с чего начать, на что смотреть и как не бросить на полпути.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     },
     {
       "id": 87,
       "title": "Креативное письмо",
       "subcategoryId": 14,
       "description": "По теме «Креативное письмо» объясню базу, поделюсь полезными приёмами и помогу быстрее перейти от теории к делу.",
-      "image": "https://picsum.photos/400/300"
+      "images": ["https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300", "https://picsum.photos/400/300"]
     },
     {
       "id": 88,
       "title": "Актёрское мастерство",
       "subcategoryId": 13,
       "description": "Если «Актёрское мастерство» кажется чем-то сложным, помогу сделать его понятным, живым и применимым на практике.",
-      "image": "https://placebear.com/400/300"
+      "images": ["https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300", "https://placebear.com/400/300"]
     }
   ],
   "categories": [
