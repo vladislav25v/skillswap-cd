@@ -1,0 +1,37 @@
+.header {
+  height: 104px;
+  padding: 36px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.search {
+  flex: 1;
+  min-width: 320px;
+  height: 48px;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+}
+
+.iconButton {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
