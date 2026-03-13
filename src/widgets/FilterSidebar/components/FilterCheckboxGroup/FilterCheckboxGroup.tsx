@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Checkbox } from '../Checkbox';
+import { Checkbox } from '../../../../shared/ui/Checkbox';
 import styles from './FilterCheckboxGroup.module.css';
+
+export interface FilterOption {
+  value: string;
+  label: string;
+  category?: string;
+  subOptions?: FilterOption[];
+  defaultChecked?: boolean;
+  disabled?: boolean;
+}
 
 export interface FilterCheckboxGroupProps {
   title: string;
@@ -13,16 +22,6 @@ export interface FilterCheckboxGroupProps {
   onChange?: (selectedValues: string[]) => void;
 }
 
-export interface FilterOption {
-  value: string;
-  label: string;
-  category?: 'business' | 'art' | 'languages' | 'education' | 'home' | 'health' | 'more';
-  subOptions?: FilterOption[];
-  defaultChecked?: boolean;
-  disabled?: boolean;
-}
-
-// Вспомогательные функции
 const getInitialSelectedValues = (options: FilterOption[]): string[] => {
   const initialValues: string[] = [];
   options.forEach((option) => {
@@ -50,14 +49,12 @@ const getInitialOpenCategories = (options: FilterOption[]): Set<string> => {
   return categoriesToOpen;
 };
 
-// Функция для обновления значений подкатегорий
 const updateCategoryValues = (
   prev: string[],
   subOptions: FilterOption[],
   checked: boolean,
 ): string[] => {
   const valuesSet = new Set(prev);
-
   subOptions.forEach((sub) => {
     if (checked) {
       valuesSet.add(sub.value);
@@ -65,11 +62,9 @@ const updateCategoryValues = (
       valuesSet.delete(sub.value);
     }
   });
-
   return Array.from(valuesSet);
 };
 
-// Компонент подкатегории
 interface SubcategoryListProps {
   subOptions: FilterOption[];
   name: string;
@@ -93,7 +88,6 @@ const SubcategoryList: React.FC<SubcategoryListProps> = ({
             onChange={(checked) => onSubOptionChange(subOption.value, checked)}
             label={subOption.label}
             disabled={subOption.disabled}
-            className={styles.filterCheckboxGroup__subitemCheckbox}
           />
         </li>
       ))}
@@ -101,14 +95,12 @@ const SubcategoryList: React.FC<SubcategoryListProps> = ({
   );
 };
 
-// Компонент кнопки категории со стрелкой
 interface CategoryButtonProps {
   onClick: () => void;
   isOpen: boolean;
   hasSubOptions: boolean;
   label: string;
   className: string;
-  ariaLabel?: string;
 }
 
 const CategoryButton: React.FC<CategoryButtonProps> = ({
@@ -117,97 +109,26 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
   hasSubOptions,
   label,
   className,
-  ariaLabel,
 }) => {
   if (!hasSubOptions) {
     return <span className={className}>{label}</span>;
   }
 
   return (
-    <button
-      type="button"
-      className={className}
-      onClick={onClick}
-      aria-expanded={isOpen}
-      aria-label={ariaLabel || label}
-    >
+    <button type="button" className={className} onClick={onClick} aria-expanded={isOpen}>
       <span className={styles.filterCheckboxGroup__labelText}>{label}</span>
-      {/* Показываем стрелку только когда категория открыта */}
-      {isOpen && (
-        <span className={styles.filterCheckboxGroup__indicator}>
-          <img
-            src="/chevron-down.svg"
-            alt="Скрыть"
-            className={`${styles.filterCheckboxGroup__arrow} ${styles.filterCheckboxGroup__arrowUp}`}
-            width="16"
-            height="16"
-          />
-        </span>
-      )}
+      <span className={styles.filterCheckboxGroup__indicator}>
+        <img
+          src="/src/assets/chevron-down.svg"
+          alt=""
+          className={`${styles.filterCheckboxGroup__arrow} ${
+            isOpen ? styles.filterCheckboxGroup__arrowUp : ''
+          }`}
+          width="16"
+          height="16"
+        />
+      </span>
     </button>
-  );
-};
-
-// Компонент категории
-interface CategoryItemProps {
-  option: FilterOption;
-  name: string;
-  selectedValues: string[];
-  isOpen: boolean;
-  hasSubOptions: boolean;
-  checkboxState: { checked: boolean; indeterminate?: boolean };
-  onLabelClick: (categoryValue: string) => void;
-  onCategoryChange: (subOptions?: FilterOption[]) => (checked: boolean) => void;
-  onSubOptionChange: (value: string, checked: boolean) => void;
-}
-
-const CategoryItem: React.FC<CategoryItemProps> = ({
-  option,
-  name,
-  selectedValues,
-  isOpen,
-  hasSubOptions,
-  checkboxState,
-  onLabelClick,
-  onCategoryChange,
-  onSubOptionChange,
-}) => {
-  const handleLabelClick = () => {
-    onLabelClick(option.value);
-  };
-
-  return (
-    <li className={styles.filterCheckboxGroup__item}>
-      <div className={styles.filterCheckboxGroup__category}>
-        <Checkbox
-          id={`${name}-${option.value}`}
-          checked={checkboxState.checked}
-          indeterminate={checkboxState.indeterminate ?? false}
-          onChange={onCategoryChange(option.subOptions)}
-          label=""
-          disabled={option.disabled}
-          className={styles.filterCheckboxGroup__categoryCheckbox}
-        />
-
-        <CategoryButton
-          onClick={handleLabelClick}
-          isOpen={isOpen}
-          hasSubOptions={hasSubOptions}
-          label={option.label}
-          className={styles.filterCheckboxGroup__label}
-          ariaLabel={hasSubOptions ? `${option.label}, есть подкатегории` : undefined}
-        />
-      </div>
-
-      {hasSubOptions && isOpen && (
-        <SubcategoryList
-          subOptions={option.subOptions!}
-          name={name}
-          selectedValues={selectedValues}
-          onSubOptionChange={onSubOptionChange}
-        />
-      )}
-    </li>
   );
 };
 
@@ -215,7 +136,7 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   title,
   options,
   name,
-  className = '',
+  className = 'Навыки',
   showAllLink = false,
   allLinkText = 'Все категории',
   onAllLinkClick,
@@ -224,7 +145,6 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   const [selectedValues, setSelectedValues] = useState<string[]>(() =>
     getInitialSelectedValues(options),
   );
-
   const [openCategories, setOpenCategories] = useState<Set<string>>(() =>
     getInitialOpenCategories(options),
   );
@@ -288,43 +208,53 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
       if (allSubSelected) {
         return { checked: true };
       }
-
       if (anySubSelected) {
         return { checked: false, indeterminate: true };
       }
-
       return { checked: false };
     },
     [areAllSubOptionsSelected, isAnySubOptionSelected],
   );
 
-  const renderCategory = (option: FilterOption) => {
-    const checkboxState = getCategoryCheckboxState(option.subOptions);
-    const hasSubOptions = Boolean(option.subOptions?.length);
-    const isOpen = openCategories.has(option.value);
-
-    return (
-      <CategoryItem
-        key={option.value}
-        option={option}
-        name={name}
-        selectedValues={selectedValues}
-        isOpen={isOpen}
-        hasSubOptions={hasSubOptions}
-        checkboxState={checkboxState}
-        onLabelClick={handleLabelClick}
-        onCategoryChange={handleCategoryChange}
-        onSubOptionChange={handleSubOptionChange}
-      />
-    );
-  };
-
   return (
     <div className={`${styles.filterCheckboxGroup} ${className}`}>
       <h3 className={styles.filterCheckboxGroup__title}>{title}</h3>
-
       <ul className={styles.filterCheckboxGroup__list}>
-        {options.map(renderCategory)}
+        {options.map((option) => {
+          const checkboxState = getCategoryCheckboxState(option.subOptions);
+          const hasSubOptions = Boolean(option.subOptions?.length);
+          const isOpen = openCategories.has(option.value);
+
+          return (
+            <li key={option.value} className={styles.filterCheckboxGroup__item}>
+              <div className={styles.filterCheckboxGroup__category}>
+                <Checkbox
+                  id={`${name}-${option.value}`}
+                  checked={checkboxState.checked}
+                  indeterminate={checkboxState.indeterminate ?? false}
+                  onChange={handleCategoryChange(option.subOptions)}
+                  label=""
+                  disabled={option.disabled}
+                />
+                <CategoryButton
+                  onClick={() => handleLabelClick(option.value)}
+                  isOpen={isOpen}
+                  hasSubOptions={hasSubOptions}
+                  label={option.label}
+                  className={styles.filterCheckboxGroup__label}
+                />
+              </div>
+              {hasSubOptions && isOpen && (
+                <SubcategoryList
+                  subOptions={option.subOptions!}
+                  name={name}
+                  selectedValues={selectedValues}
+                  onSubOptionChange={handleSubOptionChange}
+                />
+              )}
+            </li>
+          );
+        })}
         {showAllLink && (
           <li className={styles.filterCheckboxGroup__item}>
             <button
@@ -340,5 +270,3 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
     </div>
   );
 };
-
-export default FilterCheckboxGroup;

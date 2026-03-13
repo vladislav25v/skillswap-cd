@@ -1,0 +1,37 @@
+.filterRoleRadioGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  font-family: var(--font-family-base);
+}
+
+.filterRoleRadioGroup__title {
+  margin: 0;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  cursor: default;
+}
+
+.filterRoleRadioGroup__title:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.filterRoleRadioGroup__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 12px;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+}
