@@ -1,0 +1,25 @@
+.title {
+  margin: 0;
+  font-family: var(--font-family-highlight), sans-serif;
+  font-weight: var(--font-weight-medium);
+}
+
+.h1 {
+  font-size: var(--font-size-h1, 32px);
+  line-height: var(--line-height-h1, 40px);
+}
+
+.h2 {
+  font-size: var(--font-size-h2, 24px);
+  line-height: var(--line-height-h2, 32px);
+}
+
+.h3 {
+  font-size: var(--font-size-h3, 20px);
+  line-height: var(--line-height-h3, 24px);
+}
+
+.h4 {
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+}
