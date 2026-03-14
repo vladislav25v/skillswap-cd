@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './UserListSection.module.css';
+import styles from './UsersListSection.module.css';
 import Title, { type HeadingLevel } from '@/shared/ui/Title/Title.tsx';
 import { CardsGridContainer } from '@/shared/ui/CardsGridContainer';
 
-export interface UserListSectionProps {
+export interface UsersListSectionProps {
   title: string;
   titleTag?: HeadingLevel;
   titleTagLooksLike?: HeadingLevel;
@@ -12,7 +12,7 @@ export interface UserListSectionProps {
   children: React.ReactNode;
 }
 
-const UserListSection: React.FC<UserListSectionProps> = ({
+const UsersListSection: React.FC<UsersListSectionProps> = ({
   title,
   titleTag = 'h2',
   titleTagLooksLike,
@@ -34,4 +34,4 @@ const UserListSection: React.FC<UserListSectionProps> = ({
   );
 };
 
-export default UserListSection;
+export default UsersListSection;

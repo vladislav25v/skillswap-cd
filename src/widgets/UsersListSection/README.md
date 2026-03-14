@@ -1,4 +1,4 @@
-# UserListSection
+# UsersListSection
 
 Компонент секции для отображения списка пользователей.  
 Обеспечивает единый layout для блока с заголовком и содержимым.
@@ -40,11 +40,11 @@
 ### Базовая секция
 
 ```tsx
-import UserListSection from '@/entities/user/ui/UserListSection';
+import UsersListSection from '@/entities/user/ui/UsersListSection';
 
-<UserListSection title="Рекомендуем">
+<UsersListSection title="Рекомендуем">
   <CardsGridContainer />
-</UserListSection>
+</UsersListSection>
 ```
 
 ### С кнопкой действия
@@ -52,24 +52,24 @@ import UserListSection from '@/entities/user/ui/UserListSection';
 ```jsx
 import { Button } from '@/shared/ui/Button';
 
-<UserListSection
+<UsersListSection
   title="Пользователи"
   headlineExtraSlot={<Button>Добавить пользователя</Button>}
 >
   <CardsGridContainer />
-</UserListSection>;
+</UsersListSection>;
 ```
 
 ### Разделение семантики и внешнего вида заголовка
 
 ```jsx
-<UserListSection
+<UsersListSection
   title="Модераторы"
   titleTag="h3"
   titleTagLooksLike="h2"
 >
   <CardsGridContainer />
-</UserListSection>
+</UsersListSection>
 ```
 
 Это позволяет:
