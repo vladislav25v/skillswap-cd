@@ -1,53 +1,60 @@
-import React from 'react';
-
+import React, { useEffect, useRef } from 'react';
 import styles from './Checkbox.module.css';
 
-// Описываем типы пропсов, которые будет принимать компонент
-interface CheckboxProps {
-  /** Флаг: отмечен чекбокс или нет */
+export interface CheckboxProps {
   checked: boolean;
-  /** Функция, которая вызывается при изменении состояния */
+  indeterminate?: boolean;
   onChange: (checked: boolean) => void;
-  /** Текст рядом с чекбоксом (необязательный) */
   label?: string;
-  /** Можно ли взаимодействовать с чекбоксом (необязательный) */
   disabled?: boolean;
-  /** Уникальный идентификатор для связи label и input (необязательный) */
   id?: string;
+  className?: string;
 }
 
-// Сам компонент
 export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
+  indeterminate = false,
   onChange,
   label,
-  disabled = false, // значение по умолчанию, если пропс не передан
+  disabled = false,
   id,
+  className = '',
 }) => {
-  // Обработчик изменения чекбокса
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Вызываем переданную функцию onChange с новым значением
     onChange(e.target.checked);
   };
 
   return (
-    // label оборачивает весь компонент для удобства (клик по тексту тоже работает)
-    <label htmlFor={id} className={`${styles.checkbox} ${disabled ? styles.disabled : ''}`}>
-      {/* Сам инпут type="checkbox" */}
-      <input
-        type="checkbox"
-        id={id}
-        checked={checked}
-        onChange={handleChange}
-        disabled={disabled}
-        className={styles.input}
-      />
-
-      {/* Кастомный чекбокс (будем стилизовать через CSS) */}
-      <span className={styles.customCheckbox}></span>
-
-      {/* Если передан label — отображаем текст */}
-      {label && <span className={styles.label}>{label}</span>}
+    <label
+      htmlFor={id}
+      className={`${styles.root} ${disabled ? styles.disabled : ''} ${className}`}
+    >
+      <span className={styles.clickArea}>
+        <input
+          ref={inputRef}
+          type="checkbox"
+          id={id}
+          checked={checked}
+          onChange={handleChange}
+          disabled={disabled}
+          className={styles.input}
+        />
+        <span className={styles.box}>
+          {!indeterminate && checked && <span className={styles.icon} />}
+          {indeterminate && <span className={styles.indeterminate} />}
+        </span>
+      </span>
+      {label && <span className={styles.content}>{label}</span>}
     </label>
   );
 };
+
+export default Checkbox;

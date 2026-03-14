@@ -1,90 +1,143 @@
-.checkbox {
+.root {
   display: inline-flex;
-  align-items: center;
+  gap: 0.68em;
   cursor: pointer;
-  user-select: none;
-  gap: 16px;
-  position: relative;
-  color: var(--color-text-primary);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+  font-family: var(--font-family-body, var(--font-family-base));
+  flex-shrink: 0;
+  min-height: 1.25rem;
+  transform: translateZ(0);
 }
 
-.disabled {
+.root.disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.clickArea {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.content {
+  font-family: var(--font-family-body, var(--font-family-base));
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02rem;
+  cursor: pointer;
+  line-height: var(--line-height-body);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.root.disabled .content {
   color: var(--color-text-disabled);
+  cursor: not-allowed;
 }
 
 .input {
   position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+  width: 1.25rem;
+  height: 1.25rem;
   margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .customCheckbox {
-  width: 24px;
-  height: 24px;
-  border: 2px solid black;
-  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
   background: var(--color-surface);
-  transition: all 0.2s ease;
-  display: inline-block;
+  border: 2px solid var(--color-text-primary);
+  border-radius: 6px;
+  transition: none;
+  flex-shrink: 0;
   position: relative;
-  box-sizing: border-box;
-  flex-shrink: 0; /* чтобы не сжимался */
+}
+
+/* Галочка */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.625rem;
+  height: 0.3125rem;
+  border-bottom: 0.125rem solid var(--color-surface);
+  border-left: 0.125rem solid var(--color-surface);
+  opacity: 0;
+  transform: translate(-50%, -65%) rotate(-45deg);
+  transition: opacity 0.1s ease;
+  transform-origin: center;
+}
+
+/* Indeterminate состояние */
+.indeterminate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.125rem;
+  background: var(--color-surface);
+  border-radius: 1px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.1s ease;
 }
 
 /* Состояние при наведении */
-.checkbox:hover .customCheckbox {
-  border-color: color-mix(in srgb, var(--color-toggle) 80%, black);
+.root:hover .box {
+  border-color: var(--color-accent);
 }
 
 /* Состояние checked */
 .input:checked + .customCheckbox {  
-  width: 20px;
-  height: 20px;
   background: var(--color-accent);
-  border: none;
+  border-color: var(--color-accent);
 }
 
 /* Галочка */
 .input:checked + .customCheckbox::after {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 7.71px;
-  height: 10px;
-  border: solid var(--color-surface);
-  border-width: 0 2px 2px 0;
-  transform: translate(-50%, -50%) rotate(45deg);
-  transform-origin: center;
-  box-sizing: border-box;
+  width: 10px;
+  height: 8px;
+  left: 5px;
+  top: 5px;
+  background: url("/src/assets/check.svg") no-repeat;
+  background-size: 10px 8px;
 }
 
-/* Фокус (для доступности) */
-.input:focus + .customCheckbox {
-  outline: none;
+/* Фокус */
+.input:focus-visible + .box {
+  outline-color: var(--color-accent);
 }
 
 /* Disabled состояния */
-.disabled .customCheckbox {
+.root.disabled .box,
+.root.disabled:hover .box {
+  background: var(--color-disabled);
+  border-color: var(--color-toggle);
+  cursor: not-allowed;
+}
+
+.root.disabled .input:checked + .box,
+.root.disabled .input:indeterminate + .box {
   background: var(--color-disabled);
   border-color: var(--color-toggle);
 }
 
-.disabled .input:checked + .customCheckbox {
-  background: var(--color-disabled);
-  border-color: var(--color-toggle);
-}
-
-.disabled .input:checked + .customCheckbox::after {
+.root.disabled .input:checked + .box .icon {
   border-color: var(--color-text-disabled);
 }
 
-.label {
-  color: inherit;
+.root.disabled .input:indeterminate + .box .indeterminate {
+  background: var(--color-text-disabled);
 }

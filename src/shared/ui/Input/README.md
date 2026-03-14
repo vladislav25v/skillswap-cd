@@ -1,51 +1,97 @@
 # Input
 
-## Пропсы
+Переиспользуемый компонент текстового поля ввода.
+
+Компонент является обёрткой над стандартным `input` и добавляет:
+
+- поддержку слотов (`leftSlot`, `rightSlot`)
+- состояние ошибки
+- управление рамкой (`bordered`)
+- проброс всех стандартных props `input`
+- поддержку `ref`
+
+---
+
+# Props
+
+| Prop        | Type               | Default | Description                                             |
+|-------------|--------------------|---------|---------------------------------------------------------|
+| `value`     | `string \| number` | —       | Значение поля                                           |
+| `error`     | `string`           | —       | Если сообщение об ошибке есть добавляется красная рамка |
+| `bordered`  | `boolean`          | `true`  | Показывает рамку у input                                |
+| `leftSlot`  | `React.ReactNode`  | —       | Элемент слева внутри поля                               |
+| `rightSlot` | `React.ReactNode`  | —       | Элемент справа внутри поля                              |
+| `className` | `string`           | —       | Дополнительный CSS класс контейнера                     |
+
+# Slots
+
+| Slot        | Description                                              |
+|-------------|----------------------------------------------------------|
+| `leftSlot`  | Контент слева от input (обычно иконка)                   |
+| `rightSlot` | Контент справа от input (кнопка, индикатор и т.д.)       |
+
+Компонент также принимает **все стандартные props HTML input**, так как наследуется от:
 
 ```ts
-interface InputProps {
-  value: string;
-  name?: string;
-  id?: string;
-  placeholder?: string;
-  error?: string;
-  type?: 'text' | 'password' | 'search' | 'email';
-  bordered?: boolean;
-  leftSlot?: React.ReactNode;
-  rightSlot?: React.ReactNode;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+React.InputHTMLAttributes<HTMLInputElement>
 ```
 
-| Пропс         | Обязательный | Тип                                                | Значение по умолчанию | Описание                                                                                                      |
-|---------------|--------------|----------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------|
-| `value`       | ✅            | `string`                                           |                       | значение атрибута `value`                                                                                     |
-| `name`        | ❌            | `string`                                           | `undefined`           | значение атрибута `name`                                                                                      |
-| `id`          | ❌            | `string`                                           | `undefined`           | значение атрибута `id`                                                                                        |
-| `placeholder` | ❌            | `string`                                           | `undefined`           | значение атрибута `placeholder`                                                                               |
-| `disabled`    | ❌            | `boolean`                                          | `undefined`           | значение атрибута `disabled`                                                                                  |
-| `error`       | ❌            | `string`                                           | `undefined`           | текст с ошибкой, если значение есть, дробавляет красную рамку                                                 |
-| `type`        | ❌            | `'text \| 'password' \| 'search' \| 'email'`       | `text`                | значение атрибута `type`                                                                                      |
-| `bordered`    | ❌            | `boolean`                                          | `true`                | отбражает рамку                                                                                               |
-| `leftSlot`    | ❌            | `React.ReactNode`                                  | `undefined`           | слот для левой части инпута<br/> (напр. иконка лупы в поле поиска)                                            |
-| `rightSlot`   | ❌            | `React.ReactNode`                                  | `undefined`           | слот для парвой части инпута<br/>(напр. иконка показа/скрытия пароля, иконка крестика для очистки поля ввода) |
-| `onChange`    | ❌            | `(e: React.ChangeEvent<HTMLInputElement>) => void` | `undefined`           | обработчик события ввода                                                                                      |
-| `ref`         | ❌            | `HTMLInputElement`                                 |                       | ссылка на элемент `<input>` в компоненте                                                                      |
+Например:
 
-## Ref
+- `placeholder`
+- `name`
+- `id`
+- `type`
+- `disabled`
+- `autoFocus`
+- `maxLength`
+- `onChange`
+- `onFocus`
+- `onBlur`
 
-Принимает ref чтобы можно было работать с инпутом из родительского компонента. Например, поставить фокус:
+---
 
-```jsx
-const inputRef = useRef < HTMLInputElement | null > (null);
+# Примеры
 
-useEffect(() => {
-  inputRef.current?.focus()
-}, [])
+## Базовый input
 
-return (
-  <>
-    <Input ref={inputRef} value="Some value" />
-  </>
-)
+```tsx
+import { useState } from 'react';
+import Input from 'shared/ui/Input';
+
+const [value, setValue] = useState('');
+
+<Input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  placeholder="Введите текст"
+/>
 ```
+
+---
+
+## Input с кнопкой действия
+
+```tsx
+import { X } from 'lucide-react';
+
+<Input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  rightSlot={
+    <button type="button" onClick={() => setValue('')}>
+      <X />
+    </button>
+  }
+/>
+```
+
+---
+
+# Особенности
+
+- используется `React.forwardRef`
+- все стандартные props передаются через `...rest`
+- `className` применяется к контейнеру компонента
+- слоты позволяют вставлять любые React элементы внутрь поля
+- классы объединяются через `filter(Boolean).join(' ')`
