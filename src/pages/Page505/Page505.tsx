@@ -1,0 +1,30 @@
+import { Header } from '../../widgets/Header/Header';
+import { Footer } from '../../widgets/Footer/Footer';
+import Button from '../../shared/ui/Button/Button';
+import styles from './Page505.module.css';
+import errorImage from '../../assets/error500.png';
+
+export function Page505() {
+  return (
+    <div className={styles.page}>
+      <Header />
+
+      <main className={styles.main}>
+        <div className={styles.content}>
+          <img src={errorImage} alt="500 Error" className={styles.image} />
+
+          <p className={styles.message}>На сервере произошла ошибка</p>
+
+          <p className={styles.description}>Попробуйте позже или вернитесь на главную страницу</p>
+
+          <div className={styles.buttons}>
+            <Button variant="secondary">Сообщить об ошибке</Button>
+            <Button variant="primary">На главную</Button>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
