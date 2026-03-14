@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './UserListSection.module.css';
 import Title, { type HeadingLevel } from '@/shared/ui/Title/Title.tsx';
+import { CardsGridContainer } from '@/shared/ui/CardsGridContainer';
 
 export interface UserListSectionProps {
   title: string;
@@ -27,7 +28,8 @@ const UserListSection: React.FC<UserListSectionProps> = ({
         </Title>
         {headlineExtraSlot}
       </div>
-      {children}
+
+      <CardsGridContainer>{children}</CardsGridContainer>
     </section>
   );
 };
