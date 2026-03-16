@@ -1,0 +1,19 @@
+.asideLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  color: var(--color-text-primary, #253017);
+  text-decoration: none;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: var(--color-disabled);
+  }
+}
+
+.asideLinkActive,
+.asideLinkActive:hover {
+  background-color: var(--color-accent-light, #deebc5);
+}
