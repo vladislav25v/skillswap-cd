@@ -1,13 +1,13 @@
 import DatePicker, { registerLocale } from 'react-datepicker';
+import React, { useState } from 'react';
+import type { MiddlewareState } from '@floating-ui/react-dom';
+import { CalendarDays } from 'lucide-react';
+import { ru } from 'date-fns/locale/ru';
+import Input from '@/shared/ui/Input';
+import Button from '@/shared/ui/Button/Button.tsx';
+import styles from './Datepicker.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import styles from './Datepicker.module.css';
-import React, { useState } from 'react';
-import { CalendarDays } from 'lucide-react';
-import Input from '@/shared/ui/Input';
-import { ru } from 'date-fns/locale/ru';
-import type { MiddlewareState } from '@floating-ui/react-dom';
-import Button from '@/shared/ui/Button/Button.tsx';
 
 export interface DatepickerProps {
   value: Date | null;
@@ -17,28 +17,37 @@ export interface DatepickerProps {
 registerLocale('ru', ru);
 
 const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(() => value);
+  const [tempDate, setTempDate] = useState<Date | null>(value);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleChange = (date: Date | null) => {
-    setSelectedDate(date);
+    setTempDate(date);
+  };
+
+  const handleCalendarClose = () => {
+    setTempDate(value);
+    setIsOpen(false);
+  };
+
+  const handleCalendarOpen = () => {
+    setTempDate(value);
+    setIsOpen(true);
   };
 
   const handleCancel = () => {
+    if (onChange) onChange(null);
+    setTempDate(null);
     setIsOpen(false);
-    setSelectedDate(value);
   };
 
   const handleApply = () => {
+    if (onChange) onChange(tempDate);
     setIsOpen(false);
-
-    if (onChange) onChange(selectedDate);
   };
 
   return (
     <DatePicker
-      // openToDate - открыт на выбранной дате, посмотреть как работает
-      selected={selectedDate}
+      selected={tempDate}
       open={isOpen}
       locale={'ru'}
       maxDate={new Date()}
@@ -77,12 +86,8 @@ const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
         );
       }}
       onChange={handleChange}
-      onCalendarOpen={() => {
-        setIsOpen(true);
-      }}
-      onCalendarClose={() => {
-        setIsOpen(false);
-      }}
+      onCalendarClose={handleCalendarClose}
+      onCalendarOpen={handleCalendarOpen}
     />
   );
 };
