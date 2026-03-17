@@ -26,3 +26,5 @@ import { Page505 } from './pages/Page505/Page505';
 function App() {
   return <Page505 />;
 }
+
+export default App;

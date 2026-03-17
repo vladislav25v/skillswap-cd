@@ -18,8 +18,12 @@ export function Page505() {
           <p className={styles.description}>Попробуйте позже или вернитесь на главную страницу</p>
 
           <div className={styles.buttons}>
-            <Button variant="secondary">Сообщить об ошибке</Button>
-            <Button variant="primary">На главную</Button>
+            <Button variant="secondary" className={styles.reportButton}>
+              Сообщить об ошибке
+            </Button>
+            <Button variant="primary" className={styles.homeButton}>
+              На главную
+            </Button>
           </div>
         </div>
       </main>

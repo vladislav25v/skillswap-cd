@@ -5,17 +5,17 @@
 }
 
 .main {
-.content {
-  width: 460px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 124px 490px 84px;
-}
+  padding: 124px 20px 84px;
+  box-sizing: border-box;
 }
 
 .content {
   width: 460px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,25 +23,28 @@
 
 .image {
   width: 460px;
-  height: 304px;
+  max-width: 100%;
+  height: auto;
   display: block;
   margin-bottom: 40px;
 }
 
 .message {
   width: 460px;
+  max-width: 100%;
   margin: 0 0 4px 0;
   font-family: var(--font-family-highlight);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h3);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.011em;
   text-align: center;
   color: var(--color-text-primary);
 }
 
 .description {
   width: 460px;
+  max-width: 100%;
   margin: 0 0 32px 0;
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-regular);
@@ -59,14 +62,8 @@
   justify-content: center;
 }
 
-.buttons button {
-  width: 218px; 
-  height: 48px;
-  padding: 12px 24px;
+.reportButton,
+.homeButton {
+  width: 218px;
   border-radius: 12px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
 }
-
