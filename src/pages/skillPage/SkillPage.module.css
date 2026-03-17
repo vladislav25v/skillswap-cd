@@ -1,0 +1,86 @@
+.pageContent {
+  max-width: 1368px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 40px 20px;
+  background: var(--color-page-bg);
+}
+
+.skillSection {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+/* Правая колонка — заглушка пользователя */
+.mockUserCard {
+  padding: 32px;
+  max-width: 324px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-accent);
+  border-radius: 16px;
+}
+
+/* Левая колонка — контейнер для Details */
+.skillContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 52px 40px;
+  background: var(--color-surface);
+  border-radius: 16px;
+  min-width: 1020px;
+}
+
+/* Заглушка деталей */
+.mockDetails {
+  padding: 20px;
+  background: var(--color-page-bg);
+  border-radius: 8px;
+}
+
+.mockDetails h2 {
+  font-family: 'Jost', sans-serif;
+  font-size: 24px;
+  color: var(--color-text-primary);
+  margin: 0 0 16px;
+}
+
+.mockDetails p {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin: 8px 0;
+}
+
+/* Нижняя часть */
+.mockSimilarSection {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-accent);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.mockSimilarSection h3 {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  color: var(--color-text-primary);
+  margin: 0 0 24px;
+}
+
+.similarGrid {
+  display: flex;
+  gap: 24px;
+}
+
+.similarCard {
+  flex: 1;
+  padding: 24px;
+  background: var(--color-page-bg);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
