@@ -1,9 +1,9 @@
-import { Edit3, Ellipsis, Share2 } from 'lucide-react';
+import { Edit3 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import './App.css';
 import type { Category } from '@/entities/category/types.ts';
-import type { Skill } from '@/entities/skill/types.ts';
 import { mapSkillToDetailsViewModel } from '@/entities/skill/lib/map-skill-to-details-view-model.ts';
+import type { Skill } from '@/entities/skill/types.ts';
 import type { Subcategory } from '@/entities/subcategory/types.ts';
 import Button from '@/shared/ui/Button/Button.tsx';
 import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
@@ -35,6 +35,8 @@ function resolveSkillMeta(
 
 function App() {
   const [data, setData] = useState<DbData | null>(null);
+  const [isMainFavorite, setIsMainFavorite] = useState(false);
+  const [isProposalFavorite, setIsProposalFavorite] = useState(true);
 
   useEffect(() => {
     fetch('/db/db.json')
@@ -69,6 +71,7 @@ function App() {
     skill: mainSkill,
     categoryName: mainMeta.categoryName,
     subcategoryName: mainMeta.subcategoryName,
+    isFavorite: isMainFavorite,
   });
 
   const proposalViewModel = mapSkillToDetailsViewModel({
@@ -77,7 +80,7 @@ function App() {
     subcategoryName: secondaryMeta.subcategoryName,
     headerTitle: 'Ваше предложение',
     headerDescription: 'Пожалуйста, проверьте и подтвердите правильность данных',
-    isFavorite: true,
+    isFavorite: isProposalFavorite,
   });
 
   return (
@@ -88,18 +91,11 @@ function App() {
           meta={mainViewModel.meta}
           description={mainViewModel.description}
           images={mainViewModel.images}
+          imageAlt={mainViewModel.title}
           showFavoriteButton={true}
-          onFavoriteClick={() => console.info('Favorite click placeholder')}
-          topActions={
-            <>
-              <button type="button" className="toolbarButton" aria-label="Поделиться">
-                <Share2 size={18} />
-              </button>
-              <button type="button" className="toolbarButton" aria-label="Еще действия">
-                <Ellipsis size={18} />
-              </button>
-            </>
-          }
+          showTopActions={true}
+          isFavorite={mainViewModel.isFavorite}
+          onFavoriteClick={() => setIsMainFavorite((current) => !current)}
           actions={<Button>Обмен предложен</Button>}
         />
 
@@ -110,14 +106,15 @@ function App() {
           meta={proposalViewModel.meta}
           description={proposalViewModel.description}
           images={proposalViewModel.images}
-          showFavoriteButton={true}
+          imageAlt={proposalViewModel.title}
+          showFavoriteButton={false}
           isFavorite={proposalViewModel.isFavorite}
-          onFavoriteClick={() => console.info('Favorite click placeholder')}
+          onFavoriteClick={() => setIsProposalFavorite((current) => !current)}
           actions={
             <>
               <Button variant="secondary">
                 Редактировать
-                <Edit3 size={18} />
+                <Edit3 />
               </Button>
               <Button>Готово</Button>
             </>

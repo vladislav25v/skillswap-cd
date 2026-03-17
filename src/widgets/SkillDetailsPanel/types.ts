@@ -7,10 +7,11 @@ export interface SkillDetailsPanelProps {
   meta?: string;
   description?: string;
   images: string[];
+  imageAlt?: string;
   actions?: ReactNode;
   showFavoriteButton?: boolean;
+  showTopActions?: boolean;
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
-  topActions?: ReactNode;
   className?: string;
 }

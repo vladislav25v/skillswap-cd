@@ -4,11 +4,12 @@ import styles from './SkillImageGallery.module.css';
 
 interface SkillImageGalleryProps {
   images: string[];
+  imageAlt?: string;
 }
 
 const MAX_VISIBLE_THUMBS = 3;
 
-export default function SkillImageGallery({ images }: SkillImageGalleryProps) {
+export default function SkillImageGallery({ images, imageAlt = '' }: SkillImageGalleryProps) {
   const normalizedImages = images.filter(Boolean);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -40,7 +41,7 @@ export default function SkillImageGallery({ images }: SkillImageGalleryProps) {
   return (
     <div className={styles.gallery}>
       <div className={styles.mainImageWrapper}>
-        <img className={styles.mainImage} src={activeImage} alt="" />
+        <img className={styles.mainImage} src={activeImage} alt={imageAlt} />
 
         {showNavigation && (
           <>
