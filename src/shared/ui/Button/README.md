@@ -4,7 +4,7 @@
 
 ## Props
 - `children: ReactNode` — содержимое
-- `variant?: 'primary' | 'secondary' | 'ghost'` — стиль кнопки
+- `variant?: 'primary' | 'secondary' | 'tertiary'` — стиль кнопки
 - `type?: 'button' | 'submit' | 'reset'` — тип
 - `onClick?: () => void` — обработчик клика
 - `className?: string` — дополнительные классы
