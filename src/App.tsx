@@ -1,9 +1,5 @@
-//import React from 'react';
-
 function App() {
-  return (
-    <div></div> // возвращаем JSX
-  );
+  return null;
 }
 
 export default App;

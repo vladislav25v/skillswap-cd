@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  gap: 16px;
+  min-width: 280px;
+  border: 1px solid var(--field-border-color);
+  border-radius: var(--radius);
+  padding: 15px;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base), sans-serif;
+  font-size: var(--font-size-caption);
+  background-color: var(--field-bg);
+}
+
+.icon {
+  color: var(--color-text-primary);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
