@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import clsx from 'clsx';
 import { Eye, EyeOff } from 'lucide-react';
 import Button from '@/shared/ui/Button/Button';
 import Input from '@/shared/ui/Input';
@@ -49,12 +50,12 @@ const LoginPage = () => {
           <article className={styles.card}>
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
               <div className={styles.socialButtons}>
-                <Button type="button" variant="secondary" className={styles.socialButton}>
+                <Button type="button" variant="secondary" className={clsx(styles.socialButton)}>
                   <img src={googleIcon} width={24} height={24} alt="Google" />
                   Продолжить с Google
                 </Button>
 
-                <Button type="button" variant="secondary" className={styles.socialButton}>
+                <Button type="button" variant="secondary" className={clsx(styles.socialButton)}>
                   <img src={appleIcon} width={24} height={24} alt="Apple" />
                   Продолжить с Apple
                 </Button>
@@ -99,7 +100,7 @@ const LoginPage = () => {
                         rightSlot={
                           <button
                             type="button"
-                            className={styles.iconButton}
+                            className={clsx(styles.iconButton)}
                             aria-label={isPasswordVisible ? 'Скрыть пароль' : 'Показать пароль'}
                             onClick={() => setIsPasswordVisible((prev) => !prev)}
                           >
@@ -110,15 +111,15 @@ const LoginPage = () => {
                     </FormField>
                   </div>
 
-                  {isAuthError && <p className={styles.authError}>{errorText}</p>}
+                  {isAuthError && <p className={clsx(styles.authError)}>{errorText}</p>}
                 </div>
 
                 <div className={styles.actions}>
-                  <Button type="submit" variant="primary" className={styles.submitButton}>
+                  <Button type="submit" variant="primary" className={clsx(styles.submitButton)}>
                     Войти
                   </Button>
 
-                  <button type="button" className={styles.registerLink}>
+                  <button type="button" className={clsx(styles.registerLink)}>
                     Зарегистрироваться
                   </button>
                 </div>

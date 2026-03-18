@@ -1,4 +1,5 @@
 import { Heart } from 'lucide-react';
+import clsx from 'clsx';
 import styles from './FavoriteButton.module.css';
 
 interface FavoriteButtonProps {
@@ -11,15 +12,22 @@ interface FavoriteButtonProps {
 export default function FavoriteButton({
   isActive = false,
   onClick,
-  className = '',
+  className,
   ariaLabel = 'Добавить в избранное',
 }: FavoriteButtonProps) {
   return (
     <button
       type="button"
-      className={`${styles.button} ${isActive ? styles.active : styles.default} ${className}`.trim()}
+      className={clsx(
+        styles.button,
+        {
+          [styles.active]: isActive,
+          [styles.default]: !isActive,
+        },
+        className,
+      )}
       onClick={onClick}
-      aria-label={ariaLabel}
+      aria-label={isActive ? 'Удалить из избранного' : ariaLabel}
       aria-pressed={isActive}
     >
       <Heart className={styles.icon} />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import clsx from 'clsx';
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup';
 import type { FilterOption } from './components/FilterCheckboxGroup';
 import { FilterSidebarHeader } from './components/FilterSidebarHeader';
@@ -42,7 +43,7 @@ const initialFilterState: FilterState = {
   cities: [],
 };
 
-export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onFilterChange }) => {
+export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilterChange }) => {
   const [filters, setFilters] = useState<FilterState>(initialFilterState);
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [showAllCities, setShowAllCities] = useState(false);
@@ -148,14 +149,14 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', on
 
   if (loading) {
     return (
-      <aside className={`${styles.sidebar} ${className}`}>
+      <aside className={clsx(styles.sidebar, className)}>
         <div className={styles.loading}>Loading filters...</div>
       </aside>
     );
   }
 
   return (
-    <aside className={`${styles.sidebar} ${className}`}>
+    <aside className={clsx(styles.sidebar, className)}>
       <FilterSidebarHeader
         activeFiltersCount={activeFiltersCount}
         onReset={handleResetFilters}

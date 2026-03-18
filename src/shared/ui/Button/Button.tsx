@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import clsx from 'clsx';
 import styles from './Button.module.css';
 
 interface ButtonProps {
@@ -15,13 +16,13 @@ const Button = ({
   variant = 'primary',
   type = 'button',
   onClick,
-  className = '',
+  className,
   disabled = false,
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`${styles.button} ${styles[variant]} ${className}`}
+      className={clsx(styles.button, styles[variant], className)}
       onClick={onClick}
       disabled={disabled}
     >

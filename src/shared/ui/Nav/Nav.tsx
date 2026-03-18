@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import clsx from 'clsx';
 
 import type { Category } from '@/entities/category/types';
 import type { Subcategory } from '@/entities/subcategory/types';
@@ -86,7 +87,7 @@ function Nav() {
           <button
             ref={triggerRef}
             onClick={toggleDropdown}
-            className={`${styles.dropdownTrigger} ${styles.linkButton} ${styles.textNav}`}
+            className={clsx(styles.dropdownTrigger, styles.linkButton, styles.textNav)}
             aria-expanded={isDropdownOpen}
             aria-controls="skills-dropdown"
             aria-haspopup="dialog"
@@ -96,7 +97,9 @@ function Nav() {
             <ChevronDown
               aria-hidden="true"
               size={16}
-              className={`${styles.chevron} ${isDropdownOpen ? styles.chevronOpen : ''}`}
+              className={clsx(styles.chevron, {
+                [styles.chevronOpen]: isDropdownOpen,
+              })}
             />
           </button>
           <DropMenu

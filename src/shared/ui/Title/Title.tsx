@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import styles from './Title.module.css';
 import type { FC, ReactNode } from 'react';
 
@@ -15,9 +16,7 @@ const Title: FC<TitleProps> = ({ tag = 'h1', looksLike, text, className, childre
   const Tag = tag as HeadingLevel;
   const looks = looksLike ?? tag;
 
-  return (
-    <Tag className={[styles.title, styles[looks], className].join(' ')}>{children ?? text}</Tag>
-  );
+  return <Tag className={clsx(styles.title, styles[looks], className)}>{children ?? text}</Tag>;
 };
 
 export default Title;

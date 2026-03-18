@@ -1,4 +1,5 @@
-import React from 'react';
+//import React from 'react';
+import clsx from 'clsx';
 import { Header } from '../../widgets/Header';
 import { Footer } from '../../widgets/Footer';
 import Button from '../../shared/ui/Button/Button';
@@ -26,10 +27,10 @@ export const ErrorPage404 = () => {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Button className={styles.button} variant="secondary">
+            <Button className={clsx(styles.button)} variant="secondary">
               Сообщить об ошибке
             </Button>
-            <Button className={styles.button} variant="primary" onClick={handleGoHome}>
+            <Button className={clsx(styles.button)} variant="primary" onClick={handleGoHome}>
               На главную
             </Button>
           </div>
