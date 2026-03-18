@@ -1,0 +1,6 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+}
