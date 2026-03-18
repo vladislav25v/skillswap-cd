@@ -35,8 +35,8 @@ const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
   };
 
   const handleCancel = () => {
-    if (onChange) onChange(null);
-    setTempDate(null);
+    if (onChange) onChange(value);
+    setTempDate(value);
     setIsOpen(false);
   };
 
