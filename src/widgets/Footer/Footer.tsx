@@ -1,5 +1,4 @@
-import React from 'react';
-import { Logo } from '../../shared/ui/Logo';
+import { Sparkle } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
