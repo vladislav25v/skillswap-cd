@@ -1,3 +1,5 @@
+//import React from 'react';
+import clsx from 'clsx';
 import { Logo } from '../../shared/ui/Logo';
 import styles from './Footer.module.css';
 
@@ -10,7 +12,7 @@ export const Footer = () => {
         </div>
 
         <div className={styles.nav}>
-          <div className={`${styles.column} ${styles.columnWithMarkers}`}>
+          <div className={clsx(styles.column, styles.columnWithMarkers)}>
             <ul className={styles.list}>
               <li>
                 <a href="#" className={styles.link}>

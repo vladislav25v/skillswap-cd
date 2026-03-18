@@ -8,6 +8,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useEffect, useRef, useState, type RefObject } from 'react';
+import clsx from 'clsx';
 
 import styles from './DropMenu.module.css';
 
@@ -68,7 +69,7 @@ function SectionCard({ section }: SectionCardProps) {
 
   return (
     <section className={styles.section}>
-      <span className={`${styles.iconWrap} ${toneClass}`} aria-hidden="true">
+      <span className={clsx(styles.iconWrap, toneClass)} aria-hidden="true">
         <Icon className={styles.icon} />
       </span>
       <div className={styles.sectionBody}>
@@ -225,7 +226,10 @@ function DropMenu({
     <div
       id="skills-dropdown"
       ref={menuRef}
-      className={`${styles.menu} ${isVisible ? styles.menuOpen : styles.menuClosed}`}
+      className={clsx(styles.menu, {
+        [styles.menuOpen]: isVisible,
+        [styles.menuClosed]: !isVisible,
+      })}
       role="dialog"
       aria-hidden={!isVisible}
       onTransitionEnd={(event) => {

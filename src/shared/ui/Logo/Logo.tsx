@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import styles from './Logo.module.css';
 
 interface LogoProps {
   href?: string;
+  className?: string;
 }
 
-export function Logo({ href }: LogoProps) {
+export function Logo({ href, className }: LogoProps) {
   const content = (
     <>
       <div className={styles.circle}>
@@ -25,13 +27,15 @@ export function Logo({ href }: LogoProps) {
     </>
   );
 
+  const logoClassName = clsx(styles.logo, className);
+
   if (href) {
     return (
-      <a href={href} className={styles.logo}>
+      <a href={href} className={logoClassName}>
         {content}
       </a>
     );
   }
 
-  return <div className={styles.logo}>{content}</div>;
+  return <div className={logoClassName}>{content}</div>;
 }

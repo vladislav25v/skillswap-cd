@@ -1,14 +1,23 @@
 import { useEffect } from 'react';
+import clsx from 'clsx';
 import styles from './Modal.module.css';
 import { X } from 'lucide-react';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children?: React.ReactNode; // чтобы можно было вставлять любые React компоненты
+  children?: React.ReactNode;
+  className?: string;
+  overlayClassName?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  className,
+  overlayClassName,
+}) => {
   // Закрытие по нажатию вне компонента
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).id === 'overlay-background') {
@@ -26,19 +35,32 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
+      // Блокировка скролла body при открытом модальном окне
+      document.body.style.overflow = 'hidden';
     }
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div id="overlay-background" onClick={handleOutsideClick} className={styles.overlay}>
-      <div className={styles.modal}>
+    <div
+      id="overlay-background"
+      onClick={handleOutsideClick}
+      className={clsx(styles.overlay, overlayClassName)}
+    >
+      <div className={clsx(styles.modal, className)}>
         {/* Кнопка закрытия */}
-        <button type="button" onClick={onClose} className={styles.modalButton}>
+        <button
+          type="button"
+          onClick={onClose}
+          className={styles.modalButton}
+          aria-label="Закрыть модальное окно"
+        >
           <X size={24} />
         </button>
 

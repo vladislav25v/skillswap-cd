@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import styles from './Avatar.module.css';
 
 export type AvatarSize = 'small' | 'medium' | 'large';
@@ -16,7 +17,7 @@ const sizeMap: Record<AvatarSize, string> = {
   large: '244px',
 };
 
-const Avatar: React.FC<AvatarProps> = ({ src, alt = '', size = 'medium', className = '' }) => {
+const Avatar: React.FC<AvatarProps> = ({ src, alt = '', size = 'medium', className }) => {
   const avatarSize = sizeMap[size];
 
   const getInitials = (name: string): string => {
@@ -34,7 +35,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt = '', size = 'medium', classNa
   if (src) {
     return (
       <div
-        className={`${styles.avatar} ${styles.photoWrapper} ${className}`}
+        className={clsx(styles.avatar, styles.photoWrapper, className)}
         style={{ width: avatarSize, height: avatarSize }}
         data-size={size}
       >
@@ -45,7 +46,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt = '', size = 'medium', classNa
 
   return (
     <div
-      className={`${styles.avatar} ${styles.placeholder} ${className}`}
+      className={clsx(styles.avatar, styles.placeholder, className)}
       style={{ width: avatarSize, height: avatarSize }}
       role="img"
       aria-label={alt || 'avatar placeholder'}
