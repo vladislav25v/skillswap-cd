@@ -40,10 +40,12 @@
 ### Базовая секция
 
 ```tsx
-import UsersListSection from '@/entities/user/ui/UsersListSection';
+import UsersListSection from '@/widgets/UsersListSection';
 
 <UsersListSection title="Рекомендуем">
-  <CardsGridContainer />
+  <UserCard />
+  <UserCard />
+  <UserCard />
 </UsersListSection>
 ```
 
@@ -56,7 +58,9 @@ import { Button } from '@/shared/ui/Button';
   title="Пользователи"
   headlineExtraSlot={<Button>Добавить пользователя</Button>}
 >
-  <CardsGridContainer />
+  <UserCard />
+  <UserCard />
+  <UserCard />
 </UsersListSection>;
 ```
 
@@ -68,7 +72,9 @@ import { Button } from '@/shared/ui/Button';
   titleTag="h3"
   titleTagLooksLike="h2"
 >
-  <CardsGridContainer />
+  <UserCard />
+  <UserCard />
+  <UserCard />
 </UsersListSection>
 ```
 
