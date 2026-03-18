@@ -1,0 +1,121 @@
+.container {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  color: var(--color-text-primary, #253017);
+  font-weight: var(--font-weight-regular, 400);
+}
+
+.required {
+  color: var(--color-error, #bf3920);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--field-border-color, var(--color-text-secondary, #69735d));
+  border-radius: var(--radius, 12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.listbox {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.categoryGroup {
+  padding: 0;
+}
+
+.categoryTitle {
+  padding: 8px 16px;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-bold, 600);
+  color: var(--color-text-secondary, #69735d);
+  background: var(--color-disabled, #e4e8df);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.categoryList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  padding: 10px 16px;
+  font-size: var(--font-size-body, 16px);
+  line-height: 1.5;
+  color: var(--color-text-primary, #253017);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.option:hover,
+.option.active {
+  background: var(--color-disabled, #e4e8df);
+}
+
+.option.selected {
+  color: var(--color-accent-dark, #508826);
+  font-weight: var(--font-weight-medium, 500);
+  background: var(--color-accent-light, #deebc5);
+}
+
+.option.disabledOption {
+  color: var(--color-text-disabled, #9ca197);
+  cursor: not-allowed;
+}
+
+.option.disabledOption:hover {
+  background: none;
+}
+
+.noResults {
+  padding: 20px 16px;
+  text-align: center;
+  color: var(--color-text-secondary, #69735d);
+  font-style: italic;
+}
+
+.errorMessage {
+  margin-top: 4px;
+  font-size: var(--font-size-caption, 12px);
+  line-height: var(--line-height-caption, 20px);
+  color: var(--color-error, #bf3920);
+}
+
+.container.error .inputWrapper :global(.input) {
+  border-color: var(--color-error, #bf3920);
+}
+
+.container.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { FilterCheckboxGroup } from './components/FilterCheckboxGroup';
-import type { FilterOption } from './components/FilterCheckboxGroup';
 import { FilterSidebarHeader } from './components/FilterSidebarHeader';
 import { FilterRoleRadioGroup } from './components/FilterRoleRadioGroup';
+import { FilterCheckboxGroup } from './components/FilterCheckboxGroup';
+import type { FilterOption } from './components/FilterCheckboxGroup';
 import { FilterGenderRadioGroup } from './components/FilterGenderRadioGroup';
 import { FilterCityCheckbox } from './components/FilterCityCheckbox';
 import styles from './FilterSidebar.module.css';
