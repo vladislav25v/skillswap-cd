@@ -5,16 +5,8 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <div className={styles.logoCircle}>
-            <Sparkle
-              className={styles.starIcon}
-              fill="var(--color-page-bg)"
-              stroke="transparent"
-              strokeWidth={3}
-            />
-          </div>
-          <span className={styles.logoText}>SkillSwap</span>
+        <div className={styles.logoWrapper}>
+          <Logo />
         </div>
 
         <div className={styles.nav}>

@@ -1,0 +1,77 @@
+.top {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-family-heading, 'Jost');
+  font-size: var(--heading-h2-font-size, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--heading-h2-line-height, 28px);
+  letter-spacing: var(--heading-h2-letter-spacing, -0.011em);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.counter {
+  font-family: var(--font-family-heading, 'Jost');
+  font-size: var(--heading-h2-font-size, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--heading-h2-line-height, 28px);
+  letter-spacing: var(--heading-h2-letter-spacing, -0.011em);
+  color: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.clean {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-accent-dark, #508826);
+  letter-spacing: 0.32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.clean:hover {
+  color: var(--color-accent-dark, #508826);
+}
+
+.clean:focus-visible {
+  outline: 2px solid var(--color-accent-dark, #508826);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.resetIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.clean:hover .resetIcon {
+  transform: scale(1.1);
+}
+
+.resetIconImage {
+  display: block;
+  width: 24px;
+  height: 24px;
+}

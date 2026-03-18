@@ -1,0 +1,182 @@
+.menu {
+  --menu-horizontal-transform: translateX(0);
+  position: absolute; /*в header надо будет задать relative чтобы меню спозиционировалось правильно */
+  top: calc(100% + 22px);
+  left: 0;
+  z-index: 10;
+  width: min(1136px, calc(100vw - 48px));
+  max-width: 1136px;
+  padding: clamp(28px, 4vw, 60px);
+  border: 1px solid var(--color-text-secondary);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  opacity: 0;
+  transform: var(--menu-horizontal-transform) translateY(-8px) scale(0.98);
+  transform-origin: top center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  will-change: opacity, transform;
+}
+
+.menuOpen {
+  opacity: 1;
+  transform: var(--menu-horizontal-transform) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.menuClosed {
+  opacity: 0;
+  transform: var(--menu-horizontal-transform) translateY(-8px) scale(0.98);
+  pointer-events: none;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 488px));
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-inline-start: 14px;
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tagBusiness {
+  background: var(--color-tag-business);
+}
+
+.tagArt {
+  background: var(--color-tag-art);
+}
+
+.tagLanguages {
+  background: var(--color-tag-languages);
+}
+
+.tagEducation {
+  background: var(--color-tag-education);
+}
+
+.tagHome {
+  background: var(--color-tag-home);
+}
+
+.tagHealth {
+  background: var(--color-tag-health);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-secondary);
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-highlight);
+  font-size: var(--font-size-h2);
+  line-height: 28px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  letter-spacing: 0.02em;
+}
+
+.listItem {
+  display: block;
+}
+
+.linkButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  appearance: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+.linkButton:hover {
+  color: var(--color-accent-dark);
+}
+
+.status {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+@media (max-width: 768px) {
+  .menu {
+    --menu-horizontal-transform: translateX(-50%);
+    top: calc(100% + 16px);
+    width: calc(100vw - 24px);
+    left: 50%;
+    transform-origin: center top;
+    padding: 20px;
+  }
+
+  .sections {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .column {
+    gap: 24px;
+  }
+
+  .sectionTitle {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+
+  .linkButton {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+  }
+}

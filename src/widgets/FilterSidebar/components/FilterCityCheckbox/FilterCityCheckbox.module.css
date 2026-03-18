@@ -1,0 +1,111 @@
+.filterCityCheckbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 20px;
+  width: 100%;
+  font-family: var(--font-family-base);
+}
+
+.filterCityCheckbox__title {
+  margin: 0;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  cursor: default;
+}
+
+.filterCityCheckbox__title:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.filterCityCheckbox__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 12px;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+}
+
+.filterCityCheckbox__item {
+  width: 100%;
+  padding: 4px 0;
+}
+
+.filterCityCheckbox__allLinkItem {
+  width: 100%;
+  list-style: none;
+}
+
+.filterCityCheckbox__allLink {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-accent-dark);
+  cursor: pointer;
+  text-decoration: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.filterCityCheckbox__allLink:hover {
+  color: var(--color-accent-dark);
+}
+
+.filterCityCheckbox__allLink:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}
+
+.filterCityCheckbox__allLinkContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+}
+
+.filterCityCheckbox__allLinkIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.filterCityCheckbox__allLink:hover .filterCityCheckbox__allLinkIndicator {
+  color: var(--color-accent-dark);
+}
+
+.filterCityCheckbox__allLinkArrow {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.filterCityCheckbox__allLinkArrowUp {
+  transform: rotate(180deg);
+}
