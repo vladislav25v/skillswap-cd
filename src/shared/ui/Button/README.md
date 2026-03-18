@@ -13,7 +13,7 @@
 ## Варианты
 - `primary` — акцентная заливка
 - `secondary` — белая с бордером
-- `ghost` — белая без бордера
+- `tertiary` — белая без бордера
 
 ## Пример
 ```tsx
@@ -21,4 +21,4 @@ import Button from '@/shared/ui/Button/Button';
 
 <Button variant="primary">Сохранить</Button>
 <Button variant="secondary">Отмена</Button>
-<Button variant="ghost">Смотреть все</Button>
+<Button variant="tertiary">Смотреть все</Button>
