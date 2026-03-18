@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 124px 20px 84px;
-  box-sizing: border-box;
 }
 
 .content {
@@ -65,5 +65,5 @@
 .reportButton,
 .homeButton {
   width: 218px;
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
