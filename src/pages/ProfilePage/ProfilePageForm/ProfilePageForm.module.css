@@ -32,9 +32,24 @@
   flex-basis: calc(50% - var(--column-gap));
 }
 
+.changePasswordBtn {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  justify-self: start;
+  font-weight: var( --font-weight-medium);
+}
+
 .formAvatar {
   justify-self: center;
   width: 244px;
   height: 244px;
   outline: 1px solid tomato;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-secondary);
 }
