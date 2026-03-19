@@ -7,10 +7,8 @@
 .main {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 124px 20px 84px;
 }
 
 .content {
@@ -26,6 +24,7 @@
   max-width: 100%;
   height: auto;
   display: block;
+  margin-top: 40px;
   margin-bottom: 40px;
 }
 
@@ -52,7 +51,7 @@
   line-height: var(--line-height-body);
   letter-spacing: 0.02em;
   text-align: center;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .buttons {
