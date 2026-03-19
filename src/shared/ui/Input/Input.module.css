@@ -33,14 +33,3 @@
 .inputField::placeholder {
   color: var(--field-placeholder-color);
 }
-
-.inputField:hover {
-
-}
-
-.inputField:focus {
-}
-
-.inputField:disabled {
-
-}
