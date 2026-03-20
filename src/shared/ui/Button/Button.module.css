@@ -7,50 +7,68 @@
   padding: 12px 24px;
   border-radius: 8px;
   font-size: var(--font-size-body);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
+  font-family: var(--font-family-base);
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+  transition: all 0.2s ease;
   outline: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  border: 1px solid transparent;
+  color: var(--color-text-primary);
 }
 
 .button:disabled {
-  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .primary {
   background-color: var(--color-accent);
   color: var(--color-text-primary);
+  border-color: var(--color-accent);
 }
 
 .primary:hover:not(:disabled) {
-  background-color: #8ab570;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+}
+
+.primary:active:not(:disabled) {
+  background-color: var(--color-accent-dark);
+  color: var(--color-surface);
+  border-color: var(--color-accent-dark);
+}
+
+.primary:disabled {
+  background-color: var(--color-disabled);
+  color: var(--color-text-secondary);
+  border-color: var(--color-disabled);
 }
 
 .secondary {
   background-color: var(--color-surface);
   color: var(--color-text-primary);
-  border: 1px solid var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--color-page-bg);
-  border-color: var(--color-toggle);
+  color: var(--color-text-secondary);
+  border-color: var(--color-accent-light);
 }
 
-.ghost {
+.secondary:active:not(:disabled) {
+  border-color: var(--color-accent-dark);
+}
+
+.secondary:disabled {
+  color: var(--color-text-disabled);
+  border-color: var(--color-disabled);
+}
+
+.tertiary {
   background-color: var(--color-surface);
   color: var(--color-text-primary);
-  border: 1px solid transparent;
-}
-
-.ghost:hover:not(:disabled) {
-  border-color: var(--color-toggle);
+  border: none;
 }
