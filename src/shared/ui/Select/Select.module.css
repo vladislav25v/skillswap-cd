@@ -5,6 +5,7 @@
   gap: 4px;
   font-family: var(--font-family-base, 'Roboto', sans-serif);
   width: 100%;
+  min-width: 0;
 }
 
 .label {
