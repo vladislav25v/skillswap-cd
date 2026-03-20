@@ -1,5 +1,3 @@
-import { Header } from '../../widgets/Header/Header';
-import { Footer } from '../../widgets/Footer/Footer';
 import Button from '../../shared/ui/Button/Button';
 import styles from './Page505.module.css';
 import errorImage from '../../assets/error500.png';
@@ -7,8 +5,6 @@ import errorImage from '../../assets/error500.png';
 export function Page505() {
   return (
     <div className={styles.page}>
-      <Header />
-
       <main className={styles.main}>
         <div className={styles.content}>
           <img src={errorImage} alt="500 Error" className={styles.image} />
@@ -27,8 +23,6 @@ export function Page505() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
