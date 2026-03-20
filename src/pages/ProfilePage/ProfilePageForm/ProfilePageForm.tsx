@@ -5,54 +5,53 @@ import Button from '@/shared/ui/Button/Button.tsx';
 import PasswordInput from '@/shared/ui/PasswordInput';
 import styles from './ProfilePageForm.module.css';
 import Textarea from '@/shared/ui/Textarea';
-import { PencilLine } from 'lucide-react';
+import { ImageDown, PencilLine } from 'lucide-react';
 import { Select, type SelectOption } from '@/shared/ui/Select';
 import type { City } from '@/entities/city/types.ts';
 import Datepicker from '@/shared/ui/Datepicker';
+import AvatarPicker from '@/shared/ui/AvatarPicker';
+import { fileToBase64 } from '@/shared/lib/file/fileToBase64.ts';
 
 interface FormDate {
   email: string;
   password: string;
-  password_confirmation: string;
   name: string;
   birthDate: Date | null;
   gender: string;
   city: string;
   about: string;
+  avatar: string;
 }
 
 const ProfilePageForm = () => {
   const [formState, setFormState] = useState<FormDate>({
     email: '',
     password: '',
-    password_confirmation: '',
     name: '',
     birthDate: new Date(),
     gender: '',
     city: '',
     about: '',
+    avatar: '',
   });
   const [visiblePasswordField, setVisiblePasswordField] = useState(false);
   const [cityOptions, setCityOptions] = useState<SelectOption[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch('/db/db.json');
-        const data = await response.json();
-        setCityOptions(
-          (data.cities as City[]).map((city) => ({ value: city.id.toString(), label: city.name })),
-        );
-        return data.cities;
-      } catch (error) {
-        console.error('Error loading data:', error);
-      }
+      const response = await fetch('/db/db.json');
+      const data = await response.json();
+
+      return data.cities;
     };
 
-    fetchData().then((r) => {
-      console.log(r);
-      return r;
-    });
+    fetchData()
+      .then((cities: City[]) => {
+        setCityOptions(
+          cities.map((city: City) => ({ value: city.id.toString(), label: city.name })),
+        );
+      })
+      .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
   const genderOptions: SelectOption[] = [
@@ -66,6 +65,15 @@ const ProfilePageForm = () => {
     },
   ];
 
+  const handleChangePassword = () => {
+    setVisiblePasswordField(true);
+  };
+
+  const handleOnChangeFile = async (file: File | null) => {
+    if (!file) return;
+    setFormState({ ...formState, avatar: await fileToBase64(file) });
+  };
+
   const submitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert(JSON.stringify(formState, null, 2));
@@ -73,6 +81,19 @@ const ProfilePageForm = () => {
 
   return (
     <form className={styles.form} onSubmit={submitForm}>
+      <div className={styles.formAvatar}>
+        <AvatarPicker
+          value={formState.avatar}
+          size={'large'}
+          onChangeFile={handleOnChangeFile}
+          triggerSlot={
+            <button className={styles.triggerBtn} type={'button'}>
+              <ImageDown />
+            </button>
+          }
+        />
+      </div>
+
       <div className={styles.formContent}>
         <div className={styles.formFields}>
           <FormField label={'Почта'}>
@@ -95,7 +116,7 @@ const ProfilePageForm = () => {
             <button
               className={styles.changePasswordBtn}
               type={'button'}
-              onClick={() => setVisiblePasswordField(true)}
+              onClick={handleChangePassword}
             >
               Изменить пароль
             </button>
@@ -156,9 +177,10 @@ const ProfilePageForm = () => {
         </div>
 
         <Button type={'submit'}>Сохранить</Button>
-        <pre>{JSON.stringify(formState, null, 2)}</pre>
+        <pre style={{ wordBreak: 'break-all', whiteSpace: 'pre-line' }}>
+          {JSON.stringify(formState, null, 2)}
+        </pre>
       </div>
-      <div className={styles.formAvatar}>2</div>
     </form>
   );
 };

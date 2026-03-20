@@ -1,11 +1,12 @@
 .form {
   display: flex;
+  flex-direction: column;
   gap: 32px;
   justify-content: space-between;
 }
 
 .formContent {
-  width: 460px;
+  /*width: 460px;*/
   display: grid;
   gap: 32px;
 }
@@ -34,22 +35,44 @@
 
 .changePasswordBtn {
   padding: 0;
+  justify-self: start;
+  font-family: var(--font-family-base, 'Roboto'), sans-serif;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent-dark);
   border: none;
   background: none;
   cursor: pointer;
-  justify-self: start;
-  font-weight: var( --font-weight-medium);
 }
 
 .formAvatar {
   justify-self: center;
   width: 244px;
   height: 244px;
-  outline: 1px solid tomato;
 }
 
 .icon {
   width: 24px;
   height: 24px;
   color: var(--color-text-secondary);
+}
+
+.triggerBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-rounded);
+  border: none;
+  background: var(--color-accent);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--color-accent-light);
+  }
+
+  &:active {
+    color: var(--color-surface);
+    background: var(--color-accent-dark);
+  }
 }
