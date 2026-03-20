@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 import type { Skill } from '@/entities/skill/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 import type { User } from '@/entities/user/types';
@@ -75,7 +76,7 @@ const SkillsTags = ({
   teachingSkills,
   learningSkills,
   maxVisibleTags,
-  className = '',
+  className,
 }: SkilltagsProps) => {
   const sections = [
     { title: 'Может научить:', skills: teachingSkills },
@@ -157,7 +158,7 @@ const SkillsTags = ({
   }, [teachingSkills, learningSkills, maxVisibleTags]);
 
   return (
-    <div className={`${styles.container} ${className}`.trim()}>
+    <div className={clsx(styles.container, className)}>
       {sections.map((section, sectionIndex) => {
         const fallbackCount = Math.min(
           section.skills.length,
@@ -177,12 +178,12 @@ const SkillsTags = ({
               }}
             >
               {visibleSkills.map((skill) => (
-                <span key={skill.id} className={`${styles.tag} ${styles[skill.category]}`}>
+                <span key={skill.id} className={clsx(styles.tag, styles[skill.category])}>
                   {skill.label}
                 </span>
               ))}
               {hiddenSkillsCount > 0 && (
-                <span className={`${styles.tag} ${styles.moreTag}`}>+{hiddenSkillsCount}</span>
+                <span className={clsx(styles.tag, styles.moreTag)}>+{hiddenSkillsCount}</span>
               )}
             </div>
 
@@ -190,7 +191,7 @@ const SkillsTags = ({
               {section.skills.map((skill, skillIndex) => (
                 <span
                   key={`measure-${section.title}-${skill.id}`}
-                  className={`${styles.tag} ${styles[skill.category]}`}
+                  className={clsx(styles.tag, styles[skill.category])}
                   ref={(element) => {
                     if (!tagMeasureRefs.current[sectionIndex]) {
                       tagMeasureRefs.current[sectionIndex] = [];
@@ -203,7 +204,7 @@ const SkillsTags = ({
                 </span>
               ))}
               <span
-                className={`${styles.tag} ${styles.moreTag}`}
+                className={clsx(styles.tag, styles.moreTag)}
                 ref={(element) => {
                   counterMeasureRefs.current[sectionIndex] = element;
                 }}

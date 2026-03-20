@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import clsx from 'clsx';
 import { Checkbox } from '../../../../shared/ui/Checkbox';
 import styles from './FilterCheckboxGroup.module.css';
 
@@ -121,9 +122,10 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
         <img
           src="/src/assets/chevron-down.svg"
           alt=""
-          className={`${styles.filterCheckboxGroup__arrow} ${
-            isOpen ? styles.filterCheckboxGroup__arrowUp : ''
-          }`}
+          className={clsx(
+            styles.filterCheckboxGroup__arrow,
+            isOpen && styles.filterCheckboxGroup__arrowUp,
+          )}
           width="16"
           height="16"
         />
@@ -136,7 +138,7 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   title,
   options,
   name,
-  className = 'Навыки',
+  className,
   showAllLink = false,
   allLinkText = 'Все категории',
   onAllLinkClick,
@@ -217,7 +219,7 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   );
 
   return (
-    <div className={`${styles.filterCheckboxGroup} ${className}`}>
+    <div className={clsx(styles.filterCheckboxGroup, className)}>
       <h3 className={styles.filterCheckboxGroup__title}>{title}</h3>
       <ul className={styles.filterCheckboxGroup__list}>
         {options.map((option) => {

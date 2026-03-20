@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import clsx from 'clsx';
 import { RadioButton } from '../../../../shared/ui/RadioButton';
 import styles from './FilterRoleRadioGroup.module.css';
 
@@ -12,12 +13,14 @@ export interface FilterRoleRadioGroupProps {
   value: string;
   onChange: (value: string) => void;
   title?: string;
+  className?: string;
 }
 
 export const FilterRoleRadioGroup: React.FC<FilterRoleRadioGroupProps> = ({
   value,
   onChange,
   title = '',
+  className,
 }) => {
   const handleChange = useCallback(
     (newValue: string) => {
@@ -27,8 +30,8 @@ export const FilterRoleRadioGroup: React.FC<FilterRoleRadioGroupProps> = ({
   );
 
   return (
-    <div className={styles.filterRoleRadioGroup}>
-      <h3 className={styles.filterRoleRadioGroup__title}>{title}</h3>
+    <div className={clsx(styles.filterRoleRadioGroup, className)}>
+      {title && <h3 className={styles.filterRoleRadioGroup__title}>{title}</h3>}
 
       <div className={styles.filterRoleRadioGroup__list}>
         {mainFilterOptions.map((option) => (

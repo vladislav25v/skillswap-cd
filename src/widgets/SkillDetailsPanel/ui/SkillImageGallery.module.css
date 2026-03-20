@@ -1,0 +1,144 @@
+.gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 16px;
+  align-items: start;
+}
+
+.mainImageWrapper {
+  position: relative;
+  min-height: 320px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(171, 210, 122, 0.14), rgba(80, 136, 38, 0.1)), #e9ece3;
+}
+
+.mainImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: var(--radius-rounded);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.navButton:hover {
+  background: #fff;
+}
+
+.navButton:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}
+
+.navButtonLeft {
+  left: 14px;
+}
+
+.navButtonRight {
+  right: 14px;
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.97);
+}
+
+.thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.thumbButton {
+  position: relative;
+  display: block;
+  width: 88px;
+  height: 88px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #e9ece3;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.thumbButton:hover {
+  transform: translateY(-1px);
+}
+
+.thumbButton:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}
+
+.thumbButtonActive {
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 10px 24px rgba(37, 48, 23, 0.12);
+}
+
+.thumbImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37, 48, 23, 0.42);
+  color: #fff;
+  font-size: 24px;
+  font-weight: var(--font-weight-medium);
+}
+
+@container (max-width: 767px) {
+  .gallery {
+    grid-template-columns: minmax(0, 1fr) 72px;
+    gap: 10px;
+  }
+
+  .mainImageWrapper,
+  .mainImage {
+    min-height: 220px;
+  }
+
+  .thumbButton {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius);
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+}
