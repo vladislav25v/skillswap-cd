@@ -50,94 +50,85 @@
   z-index: 1;
 }
 
-.customCheckbox {
+.box {
   width: 20px;
   height: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background: var(--color-surface);
-  border: 2px solid var(--color-text-primary);
+  background: var(--color-surface, white);
+  border: 2px solid var(--color-text-primary, #1a1a1a);
   border-radius: 6px;
-  transition: none;
+  transition: all 0.2s ease;
   flex-shrink: 0;
   position: relative;
+  background-color: white;
 }
 
-/* Галочка */
+/* Галочка - для checked состояния */
 .icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.625rem;
-  height: 0.3125rem;
-  border-bottom: 0.125rem solid var(--color-surface);
-  border-left: 0.125rem solid var(--color-surface);
-  opacity: 0;
-  transform: translate(-50%, -65%) rotate(-45deg);
-  transition: opacity 0.1s ease;
-  transform-origin: center;
+  width: 10px;
+  height: 6px;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  transform: translate(-50%, -70%) rotate(-45deg);
+  opacity: 1;
 }
 
-/* Indeterminate состояние */
+/* Indeterminate состояние - минус */
 .indeterminate {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.75rem;
-  height: 0.125rem;
-  background: var(--color-surface);
+  width: 10px;
+  height: 2px;
+  background: white;
   border-radius: 1px;
-  opacity: 0;
   transform: translate(-50%, -50%);
-  transition: opacity 0.1s ease;
+  opacity: 1;
 }
 
 /* Состояние при наведении */
 .root:hover .box {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent, #508826);
 }
 
 /* Состояние checked */
-.input:checked + .customCheckbox {  
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+.input:checked + .box {
+  background: var(--color-accent, #508826);
+  border-color: var(--color-accent, #508826);
 }
 
-/* Галочка */
-.input:checked + .customCheckbox::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 8px;
-  left: 5px;
-  top: 5px;
-  background: url("/src/assets/check.svg") no-repeat;
-  background-size: 10px 8px;
+/* Состояние indeterminate */
+.input:indeterminate + .box {
+  background: var(--color-accent, #508826);
+  border-color: var(--color-accent, #508826);
 }
 
 /* Фокус */
 .input:focus-visible + .box {
-  outline-color: var(--color-accent);
+  outline: 2px solid var(--color-accent, #508826);
+  outline-offset: 2px;
 }
 
 /* Disabled состояния */
 .root.disabled .box,
 .root.disabled:hover .box {
-  background: var(--color-disabled);
-  border-color: var(--color-toggle);
+  background: var(--color-disabled, #e9ecef);
+  border-color: var(--color-toggle, #ced4da);
   cursor: not-allowed;
 }
 
 .root.disabled .input:checked + .box,
 .root.disabled .input:indeterminate + .box {
-  background: var(--color-disabled);
-  border-color: var(--color-toggle);
+  background: var(--color-disabled, #e9ecef);
+  border-color: var(--color-toggle, #ced4da);
 }
 
-.root.disabled .input:checked + .box .icon {
-  border-color: var(--color-text-disabled);
+.root.disabled .icon {
+  border-color: var(--color-text-disabled, #adb5bd);
 }
 
-.root.disabled .input:indeterminate + .box .indeterminate {
-  background: var(--color-text-disabled);
+.root.disabled .indeterminate {
+  background: var(--color-text-disabled, #adb5bd);
 }

@@ -3,12 +3,13 @@
   top: 16px;
   display: flex;
   flex-direction: column;
-  background-color: var(--base-color, #ffffff);
-  border-radius: var(--border-modal-radius, 12px);
+  background-color: var(--base-color, var(--color-surface, #ffffff));
+  border-radius: var(--border-modal-radius, var(--radius, 12px));
   width: 284px;
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
   gap: 40px;
   padding: 20px;
+  overflow: visible;
 }
 
 .filters {
@@ -19,6 +20,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overflow: visible;
 }
 
 .filters::-webkit-scrollbar {
@@ -30,34 +32,61 @@
 .skillsSection {
   width: 100%;
   scroll-margin-top: 16px;
+  overflow: visible;
 }
 
-.allLinkContent {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
-}
-
-.allLinkIndicator {
-  display: inline-flex;
+.loading,
+.error {
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  transition: color 0.2s ease;
+  min-height: 200px;
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: var(--font-size-body, 16px);
+  color: var(--color-text-secondary, #69735d);
 }
 
-.allLinkArrow {
-  display: block;
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease, color 0.2s ease;
+.error {
+  flex-direction: column;
+  gap: 16px;
+  color: var(--color-error, #bf3920);
 }
 
-.allLinkArrowUp {
-  transform: rotate(180deg);
+.error button {
+  padding: 8px 16px;
+  background-color: var(--color-accent, var(--color-accent-dark, #508826));
+  color: var(--color-surface, #ffffff);
+  border: none;
+  border-radius: var(--radius, 12px);
+  cursor: pointer;
+  font-size: var(--font-size-body, 14px);
+  transition: background-color 0.2s;
+}
+
+.error button:hover {
+  background-color: var(--color-accent-dark, #3a651e);
+}
+
+.filterCheckboxGroup__label,
+.filterCheckboxGroup__allLink,
+.filterCityCheckbox__allLink,
+.filterGenderRadioGroup__title,
+.filterRoleRadioGroup__title,
+.filterCheckboxGroup__title,
+.filterCityCheckbox__title,
+.clean {
+  transition: outline-offset 0.2s ease, outline-color 0.2s ease;
+}
+
+.filterCheckboxGroup__label:focus-visible,
+.filterCheckboxGroup__allLink:focus-visible,
+.filterCityCheckbox__allLink:focus-visible,
+.filterGenderRadioGroup__title:focus-visible,
+.filterRoleRadioGroup__title:focus-visible,
+.filterCheckboxGroup__title:focus-visible,
+.filterCityCheckbox__title:focus-visible,
+.clean:focus-visible {
+  outline: 2px solid var(--color-accent-dark, #508826);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

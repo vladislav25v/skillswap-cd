@@ -1,52 +1,33 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import clsx from 'clsx';
+
+import { initialFilterState } from '@/features/users-filter';
+import type { FilterState } from '@/features/users-filter';
 import { FilterCheckboxGroup } from './components/FilterCheckboxGroup';
 import type { FilterOption } from './components/FilterCheckboxGroup';
 import { FilterSidebarHeader } from './components/FilterSidebarHeader';
 import { FilterRoleRadioGroup } from './components/FilterRoleRadioGroup';
-import { FilterCheckboxGroup } from './components/FilterCheckboxGroup';
-import type { FilterOption } from './components/FilterCheckboxGroup';
 import { FilterGenderRadioGroup } from './components/FilterGenderRadioGroup';
 import { FilterCityCheckbox } from './components/FilterCityCheckbox';
+import { getCategories, getSubcategories, getCities } from '../../api/users';
+import type { Category, Subcategory, City } from '../../api/users';
 import styles from './FilterSidebar.module.css';
-
-export interface FilterState {
-  mainFilter: string;
-  skills: string[];
-  authorGender: string;
-  cities: number[];
-}
 
 export interface FilterSidebarProps {
   className?: string;
   onFilterChange?: (filters: FilterState) => void;
+  initialFilters?: Partial<FilterState>;
 }
 
-interface Category {
-  id: number;
-  name: string;
-}
-
-interface Subcategory {
-  id: number;
-  categoryId: number;
-  name: string;
-}
-
-interface City {
-  id: number;
-  name: string;
-}
-
-const initialFilterState: FilterState = {
-  mainFilter: 'all',
-  skills: [],
-  authorGender: '',
-  cities: [],
-};
-
-export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilterChange }) => {
-  const [filters, setFilters] = useState<FilterState>(initialFilterState);
+export const FilterSidebar: React.FC<FilterSidebarProps> = ({
+  className,
+  onFilterChange,
+  initialFilters,
+}) => {
+  const [filters, setFilters] = useState<FilterState>({
+    ...initialFilterState,
+    ...initialFilters,
+  });
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [showAllCities, setShowAllCities] = useState(false);
   const [resetKey, setResetKey] = useState(0);
@@ -55,8 +36,30 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilte
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const skillsSectionRef = useRef<HTMLDivElement>(null);
+  const isMountedRef = useRef(true);
+
+  const skillCategories = useMemo<FilterOption[]>(() => {
+    return categories.map((category) => {
+      const categorySubcategories = subcategories
+        .filter((sub) => {
+          const categoryIdAsNumber = Number(category.id);
+          return sub.categoryId === categoryIdAsNumber;
+        })
+        .map((sub) => ({
+          value: sub.id.toString(),
+          label: sub.name,
+        }));
+
+      return {
+        value: category.id.toString(),
+        label: category.name,
+        subOptions: categorySubcategories,
+      };
+    });
+  }, [categories, subcategories]);
 
   const activeFiltersCount = useMemo(() => {
     let count = 0;
@@ -68,64 +71,93 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilte
   }, [filters]);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    isMountedRef.current = true;
+
     const fetchData = async () => {
       try {
-        const response = await fetch('/db/db.json');
-        const data = await response.json();
-        setCategories(data.categories);
-        setSubcategories(data.subcategories);
-        setCities(data.cities);
-      } catch (error) {
-        console.error('Error loading data:', error);
+        setLoading(true);
+        setError(null);
+
+        const [categoriesData, subcategoriesData, citiesData] = await Promise.all([
+          getCategories(),
+          getSubcategories(),
+          getCities(),
+        ]);
+
+        if (isMountedRef.current) {
+          setCategories(categoriesData);
+          setSubcategories(subcategoriesData);
+          setCities(citiesData);
+        }
+      } catch (err) {
+        if (isMountedRef.current) {
+          const errorMessage = err instanceof Error ? err.message : 'Failed to load filter data';
+          setError(errorMessage);
+        }
       } finally {
-        setLoading(false);
+        if (isMountedRef.current) {
+          setLoading(false);
+        }
       }
     };
 
     fetchData();
+
+    return () => {
+      isMountedRef.current = false;
+      abortController.abort();
+    };
   }, []);
 
-  const skillCategories: FilterOption[] = categories.map((category) => {
-    const categorySubcategories = subcategories
-      .filter((sub) => sub.categoryId === category.id)
-      .map((sub) => ({
-        value: sub.id.toString(),
-        label: sub.name,
-      }));
+  const handleFilterChange = useCallback(
+    (newFilters: Partial<FilterState>) => {
+      setFilters((prev) => {
+        const updated = { ...prev, ...newFilters };
+        onFilterChange?.(updated);
+        return updated;
+      });
+    },
+    [onFilterChange],
+  );
 
-    return {
-      value: category.id.toString(),
-      label: category.name,
-      subOptions: categorySubcategories,
-    };
-  });
+  const handleMainFilterChange = useCallback(
+    (value: string) => {
+      handleFilterChange({ mainFilter: value });
+    },
+    [handleFilterChange],
+  );
 
-  const handleFilterChange = (newFilters: Partial<FilterState>) => {
-    const updatedFilters = { ...filters, ...newFilters };
-    setFilters(updatedFilters);
-    onFilterChange?.(updatedFilters);
-  };
+  const handleSkillsChange = useCallback(
+    (selectedValues: string[]) => {
+      const uniqueValues = Array.from(new Set(selectedValues));
+      handleFilterChange({ skills: uniqueValues });
+    },
+    [handleFilterChange],
+  );
 
-  const handleMainFilterChange = (value: string) => {
-    handleFilterChange({ mainFilter: value });
-  };
+  const handleGenderChange = useCallback(
+    (value: string) => {
+      handleFilterChange({ authorGender: value });
+    },
+    [handleFilterChange],
+  );
 
-  const handleSkillsChange = (selectedValues: string[]) => {
-    handleFilterChange({ skills: selectedValues });
-  };
+  const handleCityChange = useCallback(
+    (cityId: number, checked: boolean) => {
+      setFilters((prev) => {
+        const newCities = checked
+          ? [...prev.cities, cityId]
+          : prev.cities.filter((id) => id !== cityId);
+        const updated = { ...prev, cities: newCities };
+        onFilterChange?.(updated);
+        return updated;
+      });
+    },
+    [onFilterChange],
+  );
 
-  const handleGenderChange = (value: string) => {
-    handleFilterChange({ authorGender: value });
-  };
-
-  const handleCityChange = (cityId: number, checked: boolean) => {
-    const newCities = checked
-      ? [...filters.cities, cityId]
-      : filters.cities.filter((id) => id !== cityId);
-    handleFilterChange({ cities: newCities });
-  };
-
-  const handleShowAllSkills = () => {
+  const handleShowAllSkills = useCallback(() => {
     const newShowAllState = !showAllSkills;
     setShowAllSkills(newShowAllState);
 
@@ -135,24 +167,35 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilte
         block: 'start',
       });
     }
-  };
+  }, [showAllSkills]);
 
-  const handleShowAllCities = () => {
+  const handleShowAllCities = useCallback(() => {
     setShowAllCities(!showAllCities);
-  };
+  }, [showAllCities]);
 
-  const handleResetFilters = () => {
+  const handleResetFilters = useCallback(() => {
     setFilters(initialFilterState);
     setShowAllSkills(false);
     setShowAllCities(false);
     setResetKey((prev) => prev + 1);
     onFilterChange?.(initialFilterState);
-  };
+  }, [onFilterChange]);
 
   if (loading) {
     return (
       <aside className={clsx(styles.sidebar, className)}>
         <div className={styles.loading}>Loading filters...</div>
+      </aside>
+    );
+  }
+
+  if (error) {
+    return (
+      <aside className={clsx(styles.sidebar, className)}>
+        <div className={styles.error}>
+          <p>Failed to load filters</p>
+          <button onClick={() => window.location.reload()}>Retry</button>
+        </div>
       </aside>
     );
   }
@@ -179,10 +222,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilte
             title="Навыки"
             name="skills"
             options={skillCategories}
+            value={filters.skills}
             onChange={handleSkillsChange}
             showAllLink={true}
             allLinkText="Все категории"
             onAllLinkClick={handleShowAllSkills}
+            isAllLinkOpen={showAllSkills}
           />
         </div>
 
@@ -205,3 +250,5 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ className, onFilte
     </aside>
   );
 };
+
+export type { FilterState } from '@/features/users-filter';

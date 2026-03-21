@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import clsx from 'clsx';
 import { Checkbox } from '../../../../shared/ui/Checkbox';
 import styles from './FilterCheckboxGroup.module.css';
@@ -21,9 +21,14 @@ export interface FilterCheckboxGroupProps {
   allLinkText?: React.ReactNode;
   onAllLinkClick?: () => void;
   onChange?: (selectedValues: string[]) => void;
+  value?: string[];
+  isAllLinkOpen?: boolean;
 }
 
-const getInitialSelectedValues = (options: FilterOption[]): string[] => {
+const getInitialSelectedValues = (options: FilterOption[], externalValue?: string[]): string[] => {
+  if (externalValue !== undefined) {
+    return externalValue;
+  }
   const initialValues: string[] = [];
   options.forEach((option) => {
     if (option.subOptions) {
@@ -37,11 +42,14 @@ const getInitialSelectedValues = (options: FilterOption[]): string[] => {
   return initialValues;
 };
 
-const getInitialOpenCategories = (options: FilterOption[]): Set<string> => {
+const getInitialOpenCategories = (
+  options: FilterOption[],
+  selectedValues: string[],
+): Set<string> => {
   const categoriesToOpen = new Set<string>();
   options.forEach((option) => {
     if (option.subOptions) {
-      const hasSelectedSub = option.subOptions.some((sub) => sub.defaultChecked);
+      const hasSelectedSub = option.subOptions.some((sub) => selectedValues.includes(sub.value));
       if (hasSelectedSub) {
         categoriesToOpen.add(option.value);
       }
@@ -116,7 +124,15 @@ const CategoryButton: React.FC<CategoryButtonProps> = ({
   }
 
   return (
-    <button type="button" className={className} onClick={onClick} aria-expanded={isOpen}>
+    <button
+      type="button"
+      className={className}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      aria-expanded={isOpen}
+    >
       <span className={styles.filterCheckboxGroup__labelText}>{label}</span>
       <span className={styles.filterCheckboxGroup__indicator}>
         <img
@@ -143,20 +159,23 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   allLinkText = 'Все категории',
   onAllLinkClick,
   onChange,
+  value: externalValue,
+  isAllLinkOpen = false,
 }) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>(() =>
-    getInitialSelectedValues(options),
-  );
-  const [openCategories, setOpenCategories] = useState<Set<string>>(() =>
-    getInitialOpenCategories(options),
+  const [internalSelectedValues, setInternalSelectedValues] = useState<string[]>(() =>
+    getInitialSelectedValues(options, externalValue),
   );
 
-  useEffect(() => {
-    onChange?.(selectedValues);
-  }, [selectedValues, onChange]);
+  const selectedValues = externalValue !== undefined ? externalValue : internalSelectedValues;
+
+  const openCategories = useMemo(
+    () => getInitialOpenCategories(options, selectedValues),
+    [options, selectedValues],
+  );
 
   const areAllSubOptionsSelected = useCallback(
     (subOptions: FilterOption[]): boolean => {
+      if (!subOptions.length) return false;
       return subOptions.every((sub) => selectedValues.includes(sub.value));
     },
     [selectedValues],
@@ -169,34 +188,19 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
     [selectedValues],
   );
 
-  const handleSubOptionChange = useCallback((value: string, checked: boolean) => {
-    setSelectedValues((prev) => {
-      if (checked) {
-        return [...prev, value];
-      }
-      return prev.filter((v) => v !== value);
-    });
-  }, []);
+  const handleSubOptionChange = useCallback(
+    (value: string, checked: boolean) => {
+      const newValues = checked
+        ? [...selectedValues, value]
+        : selectedValues.filter((v) => v !== value);
 
-  const handleCategoryChange = useCallback(
-    (subOptions?: FilterOption[]) => (checked: boolean) => {
-      if (!subOptions) return;
-      setSelectedValues((prev) => updateCategoryValues(prev, subOptions, checked));
+      if (externalValue === undefined) {
+        setInternalSelectedValues(newValues);
+      }
+      onChange?.(newValues);
     },
-    [],
+    [selectedValues, onChange, externalValue],
   );
-
-  const handleLabelClick = useCallback((categoryValue: string) => {
-    setOpenCategories((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(categoryValue)) {
-        newSet.delete(categoryValue);
-      } else {
-        newSet.add(categoryValue);
-      }
-      return newSet;
-    });
-  }, []);
 
   const getCategoryCheckboxState = useCallback(
     (subOptions?: FilterOption[]) => {
@@ -218,6 +222,16 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
     [areAllSubOptionsSelected, isAnySubOptionSelected],
   );
 
+  const handleChangeSelectedValues = useCallback(
+    (newValues: string[]) => {
+      if (externalValue === undefined) {
+        setInternalSelectedValues(newValues);
+      }
+      onChange?.(newValues);
+    },
+    [externalValue, onChange],
+  );
+
   return (
     <div className={clsx(styles.filterCheckboxGroup, className)}>
       <h3 className={styles.filterCheckboxGroup__title}>{title}</h3>
@@ -234,12 +248,22 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
                   id={`${name}-${option.value}`}
                   checked={checkboxState.checked}
                   indeterminate={checkboxState.indeterminate ?? false}
-                  onChange={handleCategoryChange(option.subOptions)}
+                  onChange={(checked) => {
+                    if (!option.subOptions) return;
+                    const newValues = updateCategoryValues(
+                      selectedValues,
+                      option.subOptions,
+                      checked,
+                    );
+                    handleChangeSelectedValues(newValues);
+                  }}
                   label=""
                   disabled={option.disabled}
                 />
                 <CategoryButton
-                  onClick={() => handleLabelClick(option.value)}
+                  onClick={() => {
+                    setInternalSelectedValues(selectedValues);
+                  }}
                   isOpen={isOpen}
                   hasSubOptions={hasSubOptions}
                   label={option.label}
@@ -264,7 +288,21 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
               onClick={onAllLinkClick}
               type="button"
             >
-              {allLinkText}
+              <span className={styles.filterCheckboxGroup__allLinkContent}>
+                {allLinkText}
+                <span className={styles.filterCheckboxGroup__allLinkIndicator}>
+                  <img
+                    src="/src/assets/chevron-down.svg"
+                    alt=""
+                    className={clsx(
+                      styles.filterCheckboxGroup__allLinkArrow,
+                      isAllLinkOpen && styles.filterCheckboxGroup__allLinkArrowUp,
+                    )}
+                    width="16"
+                    height="16"
+                  />
+                </span>
+              </span>
             </button>
           </li>
         )}
