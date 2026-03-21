@@ -153,7 +153,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
           <div className={styles.formRow}>
             <FormField
               label={'Дата рождения'}
-              className={[styles.formRowItem, styles.formRowItemHalf].join(' ')}
+              className={clsx(styles.formRowItem, styles.formRowItemHalf)}
             >
               <Datepicker
                 value={formState.birthDate}
@@ -161,10 +161,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
               />
             </FormField>
 
-            <FormField
-              label={'Пол'}
-              className={[styles.formRowItem, styles.formRowItemHalf].join(' ')}
-            >
+            <FormField label={'Пол'} className={clsx(styles.formRowItem, styles.formRowItemHalf)}>
               <Select<UserGender>
                 name="gender"
                 size={'standard'}
