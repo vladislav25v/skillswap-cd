@@ -10,36 +10,39 @@ export type PasswordInputProps = Omit<
   onChange?: (value: string) => void;
 };
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ onChange, ...rest }) => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
+  ({ onChange, ...rest }, ref) => {
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!onChange) return;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!onChange) return;
 
-    onChange(e.target.value);
-  };
+      onChange(e.target.value);
+    };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
 
-  return (
-    <Input
-      {...rest}
-      type={showPassword ? 'text' : 'password'}
-      onChange={handleChange}
-      rightSlot={
-        <button
-          className={styles.toggleBtn}
-          type={'button'}
-          onClick={togglePasswordVisibility}
-          aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-        >
-          {showPassword ? <EyeOff /> : <Eye />}
-        </button>
-      }
-    />
-  );
-};
+    return (
+      <Input
+        {...rest}
+        ref={ref}
+        type={showPassword ? 'text' : 'password'}
+        onChange={handleChange}
+        rightSlot={
+          <button
+            className={styles.toggleBtn}
+            type={'button'}
+            onClick={togglePasswordVisibility}
+            aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+          >
+            {showPassword ? <EyeOff /> : <Eye />}
+          </button>
+        }
+      />
+    );
+  },
+);
 
 export default PasswordInput;

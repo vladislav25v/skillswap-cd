@@ -1,6 +1,6 @@
 import FormField from '@/shared/ui/FormField';
 import Input from '@/shared/ui/Input';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Button from '@/shared/ui/Button/Button.tsx';
 import PasswordInput from '@/shared/ui/PasswordInput';
 import styles from './ProfileUserForm.module.css';
@@ -41,6 +41,11 @@ const profileUser: ProfileUser = {
   avatar: '',
 };
 
+const genderOptions: SelectOption<UserGender>[] = [
+  { value: 'female', label: 'Женский' },
+  { value: 'male', label: 'Мужской' },
+];
+
 const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
   const [initialState] = useState<ProfileUser>(() => {
     const profileUserFromStorage = localStorage.getItem('profileUser');
@@ -50,6 +55,13 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
   const [formState, setFormState] = useState<ProfileUser>({ ...initialState });
   const [visiblePasswordField, setVisiblePasswordField] = useState(false);
   const [cityOptions, setCityOptions] = useState<SelectOption<number>[]>([]);
+  const passwordInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (visiblePasswordField) {
+      passwordInputRef.current?.focus();
+    }
+  }, [visiblePasswordField]);
 
   const isFormChanged = useMemo(() => {
     return (
@@ -78,11 +90,6 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
-
-  const genderOptions: SelectOption<UserGender>[] = [
-    { value: 'female', label: 'Женский' },
-    { value: 'male', label: 'Мужской' },
-  ];
 
   const handleChangePassword = () => {
     setVisiblePasswordField(true);
@@ -128,6 +135,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
           {visiblePasswordField ? (
             <FormField label={'Пароль'}>
               <PasswordInput
+                ref={passwordInputRef}
                 value={formState.password}
                 onChange={(password) => setFormState({ ...formState, password })}
               />
