@@ -1,14 +1,20 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   justify-content: space-between;
+  gap: 32px;
+}
+
+.formAvatar {
+  align-self: center;
+  width: 244px;
+  height: 244px;
 }
 
 .formContent {
-  /*width: 460px;*/
   display: grid;
   gap: 32px;
+  flex-grow: 1;
 }
 
 .formFields {
@@ -17,12 +23,12 @@
 }
 
 .formRow {
-  --column-gap: 24px;
-
   display: flex;
+
   flex-wrap: wrap;
   row-gap: 16px;
   column-gap: var(--column-gap);
+  --column-gap: 24px;
 }
 
 .formRowItem {
@@ -34,21 +40,15 @@
 }
 
 .changePasswordBtn {
-  padding: 0;
   justify-self: start;
-  font-family: var(--font-family-base, 'Roboto'), sans-serif;
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-accent-dark);
   border: none;
+  padding: 0;
+  color: var(--color-accent-dark);
+  font-family: var(--font-family-base, 'Roboto'), sans-serif;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body);
   background: none;
   cursor: pointer;
-}
-
-.formAvatar {
-  justify-self: center;
-  width: 244px;
-  height: 244px;
 }
 
 .icon {
@@ -60,12 +60,12 @@
 .triggerBtn {
   width: 56px;
   height: 56px;
-  border-radius: var(--radius-rounded);
   border: none;
-  background: var(--color-accent);
-  cursor: pointer;
+  border-radius: var(--radius-rounded);
   color: var(--color-text-primary);
+  background: var(--color-accent);
   transition: background-color 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     background: var(--color-accent-light);
@@ -74,5 +74,19 @@
   &:active {
     color: var(--color-surface);
     background: var(--color-accent-dark);
+  }
+}
+
+@container mainContent (width >= 760px) {
+  .form {
+    flex-direction: row-reverse;
+  }
+
+  .formAvatar {
+    align-self: initial;
+  }
+
+  .formContent {
+    max-width: 460px;
   }
 }

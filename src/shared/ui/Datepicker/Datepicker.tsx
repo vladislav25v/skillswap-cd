@@ -8,16 +8,18 @@ import Button from '@/shared/ui/Button/Button.tsx';
 import styles from './Datepicker.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
+import { convertStringToDate } from '@/shared/lib/date/convertStringToDate.ts';
+import { convertDateToString } from '@/shared/lib/date/convertDateToString.ts';
 
 export interface DatepickerProps {
-  value: Date | null;
-  onChange?: (e: Date | null) => void;
+  value: string | '';
+  onChange?: (date: string) => void;
 }
 
 registerLocale('ru', ru);
 
 const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
-  const [tempDate, setTempDate] = useState<Date | null>(value);
+  const [tempDate, setTempDate] = useState<Date | null>(convertStringToDate(value));
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleChange = (date: Date | null) => {
@@ -25,23 +27,29 @@ const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
   };
 
   const handleCalendarClose = () => {
-    setTempDate(value);
+    setTempDate(convertStringToDate(value));
     setIsOpen(false);
   };
 
   const handleCalendarOpen = () => {
-    setTempDate(value);
+    setTempDate(convertStringToDate(value));
     setIsOpen(true);
   };
 
   const handleCancel = () => {
     if (onChange) onChange(value);
-    setTempDate(value);
+    setTempDate(convertStringToDate(value));
     setIsOpen(false);
   };
 
   const handleApply = () => {
-    if (onChange) onChange(tempDate);
+    if (onChange) {
+      if (tempDate) {
+        onChange(convertDateToString(tempDate));
+      } else {
+        onChange(value);
+      }
+    }
     setIsOpen(false);
   };
 

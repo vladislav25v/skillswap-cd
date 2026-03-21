@@ -1,9 +1,9 @@
 import FormField from '@/shared/ui/FormField';
 import Input from '@/shared/ui/Input';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Button from '@/shared/ui/Button/Button.tsx';
 import PasswordInput from '@/shared/ui/PasswordInput';
-import styles from './ProfilePageForm.module.css';
+import styles from './ProfileUserForm.module.css';
 import Textarea from '@/shared/ui/Textarea';
 import { ImageDown, PencilLine } from 'lucide-react';
 import { Select, type SelectOption } from '@/shared/ui/Select';
@@ -11,31 +11,58 @@ import type { City } from '@/entities/city/types.ts';
 import Datepicker from '@/shared/ui/Datepicker';
 import AvatarPicker from '@/shared/ui/AvatarPicker';
 import { fileToBase64 } from '@/shared/lib/file/fileToBase64.ts';
+import type { UserGender } from '@/entities/user/types.ts';
+import clsx from 'clsx';
 
-interface FormDate {
+interface ProfileUser {
   email: string;
   password: string;
   name: string;
-  birthDate: Date | null;
-  gender: string;
-  city: string;
+  birthDate: string;
+  gender: UserGender | undefined;
+  cityId: number | undefined;
   about: string;
   avatar: string;
 }
 
-const ProfilePageForm = () => {
-  const [formState, setFormState] = useState<FormDate>({
-    email: '',
-    password: '',
-    name: '',
-    birthDate: new Date(),
-    gender: '',
-    city: '',
-    about: '',
-    avatar: '',
+export interface ProfileUserFormProps {
+  className?: string;
+}
+
+const profileUser: ProfileUser = {
+  email: 'mariia@gmail.com',
+  password: '',
+  name: 'Мария',
+  birthDate: '1995-10-28',
+  gender: 'female',
+  cityId: 1,
+  about:
+    'Люблю учиться новому, особенно если это можно делать за чаем и в пижаме. Всегда готова пообщаться и обменяться чем‑то интересным!',
+  avatar: '',
+};
+
+const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
+  const [initialState] = useState<ProfileUser>(() => {
+    const profileUserFromStorage = localStorage.getItem('profileUser');
+
+    return profileUserFromStorage ? JSON.parse(profileUserFromStorage) : profileUser;
   });
+  const [formState, setFormState] = useState<ProfileUser>({ ...initialState });
   const [visiblePasswordField, setVisiblePasswordField] = useState(false);
-  const [cityOptions, setCityOptions] = useState<SelectOption[]>([]);
+  const [cityOptions, setCityOptions] = useState<SelectOption<number>[]>([]);
+
+  const isFormChanged = useMemo(() => {
+    return (
+      initialState.email !== formState.email ||
+      initialState.password !== formState.password ||
+      initialState.name !== formState.name ||
+      initialState.birthDate !== formState.birthDate ||
+      initialState.gender !== formState.gender ||
+      initialState.cityId !== formState.cityId ||
+      initialState.about !== formState.about ||
+      initialState.avatar !== formState.avatar
+    );
+  }, [initialState, formState]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,22 +74,14 @@ const ProfilePageForm = () => {
 
     fetchData()
       .then((cities: City[]) => {
-        setCityOptions(
-          cities.map((city: City) => ({ value: city.id.toString(), label: city.name })),
-        );
+        setCityOptions(cities.map((city: City) => ({ value: city.id, label: city.name })));
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-  const genderOptions: SelectOption[] = [
-    {
-      value: 'Женский',
-      label: 'Женский',
-    },
-    {
-      value: 'Мужской',
-      label: 'Мужской',
-    },
+  const genderOptions: SelectOption<UserGender>[] = [
+    { value: 'female', label: 'Женский' },
+    { value: 'male', label: 'Мужской' },
   ];
 
   const handleChangePassword = () => {
@@ -76,11 +95,12 @@ const ProfilePageForm = () => {
 
   const submitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(JSON.stringify(formState, null, 2));
+    localStorage.setItem('profileUser', JSON.stringify(formState));
+    alert('Данные сохранены в LocalStorage');
   };
 
   return (
-    <form className={styles.form} onSubmit={submitForm}>
+    <form className={clsx(styles.form, className)} onSubmit={submitForm}>
       <div className={styles.formAvatar}>
         <AvatarPicker
           value={formState.avatar}
@@ -145,23 +165,23 @@ const ProfilePageForm = () => {
               label={'Пол'}
               className={[styles.formRowItem, styles.formRowItemHalf].join(' ')}
             >
-              <Select
+              <Select<UserGender>
                 name="gender"
                 size={'standard'}
                 options={genderOptions}
                 value={formState.gender}
-                onChange={(e) => setFormState({ ...formState, gender: e })}
+                onChange={(gender) => setFormState({ ...formState, gender })}
               />
             </FormField>
           </div>
 
           <FormField label={'Город'}>
-            <Select
+            <Select<number>
               name="city"
               options={cityOptions}
-              value={formState.city}
-              onChange={(e) => {
-                setFormState({ ...formState, city: e });
+              value={formState.cityId}
+              onChange={(cityId) => {
+                setFormState({ ...formState, cityId });
               }}
             />
           </FormField>
@@ -176,13 +196,12 @@ const ProfilePageForm = () => {
           </FormField>
         </div>
 
-        <Button type={'submit'}>Сохранить</Button>
-        <pre style={{ wordBreak: 'break-all', whiteSpace: 'pre-line' }}>
-          {JSON.stringify(formState, null, 2)}
-        </pre>
+        <Button type={'submit'} disabled={!isFormChanged}>
+          Сохранить
+        </Button>
       </div>
     </form>
   );
 };
 
-export default ProfilePageForm;
+export default ProfileUserForm;

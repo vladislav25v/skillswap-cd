@@ -16,4 +16,6 @@
 
 .content {
   padding: 60px;
+  container-name: mainContent;
+  container-type: inline-size;
 }

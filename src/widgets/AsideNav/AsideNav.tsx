@@ -1,15 +1,16 @@
 import React from 'react';
 import AsideLink from '@/shared/ui/AsideLink';
 import { Heart, Lightbulb, Mail, MessageSquareText, UserRound } from 'lucide-react';
-import styles from './SidebarNav.module.css';
+import styles from './AsideNav.module.css';
+import clsx from 'clsx';
 
-export interface SidebarNavProps {
+export interface AsideNavProps {
   className?: string;
 }
 
-const SidebarNav: React.FC<SidebarNavProps> = ({ className }) => {
+const AsideNav: React.FC<AsideNavProps> = ({ className }) => {
   return (
-    <ul className={[styles.nav, className].filter(Boolean).join(' ')}>
+    <ul className={clsx(styles.nav, className)}>
       <li>
         <AsideLink to={'empty'} icon={<Mail className={styles.icon} />}>
           Заявки
@@ -31,7 +32,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ className }) => {
         </AsideLink>
       </li>
       <li>
-        <AsideLink to={''} icon={<UserRound className={styles.icon} />}>
+        <AsideLink to={''} end icon={<UserRound className={styles.icon} />}>
           Личные данные
         </AsideLink>
       </li>
@@ -39,4 +40,4 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ className }) => {
   );
 };
 
-export default SidebarNav;
+export default AsideNav;
