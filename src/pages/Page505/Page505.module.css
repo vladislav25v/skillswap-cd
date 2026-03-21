@@ -1,0 +1,72 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.content {
+  width: 460px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.image {
+  width: 460px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.message {
+  width: 460px;
+  max-width: 100%;
+  margin: 0 0 4px 0;
+  font-family: var(--font-family-highlight);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h3);
+  letter-spacing: -0.011em;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.description {
+  width: 460px;
+  max-width: 100%;
+  margin: 0 0 32px 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.reportButton,
+.homeButton {
+  width: 218px;
+  max-width: 100%;
+  border-radius: var(--radius);
+}
