@@ -1,4 +1,4 @@
-import type { User, Subcategory } from './types';
+import type { User, Subcategory } from '@/api/users';
 import type { FiltersState } from '@/features/filters';
 
 export interface FilterUsersParams {
@@ -16,38 +16,40 @@ export const filterUsers = ({ users, filters, subcategories }: FilterUsersParams
       : [];
 
   return users.filter((user) => {
-    if (filters.mainFilter !== 'all') {
-      const hasDesiredSkills =
-        filters.mainFilter === 'want-to-learn'
-          ? user.desiredSubcategoryIds.length > 0
-          : user.createdSkillIds.length > 0;
+    const isWantToLearn = filters.mainFilter === 'want-to-learn';
+    const isCanTeach = filters.mainFilter === 'can-teach';
 
-      if (!hasDesiredSkills) {
+    if (filters.mainFilter !== 'all') {
+      if (
+        (isWantToLearn && user.desiredSubcategoryIds.length === 0) ||
+        (isCanTeach && user.createdSkillIds.length === 0)
+      ) {
         return false;
       }
     }
 
     if (validSkillIds.length > 0) {
-      const hasMatchingSkill = validSkillIds.some(
-        (skillId) =>
-          user.desiredSubcategoryIds.includes(skillId) || user.createdSkillIds.includes(skillId),
-      );
+      const hasMatchingSkill = isWantToLearn
+        ? validSkillIds.some((skillId) => user.desiredSubcategoryIds.includes(skillId))
+        : isCanTeach
+          ? validSkillIds.some((skillId) => user.createdSkillIds.includes(skillId))
+          : validSkillIds.some(
+              (skillId) =>
+                user.desiredSubcategoryIds.includes(skillId) ||
+                user.createdSkillIds.includes(skillId),
+            );
 
       if (!hasMatchingSkill) {
         return false;
       }
     }
 
-    if (filters.authorGender !== '') {
-      if (user.gender !== filters.authorGender) {
-        return false;
-      }
+    if (filters.authorGender !== '' && user.gender !== filters.authorGender) {
+      return false;
     }
 
-    if (filters.cities.length > 0) {
-      if (!filters.cities.includes(user.cityId)) {
-        return false;
-      }
+    if (filters.cities.length > 0 && !filters.cities.includes(user.cityId)) {
+      return false;
     }
 
     return true;
