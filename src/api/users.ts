@@ -29,14 +29,6 @@ export interface User {
   gender: 'male' | 'female';
 }
 
-export interface Skill {
-  id: number;
-  title: string;
-  subcategoryId: number;
-  description: string;
-  images: string[];
-}
-
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
     const text = await response.text();
@@ -68,10 +60,5 @@ export const getCities = async (): Promise<City[]> => {
 
 export const getUsers = async (): Promise<User[]> => {
   const response = await fetch(`${API_BASE_URL}/users`);
-  return handleResponse(response);
-};
-
-export const getSkills = async (): Promise<Skill[]> => {
-  const response = await fetch(`${API_BASE_URL}/skills`);
   return handleResponse(response);
 };

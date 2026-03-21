@@ -12,7 +12,7 @@ export interface FilterCityCheckboxProps {
   cities: City[];
   selectedCities: number[];
   showAll: boolean;
-  onCityChange: (cityId: number, checked: boolean) => void;
+  onCityChange: (cityId: number) => void;
   onToggleShowAll: () => void;
   title?: string;
   allCitiesText?: string;
@@ -32,8 +32,8 @@ export const FilterCityCheckbox: React.FC<FilterCityCheckboxProps> = ({
   const displayedCities = showAll ? cities : cities.slice(0, 5);
 
   const handleCityChange = useCallback(
-    (cityId: number) => (checked: boolean) => {
-      onCityChange(cityId, checked);
+    (cityId: number) => () => {
+      onCityChange(cityId);
     },
     [onCityChange],
   );

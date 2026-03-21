@@ -1,6 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import clsx from 'clsx';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { Checkbox } from '../../../../shared/ui/Checkbox';
+import {
+  toggleCategorySelection,
+  toggleSubcategorySelection,
+  selectSkills,
+} from '@/features/filters';
 import styles from './FilterCheckboxGroup.module.css';
 
 export interface FilterOption {
@@ -8,7 +14,6 @@ export interface FilterOption {
   label: string;
   category?: string;
   subOptions?: FilterOption[];
-  defaultChecked?: boolean;
   disabled?: boolean;
 }
 
@@ -20,65 +25,14 @@ export interface FilterCheckboxGroupProps {
   showAllLink?: boolean;
   allLinkText?: React.ReactNode;
   onAllLinkClick?: () => void;
-  onChange?: (selectedValues: string[]) => void;
-  value?: string[];
   isAllLinkOpen?: boolean;
 }
-
-const getInitialSelectedValues = (options: FilterOption[], externalValue?: string[]): string[] => {
-  if (externalValue !== undefined) {
-    return externalValue;
-  }
-  const initialValues: string[] = [];
-  options.forEach((option) => {
-    if (option.subOptions) {
-      option.subOptions.forEach((sub) => {
-        if (sub.defaultChecked) {
-          initialValues.push(sub.value);
-        }
-      });
-    }
-  });
-  return initialValues;
-};
-
-const getInitialOpenCategories = (
-  options: FilterOption[],
-  selectedValues: string[],
-): Set<string> => {
-  const categoriesToOpen = new Set<string>();
-  options.forEach((option) => {
-    if (option.subOptions) {
-      const hasSelectedSub = option.subOptions.some((sub) => selectedValues.includes(sub.value));
-      if (hasSelectedSub) {
-        categoriesToOpen.add(option.value);
-      }
-    }
-  });
-  return categoriesToOpen;
-};
-
-const updateCategoryValues = (
-  prev: string[],
-  subOptions: FilterOption[],
-  checked: boolean,
-): string[] => {
-  const valuesSet = new Set(prev);
-  subOptions.forEach((sub) => {
-    if (checked) {
-      valuesSet.add(sub.value);
-    } else {
-      valuesSet.delete(sub.value);
-    }
-  });
-  return Array.from(valuesSet);
-};
 
 interface SubcategoryListProps {
   subOptions: FilterOption[];
   name: string;
   selectedValues: string[];
-  onSubOptionChange: (value: string, checked: boolean) => void;
+  onSubOptionChange: (value: string) => void;
 }
 
 const SubcategoryList: React.FC<SubcategoryListProps> = ({
@@ -94,7 +48,7 @@ const SubcategoryList: React.FC<SubcategoryListProps> = ({
           <Checkbox
             id={`${name}-${subOption.value}`}
             checked={selectedValues.includes(subOption.value)}
-            onChange={(checked) => onSubOptionChange(subOption.value, checked)}
+            onChange={() => onSubOptionChange(subOption.value)}
             label={subOption.label}
             disabled={subOption.disabled}
           />
@@ -158,20 +112,35 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   showAllLink = false,
   allLinkText = 'Все категории',
   onAllLinkClick,
-  onChange,
-  value: externalValue,
   isAllLinkOpen = false,
 }) => {
-  const [internalSelectedValues, setInternalSelectedValues] = useState<string[]>(() =>
-    getInitialSelectedValues(options, externalValue),
-  );
+  const dispatch = useAppDispatch();
+  const selectedSkills = useAppSelector(selectSkills);
+  const [expandedCategoryIds, setExpandedCategoryIds] = useState<Set<string>>(new Set());
 
-  const selectedValues = externalValue !== undefined ? externalValue : internalSelectedValues;
+  const selectedValues = selectedSkills;
 
-  const openCategories = useMemo(
-    () => getInitialOpenCategories(options, selectedValues),
-    [options, selectedValues],
-  );
+  const autoOpenCategories = useMemo(() => {
+    const categoriesToOpen = new Set<string>();
+    options.forEach((option) => {
+      if (option.subOptions) {
+        const hasSelectedSub = option.subOptions.some((sub) => selectedValues.includes(sub.value));
+        if (hasSelectedSub) {
+          categoriesToOpen.add(option.value);
+        }
+      }
+    });
+    return categoriesToOpen;
+  }, [options, selectedValues]);
+
+  const finalOpenCategories = useMemo(() => {
+    if (selectedValues.length === 0) {
+      return new Set<string>();
+    }
+    const result = new Set(expandedCategoryIds);
+    autoOpenCategories.forEach((id) => result.add(id));
+    return result;
+  }, [expandedCategoryIds, autoOpenCategories, selectedValues]);
 
   const areAllSubOptionsSelected = useCallback(
     (subOptions: FilterOption[]): boolean => {
@@ -189,21 +158,34 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
   );
 
   const handleSubOptionChange = useCallback(
-    (value: string, checked: boolean) => {
-      const newValues = checked
-        ? [...selectedValues, value]
-        : selectedValues.filter((v) => v !== value);
-
-      if (externalValue === undefined) {
-        setInternalSelectedValues(newValues);
-      }
-      onChange?.(newValues);
+    (value: string) => {
+      const subcategoryId = Number(value);
+      dispatch(toggleSubcategorySelection(subcategoryId));
     },
-    [selectedValues, onChange, externalValue],
+    [dispatch],
+  );
+
+  const handleCategoryChange = useCallback(
+    (categoryId: string, subOptions?: FilterOption[]) => {
+      const categoryIdNum = Number(categoryId);
+      const subIds = subOptions?.map((sub) => Number(sub.value)) || [];
+      const allSubsSelected =
+        subOptions?.every((sub) => selectedValues.includes(sub.value)) ?? false;
+      const isDeselecting = allSubsSelected;
+
+      dispatch(
+        toggleCategorySelection({
+          categoryId: categoryIdNum,
+          subcategoryIds: subIds,
+          isDeselecting,
+        }),
+      );
+    },
+    [dispatch, selectedValues],
   );
 
   const getCategoryCheckboxState = useCallback(
-    (subOptions?: FilterOption[]) => {
+    (subOptions?: FilterOption[], isOpen?: boolean) => {
       if (!subOptions || subOptions.length === 0) {
         return { checked: false };
       }
@@ -214,7 +196,7 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
       if (allSubSelected) {
         return { checked: true };
       }
-      if (anySubSelected) {
+      if (anySubSelected && isOpen) {
         return { checked: false, indeterminate: true };
       }
       return { checked: false };
@@ -222,24 +204,26 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
     [areAllSubOptionsSelected, isAnySubOptionSelected],
   );
 
-  const handleChangeSelectedValues = useCallback(
-    (newValues: string[]) => {
-      if (externalValue === undefined) {
-        setInternalSelectedValues(newValues);
+  const handleLabelClick = useCallback((categoryValue: string) => {
+    setExpandedCategoryIds((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(categoryValue)) {
+        newSet.delete(categoryValue);
+      } else {
+        newSet.add(categoryValue);
       }
-      onChange?.(newValues);
-    },
-    [externalValue, onChange],
-  );
+      return newSet;
+    });
+  }, []);
 
   return (
     <div className={clsx(styles.filterCheckboxGroup, className)}>
       <h3 className={styles.filterCheckboxGroup__title}>{title}</h3>
       <ul className={styles.filterCheckboxGroup__list}>
         {options.map((option) => {
-          const checkboxState = getCategoryCheckboxState(option.subOptions);
           const hasSubOptions = Boolean(option.subOptions?.length);
-          const isOpen = openCategories.has(option.value);
+          const isOpen = finalOpenCategories.has(option.value);
+          const checkboxState = getCategoryCheckboxState(option.subOptions, isOpen);
 
           return (
             <li key={option.value} className={styles.filterCheckboxGroup__item}>
@@ -248,22 +232,12 @@ export const FilterCheckboxGroup: React.FC<FilterCheckboxGroupProps> = ({
                   id={`${name}-${option.value}`}
                   checked={checkboxState.checked}
                   indeterminate={checkboxState.indeterminate ?? false}
-                  onChange={(checked) => {
-                    if (!option.subOptions) return;
-                    const newValues = updateCategoryValues(
-                      selectedValues,
-                      option.subOptions,
-                      checked,
-                    );
-                    handleChangeSelectedValues(newValues);
-                  }}
+                  onChange={() => handleCategoryChange(option.value, option.subOptions)}
                   label=""
                   disabled={option.disabled}
                 />
                 <CategoryButton
-                  onClick={() => {
-                    setInternalSelectedValues(selectedValues);
-                  }}
+                  onClick={() => handleLabelClick(option.value)}
                   isOpen={isOpen}
                   hasSubOptions={hasSubOptions}
                   label={option.label}

@@ -5,7 +5,7 @@
   flex-direction: column;
   background-color: var(--base-color, var(--color-surface, #ffffff));
   border-radius: var(--border-modal-radius, var(--radius, 12px));
-  width: 284px;
+  width: 324px;
   font-family: var(--font-family-base, 'Roboto', sans-serif);
   gap: 40px;
   padding: 20px;

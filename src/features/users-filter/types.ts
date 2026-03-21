@@ -1,17 +1,3 @@
-export interface FilterState {
-  mainFilter: string;
-  skills: string[];
-  authorGender: string;
-  cities: number[];
-}
-
-export const initialFilterState: FilterState = {
-  mainFilter: 'all',
-  skills: [],
-  authorGender: '',
-  cities: [],
-};
-
 export interface User {
   id: number;
   name: string;

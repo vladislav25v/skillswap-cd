@@ -1,8 +1,9 @@
-import type { FilterState, User, Subcategory } from './types';
+import type { User, Subcategory } from './types';
+import type { FiltersState } from '@/features/filters';
 
 export interface FilterUsersParams {
   users: User[];
-  filters: FilterState;
+  filters: FiltersState;
   subcategories: Subcategory[];
 }
 
