@@ -3,6 +3,6 @@
  * @param stringDate - Строка вида 'yyy-mm-dd'
  * @returns Объект типа Date
  */
-export const convertStringToDate = (stringDate: string): Date => {
-  return new Date(stringDate);
+export const convertStringToDate = (stringDate: string): Date | null => {
+  return stringDate ? new Date(stringDate) : null;
 };

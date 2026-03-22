@@ -12,7 +12,7 @@ import { convertStringToDate } from '@/shared/lib/date/convertStringToDate.ts';
 import { convertDateToString } from '@/shared/lib/date/convertDateToString.ts';
 
 export interface DatepickerProps {
-  value: string | '';
+  value: string;
   onChange?: (date: string) => void;
 }
 
