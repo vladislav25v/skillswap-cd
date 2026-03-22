@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import FormField from '@/shared/ui/FormField';
 import Input from '@/shared/ui/Input';
 import Button from '@/shared/ui/Button/Button';
-import styles from './ResPageStep1.module.css';
+import styles from './RegPageStep1.module.css';
 
-import GoogleIcon from '@/assets/ResPages/Google.svg';
-import AppleIcon from '@/assets/ResPages/Apple.svg';
-import LightbulbIcon from '@/assets/ResPages/light-bulb.svg';
+import GoogleIcon from '@/assets/RegPages/Google.svg';
+import AppleIcon from '@/assets/RegPages/Apple.svg';
+import LightbulbIcon from '@/assets/RegPages/light-bulb.svg';
+import EyeIcon from '@/assets/icons/eye.svg';
+import EyeOffIcon from '@/assets/icons/eye-off.svg';
 
-const ResPageStep1: React.FC = () => {
+const RegPageStep1: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -27,10 +29,13 @@ const ResPageStep1: React.FC = () => {
 
         <div className={styles.progress}>
           <span className={styles.progressCurrent}>Шаг 1</span>
-          <span className={styles.progressDivider}>из 3</span>
+          <span className={styles.progressDivider}> из 3</span>
         </div>
 
-        <button className={styles.closeButton}>✕</button>
+        <button className={styles.closeButton}>
+          <span>Закрыть</span>
+          <span className={styles.closeIcon}>✕</span>
+        </button>
       </header>
 
       <main className={styles.main}>
@@ -56,9 +61,7 @@ const ResPageStep1: React.FC = () => {
                 type="email"
                 placeholder="Введите email"
                 value={email}
-                onChange={(e: { target: { value: React.SetStateAction<string> } }) =>
-                  setEmail(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               />
             </FormField>
 
@@ -68,16 +71,18 @@ const ResPageStep1: React.FC = () => {
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Придумайте надёжный пароль"
                 value={password}
-                onChange={(e: { target: { value: React.SetStateAction<string> } }) =>
-                  setPassword(e.target.value)
-                }
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 rightSlot={
                   <button
                     type="button"
                     className={styles.showPassword}
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? '👁' : '👁🗨'}
+                    <img
+                      src={showPassword ? EyeOffIcon : EyeIcon}
+                      alt={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+                      className={styles.eyeIcon}
+                    />
                   </button>
                 }
               />
@@ -103,4 +108,4 @@ const ResPageStep1: React.FC = () => {
   );
 };
 
-export default ResPageStep1;
+export default RegPageStep1;

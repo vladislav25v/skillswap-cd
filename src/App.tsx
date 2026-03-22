@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ResPageStep1 from './pages/ResPageStep1';
+import ResPageStep1 from './pages/RegPageStep1';
 
 function App() {
   return (
