@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import clsx from 'clsx';
 import styles from './Checkbox.module.css';
 
 export interface CheckboxProps {
@@ -18,7 +19,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   disabled = false,
   id,
-  className = '',
+  className,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,7 +36,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   return (
     <label
       htmlFor={id}
-      className={`${styles.root} ${disabled ? styles.disabled : ''} ${className}`}
+      className={clsx(
+        styles.root,
+        {
+          [styles.disabled]: disabled,
+        },
+        className,
+      )}
     >
       <span className={styles.clickArea}>
         <input

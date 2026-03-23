@@ -4,23 +4,24 @@
   align-items: flex-start;
   padding: 0;
   width: 100%;
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
 }
 
 .filterRoleRadioGroup__title {
   margin: 0;
-  font-size: var(--font-size-h3);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  font-size: var(--font-size-h3, 20px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #253017);
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   cursor: default;
+  transition: outline-offset 0.2s ease, outline-color 0.2s ease;
 }
 
 .filterRoleRadioGroup__title:focus-visible {
-  outline: 2px solid var(--color-accent-dark);
+  outline: 2px solid var(--color-accent-dark, #508826);
   outline-offset: 2px;
   border-radius: 2px;
 }

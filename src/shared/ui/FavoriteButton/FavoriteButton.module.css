@@ -1,6 +1,6 @@
 .button {
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border: none;
   background: transparent;
   padding: 0;
@@ -25,16 +25,22 @@
   width: 24px;
   height: 24px;
   stroke-width: 2;
+  fill: transparent;
 }
 
 .default {
-  color: #2f3a2f;
+  color: #253017;
+}
+
+.default .icon {
+  stroke: currentColor;
 }
 
 .active {
-  color: #f27f8a;
+  color: #ABD27A;
 }
 
 .active .icon {
+  stroke: currentColor;
   fill: currentColor;
 }

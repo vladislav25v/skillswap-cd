@@ -32,27 +32,34 @@
   width: 20px;
   height: 20px;
   stroke-width: 1.5;
+  position: relative;
+  z-index: 1;
 }
 
 .dot {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--color-accent-dark);
+  background-color: var(--color-accent-dark, #508826);
   pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .iconSelected {
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
 }
 
 .iconUnselected {
-  color: #000000;
+  color: var(--color-text-primary, #000000);
 }
 
 .label {
-  color: var(--color-text-primary);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+  color: var(--color-text-primary, #253017);
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-regular, 400);
 }

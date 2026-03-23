@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
+import clsx from 'clsx';
 import styles from './Input.module.css';
 import { FormFieldContext } from '@/shared/ui/FormField';
 
@@ -15,25 +16,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
   const { value, className, error, id, bordered = true, leftSlot, rightSlot, ...rest } = props;
   const { fieldId, fieldError } = useContext(FormFieldContext);
 
+  const hasError = Boolean(fieldError || error);
+
   return (
     <span
-      className={[
+      className={clsx(
         styles.input,
-        (fieldError || error) && styles.inputError,
-        bordered && styles.inputBordered,
+        {
+          [styles.inputError]: hasError,
+          [styles.inputBordered]: bordered,
+        },
         className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
     >
       {leftSlot}
-      <input
-        {...rest}
-        ref={ref}
-        value={value}
-        id={fieldId ?? id ?? null}
-        className={styles.inputField}
-      />
+      <input {...rest} ref={ref} value={value} id={fieldId ?? id} className={styles.inputField} />
       {rightSlot}
     </span>
   );

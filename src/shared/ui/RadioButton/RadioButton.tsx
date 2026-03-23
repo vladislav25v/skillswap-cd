@@ -1,4 +1,5 @@
 import { Circle } from 'lucide-react';
+import clsx from 'clsx';
 import styles from './RadioButton.module.css';
 
 export interface RadioButtonProps {
@@ -15,7 +16,7 @@ export function RadioButton({
   value,
   checked,
   label,
-  className = '',
+  className,
   onChange,
 }: RadioButtonProps) {
   const handleChange = () => {
@@ -23,7 +24,7 @@ export function RadioButton({
   };
 
   return (
-    <label className={`${styles.radioButton} ${className}`.trim()}>
+    <label className={clsx(styles.radioButton, className)}>
       <input
         className={styles.input}
         type="radio"
@@ -34,7 +35,10 @@ export function RadioButton({
       />
       <span className={styles.iconWrapper} aria-hidden="true">
         <Circle
-          className={`${styles.icon} ${checked ? styles.iconSelected : styles.iconUnselected}`}
+          className={clsx(styles.icon, {
+            [styles.iconSelected]: checked,
+            [styles.iconUnselected]: !checked,
+          })}
         />
         {checked && <span className={styles.dot} />}
       </span>

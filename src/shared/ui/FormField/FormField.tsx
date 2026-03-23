@@ -1,4 +1,5 @@
 import React, { type ReactNode, useId } from 'react';
+import clsx from 'clsx';
 import styles from './FormField.module.css';
 import { FormFieldContext } from '@/shared/ui/FormField/FormFieldContext.ts';
 
@@ -27,10 +28,12 @@ const FormField: React.FC<FormFieldProps> = ({
   const fieldError = error ?? '';
 
   return (
-    <div className={[styles.formField, className].filter(Boolean).join(' ')}>
+    <div className={clsx(styles.formField, className)}>
       {label && (
         <label
-          className={[styles.label, labelHidden && styles.labelHidden].filter(Boolean).join(' ')}
+          className={clsx(styles.label, {
+            [styles.labelHidden]: labelHidden,
+          })}
           htmlFor={fieldId}
         >
           {label}

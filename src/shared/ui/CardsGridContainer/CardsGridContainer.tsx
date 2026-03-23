@@ -1,3 +1,5 @@
+import React from 'react';
+import clsx from 'clsx';
 import styles from './CardsGridContainer.module.css';
 
 type CardsGridContainerProps = {
@@ -5,6 +7,6 @@ type CardsGridContainerProps = {
   className?: string;
 };
 
-export function CardsGridContainer({ children, className = '' }: CardsGridContainerProps) {
-  return <div className={`${styles.grid} ${className}`}>{children}</div>;
+export function CardsGridContainer({ children, className }: CardsGridContainerProps) {
+  return <div className={clsx(styles.grid, className)}>{children}</div>;
 }

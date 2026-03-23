@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import clsx from 'clsx';
 import { Checkbox } from '../../../../shared/ui/Checkbox';
 import styles from './FilterCityCheckbox.module.css';
 
@@ -11,10 +12,11 @@ export interface FilterCityCheckboxProps {
   cities: City[];
   selectedCities: number[];
   showAll: boolean;
-  onCityChange: (cityId: number, checked: boolean) => void;
+  onCityChange: (cityId: number) => void;
   onToggleShowAll: () => void;
   title?: string;
   allCitiesText?: string;
+  className?: string;
 }
 
 export const FilterCityCheckbox: React.FC<FilterCityCheckboxProps> = ({
@@ -25,18 +27,19 @@ export const FilterCityCheckbox: React.FC<FilterCityCheckboxProps> = ({
   onToggleShowAll,
   title = 'Город',
   allCitiesText = 'Все города',
+  className,
 }) => {
   const displayedCities = showAll ? cities : cities.slice(0, 5);
 
   const handleCityChange = useCallback(
-    (cityId: number) => (checked: boolean) => {
-      onCityChange(cityId, checked);
+    (cityId: number) => () => {
+      onCityChange(cityId);
     },
     [onCityChange],
   );
 
   return (
-    <div className={styles.filterCityCheckbox}>
+    <div className={clsx(styles.filterCityCheckbox, className)}>
       <h3 className={styles.filterCityCheckbox__title}>{title}</h3>
 
       <div className={styles.filterCityCheckbox__list}>
@@ -63,9 +66,10 @@ export const FilterCityCheckbox: React.FC<FilterCityCheckboxProps> = ({
                 <img
                   src="/src/assets/chevron-down.svg"
                   alt=""
-                  className={`${styles.filterCityCheckbox__allLinkArrow} ${
-                    showAll ? styles.filterCityCheckbox__allLinkArrowUp : ''
-                  }`}
+                  className={clsx(
+                    styles.filterCityCheckbox__allLinkArrow,
+                    showAll && styles.filterCityCheckbox__allLinkArrowUp,
+                  )}
                   width="16"
                   height="16"
                 />

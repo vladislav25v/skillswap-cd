@@ -1,0 +1,239 @@
+.pageContent {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 32px 36px;
+  background: var(--color-page-bg);
+}
+
+.skillSection {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+/* Левая колонка — UserCard */
+.userSection {
+  max-width: 324px;
+  width: 100%;
+  height: 444px;
+}
+
+/* Правая колонка — SkillDetailsPanel */
+.skillContainer {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Нижняя секция — похожие предложения */
+.similarSection {
+  width: 100%;
+}
+
+/* Сетка для похожих предложений */
+.similarGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Карточка пользователя в левой колонке */
+.userCard {
+  padding: 32px;
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.userCardHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.userHeaderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.userName {
+  font-family: var(--font-family-highlight);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h3);
+  letter-spacing: -0.011em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.userMeta {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-caption);
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.userBio {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin: 0 0 20px 0;
+}
+
+/* Карточка в похожих предложениях */
+.similarCard {
+  padding: 24px;
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.similarCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.similarCardHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.similarInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.similarName {
+  font-family: var(--font-family-highlight);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-h3);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.similarMeta {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Кнопка "Подробнее" */
+.moreButton {
+  width: 100%;
+  height: 36px;
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.moreButton:hover {
+  background: var(--color-accent-dark);
+  color: white;
+}
+
+/* Кнопка обмена */
+.exchangeButton {
+  width: 100%;
+  height: 48px;
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.exchangeButton:hover {
+  background: var(--color-accent-dark);
+  color: white;
+}
+
+/* Убираем тень у SkillDetailsPanel */
+.skillContainer :global(.panelShell) {
+  box-shadow: none !important;
+}
+.skillContainer :global(section) {
+  box-shadow: none !important;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .similarGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .skillSection {
+    flex-direction: column;
+  }
+
+  .userSection {
+    max-width: 100%;
+  }
+
+  .skillContainer {
+    width: 100%;
+  }
+
+  .similarGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .pageContent {
+    padding: 16px;
+    gap: 40px;
+  }
+
+  .similarGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .userCardHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .similarCardHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
