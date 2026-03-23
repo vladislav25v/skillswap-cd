@@ -54,49 +54,51 @@ const Datepicker: React.FC<DatepickerProps> = ({ value, onChange }) => {
   };
 
   return (
-    <DatePicker
-      selected={tempDate}
-      open={isOpen}
-      locale={'ru'}
-      maxDate={new Date()}
-      placeholderText={'дд.мм.гггг'}
-      dateFormat={'dd.MM.yyyy'}
-      showPopperArrow={false}
-      forceShowMonthNavigation={false}
-      showMonthDropdown={true}
-      showYearDropdown={true}
-      dropdownMode="select"
-      shouldCloseOnSelect={false}
-      customInput={<Input rightSlot={<CalendarDays className={styles.icon} />} />}
-      popperModifiers={[
-        {
-          name: 'myModifier',
-          fn(state: MiddlewareState) {
-            state.x = 0;
-            state.y += 4;
+    <span className={styles.holder}>
+      <DatePicker
+        selected={tempDate}
+        open={isOpen}
+        locale={'ru'}
+        maxDate={new Date()}
+        placeholderText={'дд.мм.гггг'}
+        dateFormat={'dd.MM.yyyy'}
+        showPopperArrow={false}
+        forceShowMonthNavigation={false}
+        showMonthDropdown={true}
+        showYearDropdown={true}
+        dropdownMode="select"
+        shouldCloseOnSelect={false}
+        customInput={<Input rightSlot={<CalendarDays className={styles.icon} />} />}
+        popperModifiers={[
+          {
+            name: 'offsetModifier',
+            fn(state: MiddlewareState) {
+              state.x = 0;
+              state.y += 4;
 
-            return state;
+              return state;
+            },
           },
-        },
-      ]}
-      calendarContainer={({ children }) => {
-        return (
-          <div className={styles.container}>
-            {children}
+        ]}
+        calendarContainer={({ children }) => {
+          return (
+            <div className={styles.container}>
+              {children}
 
-            <div className={styles.actions}>
-              <Button variant={'secondary'} onClick={handleCancel}>
-                Отменить
-              </Button>
-              <Button onClick={handleApply}>Выбрать</Button>
+              <div className={styles.actions}>
+                <Button variant={'secondary'} onClick={handleCancel}>
+                  Отменить
+                </Button>
+                <Button onClick={handleApply}>Выбрать</Button>
+              </div>
             </div>
-          </div>
-        );
-      }}
-      onChange={handleChange}
-      onCalendarClose={handleCalendarClose}
-      onCalendarOpen={handleCalendarOpen}
-    />
+          );
+        }}
+        onChange={handleChange}
+        onCalendarClose={handleCalendarClose}
+        onCalendarOpen={handleCalendarOpen}
+      />
+    </span>
   );
 };
 
