@@ -6,6 +6,16 @@
 
 `config.ts`
 - базовый URL API
+- использует `VITE_API_BASE_URL` с fallback на `http://localhost:3001`
+
+`category.ts`
+- `getCategories`
+
+`subcategory.ts`
+- `getSubcategories`
+
+`city.ts`
+- `getCities`
 
 `request.ts`
 - общий helper для HTTP-запросов

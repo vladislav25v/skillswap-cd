@@ -10,3 +10,6 @@ export {
 export type { CreateAccountPayload } from '@/api/account';
 export { USER_API_PATH, createUser, deleteUser, getUserById, updateUser } from '@/api/user';
 export type { CreateUserPayload, UpdateUserPayload } from '@/api/user';
+export { getCategories } from '@/api/category';
+export { getSubcategories } from '@/api/subcategory';
+export { getCities } from '@/api/city';
