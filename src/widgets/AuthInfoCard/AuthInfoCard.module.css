@@ -26,7 +26,7 @@
   display: grid;
   gap: 12px;
   text-align: center;
-  text-wrap: pretty;
+  text-wrap: balance;
 }
 
 .description {
