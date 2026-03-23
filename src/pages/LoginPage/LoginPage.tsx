@@ -6,33 +6,48 @@ import Input from '@/shared/ui/Input';
 import FormField from '@/shared/ui/FormField';
 import { Logo } from '@/shared/ui/Logo';
 import Title from '@/shared/ui/Title';
+import { useAuth } from '@/app/providers/auth-context';
 import googleIcon from '@/assets/google.svg';
 import appleIcon from '@/assets/apple.svg';
 import bulbIcon from '@/assets/light-bulb.svg';
 import styles from './LoginPage.module.css';
 
-const DEMO_EMAIL = 'demo@skillswap.ru';
-const DEMO_PASSWORD = 'skillswap';
-
 const LoginPage = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isAuthError, setIsAuthError] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const errorText = useMemo(
-    () =>
-      isAuthError
-        ? 'Email или пароль введён неверно. Пожалуйста проверьте правильность введённых данных'
-        : '',
-    [isAuthError],
-  );
+  const errorText = useMemo(() => authError, [authError]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValid = email.trim() === DEMO_EMAIL && password === DEMO_PASSWORD;
-    setIsAuthError(!isValid);
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setAuthError('');
+
+    const result = await login({
+      email,
+      password,
+    });
+
+    if (!result.ok) {
+      setAuthError(result.message);
+      setIsSubmitting(false);
+      return;
+    }
+
+    console.log('Login succeeded', {
+      email: email.trim().toLowerCase(),
+    });
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -74,11 +89,12 @@ const LoginPage = () => {
                         name="email"
                         placeholder="Введите email"
                         value={email}
-                        error={isAuthError ? errorText : ''}
+                        disabled={isSubmitting}
+                        error={authError ? errorText : ''}
                         onChange={(event) => {
                           setEmail(event.target.value);
-                          if (isAuthError) {
-                            setIsAuthError(false);
+                          if (authError) {
+                            setAuthError('');
                           }
                         }}
                       />
@@ -90,11 +106,12 @@ const LoginPage = () => {
                         name="password"
                         placeholder="Введите ваш пароль"
                         value={password}
-                        error={isAuthError ? errorText : ''}
+                        disabled={isSubmitting}
+                        error={authError ? errorText : ''}
                         onChange={(event) => {
                           setPassword(event.target.value);
-                          if (isAuthError) {
-                            setIsAuthError(false);
+                          if (authError) {
+                            setAuthError('');
                           }
                         }}
                         rightSlot={
@@ -111,15 +128,24 @@ const LoginPage = () => {
                     </FormField>
                   </div>
 
-                  {isAuthError && <p className={clsx(styles.authError)}>{errorText}</p>}
+                  {authError && <p className={clsx(styles.authError)}>{errorText}</p>}
                 </div>
 
                 <div className={styles.actions}>
-                  <Button type="submit" variant="primary" className={clsx(styles.submitButton)}>
-                    Войти
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className={clsx(styles.submitButton)}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Вход...' : 'Войти'}
                   </Button>
 
-                  <button type="button" className={clsx(styles.registerLink)}>
+                  <button
+                    type="button"
+                    className={clsx(styles.registerLink)}
+                    disabled={isSubmitting}
+                  >
                     Зарегистрироваться
                   </button>
                 </div>
