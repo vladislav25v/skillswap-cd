@@ -29,9 +29,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
         className,
       )}
     >
-      {leftSlot}
+      {leftSlot && <span className={styles.slot}>{leftSlot}</span>}
       <input {...rest} ref={ref} value={value} id={fieldId ?? id} className={styles.inputField} />
-      {rightSlot}
+      {rightSlot && <span className={styles.slot}>{rightSlot}</span>}
     </span>
   );
 });
