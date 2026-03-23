@@ -1,0 +1,92 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.formAvatar {
+  align-self: center;
+  width: 244px;
+  height: 244px;
+}
+
+.formContent {
+  display: grid;
+  gap: 32px;
+  flex-grow: 1;
+}
+
+.formFields {
+  display: grid;
+  gap: 16px;
+}
+
+.formRow {
+  display: flex;
+
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: var(--column-gap);
+  --column-gap: 24px;
+}
+
+.formRowItem {
+  flex-grow: 1;
+}
+
+.formRowItemHalf {
+  flex-basis: calc(50% - var(--column-gap));
+}
+
+.changePasswordBtn {
+  justify-self: start;
+  border: none;
+  padding: 0;
+  color: var(--color-accent-dark);
+  font-family: var(--font-family-base, 'Roboto'), sans-serif;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body);
+  background: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-secondary);
+}
+
+.triggerBtn {
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: var(--radius-rounded);
+  color: var(--color-text-primary);
+  background: var(--color-accent);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-accent-light);
+  }
+
+  &:active {
+    color: var(--color-surface);
+    background: var(--color-accent-dark);
+  }
+}
+
+@container mainContent (width >= 760px) {
+  .form {
+    flex-direction: row-reverse;
+  }
+
+  .formAvatar {
+    align-self: initial;
+  }
+
+  .formContent {
+    max-width: 460px;
+  }
+}
