@@ -1,0 +1,31 @@
+.page {
+  background: var(--color-page-bg);
+  min-height: 100vh;
+  letter-spacing: 0.02em; /* удалить */
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  gap: 24px;
+}
+
+.actionBtn {
+  border: none;
+}
+
+.actionIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.status {
+  margin: 40px 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
