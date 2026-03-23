@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { Header } from '../../widgets/Header';
 import { Footer } from '../../widgets/Footer';
 import { SkillDetailsPanel } from '../../widgets/SkillDetailsPanel';

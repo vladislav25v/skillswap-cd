@@ -5,23 +5,24 @@
   padding: 0;
   gap: 20px;
   width: 100%;
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
 }
 
 .filterCheckboxGroup__title {
   margin: 0;
-  font-size: var(--font-size-h3);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  font-size: var(--font-size-h3, 20px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #253017);
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   cursor: default;
+  transition: outline-offset 0.2s ease, outline-color 0.2s ease;
 }
 
 .filterCheckboxGroup__title:focus-visible {
-  outline: 2px solid var(--color-accent-dark);
+  outline: 2px solid var(--color-accent-dark, #508826);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -54,25 +55,25 @@
   align-items: flex-start;
   justify-content: space-between;
   flex: 1;
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-primary);
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #253017);
   text-align: left;
   width: 100%;
   min-width: 0;
   gap: 8px;
   cursor: default;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, outline-offset 0.2s ease, outline-color 0.2s ease;
   border-radius: 2px;
 }
 
 .filterCheckboxGroup__label:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
 }
 
 .filterCheckboxGroup__label:focus-visible {
-  outline: 2px solid var(--color-accent-dark);
+  outline: 2px solid var(--color-accent-dark, #508826);
   outline-offset: 2px;
 }
 
@@ -87,7 +88,7 @@
 }
 
 .filterCheckboxGroup__label:hover .filterCheckboxGroup__labelText {
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
 }
 
 .filterCheckboxGroup__indicator {
@@ -107,7 +108,7 @@
 .filterCheckboxGroup__label:hover .filterCheckboxGroup__indicator {
   opacity: 1;
   transform: scale(1);
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
 }
 
 .filterCheckboxGroup__arrow {
@@ -161,7 +162,7 @@
 .filterCheckboxGroup__subitem .filterCheckboxGroup__label:hover .filterCheckboxGroup__indicator {
   opacity: 1;
   transform: scale(1);
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
 }
 
 .filterCheckboxGroup__allLink {
@@ -169,26 +170,28 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-accent-dark);
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-accent-dark, #508826);
   cursor: pointer;
   text-decoration: none;
   word-wrap: break-word;
   overflow-wrap: break-word;
   text-align: left;
   letter-spacing: 0.02em;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, outline-offset 0.2s ease, outline-color 0.2s ease;
   border-radius: 2px;
 }
 
 .filterCheckboxGroup__allLink:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-accent-dark, #508826);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .filterCheckboxGroup__allLink:focus-visible {
-  outline: 2px solid var(--color-accent-dark);
+  outline: 2px solid var(--color-accent-dark, #508826);
   outline-offset: 2px;
 }
 
@@ -196,9 +199,9 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  font-weight: var(--font-weight-regular, 400);
 }
 
 .filterCheckboxGroup__allLinkIndicator {
@@ -208,22 +211,19 @@
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  transition: color 0.2s ease;
-  opacity: 0.7;
-  transform: scale(0.9);
+  transition: none;
 }
 
 .filterCheckboxGroup__allLink:hover .filterCheckboxGroup__allLinkIndicator {
-  color: var(--color-accent-dark);
-  opacity: 1;
-  transform: scale(1);
+  color: var(--color-accent-dark, #508826);
 }
 
 .filterCheckboxGroup__allLinkArrow {
   display: block;
   width: 16px;
   height: 16px;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease;
+  color: currentColor;
 }
 
 .filterCheckboxGroup__allLinkArrowUp {
