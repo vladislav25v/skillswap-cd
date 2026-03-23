@@ -1,7 +1,6 @@
 .page {
   background: var(--color-page-bg);
   min-height: 100vh;
-  letter-spacing: 0.02em; /* удалить */
 }
 
 .content {
@@ -28,4 +27,3 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
 }
-

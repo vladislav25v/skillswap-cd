@@ -12,16 +12,17 @@ import { SectionBlock } from '@/widgets/SectionBlock';
 import UsersListSection from '@/widgets/UsersListSection';
 import Button from '@/shared/ui/Button/Button';
 import ChevronRight from '@/assets/chevron-right.svg';
+import SortIcon from '@/assets/sort.svg';
 import { UserCard } from '@/entities/user/ui/UserCard';
 import type { User } from '@/entities/user/types';
 import type { Skill } from '@/entities/skill/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 import type { City } from '@/entities/city/types';
-import { createUserSkillTags } from '@/shared/ui/Skilltags';
-import SortIcon from '@/assets/sort.svg';
+import { getUsers, getSkills, getSubcategories, getCities } from '@/api';
+import { mapUserToCardProps } from '@/entities/user/lib/mapUserToCardProps';
 import styles from './CatalogPage.module.css';
 
-type DbData = {
+type CatalogData = {
   users: User[];
   skills: Skill[];
   subcategories: Subcategory[];
@@ -29,25 +30,10 @@ type DbData = {
 };
 
 type SortMode = 'popular' | 'newest';
-
 type ViewMode = 'sections' | 'list';
 
-const getAge = (birthDate: string) => {
-  const birth = new Date(birthDate);
-  const today = new Date();
-
-  let age = today.getFullYear() - birth.getFullYear();
-  const monthDiff = today.getMonth() - birth.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-    age -= 1;
-  }
-
-  return age;
-};
-
 export const CatalogPage = () => {
-  const [data, setData] = useState<DbData | null>(null);
+  const [data, setData] = useState<CatalogData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('sections');
   const [sortMode, setSortMode] = useState<SortMode>('newest');
@@ -60,16 +46,16 @@ export const CatalogPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/db/db.json');
+        const [users, skills, subcategories, cities] = await Promise.all([
+          getUsers(),
+          getSkills(),
+          getSubcategories(),
+          getCities(),
+        ]);
 
-        if (!response.ok) {
-          throw new Error('Не удалось загрузить данные каталога');
-        }
-
-        const db = (await response.json()) as DbData;
-        setData(db);
+        setData({ users, skills, subcategories, cities });
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
+        setError(err instanceof Error ? err.message : 'Не удалось загрузить каталог');
       }
     };
 
@@ -98,9 +84,9 @@ export const CatalogPage = () => {
     );
   }
 
-  const cityMap = new Map(data.cities.map((city) => [city.id, city.name]));
   const selectedSkillIds = selectedSkills.map(Number);
 
+  // Фильтруем пользователей по текущему состоянию store
   const filteredUsers = data.users.filter((user) => {
     const matchesGender = !authorGender || user.gender === authorGender;
 
@@ -135,7 +121,6 @@ export const CatalogPage = () => {
   const recommendedUsers = filteredUsers.slice(0, 9);
 
   const shouldShowList = hasActiveFilters || viewMode === 'list';
-
   const displayedUsers = sortMode === 'popular' ? usersSortedByPopular : usersSortedByNewest;
 
   const handleShowPopular = () => {
@@ -153,24 +138,14 @@ export const CatalogPage = () => {
   };
 
   const renderUserCard = (user: User) => {
-    const { teachingSkills, learningSkills } = createUserSkillTags({
+    const cardProps = mapUserToCardProps({
       user,
       skills: data.skills,
       subcategories: data.subcategories,
+      cities: data.cities,
     });
 
-    return (
-      <UserCard
-        key={user.id}
-        name={user.name}
-        city={cityMap.get(user.cityId) ?? 'Неизвестный город'}
-        age={getAge(user.birthDate)}
-        avatarSrc={user.photo}
-        isFavorite={false}
-        teachingSkills={teachingSkills}
-        learningSkills={learningSkills}
-      />
-    );
+    return <UserCard key={user.id} {...cardProps} />;
   };
 
   return (
