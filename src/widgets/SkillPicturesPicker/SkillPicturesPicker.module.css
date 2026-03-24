@@ -1,0 +1,58 @@
+.container {
+  display: grid;
+  gap: 8px;
+}
+
+.dropZone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  border: 1px dashed currentColor;
+  border-radius: var(--radius, 12px);
+  padding: 20px;
+  color: var(--color-text-secondary, #69735d);
+  text-align: center;
+  transition: 0.15s;
+  cursor: pointer;
+
+  &:hover {
+    border-style: solid;
+  }
+}
+
+.dropZoneDragging {
+  background-color: var(--color-accent-light, #deebc5);
+}
+
+.input {
+  display: none;
+}
+
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  padding: 0;
+  color: var(--color-accent-dark, #508826);
+  font: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 24px;
+}
+
+.image {
+  width: 100%;
+  border-radius: var(--radius, 12px);
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1;
+}
+
