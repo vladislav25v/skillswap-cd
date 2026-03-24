@@ -34,21 +34,3 @@
 .inputField::placeholder {
   color: var(--field-placeholder-color);
 }
-
-.slot {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  color: var(--field-border-color);
-}
-
-.inputField:hover {
-
-}
-
-.inputField:focus {
-}
-
-.inputField:disabled {
-
-}
