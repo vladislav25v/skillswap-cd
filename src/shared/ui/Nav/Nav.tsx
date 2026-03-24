@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import type { Category } from '@/entities/category/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 
-import { getCategories, getSubcategories } from './DropMenu/api';
+import { getCategories, getSubcategories } from '@/api';
 import DropMenu, { type MenuSection } from './DropMenu';
 import styles from './Nav.module.css';
 

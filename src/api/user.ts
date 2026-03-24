@@ -21,6 +21,8 @@ export type UpdateUserPayload = Partial<
   >
 >;
 
+export const getUsers = async (): Promise<User[]> => request<User[]>(USER_API_PATH);
+
 export const getUserById = async (userId: number): Promise<User | null> => {
   try {
     return await request<User>(`${USER_API_PATH}/${userId}`);
