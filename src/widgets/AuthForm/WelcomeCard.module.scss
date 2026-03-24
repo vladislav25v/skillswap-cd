@@ -1,0 +1,42 @@
+.welcome {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.welcomeTextBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.bulb {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.welcomeTitle {
+  margin: 0;
+  font-family: var(--font-family-highlight);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.011em;
+}
+
+.welcomeText {
+  margin: 0;
+  max-width: 325px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+}

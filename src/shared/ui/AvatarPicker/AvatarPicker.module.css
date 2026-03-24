@@ -1,0 +1,13 @@
+.avatarPicker {
+  position: relative;
+}
+
+.input {
+  display: none;
+}
+
+.triggerHolder {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}

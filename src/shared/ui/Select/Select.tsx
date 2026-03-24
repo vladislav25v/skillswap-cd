@@ -3,21 +3,21 @@ import clsx from 'clsx';
 import chevronDownUrl from '@/assets/chevron-down.svg';
 import styles from './Select.module.css';
 
-export type SelectOption = {
-  value: string;
+export type SelectOption<T = string> = {
+  value: T;
   label: string;
   disabled?: boolean;
 };
 
-export type SelectProps = {
-  options: SelectOption[];
+export type SelectProps<T> = {
+  options: SelectOption<T>[];
   size?: 'short' | 'standard' | 'long';
   label?: string;
   labelClassName?: string;
   triggerClassName?: string;
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string) => void;
+  value?: T;
+  defaultValue?: T;
+  onChange?: (value: T) => void;
   placeholder?: string;
   unknownValuePlaceholder?: string;
   disabled?: boolean;
@@ -28,13 +28,11 @@ export type SelectProps = {
   valueClassName?: string;
 };
 
-const EMPTY_VALUE = '';
-
-const getFirstEnabledOptionIndex = (options: SelectOption[]): number =>
+const getFirstEnabledOptionIndex = <T,>(options: SelectOption<T>[]): number =>
   options.findIndex((option) => !option.disabled);
 
-const getNextEnabledIndex = (
-  options: SelectOption[],
+const getNextEnabledIndex = <T,>(
+  options: SelectOption<T>[],
   currentIndex: number,
   direction: 1 | -1,
 ): number => {
@@ -53,7 +51,7 @@ const getNextEnabledIndex = (
   return -1;
 };
 
-export const Select = ({
+export const Select = <T,>({
   options,
   size = 'standard',
   label,
@@ -70,9 +68,9 @@ export const Select = ({
   id,
   className,
   valueClassName,
-}: SelectProps) => {
+}: SelectProps<T>) => {
   const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState(defaultValue ?? EMPTY_VALUE);
+  const [internalValue, setInternalValue] = useState<T | undefined>(defaultValue);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -83,14 +81,14 @@ export const Select = ({
 
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const selectedValue = isControlled ? (value ?? EMPTY_VALUE) : internalValue;
+  const selectedValue = isControlled ? value : internalValue;
 
   const selectedOption = useMemo(
     () => options.find((option) => option.value === selectedValue),
     [options, selectedValue],
   );
 
-  const isUnknownControlledValue = isControlled && selectedValue !== EMPTY_VALUE && !selectedOption;
+  const isUnknownControlledValue = isControlled && value !== undefined && !selectedOption;
 
   useEffect(() => {
     if (isControlled) {
@@ -98,11 +96,11 @@ export const Select = ({
     }
 
     const shouldReset =
-      internalValue !== EMPTY_VALUE && !options.some((option) => option.value === internalValue);
+      internalValue !== undefined && !options.some((option) => option.value === internalValue);
 
     if (shouldReset) {
       const timeoutId = setTimeout(() => {
-        setInternalValue(EMPTY_VALUE);
+        setInternalValue(undefined);
       }, 0);
 
       return () => clearTimeout(timeoutId);
@@ -137,7 +135,7 @@ export const Select = ({
     };
   }, [disabled, isOpen]);
 
-  const updateValue = (nextValue: string) => {
+  const updateValue = (nextValue: T) => {
     if (!isControlled) {
       setInternalValue(nextValue);
     }
@@ -171,7 +169,7 @@ export const Select = ({
     openList();
   };
 
-  const selectOption = (option: SelectOption) => {
+  const selectOption = (option: SelectOption<T>) => {
     if (option.disabled) {
       return;
     }
@@ -243,7 +241,11 @@ export const Select = ({
       className={clsx(styles.root, styles[`size_${size}`], isOpen && styles.rootOpen, className)}
     >
       {name ? (
-        <input type="hidden" name={name} value={selectedOption?.value ?? EMPTY_VALUE} />
+        <input
+          type="hidden"
+          name={name}
+          value={selectedOption ? String(selectedOption.value) : ''}
+        />
       ) : null}
 
       {label ? (
@@ -300,7 +302,7 @@ export const Select = ({
               return (
                 <button
                   id={`${selectId}-option-${index}`}
-                  key={option.value}
+                  key={String(option.value)}
                   type="button"
                   role="option"
                   className={clsx(

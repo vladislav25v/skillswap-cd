@@ -18,6 +18,7 @@
 
 .inputField {
   flex-grow: 1;
+  width: 100%;
   font-weight: var(--field-font-weight);
   font-family: var(--field-font-family), sans-serif;
   font-size: var(--field-font-size);

@@ -18,10 +18,10 @@
 
 ## Props
 
-| Prop       | Type                           | Default | Description                            |
-|------------|--------------------------------|---------|----------------------------------------|
-| `value`    | `Date \| null`                 | —       | Текущая выбранная дата                 |
-| `onChange` | `(date: Date \| null) => void` | —       | Callback при подтверждении выбора даты |
+| Prop       | Type                     | Default | Description                            |
+|------------|--------------------------|---------|----------------------------------------|
+| `value`    | `string`                 | —       | Текущая выбранная дата                 |
+| `onChange` | `(date: string) => void` | —       | Callback при подтверждении выбора даты |
 
 ---
 
@@ -47,7 +47,7 @@
 import { useState } from 'react';
 import Datepicker from '@/shared/ui/Datepicker';
 
-const [date, setDate] = useState<Date | null>(null);
+const [date, setDate] = useState<string>('');
 
 <FormField label="Дата рождения">
   <Datepicker value={date} onChange={setDate} />
@@ -75,7 +75,6 @@ maxDate = { new Date() }
 ```
 
 Нельзя выбрать дату из будущего.
-
 
 --- 
 
