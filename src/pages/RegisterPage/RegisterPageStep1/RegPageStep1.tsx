@@ -7,8 +7,8 @@ import styles from './RegPageStep1.module.css';
 import GoogleIcon from '@/assets/RegPages/Google.svg';
 import AppleIcon from '@/assets/RegPages/Apple.svg';
 import LightbulbIcon from '@/assets/RegPages/light-bulb.svg';
-import EyeIcon from '@/assets/icons/eye.svg';
-import EyeOffIcon from '@/assets/icons/eye-off.svg';
+import EyeIcon from '@/assets/RegPages/eye.svg';
+import EyeOffIcon from '@/assets/RegPages/eye-off.svg';
 
 const RegPageStep1: React.FC = () => {
   const [email, setEmail] = useState('');

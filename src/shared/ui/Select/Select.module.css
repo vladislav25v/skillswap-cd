@@ -49,24 +49,25 @@
   justify-content: space-between;
   width: 100%;
   min-height: 48px;
-  padding: var(--field-padding-block, 11px) var(--field-padding-inline, 19px);
-  font-family: var(--field-font-family, var(--font-family-base, 'Roboto', sans-serif));
-  font-size: var(--field-font-size, var(--font-size-body, 16px));
-  font-weight: var(--field-font-weight, var(--font-weight-regular, 400));
-  line-height: var(--field-line-height, 1.5);
-  color: var(--field-text-color, var(--color-text-primary, #253017));
+  padding: 10px 20px;
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--line-height-body, 24px);
+  color: var(--color-text-primary, #253017);
   text-align: left;
   cursor: pointer;
-  background: var(--field-bg, var(--color-surface, #ffffff));
-  border: 1px solid var(--field-border-color, var(--color-text-secondary, #69735d));
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-text-secondary, #69735d);
   border-radius: var(--radius, 12px);
-  caret-color: var(--field-caret-color, var(--color-accent-dark, #508826));
+  caret-color: var(--color-accent-dark, #508826);
   transition: border-color 0.2s ease;
 }
 
 .trigger:focus-visible {
   outline: 2px solid var(--color-accent-dark, #508826);
   outline-offset: 2px;
+  border-radius: var(--radius, 12px);
 }
 
 .triggerOpen {
@@ -83,7 +84,7 @@
 }
 
 .triggerError {
-  border-color: var(--field-border-error-color, var(--color-error, #bf3920));
+  border-color: var(--color-error, #bf3920);
 }
 
 .triggerError:focus-visible {
@@ -102,7 +103,7 @@
   font-style: normal;
   font-weight: var(--font-weight-regular, 400);
   line-height: var(--line-height-body, 24px);
-  color: var(--field-placeholder-color, var(--color-text-secondary, #69735d));
+  color: var(--color-text-secondary, #69735d);
   letter-spacing: 0.32px;
 }
 
@@ -135,14 +136,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 220px;
+  max-height: 228px;
   overflow-y: auto;
   background: var(--color-surface, #ffffff);
-  border: 1px solid var(--field-border-color, var(--color-text-secondary, #69735d));
+  border: 1px solid var(--color-text-secondary, #69735d);
   border-top: none;
   border-bottom-right-radius: var(--radius, 12px);
   border-bottom-left-radius: var(--radius, 12px);
   box-shadow: none;
+  gap: 4px;
+  padding-top: 8px;
+  padding-bottom: 7px;
 }
 
 .option {
@@ -151,7 +155,7 @@
   align-items: center;
   align-self: stretch;
   min-height: 32px;
-  padding: 4px var(--field-padding-inline, 19px);
+  padding: 4px 20px;
   font-family: var(--font-family-base, 'Roboto', sans-serif);
   font-size: var(--font-size-body, 16px);
   line-height: var(--line-height-body, 24px);
@@ -188,6 +192,69 @@
   cursor: not-allowed;
   opacity: 0.5;
   color: var(--color-text-disabled, #9ca197);
+}
+
+.optionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.optionWrapper:hover {
+  background: var(--color-disabled, #e4e8df);
+}
+
+.optionWrapper.optionActive {
+  background: var(--color-disabled, #e4e8df);
+  outline: none;
+}
+
+.checkboxOption {
+  width: auto;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkboxOption .root {
+  width: auto;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-direction: row;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkboxOption .content {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: var(--font-size-body, 16px);
+  line-height: var(--line-height-body, 24px);
+  color: var(--color-text-primary, #253017);
+  white-space: nowrap;
+}
+
+.checkboxOption .clickArea {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkboxOption .disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkboxOption .disabled .content {
+  color: var(--color-text-disabled, #9ca197);
+}
+
+.optionWrapper:hover .checkboxOption .content {
+  color: var(--color-accent-dark, #508826);
 }
 
 .error {

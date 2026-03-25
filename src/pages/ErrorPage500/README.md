@@ -1,11 +1,11 @@
-# Page505
+# Error500
 
 Страница ошибки 500 (Internal Server Error). Показывается, когда на сервере произошла ошибка.
 
 ## Структура
-src/pages/Page505/
-├── Page505.tsx # компонент страницы
-├── Page505.module.css # стили
+src/pages/Error500/
+├── Error500.tsx # компонент страницы
+├── Error500.module.css # стили
 └── README.md # документация
 
 text
@@ -21,10 +21,10 @@ text
 
 Временно в `App.tsx`:
 ```tsx
-import { Page505 } from './pages/Page505/Page505';
+import { Error500 } from './pages/Error500/Error500';
 
 function App() {
-  return <Page505 />;
+  return <Error500 />;
 }
 
 export default App;

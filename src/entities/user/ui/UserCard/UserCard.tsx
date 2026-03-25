@@ -1,10 +1,7 @@
 import Avatar from '@/shared/ui/Avatar';
 import Button from '@/shared/ui/Button/Button';
 import { FavoriteButton } from '@/shared/ui/FavoriteButton';
-import {
-  SkillsTags,
-  type SkillTagItem,
-} from '@/shared/ui/Skilltags';
+import { SkillsTags, type SkillTagItem } from '@/shared/ui/Skilltags';
 import styles from './UserCard.module.css';
 
 export interface UserCardProps {
@@ -38,12 +35,7 @@ export default function UserCard({
     <article className={`${styles.card} ${className}`.trim()}>
       <div className={styles.header}>
         <div className={styles.userInfo}>
-          <Avatar
-            src={avatarSrc}
-            alt={name}
-            size="medium"
-            className={styles.avatar}
-          />
+          <Avatar src={avatarSrc} alt={name} size="medium" className={styles.avatar} />
 
           <div className={styles.meta}>
             <h2 className={styles.name}>{name}</h2>
@@ -67,11 +59,7 @@ export default function UserCard({
         className={styles.skills}
       />
 
-      <Button
-        variant="primary"
-        onClick={onDetailsClick}
-        className={styles.detailsButton}
-      >
+      <Button variant="primary" onClick={onDetailsClick} className={styles.detailsButton}>
         {detailsButtonText}
       </Button>
     </article>

@@ -106,6 +106,16 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
     alert('Данные сохранены в LocalStorage');
   };
 
+  const handleGenderChange = (value: UserGender | UserGender[]) => {
+    const selectedGender = Array.isArray(value) ? value[0] : value;
+    setFormState({ ...formState, gender: selectedGender });
+  };
+
+  const handleCityChange = (value: number | number[]) => {
+    const selectedCityId = Array.isArray(value) ? value[0] : value;
+    setFormState({ ...formState, cityId: selectedCityId });
+  };
+
   return (
     <form className={clsx(styles.form, className)} onSubmit={submitForm}>
       <div className={styles.formAvatar}>
@@ -175,7 +185,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
                 size={'standard'}
                 options={genderOptions}
                 value={formState.gender}
-                onChange={(gender) => setFormState({ ...formState, gender })}
+                onChange={handleGenderChange}
               />
             </FormField>
           </div>
@@ -185,9 +195,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
               name="city"
               options={cityOptions}
               value={formState.cityId}
-              onChange={(cityId) => {
-                setFormState({ ...formState, cityId });
-              }}
+              onChange={handleCityChange}
             />
           </FormField>
 
