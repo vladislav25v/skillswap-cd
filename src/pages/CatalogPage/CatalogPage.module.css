@@ -21,6 +21,12 @@
   flex-shrink: 0;
 }
 
+.sortIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 .status {
   margin: 40px 0;
   color: var(--color-text-secondary);

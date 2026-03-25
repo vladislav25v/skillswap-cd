@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/app/store/hooks';
 import { selectFilters } from '@/features/filters/selectors';
 import { filterUsers } from '@/features/users-filter/usersFilter';
-import { Header } from '@/widgets/Header';
 import { FilterSidebar } from '@/widgets/FilterSidebar';
 import { SectionBlock } from '@/widgets/SectionBlock';
 import UsersListSection from '@/widgets/UsersListSection';
@@ -58,7 +57,6 @@ export const CatalogPage = () => {
   if (error) {
     return (
       <div className={styles.page}>
-        <Header />
         <main className={styles.content}>
           <p className={styles.status}>{error}</p>
         </main>
@@ -69,7 +67,6 @@ export const CatalogPage = () => {
   if (!data) {
     return (
       <div className={styles.page}>
-        <Header />
         <main className={styles.content}>
           <p className={styles.status}>Загрузка каталога...</p>
         </main>
@@ -128,8 +125,6 @@ export const CatalogPage = () => {
 
   return (
     <div className={styles.page}>
-      <Header />
-
       <main className={styles.content}>
         <FilterSidebar />
 

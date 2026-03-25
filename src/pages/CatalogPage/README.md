@@ -41,3 +41,4 @@
 import { CatalogPage } from '@/pages/CatalogPage';
 
 <CatalogPage />
+```
