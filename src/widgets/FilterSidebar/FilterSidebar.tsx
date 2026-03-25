@@ -7,8 +7,10 @@ import { FilterSidebarHeader } from './components/FilterSidebarHeader';
 import { FilterRoleRadioGroup } from './components/FilterRoleRadioGroup';
 import { FilterGenderRadioGroup } from './components/FilterGenderRadioGroup';
 import { FilterCityCheckbox } from './components/FilterCityCheckbox';
-import { getCategories, getSubcategories, getCities } from '../../api/users';
-import type { Category, Subcategory, City } from '../../api/users';
+import { getCategories, getSubcategories, getCities } from '@/api';
+import type { Category } from '@/entities/category/types';
+import type { Subcategory } from '@/entities/subcategory/types';
+import type { City } from '@/entities/city/types';
 import {
   setMainFilter,
   setAuthorGender,
