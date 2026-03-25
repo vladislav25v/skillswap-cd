@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/app/store/hooks';
-import {
-  selectAuthorGender,
-  selectCities,
-  selectMainFilter,
-  selectSkills,
-} from '@/features/filters';
+import { selectFilters } from '@/features/filters/selectors';
+import { filterUsers } from '@/features/users-filter/usersFilter';
 import { Header } from '@/widgets/Header';
 import { FilterSidebar } from '@/widgets/FilterSidebar';
 import { SectionBlock } from '@/widgets/SectionBlock';
@@ -38,10 +34,7 @@ export const CatalogPage = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('sections');
   const [sortMode, setSortMode] = useState<SortMode>('newest');
 
-  const mainFilter = useAppSelector(selectMainFilter);
-  const authorGender = useAppSelector(selectAuthorGender);
-  const selectedCities = useAppSelector(selectCities);
-  const selectedSkills = useAppSelector(selectSkills);
+  const filters = useAppSelector(selectFilters);
 
   useEffect(() => {
     const loadData = async () => {
@@ -84,32 +77,17 @@ export const CatalogPage = () => {
     );
   }
 
-  const selectedSkillIds = selectedSkills.map(Number);
-
-  // Фильтруем пользователей по текущему состоянию store
-  const filteredUsers = data.users.filter((user) => {
-    const matchesGender = !authorGender || user.gender === authorGender;
-
-    const matchesCity = selectedCities.length === 0 || selectedCities.includes(user.cityId);
-
-    const matchesMainFilter =
-      mainFilter === 'all' ||
-      (mainFilter === 'can-teach' && user.createdSkillIds.length > 0) ||
-      (mainFilter === 'want-to-learn' && user.desiredSubcategoryIds.length > 0);
-
-    const matchesSkills =
-      selectedSkillIds.length === 0 ||
-      user.createdSkillIds.some((skillId) => selectedSkillIds.includes(skillId)) ||
-      user.desiredSubcategoryIds.some((subcategoryId) => selectedSkillIds.includes(subcategoryId));
-
-    return matchesGender && matchesCity && matchesMainFilter && matchesSkills;
+  const filteredUsers = filterUsers({
+    users: data.users,
+    filters,
+    subcategories: data.subcategories,
   });
 
   const hasActiveFilters =
-    mainFilter !== 'all' ||
-    Boolean(authorGender) ||
-    selectedCities.length > 0 ||
-    selectedSkills.length > 0;
+    filters.mainFilter !== 'all' ||
+    Boolean(filters.authorGender) ||
+    filters.cities.length > 0 ||
+    filters.skills.length > 0;
 
   const usersSortedByPopular = [...filteredUsers].sort((a, b) => b.likes - a.likes);
   const usersSortedByNewest = [...filteredUsers].sort(
