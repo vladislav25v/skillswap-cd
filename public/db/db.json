@@ -882,6 +882,48 @@
       ]
     }
   ],
+  "exchangeRequests": [
+    {
+      "id": 1,
+      "skillId": 1,
+      "ownerUserId": 1,
+      "requesterUserId": 2,
+      "status": "pending",
+      "createdAt": "2026-03-24T10:00:00.000Z",
+      "respondedAt": null,
+      "completedAt": null
+    },
+    {
+      "id": 2,
+      "skillId": 4,
+      "ownerUserId": 2,
+      "requesterUserId": 3,
+      "status": "in_progress",
+      "createdAt": "2026-03-22T09:30:00.000Z",
+      "respondedAt": "2026-03-22T12:00:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": 3,
+      "skillId": 6,
+      "ownerUserId": 3,
+      "requesterUserId": 4,
+      "status": "rejected",
+      "createdAt": "2026-03-20T14:15:00.000Z",
+      "respondedAt": "2026-03-20T16:40:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": 4,
+      "skillId": 8,
+      "ownerUserId": 4,
+      "requesterUserId": 5,
+      "status": "completed",
+      "createdAt": "2026-03-18T08:45:00.000Z",
+      "respondedAt": "2026-03-18T10:10:00.000Z",
+      "completedAt": "2026-03-19T19:20:00.000Z"
+    }
+  ],
   "accounts": [
     {
       "id": 1,

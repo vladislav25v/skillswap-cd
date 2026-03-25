@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/shared/ui/Button/Button';
 import Input from '@/shared/ui/Input';
 import FormField from '@/shared/ui/FormField';
@@ -10,10 +11,12 @@ import styles from './LoginForm.module.css';
 
 interface LoginFormProps {
   onRegisterClick?: () => void;
+  redirectPath?: string;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick, redirectPath }) => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -36,7 +39,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
       return;
     }
 
-    console.log('Login succeeded', { email: email.trim().toLowerCase() });
+    navigate(redirectPath || '/profile', { replace: true });
     setIsSubmitting(false);
   };
 
