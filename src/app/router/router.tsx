@@ -29,10 +29,6 @@ export const router = createBrowserRouter([
         path: 'skill/:id',
         element: <SkillPage />,
       },
-      {
-        path: '*',
-        element: <ErrorPage404 />,
-      },
     ],
   },
   {
@@ -65,6 +61,10 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <ErrorPage404 />,
   },
   {
     path: 'server-error',
