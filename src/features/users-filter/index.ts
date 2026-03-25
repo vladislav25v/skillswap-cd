@@ -1,2 +1,3 @@
 export { filterUsers } from './usersFilter';
-export type { User, Subcategory } from '@/api/users';
+export type { User } from '@/entities/user/types';
+export type { Subcategory } from '@/entities/subcategory/types';
