@@ -1,8 +1,8 @@
 .menu {
   --menu-horizontal-transform: translateX(0);
-  position: absolute; /*в header надо будет задать relative чтобы меню спозиционировалось правильно */
+  position: absolute;
   top: calc(100% + 22px);
-  left: 0;
+  left: 36px;
   z-index: 10;
   width: min(1136px, calc(100vw - 48px));
   max-width: 1136px;

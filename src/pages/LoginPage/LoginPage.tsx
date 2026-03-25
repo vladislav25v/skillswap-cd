@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { AuthLayout } from '@/widgets/AuthLayout';
+import { AuthLayout } from '@/app/layouts/auth-layout';
 import { LoginForm, WelcomeCard } from '@/widgets/AuthForm';
 import bulbIcon from '@/assets/light-bulb.svg';
 

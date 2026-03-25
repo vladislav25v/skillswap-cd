@@ -1,8 +1,16 @@
-import Button from '../../shared/ui/Button/Button';
-import styles from './Page505.module.css';
-import errorImage from '../../assets/error500.png';
+import Button from '@/shared/ui/Button/Button';
+import styles from './ErrorPage500.module.css';
+import errorImage from '@/assets/error500.png';
 
-export function Page505() {
+export const ErrorPage500 = () => {
+  const handleReportError = () => {
+    console.log('Report error clicked');
+  };
+
+  const handleGoHome = () => {
+    window.location.href = '/';
+  };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -14,10 +22,10 @@ export function Page505() {
           <p className={styles.description}>Попробуйте позже или вернитесь на главную страницу</p>
 
           <div className={styles.buttons}>
-            <Button variant="secondary" className={styles.reportButton}>
+            <Button variant="secondary" className={styles.reportButton} onClick={handleReportError}>
               Сообщить об ошибке
             </Button>
-            <Button variant="primary" className={styles.homeButton}>
+            <Button variant="primary" className={styles.homeButton} onClick={handleGoHome}>
               На главную
             </Button>
           </div>
@@ -25,4 +33,4 @@ export function Page505() {
       </main>
     </div>
   );
-}
+};
