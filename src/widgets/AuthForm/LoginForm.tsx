@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/shared/ui/Button/Button';
 import Input from '@/shared/ui/Input';
@@ -8,6 +7,7 @@ import { useAuth } from '@/app/providers/auth-context';
 import googleIcon from '@/assets/google.svg';
 import appleIcon from '@/assets/apple.svg';
 import styles from './LoginForm.module.css';
+import PasswordInput from '@/shared/ui/PasswordInput';
 
 interface LoginFormProps {
   onRegisterClick?: () => void;
@@ -19,7 +19,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick, redirectP
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -78,27 +77,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick, redirectP
         </FormField>
 
         <FormField label="Пароль">
-          <Input
-            type={isPasswordVisible ? 'text' : 'password'}
-            name="password"
-            placeholder="Введите ваш пароль"
+          <PasswordInput
             value={password}
-            disabled={isSubmitting}
+            placeholder="Введите ваш пароль"
             error={authError}
-            onChange={(event) => {
-              setPassword(event.target.value);
+            onChange={(password: string) => {
+              setPassword(password);
               if (authError) setAuthError('');
             }}
-            rightSlot={
-              <button
-                type="button"
-                className={styles.iconButton}
-                aria-label={isPasswordVisible ? 'Скрыть пароль' : 'Показать пароль'}
-                onClick={() => setIsPasswordVisible((prev) => !prev)}
-              >
-                {isPasswordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            }
           />
         </FormField>
       </div>
