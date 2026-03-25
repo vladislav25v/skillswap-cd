@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '@/app/layouts/auth-layout';
-import { LoginForm, WelcomeCard } from '@/widgets/AuthForm';
+import { LoginForm } from '@/widgets/AuthForm';
 import bulbIcon from '@/assets/light-bulb.svg';
+import AuthInfoCard from '@/widgets/AuthInfoCard';
 
 interface LoginLocationState {
   from?: string;
@@ -21,11 +22,11 @@ const LoginPage = () => {
       title="Вход"
       leftSlot={<LoginForm onRegisterClick={handleRegisterClick} redirectPath={redirectPath} />}
       rightSlot={
-        <WelcomeCard
+        <AuthInfoCard
           title="С возвращением в SkillSwap!"
           text="Обменивайтесь знаниями и навыками с другими людьми"
-          image={bulbIcon}
-          imageAlt="Лампочка SkillSwap"
+          picture={bulbIcon}
+          pictureAlt="Лампочка SkillSwap"
         />
       }
     />
