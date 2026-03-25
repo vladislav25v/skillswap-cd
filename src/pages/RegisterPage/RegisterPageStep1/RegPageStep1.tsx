@@ -7,14 +7,13 @@ import styles from './RegPageStep1.module.css';
 
 import GoogleIcon from '@/assets/RegPages/Google.svg';
 import AppleIcon from '@/assets/RegPages/Apple.svg';
-import LightbulbIcon from '@/assets/RegPages/light-bulb.svg';
-import EyeIcon from '@/assets/RegPages/eye.svg';
-import EyeOffIcon from '@/assets/RegPages/eye-off.svg';
+import PasswordInput from '@/shared/ui/PasswordInput';
+import AuthInfoCard from '@/widgets/AuthInfoCard';
+import bulbIcon from '@/assets/light-bulb.svg';
 
 const RegPageStep1: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = () => {
     console.log('Регистрация:', { email, password });
@@ -22,7 +21,6 @@ const RegPageStep1: React.FC = () => {
 
   return (
     <AuthLayout
-      title="Регистрация"
       stepInfo={{
         current: 1,
         total: 3,
@@ -49,9 +47,8 @@ const RegPageStep1: React.FC = () => {
             <span>или</span>
           </div>
 
-          <FormField label="Email" htmlFor="email">
+          <FormField label="Email">
             <Input
-              id="email"
               type="email"
               placeholder="Введите email"
               value={email}
@@ -59,44 +56,26 @@ const RegPageStep1: React.FC = () => {
             />
           </FormField>
 
-          <FormField label="Пароль" htmlFor="password">
-            <Input
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Придумайте надёжный пароль"
+          <FormField label="Пароль" tip="Пароль должен содержать не менее 8 знаков">
+            <PasswordInput
               value={password}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-              rightSlot={
-                <button
-                  type="button"
-                  className={styles.showPassword}
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  <img
-                    src={showPassword ? EyeOffIcon : EyeIcon}
-                    alt={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
-                    className={styles.eyeIcon}
-                  />
-                </button>
-              }
+              placeholder="Придумайте надёжный пароль"
+              onChange={setPassword}
             />
           </FormField>
 
-          <p className={styles.passwordHint}>Пароль должен содержать не менее 8 знаков</p>
-
-          <Button type="submit" variant="primary" className={styles.submitButton}>
+          <Button type="submit" variant="primary">
             Далее
           </Button>
         </form>
       }
       rightSlot={
-        <div className={styles.illustrationSection}>
-          <img src={LightbulbIcon} alt="SkillSwap" className={styles.lightbulb} />
-          <h2 className={styles.illustrationTitle}>Добро пожаловать в SkillSwap!</h2>
-          <p className={styles.illustrationText}>
-            Присоединяйтесь к SkillSwap и обменивайтесь знаниями и навыками с другими людьми
-          </p>
-        </div>
+        <AuthInfoCard
+          title="Добро пожаловать в SkillSwap!"
+          text="Присоединяйтесь к SkillSwap и обменивайтесь знаниями и навыками с другими людьми"
+          picture={bulbIcon}
+          pictureAlt="Лампочка SkillSwap"
+        />
       }
     />
   );
