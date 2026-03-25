@@ -20,7 +20,19 @@ export {
 } from '@/api/user';
 export type { CreateUserPayload, UpdateUserPayload } from '@/api/user';
 
-export { getSkills } from '@/api/skill';
+export {
+  EXCHANGE_API_PATH,
+  createExchangeRequest,
+  getExchangeRequestById,
+  getExchangeRequests,
+  getIncomingExchangeRequests,
+  getOutgoingExchangeRequests,
+  getUserExchanges,
+  updateExchangeRequest,
+} from '@/api/exchange';
+export type { CreateExchangeRequestPayload, UpdateExchangeRequestPayload } from '@/api/exchange';
+
+export { getSkillById, getSkills } from '@/api/skill';
 export { getCategories } from '@/api/category';
 export { getSubcategories } from '@/api/subcategory';
 export { getCities } from '@/api/city';

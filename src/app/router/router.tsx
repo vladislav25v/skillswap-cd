@@ -3,6 +3,7 @@ import MainLayout from '@/app/layouts/MainLayout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import { ErrorPage404 } from '@/pages/error404';
 import ProfilePage from '@/pages/ProfilePage';
+import { SkillPage } from '@/pages/skillPage';
 import ProfileUserForm from '@/widgets/ProfileUserForm';
 import ProfileFavorites from '@/widgets/ProfileFavorites';
 
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'skills/:skillId',
+        element: <SkillPage />,
       },
       {
         path: 'profile',

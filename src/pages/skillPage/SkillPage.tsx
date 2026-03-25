@@ -1,223 +1,134 @@
-//import React from 'react';
-import { Header } from '../../widgets/Header';
-import { Footer } from '../../widgets/Footer';
-import { SkillDetailsPanel } from '../../widgets/SkillDetailsPanel';
-import UsersListSection from '../../widgets/UsersListSection';
-import { SectionBlock } from '../../widgets/SectionBlock';
-import Avatar from '../../shared/ui/Avatar/Avatar';
-import { SkillsTags } from '../../shared/ui/Skilltags/Skilltags';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import {
+  getCategories,
+  getCities,
+  getSkillById,
+  getSkills,
+  getSubcategories,
+  getUsers,
+} from '@/api';
+import { mapSkillToPageViewModel } from '@/entities/skill/lib/map-skill-to-page-view-model';
+import type { SkillPageViewModel } from '@/entities/skill/view-model';
+import { UserCard } from '@/entities/user/ui/UserCard';
+import { ProposeExchangeButton } from '@/features/exchange-request';
+import { Footer } from '@/widgets/Footer';
+import { Header } from '@/widgets/Header';
+import { SectionBlock } from '@/widgets/SectionBlock';
+import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
+import UsersListSection from '@/widgets/UsersListSection';
 import styles from './SkillPage.module.css';
 
-// Вспомогательная функция для определения категории тега
-const getCategoryForSkill = (
-  skill: string,
-): 'business' | 'art' | 'languages' | 'education' | 'home' | 'health' => {
-  const categories: Record<
-    string,
-    'business' | 'art' | 'languages' | 'education' | 'home' | 'health'
-  > = {
-    // Бизнес и карьера
-    Дизайн: 'business',
-    'Тайм-менеджмент': 'business',
-    'Управление проектами': 'business',
-    Лидерство: 'business',
-    Маркетинг: 'business',
-
-    // Творчество и искусство
-    Фотография: 'art',
-    Lightroom: 'art',
-    Photoshop: 'art',
-    Видеомонтаж: 'art',
-    Рисование: 'art',
-    Видеосъемка: 'art',
-    Музыка: 'art',
-
-    // Иностранные языки
-    Английский: 'languages',
-    Испанский: 'languages',
-    Французский: 'languages',
-    Немецкий: 'languages',
-
-    // Образование и развитие
-    Математика: 'education',
-    Программирование: 'education',
-    'Навыки публичных выступлений': 'education',
-
-    // Дом и уют
-    Кулинария: 'home',
-    Ремонт: 'home',
-    Садоводство: 'home',
-
-    // Здоровье и лайфстайл
-    Медитация: 'health',
-    Йога: 'health',
-    Фитнес: 'health',
-    'Правильное питание': 'health',
-  };
-
-  return categories[skill] || 'education';
-};
-
-// Моковые данные
-const mockSkill = {
-  title: 'Фотография',
-  description: 'Научу работать в Lightroom и Photoshop. Помогу разобраться с композицией и светом.',
-  meta: 'Творчество • Фотография',
-  images: [
-    'https://picsum.photos/id/100/400/300',
-    'https://picsum.photos/id/101/400/300',
-    'https://picsum.photos/id/102/400/300',
-  ],
-};
-
-const mockUsers = [
-  {
-    id: 1,
-    name: 'Анна С.',
-    city: 'Москва',
-    age: 28,
-    about: 'Фотограф с 5-летним опытом. Преподаю основы композиции и работу со светом.',
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    skillsOffered: ['Фотография', 'Lightroom'],
-    skillsWanted: ['Photoshop', 'Видеомонтаж'],
-  },
-  {
-    id: 2,
-    name: 'Дмитрий К.',
-    city: 'СПб',
-    age: 32,
-    about: 'Преподаю фотографию и обработку',
-    avatar: 'https://i.pravatar.cc/150?img=2',
-    skillsOffered: ['Фотография'],
-    skillsWanted: ['Дизайн'],
-  },
-  {
-    id: 3,
-    name: 'Елена М.',
-    city: 'Казань',
-    age: 26,
-    about: 'Хочу научиться фотографии',
-    avatar: 'https://i.pravatar.cc/150?img=3',
-    skillsOffered: ['Рисование'],
-    skillsWanted: ['Фотография'],
-  },
-  {
-    id: 4,
-    name: 'Ольга П.',
-    city: 'Новосибирск',
-    age: 30,
-    about: 'Ищу наставника по фото',
-    avatar: 'https://i.pravatar.cc/150?img=4',
-    skillsOffered: ['Видеосъемка'],
-    skillsWanted: ['Фотография'],
-  },
-];
-
-// Компонент UserCard с SkillsTags
-const UserCard = ({ user }: { user: (typeof mockUsers)[0] }) => {
-  const teachingSkills = user.skillsOffered.map((skill) => ({
-    id: skill,
-    label: skill,
-    category: getCategoryForSkill(skill),
-  }));
-
-  const learningSkills = user.skillsWanted.map((skill) => ({
-    id: skill,
-    label: skill,
-    category: getCategoryForSkill(skill),
-  }));
-
-  return (
-    <div className={styles.userCard}>
-      <div className={styles.userCardHeader}>
-        <Avatar src={user.avatar} alt={user.name} size="medium" />
-        <div className={styles.userHeaderInfo}>
-          <div className={styles.userName}>{user.name}</div>
-          <div className={styles.userMeta}>
-            {user.city}, {user.age} лет
-          </div>
-        </div>
-      </div>
-
-      <p className={styles.userBio}>{user.about}</p>
-
-      <SkillsTags
-        teachingSkills={teachingSkills}
-        learningSkills={learningSkills}
-        maxVisibleTags={3}
-      />
-    </div>
-  );
-};
-
 export const SkillPage = () => {
-  return (
-    <>
-      <Header />
-      <div className={styles.pageContent}>
+  const { skillId } = useParams();
+  const [pageViewModel, setPageViewModel] = useState<SkillPageViewModel | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const normalizedSkillId = Number(skillId);
+
+    if (!normalizedSkillId) {
+      setPageViewModel(null);
+      setErrorMessage('Некорректный идентификатор навыка.');
+      setIsLoading(false);
+      return;
+    }
+
+    const loadSkillPage = async () => {
+      setIsLoading(true);
+      setErrorMessage('');
+
+      try {
+        const [skill, skills, users, cities, subcategories, categories] = await Promise.all([
+          getSkillById(normalizedSkillId),
+          getSkills(),
+          getUsers(),
+          getCities(),
+          getSubcategories(),
+          getCategories(),
+        ]);
+
+        if (!skill) {
+          setPageViewModel(null);
+          setErrorMessage('Навык не найден.');
+          return;
+        }
+
+        const nextPageViewModel = mapSkillToPageViewModel({
+          skill,
+          skills,
+          users,
+          cities,
+          subcategories,
+          categories,
+        });
+
+        if (!nextPageViewModel) {
+          setPageViewModel(null);
+          setErrorMessage('Не удалось собрать данные страницы навыка.');
+          return;
+        }
+
+        setPageViewModel(nextPageViewModel);
+      } catch {
+        setPageViewModel(null);
+        setErrorMessage('Не удалось загрузить страницу навыка.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    void loadSkillPage();
+  }, [skillId]);
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <SectionBlock>Загрузка...</SectionBlock>;
+    }
+
+    if (errorMessage || !pageViewModel) {
+      return <SectionBlock>{errorMessage || 'Данные страницы недоступны.'}</SectionBlock>;
+    }
+
+    return (
+      <>
         <div className={styles.skillSection}>
-          {/* Левая колонка — UserCard */}
           <SectionBlock className={styles.userSection}>
-            <UserCard user={mockUsers[0]} />
+            <UserCard {...pageViewModel.ownerCard} className={styles.ownerCard} />
           </SectionBlock>
 
-          {/* Правая колонка — SkillDetailsPanel */}
           <div className={styles.skillContainer}>
             <SkillDetailsPanel
-              title={mockSkill.title}
-              description={mockSkill.description}
-              meta={mockSkill.meta}
-              images={mockSkill.images}
+              {...pageViewModel.details}
               showFavoriteButton={true}
               showTopActions={true}
-              actions={<button className={styles.exchangeButton}>Предложить обмен</button>}
+              actions={
+                <ProposeExchangeButton
+                  skillId={pageViewModel.skillId}
+                  ownerUserId={pageViewModel.ownerUserId}
+                  className={styles.exchangeButton}
+                />
+              }
             />
           </div>
         </div>
 
-        {/* Нижняя секция — похожие предложения */}
         <SectionBlock className={styles.similarSection}>
           <UsersListSection title="Похожие предложения">
-            <div className={styles.similarGrid}>
-              {mockUsers.map((user) => {
-                const teachingSkills = user.skillsOffered.map((skill) => ({
-                  id: skill,
-                  label: skill,
-                  category: getCategoryForSkill(skill),
-                }));
-
-                const learningSkills = user.skillsWanted.map((skill) => ({
-                  id: skill,
-                  label: skill,
-                  category: getCategoryForSkill(skill),
-                }));
-
-                return (
-                  <div key={user.id} className={styles.similarCard}>
-                    <div className={styles.similarCardHeader}>
-                      <Avatar src={user.avatar} alt={user.name} size="medium" />
-                      <div className={styles.similarInfo}>
-                        <div className={styles.similarName}>{user.name}</div>
-                        <div className={styles.similarMeta}>
-                          {user.city}, {user.age} лет
-                        </div>
-                      </div>
-                    </div>
-
-                    <SkillsTags
-                      teachingSkills={teachingSkills}
-                      learningSkills={learningSkills}
-                      maxVisibleTags={2}
-                    />
-
-                    <button className={styles.moreButton}>Подробнее</button>
-                  </div>
-                );
-              })}
-            </div>
+            {pageViewModel.similarUserCards.map((userCard) => (
+              <UserCard key={userCard.id} {...userCard} className={styles.similarUserCard} />
+            ))}
           </UsersListSection>
         </SectionBlock>
-      </div>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Header />
+      <div className={styles.pageContent}>{renderContent()}</div>
       <Footer />
     </>
   );
