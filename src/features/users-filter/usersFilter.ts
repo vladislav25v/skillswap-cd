@@ -1,4 +1,5 @@
-import type { User, Subcategory } from '@/api/users';
+import type { User } from '@/entities/user/types';
+import type { Subcategory } from '@/entities/subcategory/types';
 import type { FiltersState } from '@/features/filters';
 
 export interface FilterUsersParams {
