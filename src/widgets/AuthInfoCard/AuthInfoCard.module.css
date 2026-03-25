@@ -12,16 +12,16 @@
 
 .picture {
   display: block;
+  object-fit: cover;
   block-size: 100%;
   inline-size: 100%;
-  object-fit: cover;
 }
 
 .content {
   display: grid;
   gap: 12px;
   text-align: center;
-  text-wrap: balance;
+  inline-size: min(100%, 436px);
 }
 
 .description {
