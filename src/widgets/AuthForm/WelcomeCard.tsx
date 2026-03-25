@@ -1,5 +1,5 @@
 import Title from '@/shared/ui/Title';
-import styles from './WelcomeCard.module.scss';
+import styles from './WelcomeCard.module.css';
 
 interface WelcomeCardProps {
   title: string;

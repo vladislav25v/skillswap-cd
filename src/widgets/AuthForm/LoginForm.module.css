@@ -33,23 +33,23 @@
   color: var(--color-text-secondary);
   font-size: var(--font-size-body);
   line-height: 24px;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    border-top: 1px solid var(--color-disabled);
-    z-index: 0;
-  }
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid var(--color-disabled);
+  z-index: 0;
+}
 
-  span {
-    position: relative;
-    z-index: 1;
-    background: var(--color-surface);
-    padding: 0 10px;
-  }
+.divider span {
+  position: relative;
+  z-index: 1;
+  background: var(--color-surface);
+  padding: 0 10px;
 }
 
 .fields {
