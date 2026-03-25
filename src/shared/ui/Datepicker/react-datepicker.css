@@ -1,5 +1,9 @@
+.react-datepicker-wrapper {
+  display: block;
+}
+
 .react-datepicker-popper {
-  /* z-index: 30; */
+  z-index: 30;
 }
 
 .react-datepicker__header {

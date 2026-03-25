@@ -1,12 +1,12 @@
 .formField {
   display: grid;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary, #253017);
 }
 
 .label {
   justify-self: start;
   padding-block-end: 4px;
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-body, 16px);
 }
 
 .labelHidden {
@@ -22,11 +22,11 @@
 .tip,
 .error {
   margin-block-start: 4px;
-  font-size: var(--font-size-caption);
+  font-size: var(--font-size-caption, 12px);
   line-height: 1.33;
 }
 
 .error {
   color: var(--color-error);
-  font-size: var(--font-size-caption);
+  font-size: var(--font-size-caption, 12px);
 }

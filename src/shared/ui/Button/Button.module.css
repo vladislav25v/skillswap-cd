@@ -5,10 +5,10 @@
 
 .button {
   padding: 12px 24px;
-  border-radius: 8px;
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
-  font-family: var(--font-family-base);
+  border-radius: var(--radius, 12px);
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  font-family: var(--font-family-base, 'Roboto'), sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
   outline: none;
@@ -17,7 +17,7 @@
   justify-content: center;
   gap: 8px;
   border: 1px solid transparent;
-  color: var(--color-text-primary);
+  color: var(--color-text-primary, #253017);
 }
 
 .button:disabled {
@@ -25,50 +25,50 @@
 }
 
 .primary {
-  background-color: var(--color-accent);
-  color: var(--color-text-primary);
-  border-color: var(--color-accent);
+  background-color: var(--color-accent, #abd27a);
+  color: var(--color-text-primary, #253017);
+  border-color: var(--color-accent, #abd27a);
 }
 
 .primary:hover:not(:disabled) {
-  background-color: var(--color-accent-light);
-  border-color: var(--color-accent-light);
+  background-color: var(--color-accent-light, #deebc5);
+  border-color: var(--color-accent-light, #deebc5);
 }
 
 .primary:active:not(:disabled) {
-  background-color: var(--color-accent-dark);
-  color: var(--color-surface);
-  border-color: var(--color-accent-dark);
+  background-color: var(--color-accent-dark, #508826);
+  color: var(--color-surface, #ffffff);
+  border-color: var(--color-accent-dark, #508826);
 }
 
 .primary:disabled {
-  background-color: var(--color-disabled);
-  color: var(--color-text-secondary);
-  border-color: var(--color-disabled);
+  background-color: var(--color-disabled, #e4e8df);
+  color: var(--color-text-secondary, #69735d);
+  border-color: var(--color-disabled, #e4e8df);
 }
 
 .secondary {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
-  border-color: var(--color-accent);
+  background-color: var(--color-surface, #ffffff);
+  color: var(--color-text-primary, #253017);
+  border-color: var(--color-accent, #abd27a);
 }
 
 .secondary:hover:not(:disabled) {
-  color: var(--color-text-secondary);
-  border-color: var(--color-accent-light);
+  color: var(--color-text-secondary, #69735d);
+  border-color: var(--color-accent-light, #deebc5);
 }
 
 .secondary:active:not(:disabled) {
-  border-color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark, #508826);
 }
 
 .secondary:disabled {
-  color: var(--color-text-disabled);
-  border-color: var(--color-disabled);
+  color: var(--color-text-disabled, #9ca197);
+  border-color: var(--color-disabled, #e4e8df);
 }
 
 .tertiary {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
+  background-color: var(--color-surface, #ffffff);
+  color: var(--color-text-primary, #253017);
   border: none;
 }

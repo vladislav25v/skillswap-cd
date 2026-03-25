@@ -1,5 +1,5 @@
 .searchIcon {
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary, #69735d);
 }
 
 .clearBtn {
@@ -14,5 +14,5 @@
 }
 
 .clearIcon {
-  color: var(--color-text-primary);
+  color: var(--color-text-primary, #253017);
 }
