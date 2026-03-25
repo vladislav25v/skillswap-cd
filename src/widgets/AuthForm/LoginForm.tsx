@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import Button from '@/shared/ui/Button/Button';
 import Input from '@/shared/ui/Input';
@@ -6,7 +6,7 @@ import FormField from '@/shared/ui/FormField';
 import { useAuth } from '@/app/providers/auth-context';
 import googleIcon from '@/assets/google.svg';
 import appleIcon from '@/assets/apple.svg';
-import styles from './LoginForm.module.scss';
+import styles from './LoginForm.module.css';
 
 interface LoginFormProps {
   onRegisterClick?: () => void;
@@ -19,8 +19,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const errorText = useMemo(() => authError, [authError]);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,7 +66,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
             placeholder="Введите email"
             value={email}
             disabled={isSubmitting}
-            error={authError ? errorText : ''}
+            error={authError}
             onChange={(event) => {
               setEmail(event.target.value);
               if (authError) setAuthError('');
@@ -83,7 +81,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
             placeholder="Введите ваш пароль"
             value={password}
             disabled={isSubmitting}
-            error={authError ? errorText : ''}
+            error={authError}
             onChange={(event) => {
               setPassword(event.target.value);
               if (authError) setAuthError('');
@@ -102,7 +100,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
         </FormField>
       </div>
 
-      {authError && <p className={styles.authError}>{errorText}</p>}
+      {authError && <p className={styles.authError}>{authError}</p>}
 
       <div className={styles.actions}>
         <Button
