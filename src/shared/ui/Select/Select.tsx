@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import clsx from 'clsx';
 import chevronDownUrl from '@/assets/chevron-down.svg';
+import { Checkbox } from '../Checkbox';
 import styles from './Select.module.css';
 
 export type SelectOption<T = string> = {
@@ -15,9 +16,9 @@ export type SelectProps<T> = {
   label?: string;
   labelClassName?: string;
   triggerClassName?: string;
-  value?: T;
-  defaultValue?: T;
-  onChange?: (value: T) => void;
+  value?: T | T[];
+  defaultValue?: T | T[];
+  onChange?: (value: T | T[]) => void;
   placeholder?: string;
   unknownValuePlaceholder?: string;
   disabled?: boolean;
@@ -26,6 +27,8 @@ export type SelectProps<T> = {
   id?: string;
   className?: string;
   valueClassName?: string;
+  multiple?: boolean;
+  maxDisplayItems?: number;
 };
 
 const getFirstEnabledOptionIndex = <T,>(options: SelectOption<T>[]): number =>
@@ -68,9 +71,11 @@ export const Select = <T,>({
   id,
   className,
   valueClassName,
+  multiple = false,
+  maxDisplayItems = 2,
 }: SelectProps<T>) => {
   const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState<T | undefined>(defaultValue);
+  const [internalValue, setInternalValue] = useState<T | T[] | undefined>(defaultValue);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -83,29 +88,55 @@ export const Select = <T,>({
 
   const selectedValue = isControlled ? value : internalValue;
 
-  const selectedOption = useMemo(
-    () => options.find((option) => option.value === selectedValue),
-    [options, selectedValue],
-  );
+  const isValueSelected = (optionValue: T): boolean => {
+    if (!multiple) {
+      return selectedValue === optionValue;
+    }
+    return Array.isArray(selectedValue) && selectedValue.includes(optionValue);
+  };
 
-  const isUnknownControlledValue = isControlled && value !== undefined && !selectedOption;
+  const selectedOptions = useMemo(() => {
+    if (!multiple) {
+      const option = options.find((opt) => opt.value === selectedValue);
+      return option ? [option] : [];
+    }
+    if (Array.isArray(selectedValue)) {
+      return options.filter((opt) => selectedValue.includes(opt.value));
+    }
+    return [];
+  }, [options, selectedValue, multiple]);
+
+  const isUnknownControlledValue = useMemo(() => {
+    if (!isControlled) return false;
+    if (multiple && Array.isArray(value)) {
+      return value.some((v) => !options.some((opt) => opt.value === v));
+    }
+    return !multiple && value !== undefined && !options.some((opt) => opt.value === value);
+  }, [isControlled, value, options, multiple]);
 
   useEffect(() => {
     if (isControlled) {
       return;
     }
 
-    const shouldReset =
-      internalValue !== undefined && !options.some((option) => option.value === internalValue);
+    const shouldReset = (() => {
+      if (!multiple && internalValue !== undefined) {
+        return !options.some((option) => option.value === internalValue);
+      }
+      if (multiple && Array.isArray(internalValue)) {
+        return internalValue.some((v) => !options.some((opt) => opt.value === v));
+      }
+      return false;
+    })();
 
     if (shouldReset) {
       const timeoutId = setTimeout(() => {
-        setInternalValue(undefined);
+        setInternalValue(multiple ? [] : undefined);
       }, 0);
 
       return () => clearTimeout(timeoutId);
     }
-  }, [isControlled, internalValue, options]);
+  }, [isControlled, internalValue, options, multiple]);
 
   useEffect(() => {
     if (disabled && isOpen) {
@@ -135,11 +166,24 @@ export const Select = <T,>({
     };
   }, [disabled, isOpen]);
 
-  const updateValue = (nextValue: T) => {
+  const updateValue = (nextValue: T | T[]) => {
     if (!isControlled) {
       setInternalValue(nextValue);
     }
     onChange?.(nextValue);
+  };
+
+  const handleSingleSelect = (optionValue: T) => {
+    updateValue(optionValue);
+    closeList();
+  };
+
+  const handleMultiSelect = (optionValue: T, checked: boolean) => {
+    const currentValues = Array.isArray(selectedValue) ? selectedValue : [];
+    const newValues = checked
+      ? [...currentValues, optionValue]
+      : currentValues.filter((v) => v !== optionValue);
+    updateValue(newValues);
   };
 
   const openList = () => {
@@ -147,10 +191,18 @@ export const Select = <T,>({
       return;
     }
 
-    const selectedIndex = selectedOption
-      ? options.findIndex((option) => option.value === selectedOption.value)
-      : -1;
-    const startIndex = selectedIndex >= 0 ? selectedIndex : getFirstEnabledOptionIndex(options);
+    let startIndex = -1;
+
+    if (multiple && Array.isArray(selectedValue) && selectedValue.length > 0) {
+      const firstSelectedIndex = options.findIndex((opt) => selectedValue.includes(opt.value));
+      startIndex =
+        firstSelectedIndex >= 0 ? firstSelectedIndex : getFirstEnabledOptionIndex(options);
+    } else if (!multiple && selectedValue !== undefined) {
+      const selectedIndex = options.findIndex((opt) => opt.value === selectedValue);
+      startIndex = selectedIndex >= 0 ? selectedIndex : getFirstEnabledOptionIndex(options);
+    } else {
+      startIndex = getFirstEnabledOptionIndex(options);
+    }
 
     setActiveIndex(startIndex);
     setIsOpen(true);
@@ -167,15 +219,6 @@ export const Select = <T,>({
     }
 
     openList();
-  };
-
-  const selectOption = (option: SelectOption<T>) => {
-    if (option.disabled) {
-      return;
-    }
-
-    updateValue(option.value);
-    closeList();
   };
 
   const handleTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -222,31 +265,66 @@ export const Select = <T,>({
       }
 
       if (activeIndex >= 0 && options[activeIndex] && !options[activeIndex].disabled) {
-        selectOption(options[activeIndex]);
+        if (multiple) {
+          const option = options[activeIndex];
+          const isSelected = isValueSelected(option.value);
+          handleMultiSelect(option.value, !isSelected);
+        } else {
+          handleSingleSelect(options[activeIndex].value);
+        }
       } else {
         closeList();
       }
     }
   };
 
-  const triggerLabel = selectedOption
-    ? selectedOption.label
-    : isUnknownControlledValue
-      ? unknownValuePlaceholder
-      : placeholder;
+  const getTriggerLabel = (): string => {
+    if (multiple) {
+      if (selectedOptions.length === 0) {
+        return placeholder;
+      }
+      if (selectedOptions.length <= maxDisplayItems) {
+        return selectedOptions.map((opt) => opt.label).join(', ');
+      }
+      return `${selectedOptions
+        .slice(0, maxDisplayItems)
+        .map((opt) => opt.label)
+        .join(', ')} +${selectedOptions.length - maxDisplayItems}`;
+    }
+
+    if (selectedOptions.length === 0) {
+      return isUnknownControlledValue ? unknownValuePlaceholder : placeholder;
+    }
+
+    return selectedOptions[0]?.label || placeholder;
+  };
+
+  const triggerLabel = getTriggerLabel();
+
+  const getFormValue = (): string => {
+    if (!multiple || !Array.isArray(selectedValue)) {
+      return selectedValue !== undefined ? String(selectedValue) : '';
+    }
+    return selectedValue.join(',');
+  };
+
+  const handleOptionClick = (option: SelectOption<T>) => {
+    if (option.disabled) return;
+
+    if (multiple) {
+      const isSelected = isValueSelected(option.value);
+      handleMultiSelect(option.value, !isSelected);
+    } else {
+      handleSingleSelect(option.value);
+    }
+  };
 
   return (
     <div
       ref={rootRef}
       className={clsx(styles.root, styles[`size_${size}`], isOpen && styles.rootOpen, className)}
     >
-      {name ? (
-        <input
-          type="hidden"
-          name={name}
-          value={selectedOption ? String(selectedOption.value) : ''}
-        />
-      ) : null}
+      {name ? <input type="hidden" name={name} value={getFormValue()} /> : null}
 
       {label ? (
         <label className={clsx(styles.label, labelClassName)} htmlFor={selectId}>
@@ -283,7 +361,7 @@ export const Select = <T,>({
             className={clsx(
               styles.value,
               valueClassName,
-              !selectedOption && !isUnknownControlledValue && styles.valuePlaceholder,
+              selectedOptions.length === 0 && styles.valuePlaceholder,
             )}
           >
             {triggerLabel}
@@ -296,8 +374,34 @@ export const Select = <T,>({
         {isOpen && (
           <div id={listboxId} role="listbox" className={styles.listbox} aria-labelledby={selectId}>
             {options.map((option, index) => {
-              const isSelected = selectedOption?.value === option.value;
+              const isSelected = isValueSelected(option.value);
               const isActive = activeIndex === index;
+
+              if (multiple) {
+                return (
+                  <div
+                    key={String(option.value)}
+                    role="option"
+                    aria-selected={isSelected}
+                    className={clsx(
+                      styles.optionWrapper,
+                      isActive && styles.optionActive,
+                      option.disabled && styles.optionDisabled,
+                    )}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    <Checkbox
+                      checked={isSelected}
+                      onChange={(checked) => handleMultiSelect(option.value, checked)}
+                      label={option.label}
+                      disabled={option.disabled}
+                      id={`${selectId}-option-${index}`}
+                      className={styles.checkboxOption}
+                    />
+                  </div>
+                );
+              }
 
               return (
                 <button
@@ -315,7 +419,7 @@ export const Select = <T,>({
                   disabled={option.disabled}
                   tabIndex={-1}
                   onMouseEnter={() => setActiveIndex(index)}
-                  onClick={() => selectOption(option)}
+                  onClick={() => handleSingleSelect(option.value)}
                 >
                   {option.label}
                 </button>
