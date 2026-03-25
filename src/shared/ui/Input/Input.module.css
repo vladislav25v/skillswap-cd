@@ -5,32 +5,32 @@
   padding-inline: var(--field-padding-inline, 19px);
   border: 1px solid transparent;
   border-radius: var(--radius, 12px);
-  background-color: var(--field-bg);
+  background-color: var(--field-bg, #ffffff);
 }
 
 .inputBordered {
-  border-color: var(--field-border-color);
+  border-color: var(--field-border-color, #69735d);
 }
 
 .inputError {
-  border-color: var(--field-border-error-color);
+  border-color: var(--field-border-error-color, #bf3920);
 }
 
 .inputField {
   flex-grow: 1;
   width: 100%;
-  font-weight: var(--field-font-weight);
-  font-family: var(--field-font-family), sans-serif;
-  font-size: var(--field-font-size);
-  line-height: var(--field-line-height);
+  font-weight: var(--field-font-weight, 400);
+  font-family: var(--field-font-family, 'Roboto'), sans-serif;
+  font-size: var(--field-font-size, 16px);
+  line-height: var(--field-line-height, 1.5);
   padding-block: var(--field-padding-block, 11px);
-  color: var(--field-text-color);
+  color: var(--field-text-color, #253017);
   background-color: transparent;
   border: none;
-  caret-color: var(--field-caret-color);
+  caret-color: var(--field-caret-color, #508826);
   outline: none;
 }
 
 .inputField::placeholder {
-  color: var(--field-placeholder-color);
+  color: var(--field-placeholder-color, #69735d);
 }

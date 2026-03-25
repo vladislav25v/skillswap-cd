@@ -5,15 +5,15 @@
   border: 1px solid transparent;
   border-radius: var(--radius, 12px);
   padding-inline: var(--field-padding-inline, 19px);
-  background-color: var(--field-bg);
+  background-color: var(--field-bg, #ffffff);
 }
 
 .bordered {
-  border-color: var(--field-border-color);
+  border-color: var(--field-border-color, #69735d);
 }
 
 .error {
-  border-color: var(--field-border-error-color);
+  border-color: var(--field-border-error-color, #bf3920);
 }
 
 .textareaField {
@@ -23,16 +23,16 @@
   padding-inline: 0;
   padding-block: var(--field-padding-block, 11px);
   outline: none;
-  color: var(--field-text-color);
-  font-family: var(--field-font-family), sans-serif;
-  font-weight: var(--field-font-weight);
-  font-size: var(--field-font-size);
-  line-height: var(--field-line-height);
+  color: var(--field-text-color, #253017);
+  font-family: var(--field-font-family, 'Roboto'), sans-serif;
+  font-weight: var(--field-font-weight, 400);
+  font-size: var(--field-font-size, 16px);
+  line-height: var(--field-line-height, 1.5);
   background-color: transparent;
-  caret-color: var(--field-caret-color);
+  caret-color: var(--field-caret-color, #508826);
   resize: vertical;
 }
 
 .textareaField::placeholder {
-  color: var(--field-placeholder-color);
+  color: var(--field-placeholder-color, #69735d);
 }
