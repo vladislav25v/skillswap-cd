@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import cls from './AuthLayout.module.css';
 
@@ -10,44 +9,26 @@ export interface AuthLayoutProps {
   };
   leftSlot?: ReactNode;
   rightSlot?: ReactNode;
-  useOutlet?: boolean;
 }
 
-export const AuthLayout = ({
-  title,
-  stepInfo,
-  leftSlot,
-  rightSlot,
-  useOutlet = false,
-}: AuthLayoutProps) => {
-  const renderLeftContent = () => {
-    if (leftSlot) return leftSlot;
-    if (useOutlet) return <Outlet />;
-    return null;
-  };
-
+export const AuthLayout = ({ title, stepInfo, leftSlot, rightSlot }: AuthLayoutProps) => {
   return (
     <div className={cls.layout}>
-      {/* Шапка auth-страницы */}
-      <header className={cls.header}>
-        {title && <h1 className={cls.title}>{title}</h1>}
-
-        {/* Индикатор шага (если передан) */}
-        {stepInfo && (
+      {stepInfo && (
+        <header className={cls.header}>
           <div className={cls.stepIndicator}>
             <span className={cls.stepCurrent}>{stepInfo.current}</span>
             <span className={cls.stepSeparator}>/</span>
             <span className={cls.stepTotal}>{stepInfo.total}</span>
           </div>
-        )}
-      </header>
+        </header>
+      )}
 
-      {/* Основной контейнер с двумя колонками */}
       <main className={cls.main}>
-        {/* Левая колонка - форма или Outlet */}
-        <section className={cls.leftColumn}>{renderLeftContent()}</section>
-
-        {/* Правая колонка - изображение/текст */}
+        <section className={cls.leftColumn}>
+          {title && <h1 className={cls.title}>{title}</h1>}
+          {leftSlot}
+        </section>
         {rightSlot && <aside className={cls.rightColumn}>{rightSlot}</aside>}
       </main>
     </div>
