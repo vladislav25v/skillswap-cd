@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
-import clsx from 'clsx';
-import styles from './Modal.module.css';
-import { X } from 'lucide-react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import clsx from 'clsx';
+import { X } from 'lucide-react';
+import styles from './Modal.module.css';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children?: React.ReactNode;
   className?: string;
+  hasCloseButton?: boolean;
   overlayClassName?: string;
 }
 
@@ -17,6 +18,7 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
   className,
+  hasCloseButton = true,
   overlayClassName,
 }) => {
   const modalRoot = document.getElementById('modal-root') as HTMLElement;
@@ -57,14 +59,16 @@ export const Modal: React.FC<ModalProps> = ({
     >
       <div className={clsx(styles.modal, className)}>
         {/* Кнопка закрытия */}
-        <button
-          type="button"
-          onClick={onClose}
-          className={styles.modalButton}
-          aria-label="Закрыть модальное окно"
-        >
-          <X size={24} />
-        </button>
+        {hasCloseButton && (
+          <button
+            type="button"
+            onClick={onClose}
+            className={styles.modalButton}
+            aria-label="Закрыть модальное окно"
+          >
+            <X size={24} />
+          </button>
+        )}
 
         {/* Вставляем внутрь любые компоненты */}
         {children}
