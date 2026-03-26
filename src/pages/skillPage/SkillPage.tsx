@@ -12,8 +12,7 @@ import { mapSkillToPageViewModel } from '@/entities/skill/lib/map-skill-to-page-
 import type { SkillPageViewModel } from '@/entities/skill/view-model';
 import { UserCard } from '@/entities/user/ui/UserCard';
 import { ProposeExchangeButton } from '@/features/exchange-request';
-import { Footer } from '@/widgets/Footer';
-import { Header } from '@/widgets/Header';
+import { useFavoriteSkills } from '@/features/favorite-skill';
 import { SectionBlock } from '@/widgets/SectionBlock';
 import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
 import UsersListSection from '@/widgets/UsersListSection';
@@ -21,6 +20,7 @@ import styles from './SkillPage.module.css';
 
 export const SkillPage = () => {
   const { skillId } = useParams();
+  const { isSkillFavorite, toggleSkillFavorite } = useFavoriteSkills();
   const [pageViewModel, setPageViewModel] = useState<SkillPageViewModel | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -103,6 +103,10 @@ export const SkillPage = () => {
               {...pageViewModel.details}
               showFavoriteButton={true}
               showTopActions={true}
+              isFavorite={isSkillFavorite(pageViewModel.skillId)}
+              onFavoriteClick={() => {
+                void toggleSkillFavorite(pageViewModel.skillId);
+              }}
               actions={
                 <ProposeExchangeButton
                   skillId={pageViewModel.skillId}
@@ -125,11 +129,5 @@ export const SkillPage = () => {
     );
   };
 
-  return (
-    <>
-      <Header />
-      <div className={styles.pageContent}>{renderContent()}</div>
-      <Footer />
-    </>
-  );
+  return <div className={styles.pageContent}>{renderContent()}</div>;
 };

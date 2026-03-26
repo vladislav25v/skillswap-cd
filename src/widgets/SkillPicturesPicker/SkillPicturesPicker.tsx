@@ -1,7 +1,7 @@
 import styles from './SkillPicturesPicker.module.css';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
-import SkillPicturesPickerPreviews from './components/SkillPicturesPickerPreviews';
+import SkillPicturesPickerPreviews from '@/widgets/SkillPicturesPicker/components/SkillPicturesPickerPreviews';
 import { ImagePlus } from 'lucide-react';
 
 export interface SkillPicturesPickerProps {

@@ -4,4 +4,6 @@ export interface Skill {
   subcategoryId: number;
   description: string;
   images: string[];
+  createdAt: string;
+  likes: number;
 }

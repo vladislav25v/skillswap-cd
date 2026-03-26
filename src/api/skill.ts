@@ -9,6 +9,8 @@ type SkillDto = {
   subcategoryId: number | string;
   description: string;
   images: string[];
+  createdAt?: string;
+  likes?: number | string;
 };
 
 const normalizeSkill = (skill: SkillDto): Skill => ({
@@ -17,6 +19,8 @@ const normalizeSkill = (skill: SkillDto): Skill => ({
   subcategoryId: Number(skill.subcategoryId),
   description: skill.description,
   images: skill.images,
+  createdAt: skill.createdAt ?? new Date(0).toISOString(),
+  likes: Number(skill.likes ?? 0),
 });
 
 export const getSkills = async (): Promise<Skill[]> => {
