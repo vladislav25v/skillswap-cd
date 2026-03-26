@@ -2,6 +2,7 @@ import Avatar from '@/shared/ui/Avatar';
 import Button from '@/shared/ui/Button/Button';
 import { FavoriteButton } from '@/shared/ui/FavoriteButton';
 import { SkillsTags, type SkillTagItem } from '@/shared/ui/Skilltags';
+import { declension } from '@/shared/lib/declension/declension';
 import styles from './UserCard.module.css';
 
 export interface UserCardProps {
@@ -31,6 +32,8 @@ export default function UserCard({
   onDetailsClick,
   className = '',
 }: UserCardProps) {
+  const ageText = declension(age, ['год', 'года', 'лет']);
+
   return (
     <article className={`${styles.card} ${className}`.trim()}>
       <div className={styles.header}>
@@ -40,7 +43,7 @@ export default function UserCard({
           <div className={styles.meta}>
             <h2 className={styles.name}>{name}</h2>
             <p className={styles.location}>
-              {city}, {age} года
+              {city}, {age} {ageText}
             </p>
           </div>
         </div>
