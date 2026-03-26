@@ -77,6 +77,7 @@ export const CatalogPage = () => {
   const filteredUsers = filterUsers({
     users: data.users,
     filters,
+    skills: data.skills,
     subcategories: data.subcategories,
   });
 
