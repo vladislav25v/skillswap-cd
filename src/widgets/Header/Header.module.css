@@ -1,38 +1,171 @@
 .header {
-  height: 104px;
-  padding: 36px;
-  padding-bottom: 20px;
+  width: 100%;
+  background-color: var(--color-page-bg, #f9faf7);
+  border-bottom: 1px solid var(--color-toggle, #b2b9a9);
+  font-family: var(--font-family-base, Roboto, sans-serif);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 36px 36px 20px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 32px;
-  position: relative;
 }
 
-.search {
-  flex: 1;
-  min-width: 320px;
-  height: 48px;
-}
-
-.actions {
-  display: inline-flex;
+.leftSection {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0;
+  gap: 48px;
+  flex-shrink: 0;
+}
+
+.logoWrapper {
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Убираем фокус с логотипа в хедере */
+.logoWrapper:focus,
+.logoWrapper:focus-visible {
+  outline: none;
+}
+
+.searchWrapper {
+  flex: 1;
+  max-width: 600px;
+  min-width: 320px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .iconButton {
-  width: 32px;
-  height: 32px;
-  border: none;
-  background: transparent;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--color-text-primary, #253017);
   cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.iconButton:hover {
+  background-color: rgba(171, 210, 122, 0.2);
+  transform: scale(1.05);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--color-accent, #abd27a);
+  outline-offset: 2px;
+  background-color: rgba(171, 210, 122, 0.2);
 }
 
 .icon {
   width: 20px;
   height: 20px;
+  display: block;
+}
+
+.authButtons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Стили для ссылок в навигации хедера */
+.navLink {
+  font-family: var(--font-family-base, Roboto, sans-serif);
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #253017);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--color-accent-dark, #508826);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-accent, #abd27a);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 20px 32px;
+    gap: 24px;
+  }
+  .leftSection {
+    gap: 32px;
+  }
+  .searchWrapper {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-wrap: wrap;
+    padding: 16px 24px;
+    gap: 16px;
+  }
+  .leftSection {
+    order: 1;
+  }
+  .searchWrapper {
+    order: 3;
+    width: 100%;
+    min-width: 100%;
+    margin-top: 12px;
+  }
+  .rightSection {
+    order: 2;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 12px 20px;
+  }
+  .leftSection {
+    gap: 24px;
+  }
+  .rightSection {
+    gap: 12px;
+  }
+  .iconButton {
+    width: 36px;
+    height: 36px;
+  }
+  .authButtons {
+    gap: 8px;
+  }
+  .authButtons button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  .navLink {
+    font-size: 14px;
+  }
 }
