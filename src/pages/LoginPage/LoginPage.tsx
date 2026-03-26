@@ -1,20 +1,19 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '@/app/layouts/auth-layout';
+import type { AuthRedirectLocationState } from '@/features/auth/navigation';
 import { LoginForm } from '@/widgets/AuthForm';
 import bulbIcon from '@/assets/light-bulb.svg';
 import AuthInfoCard from '@/widgets/AuthInfoCard';
 
-interface LoginLocationState {
-  from?: string;
-}
-
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectPath = (location.state as LoginLocationState | null)?.from;
+  const redirectPath = (location.state as AuthRedirectLocationState | null)?.from;
 
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate('/register', {
+      state: redirectPath ? { from: redirectPath } : undefined,
+    });
   };
 
   return (

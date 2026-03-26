@@ -38,7 +38,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick, redirectP
       return;
     }
 
-    navigate(redirectPath || '/profile', { replace: true });
+    navigate(redirectPath || '/', { replace: true });
     setIsSubmitting(false);
   };
 

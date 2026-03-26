@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/app/providers/auth-context';
 import { BaseLayout } from '@/app/layouts/base-layout';
+import { buildRedirectPath } from '@/features/auth/navigation';
 import styles from './PrivateLayout.module.css';
 
 export const PrivateLayout = () => {
@@ -16,7 +17,7 @@ export const PrivateLayout = () => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: buildRedirectPath(location) }} replace />;
   }
 
   return <BaseLayout />;

@@ -11,12 +11,16 @@ import PasswordInput from '@/shared/ui/PasswordInput';
 import AuthInfoCard from '@/widgets/AuthInfoCard';
 import bulbIcon from '@/assets/light-bulb.svg';
 
-const RegPageStep1: React.FC = () => {
+interface RegPageStep1Props {
+  redirectPath?: string;
+}
+
+const RegPageStep1: React.FC<RegPageStep1Props> = ({ redirectPath }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    console.log('Регистрация:', { email, password });
+    console.log('Регистрация:', { email, password, redirectPath });
   };
 
   return (
