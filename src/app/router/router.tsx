@@ -10,6 +10,7 @@ import { ErrorPage404 } from '@/pages/ErrorPage404';
 import { ErrorPage500 } from '@/pages/ErrorPage500';
 import ProfileUserForm from '@/widgets/ProfileUserForm';
 import ProfileFavorites from '@/widgets/ProfileFavorites';
+import RegPageStep3 from '@/pages/RegisterPage/RegPageStep3';
 
 export const router = createBrowserRouter([
   {
@@ -45,12 +46,12 @@ export const router = createBrowserRouter([
   {
     path: 'register/step-2',
     element: <RegPageStep2 />,
-  },
+  }
+  */,
   {
     path: 'register/step-3',
     element: <RegPageStep3 />,
-  }
-  */,
+  },
   {
     element: <PrivateLayout />,
     children: [

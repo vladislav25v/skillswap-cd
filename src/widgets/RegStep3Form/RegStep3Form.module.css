@@ -1,0 +1,21 @@
+.form {
+  display: grid;
+  gap: 32px;
+}
+
+.formContent {
+  display: grid;
+  gap: 16px;
+}
+
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.formBtn {
+  flex-grow: 1;
+  width: calc(50% - 20px);
+  flex-basis: 140px;
+}

@@ -74,6 +74,11 @@ body,
   min-height: 100%;
 }
 
+#modal-root {
+  position: relative;
+  z-index: 30;
+}
+
 body {
   margin: 0;
   font-family: var(--font-family-base);
