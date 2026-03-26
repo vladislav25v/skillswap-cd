@@ -1,0 +1,26 @@
+.modal {
+  width: 1024px;
+  display: inline-grid;
+  gap: 40px;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--font-size-caption, 12px);
+}
+
+.panel {
+  padding: 0;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.content {
+  margin: 0;
+}
