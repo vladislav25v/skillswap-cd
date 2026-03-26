@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 export interface RegStep3FormProps {
   className?: string;
+  onSubmit: (data: SkillFormDataToApprove) => void;
 }
 
 type SkillFormData = {
@@ -24,9 +25,14 @@ type SkillFormData = {
   pictures: File[];
 };
 
+export type SkillFormDataToApprove = Omit<SkillFormData, 'categoryId' | 'subcategoryId'> & {
+  categoryName: string;
+  subcategoryName: string;
+};
+
 type SkillFormErrors = Record<keyof SkillFormData, string>;
 
-const RegStep3Form: React.FC<RegStep3FormProps> = ({ className }) => {
+const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
   const navigate = useNavigate();
   const [skillFormData, setSkillFormData] = useState<SkillFormData>({
     name: '',
@@ -131,7 +137,21 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className }) => {
     const hasErrors = Object.values(errors).some((error) => error !== '');
     if (hasErrors) return;
 
-    alert('TODO: Должен отобразиться диалог с введенными данными');
+    const mapDataToAproveData = (data: SkillFormData): SkillFormDataToApprove => {
+      return {
+        ...data,
+        categoryName:
+          categories.find((category) => {
+            return category.id === data.categoryId;
+          })?.name ?? '',
+        subcategoryName:
+          subcategories.find((subcategory) => {
+            return subcategory.id === data.subcategoryId;
+          })?.name ?? '',
+      };
+    };
+
+    onSubmit(mapDataToAproveData(skillFormData));
   };
 
   return (

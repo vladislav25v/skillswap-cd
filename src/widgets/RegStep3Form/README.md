@@ -14,9 +14,10 @@
 
 ## Props
 
-| Prop        | Type     | Default | Description                    |
-|-------------|----------|---------|--------------------------------|
-| `className` | `string` | —       | Дополнительный CSS класс формы |
+| Prop        | Type                                     | Default | Description                    |
+|-------------|------------------------------------------|---------|--------------------------------|
+| `className` | `string`                                 | —       | Дополнительный CSS класс формы |
+| `onSubmit`  | `(data: SkillFormDataToApprove) => void` | —       | Callback отправки формы        |
 
 ---
 
