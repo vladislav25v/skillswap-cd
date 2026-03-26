@@ -3,6 +3,7 @@ import { FavoriteButton } from '@/shared/ui/FavoriteButton';
 import SkillImageGallery from '@/widgets/SkillDetailsPanel/ui/SkillImageGallery.tsx';
 import styles from './SkillDetailsPanel.module.css';
 import type { SkillDetailsPanelProps } from './types.ts';
+import clsx from 'clsx';
 
 export default function SkillDetailsPanel({
   headerTitle,
@@ -18,13 +19,15 @@ export default function SkillDetailsPanel({
   isFavorite = false,
   onFavoriteClick,
   className,
+  panelClassName,
+  contentClassName,
 }: SkillDetailsPanelProps) {
   const hasHeader = Boolean(headerTitle || headerDescription);
   const hasToolbar = showFavoriteButton || showTopActions;
 
   return (
-    <div className={[styles.panelShell, className].filter(Boolean).join(' ')}>
-      <section className={styles.panel}>
+    <div className={clsx(styles.panelShell, className)}>
+      <section className={clsx(styles.panel, panelClassName)}>
         {hasHeader && (
           <header className={styles.header}>
             {headerTitle && <h2 className={styles.headerTitle}>{headerTitle}</h2>}
@@ -55,7 +58,7 @@ export default function SkillDetailsPanel({
           </div>
         )}
 
-        <div className={styles.content}>
+        <div className={clsx(styles.content, contentClassName)}>
           <div className={styles.textBlock}>
             <h1 className={styles.title}>{title}</h1>
             {meta && <p className={styles.meta}>{meta}</p>}

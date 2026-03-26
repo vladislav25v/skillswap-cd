@@ -15,7 +15,7 @@
 ## Props
 
 | Prop                 | Type         | Default | Description                              |
-| -------------------- | ------------ | ------- | ---------------------------------------- |
+|----------------------|--------------|---------|------------------------------------------|
 | `title`              | `string`     | —       | Основной заголовок карточки              |
 | `meta`               | `string`     | —       | Вторичная строка под заголовком          |
 | `description`        | `string`     | —       | Описание навыка                          |
@@ -29,6 +29,8 @@
 | `isFavorite`         | `boolean`    | `false` | Состояние `FavoriteButton`               |
 | `onFavoriteClick`    | `() => void` | —       | Обработчик клика по `FavoriteButton`     |
 | `className`          | `string`     | —       | Дополнительный класс внешней обертки     |
+| `panelClassName`     | `string`     | —       | Дополнительный класс блока panel         |
+| `contentClassName`   | `string`     | —       | Дополнительный класс блока content       |
 
 ## Структура
 
@@ -63,7 +65,8 @@ import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
   showFavoriteButton={true}
   showTopActions={true}
   isFavorite={false}
-  onFavoriteClick={() => {}}
+  onFavoriteClick={() => {
+  }}
   actions={
     <>
       <Button variant="secondary">Редактировать</Button>
