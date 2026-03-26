@@ -1,107 +1,213 @@
 .footer {
-  width: 1440px;
-  max-width: 100%;  
-  margin: 0 auto;  
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  height: 232px;
-  padding: 0;
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: 0.02em;
+  width: 100%;
+  padding: 32px 36px;
+  background-color: var(--color-surface, #fff);
+  border-top: 1px solid var(--color-toggle, #b2b9a9);
   box-sizing: border-box;
   position: relative;
 }
 
 .container {
-  position: relative;
-  width: 1440px;
-  height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  max-width: 1440px;
   margin: 0 auto;
+  width: 100%;
+  gap: 40px;
 }
 
-/* Логотип */
-.logoWrapper {
-  position: absolute;
-  left: 36px;
-  top: 32px;
-  width: 159px;
-  height: 40px;
-}
-
-/* Навигация */
-.nav {
-  position: absolute;
-  left: 384px;
-  top: 92px;
-  right: 36px;
-  bottom: 80px;
+.logoSection {
   display: flex;
+  flex-direction: column;
+  gap: 112px;
+}
+
+.logoLink {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+/* Убираем фокус с логотипа */
+.logoLink:focus,
+.logoLink:focus-visible,
+.logoLink:active {
+  outline: none;
+  text-decoration: none;
+}
+
+.copyright {
+  margin-top: auto;
+  font-family: var(--font-family-base, Roboto, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--color-text-secondary, #69735d);
+}
+
+.navSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  justify-self: end;
+  width: 100%;
+  max-width: 1020px;
+  padding-top: 4px;
+  margin-block: auto;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 324px;
-  text-align: left;
-}
-
-.columnWithMarkers .list {
-  padding-left: 20px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.columnWithMarkers .list li {
-  list-style-type: disc;
-  color: var(--color-text-primary);
-}
-
-.list {
+  gap: 12px;
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
-.link {
-  color: var(--color-text-primary);
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-body);
-  letter-spacing: 0.02em;
-  vertical-align: middle;
+.navItem {
+  position: relative;
+  list-style: none;
+}
+
+/* Стили для обычных ссылок */
+.navLink {
+  font-family: var(--font-family-base, Roboto, sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary, #253017);
   text-decoration: none;
   transition: color 0.2s ease;
+  white-space: nowrap;
+  display: inline-block;
 }
 
-.link:hover {
-  color: var(--color-accent-dark);
-  text-decoration: underline;
+.navLink:hover {
+  color: var(--color-accent-dark, #508826);
 }
 
-/* Нижняя часть */
-.bottom {
-  position: absolute;
-  left: 36px;
-  bottom: 32px;
-  text-align: left;
+.navLink:focus-visible {
+  outline: 2px solid var(--color-accent, #abd27a);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.copyright {
-  color: var(--color-text-secondary);
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-regular);
-  line-height: 16px;
-  margin: 0;
+/* Стили для кнопки "Все навыки" */
+.skillsButton {
+  font-family: var(--font-family-base, Roboto, sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary, #253017);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+}
+
+.skillsButton:hover {
+  color: var(--color-accent-dark, #508826);
+}
+
+.skillsButton:focus-visible {
+  outline: 2px solid var(--color-accent, #abd27a);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 28px 32px;
+  }
+  .navSection {
+    gap: 20px;
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 24px 24px;
+  }
+  .container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .logoSection {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .copyright {
+    margin-top: 0;
+  }
+  .navSection {
+    justify-self: start;
+    width: 100%;
+    max-width: 100%;
+    gap: 24px;
+  }
+  .column {
+    align-items: center;
+    text-align: center;
+  }
+  .navLink,
+  .skillsButton {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 20px 20px;
+  }
+  .container {
+    gap: 28px;
+  }
+  .logoSection {
+    gap: 16px;
+  }
+  .navSection {
+    gap: 20px;
+  }
+  .column {
+    gap: 10px;
+  }
+  .navLink,
+  .skillsButton {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 16px;
+  }
+  .container {
+    gap: 24px;
+  }
+  .logoSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .navSection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .column {
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+  }
+  .navLink,
+  .skillsButton {
+    white-space: normal;
+    font-size: 14px;
+  }
 }

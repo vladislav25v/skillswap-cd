@@ -4,7 +4,7 @@ import { PrivateLayout } from '@/app/layouts/private-layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import RegPageStep1 from '@/pages/RegisterPage/RegisterPageStep1';
 import { CatalogPage } from '@/pages/CatalogPage';
-import { SkillPage } from '@/pages/skillPage/SkillPage';
+import { SkillPage } from '@/pages/SkillPage/SkillPage';
 import ProfilePage from '@/pages/ProfilePage';
 import { ErrorPage404 } from '@/pages/ErrorPage404';
 import { ErrorPage500 } from '@/pages/ErrorPage500';
