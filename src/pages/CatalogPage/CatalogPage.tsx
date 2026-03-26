@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/app/store/hooks';
 import { selectFilters } from '@/features/filters/selectors';
-import { filterUsers } from '@/features/users-filter/usersFilter';
+import { filterSkills } from '@/features/users-filter/usersFilter';
 import { FilterSidebar } from '@/widgets/FilterSidebar';
 import { SectionBlock } from '@/widgets/SectionBlock';
 import UsersListSection from '@/widgets/UsersListSection';
 import Button from '@/shared/ui/Button/Button';
 import ChevronRight from '@/assets/chevron-right.svg';
 import SortIcon from '@/assets/sort.svg';
-import { UserCard } from '@/entities/user/ui/UserCard';
-import type { User } from '@/entities/user/types';
 import type { Skill } from '@/entities/skill/types';
+import type { User } from '@/entities/user/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 import type { City } from '@/entities/city/types';
 import { getUsers, getSkills, getSubcategories, getCities } from '@/api';
-import { mapUserToCardProps } from '@/entities/user/lib/mapUserToCardProps';
+import { mapSkillToCardProps } from '@/entities/skill/lib/mapSkillToCardProps';
+import { SkillCard } from '@/entities/skill/ui/SkillCard';
 import styles from './CatalogPage.module.css';
 
 type CatalogData = {
@@ -28,6 +29,7 @@ type SortMode = 'popular' | 'newest';
 type ViewMode = 'sections' | 'list';
 
 export const CatalogPage = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState<CatalogData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('sections');
@@ -74,10 +76,10 @@ export const CatalogPage = () => {
     );
   }
 
-  const filteredUsers = filterUsers({
+  const filteredSkills = filterSkills({
+    skills: data.skills,
     users: data.users,
     filters,
-    skills: data.skills,
     subcategories: data.subcategories,
   });
 
@@ -87,17 +89,22 @@ export const CatalogPage = () => {
     filters.cities.length > 0 ||
     filters.skills.length > 0;
 
-  const usersSortedByPopular = [...filteredUsers].sort((a, b) => b.likes - a.likes);
-  const usersSortedByNewest = [...filteredUsers].sort(
-    (a, b) => new Date(b.registeredAt).getTime() - new Date(a.registeredAt).getTime(),
+  const skillsSortedByPopular = [...filteredSkills].sort((a, b) => b.likes - a.likes);
+  const skillsSortedByNewest = [...filteredSkills].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 
-  const popularUsers = usersSortedByPopular.slice(0, 3);
-  const newUsers = usersSortedByNewest.slice(0, 3);
-  const recommendedUsers = filteredUsers.slice(0, 9);
+  const popularSkills = skillsSortedByPopular.slice(0, 3);
+  const newSkills = skillsSortedByNewest.slice(0, 3);
+  const recommendedSkills = filteredSkills.slice(0, 9);
 
   const shouldShowList = hasActiveFilters || viewMode === 'list';
-  const displayedUsers = sortMode === 'popular' ? usersSortedByPopular : usersSortedByNewest;
+  const displayedSkills = sortMode === 'popular' ? skillsSortedByPopular : skillsSortedByNewest;
+  const listTitle = hasActiveFilters
+    ? `Подходящие предложения: ${displayedSkills.length}`
+    : sortMode === 'popular'
+      ? 'Популярное'
+      : 'Новое';
 
   const handleShowPopular = () => {
     setViewMode('list');
@@ -113,15 +120,26 @@ export const CatalogPage = () => {
     setSortMode((prev) => (prev === 'newest' ? 'popular' : 'newest'));
   };
 
-  const renderUserCard = (user: User) => {
-    const cardProps = mapUserToCardProps({
-      user,
+  const renderSkillCard = (skill: Skill) => {
+    const cardProps = mapSkillToCardProps({
+      skill,
       skills: data.skills,
+      users: data.users,
       subcategories: data.subcategories,
       cities: data.cities,
     });
 
-    return <UserCard key={user.id} {...cardProps} />;
+    if (!cardProps) {
+      return null;
+    }
+
+    return (
+      <SkillCard
+        key={skill.id}
+        {...cardProps}
+        onDetailsClick={() => navigate(`/skill/${skill.id}`)}
+      />
+    );
   };
 
   return (
@@ -132,7 +150,7 @@ export const CatalogPage = () => {
         <SectionBlock>
           {shouldShowList ? (
             <UsersListSection
-              title="Входящие предложения"
+              title={listTitle}
               titleTagLooksLike="h1"
               headlineExtraSlot={
                 <Button
@@ -145,7 +163,7 @@ export const CatalogPage = () => {
                 </Button>
               }
             >
-              {displayedUsers.map(renderUserCard)}
+              {displayedSkills.map(renderSkillCard)}
             </UsersListSection>
           ) : (
             <>
@@ -163,7 +181,7 @@ export const CatalogPage = () => {
                   </Button>
                 }
               >
-                {popularUsers.map(renderUserCard)}
+                {popularSkills.map(renderSkillCard)}
               </UsersListSection>
 
               <UsersListSection
@@ -180,11 +198,11 @@ export const CatalogPage = () => {
                   </Button>
                 }
               >
-                {newUsers.map(renderUserCard)}
+                {newSkills.map(renderSkillCard)}
               </UsersListSection>
 
               <UsersListSection title="Рекомендуем" titleTagLooksLike="h1">
-                {recommendedUsers.map(renderUserCard)}
+                {recommendedSkills.map(renderSkillCard)}
               </UsersListSection>
             </>
           )}

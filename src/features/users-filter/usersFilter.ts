@@ -1,68 +1,64 @@
-import type { User } from '@/entities/user/types';
+import { findSkillOwner } from '@/entities/skill/lib/find-skill-owner';
 import type { Skill } from '@/entities/skill/types';
 import type { Subcategory } from '@/entities/subcategory/types';
+import type { User } from '@/entities/user/types';
 import type { FiltersState } from '@/features/filters';
 
-export interface FilterUsersParams {
+export interface FilterSkillsParams {
+  skills: Skill[];
   users: User[];
   filters: FiltersState;
-  skills: Skill[];
   subcategories: Subcategory[];
 }
 
-export const filterUsers = ({
+export const filterSkills = ({
+  skills,
   users,
   filters,
-  skills,
   subcategories,
-}: FilterUsersParams): User[] => {
+}: FilterSkillsParams): Skill[] => {
   const validSubcategoryIds =
     filters.skills.length > 0
       ? filters.skills
           .map((subcategoryId) => Number(subcategoryId))
           .filter((subcategoryId) => subcategories.some((sub) => sub.id === subcategoryId))
       : [];
-  const skillsById = new Map(skills.map((skill) => [skill.id, skill]));
 
-  return users.filter((user) => {
+  return skills.filter((skill) => {
+    const owner = findSkillOwner(users, skill.id);
+
+    if (!owner) {
+      return false;
+    }
+
     const isWantToLearn = filters.mainFilter === 'want-to-learn';
     const isCanTeach = filters.mainFilter === 'can-teach';
-    const createdSkillSubcategoryIds = user.createdSkillIds
-      .map((skillId) => skillsById.get(skillId)?.subcategoryId)
-      .filter((subcategoryId): subcategoryId is number => subcategoryId !== undefined);
-    const canTeachSelectedSubcategory = validSubcategoryIds.some((subcategoryId) =>
-      user.desiredSubcategoryIds.includes(subcategoryId),
-    );
-    const wantsToLearnSelectedSubcategory = validSubcategoryIds.some((subcategoryId) =>
-      createdSkillSubcategoryIds.includes(subcategoryId),
+    const matchesSelectedSkillSubcategory = validSubcategoryIds.includes(skill.subcategoryId);
+    const ownerWantsSelectedSubcategory = validSubcategoryIds.some((subcategoryId) =>
+      owner.desiredSubcategoryIds.includes(subcategoryId),
     );
 
-    if (filters.mainFilter !== 'all') {
-      if (
-        (isWantToLearn && user.createdSkillIds.length === 0) ||
-        (isCanTeach && user.desiredSubcategoryIds.length === 0)
-      ) {
-        return false;
-      }
+    if (isCanTeach && owner.desiredSubcategoryIds.length === 0) {
+      return false;
     }
 
     if (validSubcategoryIds.length > 0) {
       const hasMatchingSkill = isWantToLearn
-        ? wantsToLearnSelectedSubcategory
+        ? matchesSelectedSkillSubcategory
         : isCanTeach
-          ? canTeachSelectedSubcategory
-          : canTeachSelectedSubcategory || wantsToLearnSelectedSubcategory;
+          ? ownerWantsSelectedSubcategory
+          : matchesSelectedSkillSubcategory || ownerWantsSelectedSubcategory;
 
       if (!hasMatchingSkill) {
         return false;
       }
     }
 
-    if (filters.authorGender !== '' && user.gender !== filters.authorGender) {
+    if (filters.authorGender !== '' && owner.gender !== filters.authorGender) {
       return false;
     }
 
-    if (filters.cities.length > 0 && !filters.cities.includes(user.cityId)) {
+    if (filters.cities.length > 0 && !filters.cities.includes(owner.cityId)) {
       return false;
     }
 
