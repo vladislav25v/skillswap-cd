@@ -66,7 +66,7 @@ export const UserMenu = ({ user: propUser }: UserMenuProps) => {
   }, [isNotificationsOpen]);
 
   const handleFavoritesClick = () => {
-    navigate('/favorites');
+    navigate('/profile/favorites');
   };
 
   const handleNotificationsClick = () => {
