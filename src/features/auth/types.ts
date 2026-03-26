@@ -41,3 +41,7 @@ export interface UpdateProfilePayload {
   photo: string;
   about: string;
 }
+
+export interface UpdateUserDataPayload {
+  favoriteSkillIds?: number[];
+}

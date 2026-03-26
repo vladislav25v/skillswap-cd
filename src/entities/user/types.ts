@@ -12,4 +12,5 @@ export interface User {
   likes: number;
   desiredSubcategoryIds: number[];
   createdSkillIds: number[];
+  favoriteSkillIds: number[];
 }

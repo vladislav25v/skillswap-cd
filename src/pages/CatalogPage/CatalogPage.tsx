@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/app/store/hooks';
+import { useFavoriteSkills } from '@/features/favorite-skill';
 import { selectFilters } from '@/features/filters/selectors';
 import { filterSkills } from '@/features/users-filter/usersFilter';
 import { FilterSidebar } from '@/widgets/FilterSidebar';
@@ -30,6 +31,7 @@ type ViewMode = 'sections' | 'list';
 
 export const CatalogPage = () => {
   const navigate = useNavigate();
+  const { isSkillFavorite, toggleSkillFavorite } = useFavoriteSkills();
   const [data, setData] = useState<CatalogData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('sections');
@@ -137,6 +139,10 @@ export const CatalogPage = () => {
       <SkillCard
         key={skill.id}
         {...cardProps}
+        isFavorite={isSkillFavorite(skill.id)}
+        onFavoriteClick={() => {
+          void toggleSkillFavorite(skill.id);
+        }}
         onDetailsClick={() => navigate(`/skill/${skill.id}`)}
       />
     );

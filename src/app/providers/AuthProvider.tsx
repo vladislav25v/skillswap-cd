@@ -10,6 +10,7 @@ import type {
   UiActionResult,
   UpdateAccountPayload,
   UpdateProfilePayload,
+  UpdateUserDataPayload,
 } from '@/features/auth/types';
 import {
   clearStoredSession,
@@ -35,6 +36,7 @@ const buildUserPayload = (payload: RegisterPayload) => ({
   likes: 0,
   desiredSubcategoryIds: [],
   createdSkillIds: [],
+  favoriteSkillIds: [],
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -261,6 +263,43 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     [account, applySession, session, user],
   );
 
+  const updateUserData = useCallback(
+    async (payload: UpdateUserDataPayload): Promise<UiActionResult> => {
+      if (!account || !user || !session) {
+        return {
+          ok: false,
+          code: 'INVALID_SESSION',
+          message: 'РЎРµСЃСЃРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµРІР°Р»РёРґРЅР°.',
+        };
+      }
+
+      try {
+        const existingAccount = await getAccountById(account.id);
+
+        if (!existingAccount) {
+          return {
+            ok: false,
+            code: 'INVALID_SESSION',
+            message: 'РђРєРєР°СѓРЅС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµ РЅР°Р№РґРµРЅ.',
+          };
+        }
+
+        const updatedUser = await updateUser(user.id, payload);
+
+        applySession(session, existingAccount, updatedUser);
+
+        return SUCCESS_RESULT;
+      } catch {
+        return {
+          ok: false,
+          code: 'PROFILE_SAVE_FAILED',
+          message: 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕС…СЂР°РЅРёС‚СЊ РїСЂРѕС„РёР»СЊ.',
+        };
+      }
+    },
+    [account, applySession, session, user],
+  );
+
   const updateAccountData = useCallback(
     async (payload: UpdateAccountPayload): Promise<UiActionResult> => {
       if (!account || !user || !session) {
@@ -351,6 +390,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       register,
       updateAccount: updateAccountData,
       updateProfile,
+      updateUserData,
       logout,
       restoreSession,
     }),
@@ -364,6 +404,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       session,
       updateAccountData,
       updateProfile,
+      updateUserData,
       user,
     ],
   );

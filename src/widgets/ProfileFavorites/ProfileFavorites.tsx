@@ -1,44 +1,28 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getCities, getSkills, getSubcategories, getUsers } from '@/api';
+import { useAuth } from '@/app/providers/auth-context';
 import type { City } from '@/entities/city/types';
+import { mapSkillToCardProps } from '@/entities/skill/lib/mapSkillToCardProps';
+import { SkillCard } from '@/entities/skill/ui/SkillCard';
 import type { Skill } from '@/entities/skill/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 import type { User } from '@/entities/user/types';
-import { UserCard } from '@/entities/user/ui/UserCard';
-import {
-  getFavoriteUserIds,
-  toggleFavoriteUser,
-} from '@/entities/user/lib/favorites';
+import { useFavoriteSkills } from '@/features/favorite-skill';
 import { CardsGridContainer } from '@/shared/ui/CardsGridContainer';
-import { createUserSkillTags } from '@/shared/ui/Skilltags';
 
 export interface ProfileFavoritesProps {
   className?: string;
 }
 
-const getAge = (birthDate: string): number => {
-  const birth = new Date(birthDate);
-  const today = new Date();
-
-  let age = today.getFullYear() - birth.getFullYear();
-  const monthDiff = today.getMonth() - birth.getMonth();
-
-  if (
-    monthDiff < 0 ||
-    (monthDiff === 0 && today.getDate() < birth.getDate())
-  ) {
-    age -= 1;
-  }
-
-  return age;
-};
-
 const ProfileFavorites: React.FC<ProfileFavoritesProps> = ({ className }) => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { favoriteSkillIds, isSkillFavorite, toggleSkillFavorite } = useFavoriteSkills();
   const [users, setUsers] = useState<User[]>([]);
   const [cities, setCities] = useState<City[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
-  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -48,21 +32,19 @@ const ProfileFavorites: React.FC<ProfileFavoritesProps> = ({ className }) => {
       setErrorMessage(null);
 
       try {
-        const [usersData, citiesData, skillsData, subcategoriesData] =
-          await Promise.all([
-            getUsers(),
-            getCities(),
-            getSkills(),
-            getSubcategories(),
-          ]);
+        const [usersData, citiesData, skillsData, subcategoriesData] = await Promise.all([
+          getUsers(),
+          getCities(),
+          getSkills(),
+          getSubcategories(),
+        ]);
 
         setUsers(usersData);
         setCities(citiesData);
         setSkills(skillsData);
         setSubcategories(subcategoriesData);
-        setFavoriteIds(getFavoriteUserIds());
       } catch {
-        setErrorMessage('Не удалось загрузить избранных пользователей');
+        setErrorMessage('Не удалось загрузить избранные навыки.');
       } finally {
         setIsLoading(false);
       }
@@ -71,23 +53,15 @@ const ProfileFavorites: React.FC<ProfileFavoritesProps> = ({ className }) => {
     void loadData();
   }, []);
 
-  const favoriteUsers = useMemo(() => {
-    return users.filter((user) => favoriteIds.includes(Number(user.id)));
-  }, [users, favoriteIds]);
-
-  const citiesMap = useMemo(() => {
-    return new Map(cities.map((city) => [Number(city.id), city.name]));
-  }, [cities]);
-
-  const handleFavoriteClick = (userId: number) => {
-    const updatedFavorites = toggleFavoriteUser(userId);
-    setFavoriteIds(updatedFavorites);
-  };
+  const favoriteSkills = useMemo(
+    () => skills.filter((skill) => favoriteSkillIds.includes(skill.id)),
+    [favoriteSkillIds, skills],
+  );
 
   if (isLoading) {
     return (
       <CardsGridContainer className={className}>
-        <div>Загрузка избранных пользователей...</div>
+        <div>Загрузка избранных навыков...</div>
       </CardsGridContainer>
     );
   }
@@ -100,34 +74,38 @@ const ProfileFavorites: React.FC<ProfileFavoritesProps> = ({ className }) => {
     );
   }
 
-  if (favoriteUsers.length === 0) {
+  if (!user || favoriteSkills.length === 0) {
     return (
       <CardsGridContainer className={className}>
-        <div>В избранном пока нет пользователей</div>
+        <div>В избранном пока нет навыков</div>
       </CardsGridContainer>
     );
   }
 
   return (
     <CardsGridContainer className={className}>
-      {favoriteUsers.map((user) => {
-        const { teachingSkills, learningSkills } = createUserSkillTags({
-          user,
+      {favoriteSkills.map((skill) => {
+        const cardProps = mapSkillToCardProps({
+          skill,
           skills,
+          users,
           subcategories,
+          cities,
         });
 
+        if (!cardProps) {
+          return null;
+        }
+
         return (
-          <UserCard
-            key={user.id}
-            name={user.name}
-            city={citiesMap.get(Number(user.cityId)) ?? 'Не указан'}
-            age={getAge(user.birthDate)}
-            avatarSrc={user.photo}
-            teachingSkills={teachingSkills}
-            learningSkills={learningSkills}
-            isFavorite
-            onFavoriteClick={() => handleFavoriteClick(Number(user.id))}
+          <SkillCard
+            key={skill.id}
+            {...cardProps}
+            isFavorite={isSkillFavorite(skill.id)}
+            onFavoriteClick={() => {
+              void toggleSkillFavorite(skill.id);
+            }}
+            onDetailsClick={() => navigate(`/skill/${skill.id}`)}
           />
         );
       })}
