@@ -6,6 +6,7 @@ import type {
   LoginPayload,
   RegisterPayload,
   UiActionResult,
+  UpdateAccountPayload,
   UpdateProfilePayload,
 } from '@/features/auth/types';
 
@@ -17,6 +18,7 @@ export interface AuthContextValue {
   session: AuthSession | null;
   login: (payload: LoginPayload) => Promise<UiActionResult>;
   register: (payload: RegisterPayload) => Promise<UiActionResult>;
+  updateAccount: (payload: UpdateAccountPayload) => Promise<UiActionResult>;
   updateProfile: (payload: UpdateProfilePayload) => Promise<UiActionResult>;
   logout: () => void;
   restoreSession: () => Promise<void>;
