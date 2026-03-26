@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         element: <h2>О нас - тут пока пусто, не MVP</h2>,
       },
       {
-        path: 'skill/:id',
+        path: 'skill/:skillId',
         element: <SkillPage />,
       },
       {

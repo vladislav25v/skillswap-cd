@@ -12,8 +12,6 @@ import { mapSkillToPageViewModel } from '@/entities/skill/lib/map-skill-to-page-
 import type { SkillPageViewModel } from '@/entities/skill/view-model';
 import { UserCard } from '@/entities/user/ui/UserCard';
 import { ProposeExchangeButton } from '@/features/exchange-request';
-import { Footer } from '@/widgets/Footer';
-import { Header } from '@/widgets/Header';
 import { SectionBlock } from '@/widgets/SectionBlock';
 import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
 import UsersListSection from '@/widgets/UsersListSection';
@@ -125,11 +123,5 @@ export const SkillPage = () => {
     );
   };
 
-  return (
-    <>
-      <Header />
-      <div className={styles.pageContent}>{renderContent()}</div>
-      <Footer />
-    </>
-  );
+  return <div className={styles.pageContent}>{renderContent()}</div>;
 };
