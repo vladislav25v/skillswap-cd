@@ -8,6 +8,7 @@ import type {
   LoginPayload,
   RegisterPayload,
   UiActionResult,
+  UpdateAccountPayload,
   UpdateProfilePayload,
 } from '@/features/auth/types';
 import {
@@ -244,12 +245,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           };
         }
 
-        const [updatedUser, updatedAccount] = await Promise.all([
-          updateUser(existingUser.id, payload),
-          updateAccount(existingAccount.id, {}),
-        ]);
+        const updatedUser = await updateUser(existingUser.id, payload);
 
-        applySession(session, updatedAccount, updatedUser);
+        applySession(session, existingAccount, updatedUser);
 
         return SUCCESS_RESULT;
       } catch {
@@ -257,6 +255,81 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           ok: false,
           code: 'PROFILE_SAVE_FAILED',
           message: 'Не удалось сохранить профиль.',
+        };
+      }
+    },
+    [account, applySession, session, user],
+  );
+
+  const updateAccountData = useCallback(
+    async (payload: UpdateAccountPayload): Promise<UiActionResult> => {
+      if (!account || !user || !session) {
+        return {
+          ok: false,
+          code: 'INVALID_SESSION',
+          message: 'Сессия пользователя невалидна.',
+        };
+      }
+
+      try {
+        const existingAccount = await getAccountById(account.id);
+
+        if (!existingAccount) {
+          return {
+            ok: false,
+            code: 'INVALID_SESSION',
+            message: 'Аккаунт пользователя не найден.',
+          };
+        }
+
+        const existingUser = await getUserById(user.id);
+
+        if (!existingUser) {
+          return {
+            ok: false,
+            code: 'PROFILE_NOT_FOUND',
+            message: 'Профиль пользователя не найден.',
+          };
+        }
+
+        const normalizedEmail = payload.email?.trim().toLowerCase();
+
+        if (normalizedEmail && normalizedEmail !== existingAccount.email) {
+          const duplicateAccount = await getAccountByEmail(normalizedEmail);
+
+          if (duplicateAccount && duplicateAccount.id !== existingAccount.id) {
+            return {
+              ok: false,
+              code: 'EMAIL_TAKEN',
+              message: 'Пользователь с таким email уже существует.',
+            };
+          }
+        }
+
+        const nextPayload: UpdateAccountPayload = {};
+
+        if (normalizedEmail && normalizedEmail !== existingAccount.email) {
+          nextPayload.email = normalizedEmail;
+        }
+
+        if (payload.password) {
+          nextPayload.password = payload.password;
+        }
+
+        if (Object.keys(nextPayload).length === 0) {
+          return SUCCESS_RESULT;
+        }
+
+        const updatedAccount = await updateAccount(existingAccount.id, nextPayload);
+
+        applySession(session, updatedAccount, existingUser);
+
+        return SUCCESS_RESULT;
+      } catch {
+        return {
+          ok: false,
+          code: 'ACCOUNT_SAVE_FAILED',
+          message: 'Не удалось сохранить данные аккаунта.',
         };
       }
     },
@@ -276,11 +349,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       session,
       login,
       register,
+      updateAccount: updateAccountData,
       updateProfile,
       logout,
       restoreSession,
     }),
-    [account, isLoading, login, logout, register, restoreSession, session, updateProfile, user],
+    [
+      account,
+      isLoading,
+      login,
+      logout,
+      register,
+      restoreSession,
+      session,
+      updateAccountData,
+      updateProfile,
+      user,
+    ],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

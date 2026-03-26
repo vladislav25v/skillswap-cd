@@ -6,6 +6,7 @@ export type UiErrorCode =
   | 'USER_NOT_FOUND'
   | 'PROFILE_NOT_FOUND'
   | 'INVALID_SESSION'
+  | 'ACCOUNT_SAVE_FAILED'
   | 'PROFILE_SAVE_FAILED'
   | 'UNKNOWN_ERROR';
 
