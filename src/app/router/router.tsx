@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PublicLayout } from '@/app/layouts/public-layout';
 import { PrivateLayout } from '@/app/layouts/private-layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
-import RegPageStep1 from '@/pages/RegisterPage/RegisterPageStep1';
+import RegisterPage from '@/pages/RegisterPage';
 import { CatalogPage } from '@/pages/CatalogPage';
 import { SkillPage } from '@/pages/skillPage/SkillPage';
 import ProfilePage from '@/pages/ProfilePage';
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
   },
   {
     path: 'register',
-    element: <RegPageStep1 />,
+    element: <RegisterPage />,
   } /*
   ,
   {

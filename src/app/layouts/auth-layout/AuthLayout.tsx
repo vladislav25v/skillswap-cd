@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
 import cls from './AuthLayout.module.css';
+import clsx from 'clsx';
+import Title from '@/shared/ui/Title';
+import StepsProgressBar from '@/shared/ui/StepsProgressBar';
 
 export interface AuthLayoutProps {
   title?: string;
@@ -14,22 +17,23 @@ export interface AuthLayoutProps {
 export const AuthLayout = ({ title, stepInfo, leftSlot, rightSlot }: AuthLayoutProps) => {
   return (
     <div className={cls.layout}>
-      {stepInfo && (
-        <header className={cls.header}>
-          <div className={cls.stepIndicator}>
-            <span className={cls.stepCurrent}>{stepInfo.current}</span>
-            <span className={cls.stepSeparator}>/</span>
-            <span className={cls.stepTotal}>{stepInfo.total}</span>
-          </div>
-        </header>
-      )}
+      <header className={cls.header}>
+        {title ? (
+          <Title tag="h2">{title}</Title>
+        ) : (
+          stepInfo && (
+            <StepsProgressBar {...stepInfo}>
+              <Title tag="h2">
+                Шаг {stepInfo.current} из {stepInfo.total}
+              </Title>
+            </StepsProgressBar>
+          )
+        )}
+      </header>
 
       <main className={cls.main}>
-        <section className={cls.leftColumn}>
-          {title && <h1 className={cls.title}>{title}</h1>}
-          {leftSlot}
-        </section>
-        {rightSlot && <aside className={cls.rightColumn}>{rightSlot}</aside>}
+        <section className={clsx(cls.column, cls.leftColumn)}>{leftSlot}</section>
+        {rightSlot && <aside className={clsx(cls.column, cls.rightColumn)}>{rightSlot}</aside>}
       </main>
     </div>
   );

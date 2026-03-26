@@ -58,16 +58,6 @@
   gap: 12px;
 }
 
-.iconButton {
-  border: 0;
-  background: transparent;
-  color: var(--color-text-primary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
 .authError {
   margin: 0;
   font-family: var(--font-family-base);
