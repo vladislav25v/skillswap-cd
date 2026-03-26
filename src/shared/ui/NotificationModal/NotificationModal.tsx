@@ -39,7 +39,7 @@ const NotificationModal: React.FC<NotificationModalProps> = ({
     >
       {Icon && <div className={styles.iconHolder}>{<Icon className={styles.icon} />}</div>}
       <div className={styles.content}>
-        <Title>{title}</Title>
+        <Title tag="h2">{title}</Title>
         {description && <p className={styles.description}>{description}</p>}
       </div>
       <Button className={styles.button} onClick={handleClickBtn}>
