@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
-import { Modal } from '@/shared/ui/Modal';
+import Modal from '@/shared/ui/Modal';
 import Title from '@/shared/ui/Title';
 import Button from '@/shared/ui/Button/Button.tsx';
 import { PencilLine } from 'lucide-react';
@@ -21,7 +21,7 @@ const RegApproveSkillModal: React.FC<RegApproveSkillModalProps> = ({
   onApprove,
 }) => {
   return (
-    <Modal className={styles.modal} isOpen={isOpen} onClose={() => {}}>
+    <Modal className={styles.modal} isOpen={isOpen} hasCloseButton={false} onClose={() => {}}>
       <div className={styles.header}>
         <Title tag="h2">Ваше предложение</Title>
         <p className={styles.subtitle}>Пожалуйста, проверьте и подтвердите правильность данных</p>

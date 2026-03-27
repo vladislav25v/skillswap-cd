@@ -16,9 +16,17 @@ import { useFavoriteSkills } from '@/features/favorite-skill';
 import { SectionBlock } from '@/widgets/SectionBlock';
 import { SkillDetailsPanel } from '@/widgets/SkillDetailsPanel';
 import UsersListSection from '@/widgets/UsersListSection';
+import SkillCreatedSuccessNotificationModal from '@/widgets/SkillCreatedSuccessNotificationModal';
+import SkillExchangeNotificationModal from '@/widgets/SkillExchangeNotificationModal';
 import styles from './SkillPage.module.css';
 
 export const SkillPage = () => {
+  const [
+    isVisibleSkillCreatedSuccessNotificationModal,
+    setIsVisibleSkillCreatedSuccessNotificationModal,
+  ] = useState(false);
+  const [isVisibleSkillExchangeNotificationModal, setIsVisibleSkillExchangeNotificationModal] =
+    useState(false);
   const { skillId } = useParams();
   const { isSkillFavorite, toggleSkillFavorite } = useFavoriteSkills();
   const [pageViewModel, setPageViewModel] = useState<SkillPageViewModel | null>(null);
@@ -125,6 +133,16 @@ export const SkillPage = () => {
             ))}
           </UsersListSection>
         </SectionBlock>
+
+        <SkillCreatedSuccessNotificationModal
+          isOpen={isVisibleSkillCreatedSuccessNotificationModal}
+          onClickBtn={() => setIsVisibleSkillCreatedSuccessNotificationModal(false)}
+        />
+
+        <SkillExchangeNotificationModal
+          isOpen={isVisibleSkillExchangeNotificationModal}
+          onClickBtn={() => setIsVisibleSkillExchangeNotificationModal(false)}
+        />
       </>
     );
   };
