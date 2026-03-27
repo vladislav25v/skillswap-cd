@@ -43,6 +43,10 @@ const filtersSlice = createSlice({
       state.mainFilter = action.payload;
     },
 
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
+    },
+
     setAuthorGender: (state, action: PayloadAction<string>) => {
       state.authorGender = action.payload;
     },
@@ -60,6 +64,7 @@ const filtersSlice = createSlice({
 
     resetFilters: (state) => {
       state.mainFilter = initialFilterState.mainFilter;
+      state.searchQuery = initialFilterState.searchQuery;
       state.skills = [...initialFilterState.skills];
       state.authorGender = initialFilterState.authorGender;
       state.cities = [...initialFilterState.cities];
@@ -68,6 +73,9 @@ const filtersSlice = createSlice({
     setFilters: (state, action: PayloadAction<Partial<FiltersState>>) => {
       if (action.payload.mainFilter !== undefined) {
         state.mainFilter = action.payload.mainFilter;
+      }
+      if (action.payload.searchQuery !== undefined) {
+        state.searchQuery = action.payload.searchQuery;
       }
       if (action.payload.skills !== undefined) {
         state.skills = action.payload.skills;
@@ -86,6 +94,7 @@ export const {
   toggleSubcategorySelection,
   toggleCategorySelection,
   setMainFilter,
+  setSearchQuery,
   setAuthorGender,
   toggleCitySelection,
   resetFilters,

@@ -1,4 +1,5 @@
 import { findSkillOwner } from '@/entities/skill/lib/find-skill-owner';
+import type { City } from '@/entities/city/types';
 import type { Skill } from '@/entities/skill/types';
 import type { Subcategory } from '@/entities/subcategory/types';
 import type { User } from '@/entities/user/types';
@@ -9,6 +10,7 @@ export interface FilterSkillsParams {
   users: User[];
   filters: FiltersState;
   subcategories: Subcategory[];
+  cities: City[];
 }
 
 export const filterSkills = ({
@@ -16,6 +18,7 @@ export const filterSkills = ({
   users,
   filters,
   subcategories,
+  cities,
 }: FilterSkillsParams): Skill[] => {
   const validSubcategoryIds =
     filters.skills.length > 0
@@ -23,6 +26,7 @@ export const filterSkills = ({
           .map((subcategoryId) => Number(subcategoryId))
           .filter((subcategoryId) => subcategories.some((sub) => sub.id === subcategoryId))
       : [];
+  const normalizedSearchQuery = filters.searchQuery.trim().toLowerCase();
 
   return skills.filter((skill) => {
     const owner = findSkillOwner(users, skill.id);
@@ -30,6 +34,11 @@ export const filterSkills = ({
     if (!owner) {
       return false;
     }
+
+    const skillSubcategory = subcategories.find(
+      (subcategory) => subcategory.id === skill.subcategoryId,
+    );
+    const ownerCity = cities.find((city) => city.id === owner.cityId);
 
     const isWantToLearn = filters.mainFilter === 'want-to-learn';
     const isCanTeach = filters.mainFilter === 'can-teach';
@@ -60,6 +69,21 @@ export const filterSkills = ({
 
     if (filters.cities.length > 0 && !filters.cities.includes(owner.cityId)) {
       return false;
+    }
+
+    if (normalizedSearchQuery !== '') {
+      const searchableValues = [
+        skill.title,
+        skillSubcategory?.name ?? '',
+        owner.name,
+        ownerCity?.name ?? '',
+      ].map((value) => value.trim().toLowerCase());
+
+      const matchesSearch = searchableValues.some((value) => value.includes(normalizedSearchQuery));
+
+      if (!matchesSearch) {
+        return false;
+      }
     }
 
     return true;

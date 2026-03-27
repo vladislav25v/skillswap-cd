@@ -143,6 +143,7 @@ function DropMenu({
     dispatch(
       setFilters({
         mainFilter: 'all',
+        searchQuery: '',
         skills: section.items.map((item) => String(item.id)),
         authorGender: '',
         cities: [],
@@ -156,6 +157,7 @@ function DropMenu({
     dispatch(
       setFilters({
         mainFilter: 'all',
+        searchQuery: '',
         skills: [String(subcategoryId)],
         authorGender: '',
         cities: [],

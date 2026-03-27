@@ -1,5 +1,6 @@
 export interface FiltersState {
   mainFilter: string;
+  searchQuery: string;
   skills: string[];
   authorGender: string;
   cities: number[];
@@ -13,6 +14,7 @@ export interface ToggleCategoryPayload {
 
 export const initialFilterState: FiltersState = {
   mainFilter: 'all',
+  searchQuery: '',
   skills: [],
   authorGender: '',
   cities: [],

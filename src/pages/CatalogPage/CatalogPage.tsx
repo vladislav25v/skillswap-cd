@@ -83,10 +83,12 @@ export const CatalogPage = () => {
     users: data.users,
     filters,
     subcategories: data.subcategories,
+    cities: data.cities,
   });
 
   const hasActiveFilters =
     filters.mainFilter !== 'all' ||
+    Boolean(filters.searchQuery.trim()) ||
     Boolean(filters.authorGender) ||
     filters.cities.length > 0 ||
     filters.skills.length > 0;

@@ -1,6 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { useAuth } from '@/app/providers/auth-context';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { selectSearchQuery, setSearchQuery } from '@/features/filters';
 import styles from './Header.module.css';
 import { Logo } from '@/shared/ui/Logo/Logo';
 import Nav from '@/shared/ui/Nav/Nav';
@@ -16,7 +18,9 @@ interface HeaderProps {
 export function Header({ className }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
   const { user, isAuthenticated, account } = useAuth();
+  const searchQuery = useAppSelector(selectSearchQuery);
 
   const handleLoginClick = () => {
     navigate('/login', { state: { from: location.pathname } });
@@ -28,6 +32,26 @@ export function Header({ className }: HeaderProps) {
 
   const handleLogoClick = () => {
     navigate('/');
+  };
+
+  const openCatalogIfNeeded = () => {
+    if (location.pathname !== '/') {
+      navigate('/');
+    }
+  };
+
+  const handleSearchChange = (value: string) => {
+    dispatch(setSearchQuery(value));
+
+    if (value.trim() !== '') {
+      openCatalogIfNeeded();
+    }
+  };
+
+  const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      openCatalogIfNeeded();
+    }
   };
 
   const userForMenu =
@@ -51,7 +75,12 @@ export function Header({ className }: HeaderProps) {
         </div>
 
         <div className={styles.searchWrapper}>
-          <SearchInput placeholder="Искать навык" />
+          <SearchInput
+            placeholder="Искать навык"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={handleSearchKeyDown}
+          />
         </div>
 
         <div className={styles.rightSection}>
