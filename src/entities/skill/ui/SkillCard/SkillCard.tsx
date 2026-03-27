@@ -1,4 +1,5 @@
 import Avatar from '@/shared/ui/Avatar';
+import { declension } from '@/shared/lib/declension';
 import Button from '@/shared/ui/Button/Button';
 import { FavoriteButton } from '@/shared/ui/FavoriteButton';
 import { SkillsTags, type SkillTagItem } from '@/shared/ui/Skilltags';
@@ -31,6 +32,8 @@ export default function SkillCard({
   onDetailsClick,
   className = '',
 }: SkillCardProps) {
+  const ageText = declension(age, ['год', 'года', 'лет']);
+
   return (
     <article className={`${styles.card} ${className}`.trim()}>
       <div className={styles.header}>
@@ -40,7 +43,7 @@ export default function SkillCard({
           <div className={styles.meta}>
             <h2 className={styles.name}>{name}</h2>
             <p className={styles.location}>
-              {city}, {age} года
+              {city}, {age} {ageText}
             </p>
           </div>
         </div>
