@@ -10,6 +10,9 @@ import { ErrorPage404 } from '@/pages/ErrorPage404';
 import { ErrorPage500 } from '@/pages/ErrorPage500';
 import ProfileUserForm from '@/widgets/ProfileUserForm';
 import ProfileFavorites from '@/widgets/ProfileFavorites';
+import ProfileExchanges from '@/widgets/ProfileExchanges';
+import ProfileRequests from '@/widgets/ProfileRequests';
+import ProfileSkills from '@/widgets/ProfileSkills';
 import RegPageStep3 from '@/pages/RegisterPage/RegPageStep3';
 import RegPageStep2 from '@/pages/RegisterPage/RegisterPageStep2';
 
@@ -60,6 +63,9 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <ProfileUserForm /> },
           { path: 'favorites', element: <ProfileFavorites /> },
+          { path: 'requests', element: <ProfileRequests /> },
+          { path: 'exchanges', element: <ProfileExchanges /> },
+          { path: 'skills', element: <ProfileSkills /> },
         ],
       },
     ],

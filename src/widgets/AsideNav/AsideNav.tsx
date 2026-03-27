@@ -12,12 +12,12 @@ const AsideNav: React.FC<AsideNavProps> = ({ className }) => {
   return (
     <ul className={clsx(styles.nav, className)}>
       <li>
-        <AsideLink to={'empty'} icon={<Mail className={styles.icon} />}>
+        <AsideLink to={'requests'} icon={<Mail className={styles.icon} />}>
           Заявки
         </AsideLink>
       </li>
       <li>
-        <AsideLink to={'empty'} icon={<MessageSquareText className={styles.icon} />}>
+        <AsideLink to={'exchanges'} icon={<MessageSquareText className={styles.icon} />}>
           Мои обмены
         </AsideLink>
       </li>
@@ -27,7 +27,7 @@ const AsideNav: React.FC<AsideNavProps> = ({ className }) => {
         </AsideLink>
       </li>
       <li>
-        <AsideLink to={'empty'} icon={<Lightbulb className={styles.icon} />}>
+        <AsideLink to={'skills'} icon={<Lightbulb className={styles.icon} />}>
           Мои навыки
         </AsideLink>
       </li>

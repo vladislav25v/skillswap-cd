@@ -16,6 +16,7 @@ export interface SkillCardProps {
   detailsButtonText?: string;
   onFavoriteClick?: () => void;
   onDetailsClick?: () => void;
+  showDetailsButton?: boolean;
   className?: string;
 }
 
@@ -30,6 +31,7 @@ export default function SkillCard({
   detailsButtonText = 'Подробнее',
   onFavoriteClick,
   onDetailsClick,
+  showDetailsButton = true,
   className = '',
 }: SkillCardProps) {
   const ageText = declension(age, ['год', 'года', 'лет']);
@@ -62,9 +64,11 @@ export default function SkillCard({
         className={styles.skills}
       />
 
-      <Button variant="primary" onClick={onDetailsClick} className={styles.detailsButton}>
-        {detailsButtonText}
-      </Button>
+      {showDetailsButton && (
+        <Button variant="primary" onClick={onDetailsClick} className={styles.detailsButton}>
+          {detailsButtonText}
+        </Button>
+      )}
     </article>
   );
 }

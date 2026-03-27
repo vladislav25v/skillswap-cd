@@ -42,16 +42,28 @@ const getSimilarUserCards = ({
 
   return users
     .filter((user) => user.id !== targetOwnerId)
-    .filter((user) => user.createdSkillIds.some((skillId) => similarSkillIds.has(skillId)))
+    .map((user) => ({
+      user,
+      targetSkillId: user.createdSkillIds.find((skillId) => similarSkillIds.has(skillId)),
+    }))
+    .filter(
+      (
+        item,
+      ): item is {
+        user: User;
+        targetSkillId: number;
+      } => item.targetSkillId !== undefined,
+    )
     .slice(0, 4)
-    .map((user) =>
-      mapUserToUserCardViewModel({
+    .map(({ user, targetSkillId }) => ({
+      ...mapUserToUserCardViewModel({
         user,
         skills,
         subcategories,
         cities,
       }),
-    );
+      targetSkillId,
+    }));
 };
 
 export const mapSkillToPageViewModel = ({

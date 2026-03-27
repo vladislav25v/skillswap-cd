@@ -1,5 +1,6 @@
 import type { Category } from '@/entities/category/types';
 import { request } from '@/api/request';
+import { normalizeEntityId } from '@/api/id-normalizer';
 
 type CategoryDto = {
   id: number | string;
@@ -7,7 +8,8 @@ type CategoryDto = {
 };
 
 const normalizeCategory = (category: CategoryDto): Category => ({
-  id: Number(category.id),
+  rawId: category.id,
+  id: normalizeEntityId('categories', category.id),
   name: category.name,
 });
 

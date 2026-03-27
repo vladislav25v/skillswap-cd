@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   getCategories,
   getCities,
@@ -9,6 +9,7 @@ import {
   getUsers,
 } from '@/api';
 import { mapSkillToPageViewModel } from '@/entities/skill/lib/map-skill-to-page-view-model';
+import { SkillCard } from '@/entities/skill/ui/SkillCard';
 import type { SkillPageViewModel } from '@/entities/skill/view-model';
 import { UserCard } from '@/entities/user/ui/UserCard';
 import { ProposeExchangeButton } from '@/features/exchange-request';
@@ -21,6 +22,7 @@ import SkillExchangeNotificationModal from '@/widgets/SkillExchangeNotificationM
 import styles from './SkillPage.module.css';
 
 export const SkillPage = () => {
+  const navigate = useNavigate();
   const [
     isVisibleSkillCreatedSuccessNotificationModal,
     setIsVisibleSkillCreatedSuccessNotificationModal,
@@ -103,7 +105,11 @@ export const SkillPage = () => {
       <>
         <div className={styles.skillSection}>
           <SectionBlock className={styles.userSection}>
-            <UserCard {...pageViewModel.ownerCard} className={styles.ownerCard} />
+            <SkillCard
+              {...pageViewModel.ownerCard}
+              className={styles.ownerCard}
+              showDetailsButton={false}
+            />
           </SectionBlock>
 
           <div className={styles.skillContainer}>
@@ -128,9 +134,24 @@ export const SkillPage = () => {
 
         <SectionBlock className={styles.similarSection}>
           <UsersListSection title="Похожие предложения">
-            {pageViewModel.similarUserCards.map((userCard) => (
-              <UserCard key={userCard.id} {...userCard} className={styles.similarUserCard} />
-            ))}
+            {pageViewModel.similarUserCards.map((userCard) => {
+              const { targetSkillId, ...cardProps } = userCard;
+
+              return (
+                <UserCard
+                  key={userCard.id}
+                  {...cardProps}
+                  className={styles.similarUserCard}
+                  onDetailsClick={
+                    targetSkillId
+                      ? () => {
+                          navigate(`/skill/${targetSkillId}`);
+                        }
+                      : undefined
+                  }
+                />
+              );
+            })}
           </UsersListSection>
         </SectionBlock>
 

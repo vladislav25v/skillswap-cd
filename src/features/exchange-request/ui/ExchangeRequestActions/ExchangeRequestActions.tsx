@@ -34,7 +34,10 @@ export const ExchangeRequestActions = ({
       });
 
       await onUpdated?.();
-      window.alert(status === 'in_progress' ? 'Заявка принята.' : 'Заявка отклонена.');
+
+      if (status === 'rejected') {
+        window.alert('Заявка отклонена.');
+      }
     } catch {
       window.alert('Не удалось обновить статус заявки.');
     } finally {

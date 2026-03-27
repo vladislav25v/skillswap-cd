@@ -1,4 +1,6 @@
 import type { Skill } from '@/entities/skill/types';
+import { getSubcategories } from '@/api/subcategory';
+import { normalizeEntityId } from '@/api/id-normalizer';
 import { request } from '@/api/request';
 
 export const SKILL_API_PATH = '/skills';
@@ -23,45 +25,54 @@ type SkillDto = {
 };
 
 const normalizeSkill = (skill: SkillDto): Skill => ({
-  id: Number(skill.id),
+  rawId: skill.id,
+  id: normalizeEntityId('skills', skill.id),
   title: skill.title,
-  subcategoryId: Number(skill.subcategoryId),
+  subcategoryId: normalizeEntityId('subcategories', skill.subcategoryId),
   description: skill.description,
   images: skill.images,
   createdAt: skill.createdAt ?? new Date(0).toISOString(),
   likes: Number(skill.likes ?? 0),
 });
 
+const getRawSkills = async (): Promise<SkillDto[]> => request<SkillDto[]>(SKILL_API_PATH);
+
 export const getSkills = async (): Promise<Skill[]> => {
-  const skills = await request<SkillDto[]>(SKILL_API_PATH);
+  const skills = await getRawSkills();
 
   return skills.map(normalizeSkill);
 };
 
 export const getSkillById = async (skillId: number): Promise<Skill | null> => {
-  try {
-    const skill = await request<SkillDto>(`${SKILL_API_PATH}/${skillId}`);
+  const skills = await getRawSkills();
+  const skill = skills.find((item) => normalizeEntityId('skills', item.id) === skillId);
 
-    return normalizeSkill(skill);
-  } catch (error) {
-    if (error instanceof Error && error.message.endsWith('404')) {
-      return null;
-    }
-
-    throw error;
-  }
+  return skill ? normalizeSkill(skill) : null;
 };
 
-export const createSkill = async (payload: CreateSkillPayload): Promise<Skill> =>
-  normalizeSkill(
+export const createSkill = async (payload: CreateSkillPayload): Promise<Skill> => {
+  const subcategories = await getSubcategories();
+  const subcategory = subcategories.find((item) => item.id === payload.subcategoryId);
+
+  return normalizeSkill(
     await request<SkillDto>(SKILL_API_PATH, {
       method: 'POST',
-      body: payload,
+      body: {
+        ...payload,
+        subcategoryId: subcategory?.rawId ?? payload.subcategoryId,
+      },
     }),
   );
+};
 
 export const deleteSkill = async (skillId: number): Promise<void> => {
-  await request<unknown>(`${SKILL_API_PATH}/${skillId}`, {
+  const skill = await getSkillById(skillId);
+
+  if (!skill) {
+    return;
+  }
+
+  await request<unknown>(`${SKILL_API_PATH}/${skill.rawId}`, {
     method: 'DELETE',
   });
 };

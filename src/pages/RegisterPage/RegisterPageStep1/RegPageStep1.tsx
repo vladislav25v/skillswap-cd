@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAccountByEmail } from '@/api';
-import { useAppDispatch } from '@/app/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import {
+  selectRegisterStep1,
   setCurrentStep,
   setRedirectPath,
   setStep1Field,
@@ -27,8 +28,9 @@ interface RegPageStep1Props {
 const RegPageStep1: React.FC<RegPageStep1Props> = ({ redirectPath }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const step1 = useAppSelector(selectRegisterStep1);
+  const [email, setEmail] = useState(step1.email);
+  const [password, setPassword] = useState(step1.password);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [isCheckingEmail, setIsCheckingEmail] = useState(false);
 
@@ -36,6 +38,14 @@ const RegPageStep1: React.FC<RegPageStep1Props> = ({ redirectPath }) => {
     dispatch(setCurrentStep(1));
     dispatch(setRedirectPath(redirectPath ?? null));
   }, [dispatch, redirectPath]);
+
+  useEffect(() => {
+    setEmail(step1.email);
+  }, [step1.email]);
+
+  useEffect(() => {
+    setPassword(step1.password);
+  }, [step1.password]);
 
   const handleSubmit = async () => {
     if (isCheckingEmail) {
@@ -115,7 +125,9 @@ const RegPageStep1: React.FC<RegPageStep1Props> = ({ redirectPath }) => {
               value={email}
               error={errors.email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setEmail(e.target.value);
+                const nextEmail = e.target.value;
+                setEmail(nextEmail);
+                dispatch(setStep1Field({ field: 'email', value: nextEmail }));
                 if (errors.email) {
                   setErrors((prev) => ({ ...prev, email: undefined }));
                 }
@@ -134,6 +146,8 @@ const RegPageStep1: React.FC<RegPageStep1Props> = ({ redirectPath }) => {
               error={errors.password}
               onChange={(value) => {
                 setPassword(value);
+                dispatch(setStep1Field({ field: 'password', value }));
+                dispatch(setStep1Field({ field: 'confirmPassword', value }));
                 if (errors.password) {
                   setErrors((prev) => ({ ...prev, password: undefined }));
                 }

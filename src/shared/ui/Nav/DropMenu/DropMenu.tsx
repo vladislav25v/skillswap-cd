@@ -8,7 +8,10 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { selectSkills, setFilters } from '@/features/filters';
 
 import styles from './DropMenu.module.css';
 
@@ -61,11 +64,23 @@ const focusableSelector = [
 
 type SectionCardProps = {
   section: MenuSection;
+  selectedSkills: string[];
+  onCategoryClick: (section: MenuSection) => void;
+  onSubcategoryClick: (subcategoryId: number) => void;
 };
 
-function SectionCard({ section }: SectionCardProps) {
+function SectionCard({
+  section,
+  selectedSkills,
+  onCategoryClick,
+  onSubcategoryClick,
+}: SectionCardProps) {
   const Icon = sectionIcons[section.id] ?? BriefcaseBusiness;
   const toneClass = sectionToneClasses[section.id] ?? '';
+  const allItemsSelected =
+    section.items.length > 0 &&
+    section.items.every((item) => selectedSkills.includes(String(item.id)));
+  const anyItemSelected = section.items.some((item) => selectedSkills.includes(String(item.id)));
 
   return (
     <section className={styles.section}>
@@ -73,11 +88,25 @@ function SectionCard({ section }: SectionCardProps) {
         <Icon className={styles.icon} />
       </span>
       <div className={styles.sectionBody}>
-        <h3 className={styles.sectionTitle}>{section.title}</h3>
+        <button
+          type="button"
+          className={clsx(styles.sectionTitleButton, {
+            [styles.sectionTitleButtonActive]: allItemsSelected || anyItemSelected,
+          })}
+          onClick={() => onCategoryClick(section)}
+        >
+          <span className={styles.sectionTitle}>{section.title}</span>
+        </button>
         <ul className={styles.list}>
           {section.items.map((item) => (
             <li key={item.id} className={styles.listItem}>
-              <button type="button" className={styles.linkButton}>
+              <button
+                type="button"
+                className={clsx(styles.linkButton, {
+                  [styles.linkButtonActive]: selectedSkills.includes(String(item.id)),
+                })}
+                onClick={() => onSubcategoryClick(item.id)}
+              >
                 {item.name}
               </button>
             </li>
@@ -96,11 +125,44 @@ function DropMenu({
   isLoading = false,
   error = null,
 }: DropMenuProps) {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const selectedSkills = useAppSelector(selectSkills);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const [isMounted, setIsMounted] = useState(isOpen);
   const [isVisible, setIsVisible] = useState(false);
   const leftColumnSections = sections.filter((_, index) => index % 2 === 0);
   const rightColumnSections = sections.filter((_, index) => index % 2 !== 0);
+
+  const closeAndOpenCatalog = () => {
+    onClose();
+    navigate('/');
+  };
+
+  const handleCategoryClick = (section: MenuSection) => {
+    dispatch(
+      setFilters({
+        mainFilter: 'all',
+        skills: section.items.map((item) => String(item.id)),
+        authorGender: '',
+        cities: [],
+      }),
+    );
+
+    closeAndOpenCatalog();
+  };
+
+  const handleSubcategoryClick = (subcategoryId: number) => {
+    dispatch(
+      setFilters({
+        mainFilter: 'all',
+        skills: [String(subcategoryId)],
+        authorGender: '',
+        cities: [],
+      }),
+    );
+    closeAndOpenCatalog();
+  };
 
   useEffect(() => {
     let frameId: number | null = null;
@@ -245,12 +307,24 @@ function DropMenu({
         <div className={styles.sections}>
           <div className={styles.column}>
             {leftColumnSections.map((section) => (
-              <SectionCard key={section.id} section={section} />
+              <SectionCard
+                key={section.id}
+                section={section}
+                selectedSkills={selectedSkills}
+                onCategoryClick={handleCategoryClick}
+                onSubcategoryClick={handleSubcategoryClick}
+              />
             ))}
           </div>
           <div className={styles.column}>
             {rightColumnSections.map((section) => (
-              <SectionCard key={section.id} section={section} />
+              <SectionCard
+                key={section.id}
+                section={section}
+                selectedSkills={selectedSkills}
+                onCategoryClick={handleCategoryClick}
+                onSubcategoryClick={handleSubcategoryClick}
+              />
             ))}
           </div>
         </div>

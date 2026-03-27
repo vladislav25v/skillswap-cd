@@ -2,6 +2,7 @@ export type UserGender = 'male' | 'female';
 
 export interface User {
   id: number;
+  rawId: string | number;
   name: string;
   birthDate: string;
   cityId: number;

@@ -1,5 +1,6 @@
 import type { Subcategory } from '@/entities/subcategory/types';
 import { request } from '@/api/request';
+import { normalizeEntityId } from '@/api/id-normalizer';
 
 type SubcategoryDto = {
   id: number | string;
@@ -11,8 +12,9 @@ export async function getSubcategories(): Promise<Subcategory[]> {
   const subcategories = await request<SubcategoryDto[]>('/subcategories');
 
   return subcategories.map((subcategory) => ({
-    id: Number(subcategory.id),
-    categoryId: Number(subcategory.categoryId),
+    rawId: subcategory.id,
+    id: normalizeEntityId('subcategories', subcategory.id),
+    categoryId: normalizeEntityId('categories', subcategory.categoryId),
     name: subcategory.name,
   }));
 }

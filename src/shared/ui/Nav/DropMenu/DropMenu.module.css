@@ -79,6 +79,16 @@
   padding-inline-start: 14px;
 }
 
+.sectionTitleButton {
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+}
+
 .iconWrap {
   display: inline-flex;
   align-items: center;
@@ -139,10 +149,14 @@
   color: var(--color-accent-dark, #508826);
 }
 
-.sectionTitle:focus-visible {
+.sectionTitleButton:focus-visible {
   outline: 2px solid var(--color-accent, #abd27a);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+.sectionTitleButtonActive .sectionTitle {
+  color: var(--color-accent-dark, #508826);
 }
 
 .list {
@@ -180,6 +194,11 @@
 
 .linkButton:hover {
   color: var(--color-accent-dark, #508826);
+}
+
+.linkButtonActive {
+  color: var(--color-accent-dark, #508826);
+  font-weight: var(--font-weight-medium, 500);
 }
 
 .linkButton:focus-visible {

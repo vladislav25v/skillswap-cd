@@ -10,4 +10,5 @@ export interface UserCardViewModel {
   teachingSkills: SkillTagItem[];
   learningSkills: SkillTagItem[];
   detailsButtonText?: string;
+  targetSkillId?: number;
 }
