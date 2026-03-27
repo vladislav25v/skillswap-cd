@@ -4,6 +4,7 @@ export { request } from '@/api/request';
 export {
   ACCOUNT_API_PATH,
   createAccount,
+  deleteAccount,
   getAccountByEmail,
   getAccountById,
   updateAccount,
@@ -32,7 +33,8 @@ export {
 } from '@/api/exchange';
 export type { CreateExchangeRequestPayload, UpdateExchangeRequestPayload } from '@/api/exchange';
 
-export { getSkillById, getSkills } from '@/api/skill';
+export { createSkill, deleteSkill, getSkillById, getSkills } from '@/api/skill';
+export type { CreateSkillPayload } from '@/api/skill';
 export { getCategories } from '@/api/category';
 export { getSubcategories } from '@/api/subcategory';
 export { getCities } from '@/api/city';

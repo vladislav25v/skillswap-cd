@@ -12,6 +12,8 @@ export interface RegApproveSkillModalProps {
   data: SkillFormDataToApprove;
   onBack: () => void;
   onApprove: () => void;
+  error?: string | null;
+  isSubmitting?: boolean;
 }
 
 const RegApproveSkillModal: React.FC<RegApproveSkillModalProps> = ({
@@ -19,6 +21,8 @@ const RegApproveSkillModal: React.FC<RegApproveSkillModalProps> = ({
   data,
   onBack,
   onApprove,
+  error,
+  isSubmitting = false,
 }) => {
   return (
     <Modal className={styles.modal} isOpen={isOpen} hasCloseButton={false} onClose={() => {}}>
@@ -39,10 +43,13 @@ const RegApproveSkillModal: React.FC<RegApproveSkillModalProps> = ({
             <Button variant="secondary" onClick={onBack}>
               Редактировать <PencilLine />
             </Button>
-            <Button onClick={onApprove}>Готов</Button>
+            <Button onClick={onApprove} disabled={isSubmitting}>
+              {isSubmitting ? 'Сохраняем...' : 'Готов'}
+            </Button>
           </>
         }
       />
+      {error ? <p className={styles.error}>{error}</p> : null}
     </Modal>
   );
 };

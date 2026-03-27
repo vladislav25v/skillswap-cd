@@ -1,0 +1,50 @@
+.form {
+  display: grid;
+  gap: 32px;
+}
+
+.avatarBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.avatarTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #c7d9a4;
+  border-radius: 50%;
+  background: #eef7d9;
+  color: #5e7f21;
+  cursor: pointer;
+}
+
+.fields {
+  display: grid;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.actionButton {
+  flex-grow: 1;
+  flex-basis: 140px;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

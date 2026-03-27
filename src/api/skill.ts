@@ -3,6 +3,15 @@ import { request } from '@/api/request';
 
 export const SKILL_API_PATH = '/skills';
 
+export interface CreateSkillPayload {
+  title: string;
+  subcategoryId: number;
+  description: string;
+  images: string[];
+  createdAt: string;
+  likes: number;
+}
+
 type SkillDto = {
   id: number | string;
   title: string;
@@ -41,4 +50,18 @@ export const getSkillById = async (skillId: number): Promise<Skill | null> => {
 
     throw error;
   }
+};
+
+export const createSkill = async (payload: CreateSkillPayload): Promise<Skill> =>
+  normalizeSkill(
+    await request<SkillDto>(SKILL_API_PATH, {
+      method: 'POST',
+      body: payload,
+    }),
+  );
+
+export const deleteSkill = async (skillId: number): Promise<void> => {
+  await request<unknown>(`${SKILL_API_PATH}/${skillId}`, {
+    method: 'DELETE',
+  });
 };

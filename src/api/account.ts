@@ -64,3 +64,9 @@ export const updateAccount = async (
       body: payload,
     }),
   );
+
+export const deleteAccount = async (accountId: number): Promise<void> => {
+  await request<unknown>(`${ACCOUNT_API_PATH}/${accountId}`, {
+    method: 'DELETE',
+  });
+};

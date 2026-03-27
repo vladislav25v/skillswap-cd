@@ -11,6 +11,7 @@ import { ErrorPage500 } from '@/pages/ErrorPage500';
 import ProfileUserForm from '@/widgets/ProfileUserForm';
 import ProfileFavorites from '@/widgets/ProfileFavorites';
 import RegPageStep3 from '@/pages/RegisterPage/RegPageStep3';
+import RegPageStep2 from '@/pages/RegisterPage/RegisterPageStep2';
 
 export const router = createBrowserRouter([
   {
@@ -41,13 +42,11 @@ export const router = createBrowserRouter([
   {
     path: 'register',
     element: <RegisterPage />,
-  } /*
-  ,
+  },
   {
     path: 'register/step-2',
     element: <RegPageStep2 />,
-  }
-  */,
+  },
   {
     path: 'register/step-3',
     element: <RegPageStep3 />,

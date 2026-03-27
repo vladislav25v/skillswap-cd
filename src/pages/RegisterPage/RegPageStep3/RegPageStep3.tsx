@@ -1,4 +1,17 @@
-import React, { useState } from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/app/providers/auth-context';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import {
+  selectIsRegisterStep1Valid,
+  selectIsRegisterStep2Valid,
+  selectRegisterMeta,
+  setCurrentStep,
+  setStep3Field,
+  submitRegistration,
+} from '@/features/auth/register-draft';
+import { fileToBase64 } from '@/shared/lib/file/fileToBase64';
 import { AuthLayout } from '@/app/layouts/auth-layout';
 import AuthInfoCard from '@/widgets/AuthInfoCard';
 import schoolBoard from '@/assets/school-board.svg';
@@ -6,10 +19,36 @@ import RegStep3Form, { type SkillFormDataToApprove } from '@/widgets/RegStep3For
 import RegApproveSkillModal from '@/widgets/RegApproveSkillModal';
 
 export const RegPageStep3: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { restoreSession } = useAuth();
+  const canOpenStep1 = useAppSelector(selectIsRegisterStep1Valid);
+  const canOpenStep2 = useAppSelector(selectIsRegisterStep2Valid);
+  const meta = useAppSelector(selectRegisterMeta);
   const [isModalOpen, setIModalOpen] = useState(false);
   const [skillData, setSkillData] = useState<SkillFormDataToApprove | null>(null);
 
-  const handleFormSubmit = (data: SkillFormDataToApprove) => {
+  useEffect(() => {
+    dispatch(setCurrentStep(3));
+  }, [dispatch]);
+
+  if (!canOpenStep1) {
+    return <Navigate to="/register" replace />;
+  }
+
+  if (!canOpenStep2) {
+    return <Navigate to="/register/step-2" replace />;
+  }
+
+  const handleFormSubmit = async (data: SkillFormDataToApprove) => {
+    const pictures = await Promise.all(data.pictures.map((picture) => fileToBase64(picture)));
+
+    dispatch(setStep3Field({ field: 'teachingSkillTitle', value: data.name }));
+    dispatch(setStep3Field({ field: 'teachingCategoryId', value: data.categoryId }));
+    dispatch(setStep3Field({ field: 'teachingSubcategoryId', value: data.subcategoryId }));
+    dispatch(setStep3Field({ field: 'description', value: data.description }));
+    dispatch(setStep3Field({ field: 'pictures', value: pictures }));
+
     setSkillData(data);
     setIModalOpen(true);
   };
@@ -18,8 +57,19 @@ export const RegPageStep3: React.FC = () => {
     setIModalOpen(false);
   };
 
-  const handleModalApprove = () => {
-    alert('TODO: Ваше предложение создано \nТеперь вы можете предложить обмен');
+  const handleModalApprove = async () => {
+    if (!skillData || meta.isSubmitting) {
+      return;
+    }
+
+    try {
+      const resultAction = await dispatch(submitRegistration());
+      unwrapResult(resultAction);
+      await restoreSession();
+      navigate(meta.redirectPath || '/', { replace: true });
+    } catch {
+      // submitError is stored in redux
+    }
   };
 
   return (
@@ -29,11 +79,11 @@ export const RegPageStep3: React.FC = () => {
           current: 3,
           total: 3,
         }}
-        leftSlot={<RegStep3Form onSubmit={handleFormSubmit} />}
+        leftSlot={<RegStep3Form onSubmit={(data) => void handleFormSubmit(data)} />}
         rightSlot={
           <AuthInfoCard
-            title="Укажите, чем вы готовы поделиться"
-            text="Так другие люди смогут увидеть ваши предложения и предложить вам обмен!"
+            title="Укажите, чем вы готовы поделиться"
+            text="Так другие люди смогут увидеть ваши предложения и предложить вам обмен!"
             picture={schoolBoard}
             pictureAlt="Доска"
           />
@@ -45,7 +95,9 @@ export const RegPageStep3: React.FC = () => {
           isOpen={isModalOpen}
           data={skillData}
           onBack={handleModalBack}
-          onApprove={handleModalApprove}
+          onApprove={() => void handleModalApprove()}
+          error={meta.submitError}
+          isSubmitting={meta.isSubmitting}
         />
       )}
     </>

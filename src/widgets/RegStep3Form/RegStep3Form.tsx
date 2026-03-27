@@ -26,6 +26,8 @@ type SkillFormData = {
 };
 
 export type SkillFormDataToApprove = Omit<SkillFormData, 'categoryId' | 'subcategoryId'> & {
+  categoryId: number;
+  subcategoryId: number;
   categoryName: string;
   subcategoryName: string;
 };
@@ -110,18 +112,16 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
         pictures: '',
       };
 
-      if (!data.name.trim()) errors.name = 'Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РЅР°РІС‹РєР°';
-      if (!data.categoryId) errors.categoryId = 'Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ';
+      if (!data.name.trim()) errors.name = 'Введите название навыка';
+      if (!data.categoryId) errors.categoryId = 'Выберите категорию';
       if (!data.subcategoryId) {
-        errors.subcategoryId = 'Р’С‹Р±РµСЂРёС‚Рµ РїРѕРґРєР°С‚РµРіРѕСЂРёСЋ';
+        errors.subcategoryId = 'Выберите подкатегорию';
       } else if (
         !isSubcategoryValidForCategory(data.subcategoryId, data.categoryId, subcategories)
       ) {
-        errors.subcategoryId = 'Р’С‹Р±РµСЂРёС‚Рµ РїРѕРґС…РѕРґСЏС‰СѓСЋ РїРѕРґРєР°С‚РµРіРѕСЂРёСЋ';
+        errors.subcategoryId = 'Выберите подходящую подкатегорию';
       }
-      if (!data.description.trim()) errors.description = 'Р’РІРµРґРёС‚Рµ РѕРїРёСЃР°РЅРёРµ';
-      if (!data.pictures.length)
-        errors.pictures = 'Р”РѕР±Р°РІСЊС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРЅРѕ РёР·РѕР±СЂР°Р¶РµРЅРёРµ';
+      if (!data.description.trim()) errors.description = 'Введите описание';
 
       return errors;
     },
@@ -163,18 +163,20 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
     navigate('/register/step-2', { replace: true });
   };
 
-  const handleSubmitForm = (evt: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmitForm = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const errors = validateForm(skillFormData);
     setSkillFormErrors(errors);
 
     const hasErrors = Object.values(errors).some((error) => error !== '');
-    if (hasErrors) return;
+    if (hasErrors || !skillFormData.categoryId || !skillFormData.subcategoryId) return;
 
-    const mapDataToAproveData = (data: SkillFormData): SkillFormDataToApprove => {
+    const mapDataToApproveData = (data: SkillFormData): SkillFormDataToApprove => {
       return {
         ...data,
+        categoryId: data.categoryId as number,
+        subcategoryId: data.subcategoryId as number,
         categoryName:
           categories.find((category) => {
             return category.id === data.categoryId;
@@ -186,22 +188,22 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
       };
     };
 
-    onSubmit(mapDataToAproveData(skillFormData));
+    onSubmit(mapDataToApproveData(skillFormData));
   };
 
   return (
     <form className={clsx(styles.form, className)} onSubmit={handleSubmitForm}>
       <div className={styles.formContent}>
-        <FormField label="РќР°Р·РІР°РЅРёРµ РЅР°РІС‹РєР°" error={skillFormErrors.name}>
+        <FormField label="Название навыка" error={skillFormErrors.name}>
           <Input
             name="skillName"
             value={skillFormData.name}
-            placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РІР°С€РµРіРѕ РЅР°РІС‹РєР°"
+            placeholder="Введите название вашего навыка"
             onChange={handleNameChange}
           />
         </FormField>
 
-        <FormField label="РљР°С‚РµРіРѕСЂРёСЏ РЅР°РІС‹РєР°" error={skillFormErrors.categoryId}>
+        <FormField label="Категория навыка" error={skillFormErrors.categoryId}>
           <Select<number>
             value={skillFormData.categoryId}
             options={categoryOptions}
@@ -209,10 +211,7 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
           />
         </FormField>
 
-        <FormField
-          label="РџРѕРґРєР°С‚РµРіРѕСЂРёСЏ РЅР°РІС‹РєР°"
-          error={skillFormErrors.subcategoryId}
-        >
+        <FormField label="Подкатегория навыка" error={skillFormErrors.subcategoryId}>
           <Select<number>
             value={skillFormData.subcategoryId}
             options={subcategoryOptions}
@@ -220,10 +219,10 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
           />
         </FormField>
 
-        <FormField label="РћРїРёСЃР°РЅРёРµ" error={skillFormErrors.description}>
+        <FormField label="Описание" error={skillFormErrors.description}>
           <Textarea
             value={skillFormData.description}
-            placeholder="РљРѕСЂРѕС‚РєРѕ РѕРїРёС€РёС‚Рµ, С‡РµРјСѓ РјРѕР¶РµС‚Рµ РЅР°СѓС‡РёС‚СЊ"
+            placeholder="Коротко опишите, чему можете научить"
             onChange={handleDescriptionChange}
           />
         </FormField>
@@ -235,10 +234,10 @@ const RegStep3Form: React.FC<RegStep3FormProps> = ({ className, onSubmit }) => {
 
       <div className={styles.formActions}>
         <Button className={styles.formBtn} variant="secondary" onClick={handleBackClick}>
-          РќР°Р·Р°Рґ
+          Назад
         </Button>
         <Button className={styles.formBtn} type="submit">
-          РџСЂРѕРґРѕР»Р¶РёС‚СЊ
+          Продолжить
         </Button>
       </div>
     </form>

@@ -24,3 +24,10 @@
 .content {
   margin: 0;
 }
+
+.error {
+  margin: 0;
+  text-align: center;
+  color: #d14d3f;
+  font-size: var(--font-size-caption, 12px);
+}
