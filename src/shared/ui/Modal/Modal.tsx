@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import clsx from 'clsx';
 import styles from './Modal.module.css';
 import { X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   className,
   overlayClassName,
 }) => {
+  const modalRoot = document.getElementById('modal-root') as HTMLElement;
   // Закрытие по нажатию вне компонента
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).id === 'overlay-background') {
@@ -47,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div
       id="overlay-background"
       onClick={handleOutsideClick}
@@ -67,7 +69,8 @@ export const Modal: React.FC<ModalProps> = ({
         {/* Вставляем внутрь любые компоненты */}
         {children}
       </div>
-    </div>
+    </div>,
+    modalRoot,
   );
 };
 

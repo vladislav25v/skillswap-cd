@@ -14,4 +14,6 @@ export interface SkillDetailsPanelProps {
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
   className?: string;
+  panelClassName?: string;
+  contentClassName?: string;
 }

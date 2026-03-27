@@ -12,8 +12,3 @@
   outline: none;
   margin: 0 auto;
 }
-
-.main:focus-visible {
-  outline: 2px solid var(--color-accent-dark, #508826);
-  outline-offset: 2px;
-}

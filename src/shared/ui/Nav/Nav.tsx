@@ -30,17 +30,12 @@ function Nav() {
           getSubcategories(),
         ]);
 
-        if (!isMounted) {
-          return;
-        }
+        if (!isMounted) return;
 
         setCategories(categoriesData);
         setSubcategories(subcategoriesData);
       } catch {
-        if (!isMounted) {
-          return;
-        }
-
+        if (!isMounted) return;
         setError('Не удалось загрузить список навыков.');
       } finally {
         if (isMounted) {
@@ -92,6 +87,7 @@ function Nav() {
             aria-controls="skills-dropdown"
             aria-haspopup="dialog"
             type="button"
+            data-skills-button="header"
           >
             Все навыки{' '}
             <ChevronDown

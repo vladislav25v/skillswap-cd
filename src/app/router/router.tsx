@@ -2,14 +2,15 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PublicLayout } from '@/app/layouts/public-layout';
 import { PrivateLayout } from '@/app/layouts/private-layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
-import RegPageStep1 from '@/pages/RegisterPage/RegisterPageStep1';
+import RegisterPage from '@/pages/RegisterPage';
 import { CatalogPage } from '@/pages/CatalogPage';
-import { SkillPage } from '@/pages/skillPage/SkillPage';
+import { SkillPage } from '@/pages/SkillPage/SkillPage';
 import ProfilePage from '@/pages/ProfilePage';
 import { ErrorPage404 } from '@/pages/ErrorPage404';
 import { ErrorPage500 } from '@/pages/ErrorPage500';
 import ProfileUserForm from '@/widgets/ProfileUserForm';
 import ProfileFavorites from '@/widgets/ProfileFavorites';
+import RegPageStep3 from '@/pages/RegisterPage/RegPageStep3';
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
         element: <h2>О нас - тут пока пусто, не MVP</h2>,
       },
       {
-        path: 'skill/:id',
+        path: 'skill/:skillId',
         element: <SkillPage />,
       },
       {
@@ -39,18 +40,18 @@ export const router = createBrowserRouter([
   },
   {
     path: 'register',
-    element: <RegPageStep1 />,
+    element: <RegisterPage />,
   } /*
   ,
   {
     path: 'register/step-2',
     element: <RegPageStep2 />,
-  },
+  }
+  */,
   {
     path: 'register/step-3',
     element: <RegPageStep3 />,
-  }
-  */,
+  },
   {
     element: <PrivateLayout />,
     children: [

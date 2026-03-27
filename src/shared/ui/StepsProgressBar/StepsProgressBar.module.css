@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+}
+
+.steps {
+  display: flex;
+  gap: 16px;
+}
+
+.stepItem {
+  inline-size: 60px;
+  block-size: 4px;
+  border-radius: var(--radius, 4px);
+  background-color: var(--color-disabled, #e4e8df);
+}
+
+.stepItem:has(~ .stepItemCurrent),
+.stepItemCurrent {
+  background-color: var(--color-accent, #abd27a);
+}

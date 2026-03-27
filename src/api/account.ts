@@ -11,9 +11,22 @@ export interface CreateAccountPayload {
   createdAt: string;
 }
 
+interface RawAccount extends Omit<Account, 'id' | 'userId'> {
+  id: number | string;
+  userId: number | string;
+}
+
+const normalizeAccount = (account: RawAccount): Account => ({
+  ...account,
+  id: Number(account.id),
+  userId: Number(account.userId),
+});
+
 export const getAccountById = async (accountId: number): Promise<Account | null> => {
   try {
-    return await request<Account>(`${ACCOUNT_API_PATH}/${accountId}`);
+    const account = await request<RawAccount>(`${ACCOUNT_API_PATH}/${accountId}`);
+
+    return normalizeAccount(account);
   } catch (error) {
     if (error instanceof Error && error.message.endsWith('404')) {
       return null;
@@ -24,26 +37,30 @@ export const getAccountById = async (accountId: number): Promise<Account | null>
 };
 
 export const getAccountByEmail = async (email: string): Promise<Account | null> => {
-  const accounts = await request<Account[]>(ACCOUNT_API_PATH, {
+  const accounts = await request<RawAccount[]>(ACCOUNT_API_PATH, {
     query: {
       email,
     },
   });
 
-  return accounts[0] ?? null;
+  return accounts[0] ? normalizeAccount(accounts[0]) : null;
 };
 
 export const createAccount = async (payload: CreateAccountPayload): Promise<Account> =>
-  request<Account>(ACCOUNT_API_PATH, {
-    method: 'POST',
-    body: payload,
-  });
+  normalizeAccount(
+    await request<RawAccount>(ACCOUNT_API_PATH, {
+      method: 'POST',
+      body: payload,
+    }),
+  );
 
 export const updateAccount = async (
   accountId: number,
   payload: UpdateAccountPayload,
 ): Promise<Account> =>
-  request<Account>(`${ACCOUNT_API_PATH}/${accountId}`, {
-    method: 'PATCH',
-    body: payload,
-  });
+  normalizeAccount(
+    await request<RawAccount>(`${ACCOUNT_API_PATH}/${accountId}`, {
+      method: 'PATCH',
+      body: payload,
+    }),
+  );

@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/app/providers/auth-context';
+import { buildRedirectPath } from '@/features/auth/navigation';
 import AsideNav from '@/widgets/AsideNav';
 import styles from './ProfilePage.module.css';
 
@@ -18,13 +19,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ className }) => {
   }
 
   if (!isAuthenticated) {
-    return (
-      <Navigate
-        to="/login"
-        replace
-        state={{ from: `${location.pathname}${location.search}${location.hash}` }}
-      />
-    );
+    return <Navigate to="/login" replace state={{ from: buildRedirectPath(location) }} />;
   }
 
   return (

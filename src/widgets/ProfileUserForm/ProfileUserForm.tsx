@@ -1,20 +1,23 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import clsx from 'clsx';
+import { ImageDown, PencilLine } from 'lucide-react';
+import { useAuth } from '@/app/providers/auth-context';
+import type { UpdateAccountPayload, UpdateProfilePayload } from '@/features/auth/types';
+import type { City } from '@/entities/city/types';
+import type { UserGender } from '@/entities/user/types';
+import { getCities } from '@/api';
 import FormField from '@/shared/ui/FormField';
 import Input from '@/shared/ui/Input';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import Button from '@/shared/ui/Button/Button.tsx';
+import Button from '@/shared/ui/Button/Button';
 import PasswordInput from '@/shared/ui/PasswordInput';
-import styles from './ProfileUserForm.module.css';
 import Textarea from '@/shared/ui/Textarea';
-import { ImageDown, PencilLine } from 'lucide-react';
 import { Select, type SelectOption } from '@/shared/ui/Select';
-import type { City } from '@/entities/city/types.ts';
 import Datepicker from '@/shared/ui/Datepicker';
 import AvatarPicker from '@/shared/ui/AvatarPicker';
-import { fileToBase64 } from '@/shared/lib/file/fileToBase64.ts';
-import type { UserGender } from '@/entities/user/types.ts';
-import clsx from 'clsx';
+import { fileToBase64 } from '@/shared/lib/file/fileToBase64';
+import styles from './ProfileUserForm.module.css';
 
-interface ProfileUser {
+type ProfileUserFormState = {
   email: string;
   password: string;
   name: string;
@@ -23,50 +26,101 @@ interface ProfileUser {
   cityId: number | undefined;
   about: string;
   avatar: string;
-}
+};
 
 export interface ProfileUserFormProps {
   className?: string;
 }
-
-const profileUser: ProfileUser = {
-  email: 'mariia@gmail.com',
-  password: '',
-  name: 'Мария',
-  birthDate: '1995-10-28',
-  gender: 'female',
-  cityId: 1,
-  about:
-    'Люблю учиться новому, особенно если это можно делать за чаем и в пижаме. Всегда готова пообщаться и обменяться чем‑то интересным!',
-  avatar: '',
-};
 
 const genderOptions: SelectOption<UserGender>[] = [
   { value: 'female', label: 'Женский' },
   { value: 'male', label: 'Мужской' },
 ];
 
-const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
-  const [initialState] = useState<ProfileUser>(() => {
-    const profileUserFromStorage = localStorage.getItem('profileUser');
+const buildFormState = (
+  email: string,
+  name: string,
+  birthDate: string,
+  gender: UserGender | undefined,
+  cityId: number | undefined,
+  about: string,
+  avatar: string,
+): ProfileUserFormState => ({
+  email,
+  password: '',
+  name,
+  birthDate,
+  gender,
+  cityId,
+  about,
+  avatar,
+});
 
-    return profileUserFromStorage ? JSON.parse(profileUserFromStorage) : profileUser;
-  });
-  const [formState, setFormState] = useState<ProfileUser>({ ...initialState });
-  const [visiblePasswordField, setVisiblePasswordField] = useState(false);
+const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
+  const { user, account, updateAccount, updateProfile, isLoading } = useAuth();
+
+  const initialState = useMemo<ProfileUserFormState | null>(() => {
+    if (!user || !account) {
+      return null;
+    }
+
+    return buildFormState(
+      account.email,
+      user.name,
+      user.birthDate,
+      user.gender,
+      user.cityId,
+      user.about,
+      user.photo,
+    );
+  }, [user, account]);
+
+  const [formState, setFormState] = useState<ProfileUserFormState | null>(initialState);
   const [cityOptions, setCityOptions] = useState<SelectOption<number>[]>([]);
-  const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (visiblePasswordField) {
-      passwordInputRef.current?.focus();
-    }
-  }, [visiblePasswordField]);
+    setFormState(initialState);
+  }, [initialState]);
 
-  const isFormChanged = useMemo(() => {
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadCities = async () => {
+      try {
+        const cities = await getCities();
+
+        if (!isMounted) {
+          return;
+        }
+
+        setCityOptions(cities.map((city: City) => ({ value: city.id, label: city.name })));
+      } catch (error) {
+        console.error('Failed to load cities', error);
+      }
+    };
+
+    void loadCities();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const isAccountChanged = useMemo(() => {
+    if (!initialState || !formState) {
+      return false;
+    }
+
+    return initialState.email !== formState.email || Boolean(formState.password);
+  }, [initialState, formState]);
+
+  const isProfileChanged = useMemo(() => {
+    if (!initialState || !formState) {
+      return false;
+    }
+
     return (
-      initialState.email !== formState.email ||
-      initialState.password !== formState.password ||
       initialState.name !== formState.name ||
       initialState.birthDate !== formState.birthDate ||
       initialState.gender !== formState.gender ||
@@ -76,44 +130,127 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
     );
   }, [initialState, formState]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/db/db.json');
-      const data = await response.json();
+  const isCityIdValid = useMemo(() => {
+    if (!formState || formState.cityId === undefined) {
+      return false;
+    }
 
-      return data.cities;
-    };
+    return cityOptions.some((cityOption) => cityOption.value === formState.cityId);
+  }, [cityOptions, formState]);
 
-    fetchData()
-      .then((cities: City[]) => {
-        setCityOptions(cities.map((city: City) => ({ value: city.id, label: city.name })));
-      })
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  const canSubmit = (isAccountChanged || (isProfileChanged && isCityIdValid)) && !isSubmitting;
 
-  const handleChangePassword = () => {
-    setVisiblePasswordField(true);
-  };
+  if (isLoading) {
+    return null;
+  }
+
+  if (!user || !account || !formState || !initialState) {
+    return null;
+  }
 
   const handleOnChangeFile = async (file: File | null) => {
-    if (!file) return;
-    setFormState({ ...formState, avatar: await fileToBase64(file) });
-  };
+    if (!file) {
+      return;
+    }
 
-  const submitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    localStorage.setItem('profileUser', JSON.stringify(formState));
-    alert('Данные сохранены в LocalStorage');
+    const avatar = await fileToBase64(file);
+    setFormState((prev) => (prev ? { ...prev, avatar } : prev));
   };
 
   const handleGenderChange = (value: UserGender | UserGender[]) => {
     const selectedGender = Array.isArray(value) ? value[0] : value;
-    setFormState({ ...formState, gender: selectedGender });
+
+    if (selectedGender !== formState?.gender) {
+      alert('Смена пола недоступна в вашем регионе');
+    }
   };
 
   const handleCityChange = (value: number | number[]) => {
     const selectedCityId = Array.isArray(value) ? value[0] : value;
-    setFormState({ ...formState, cityId: selectedCityId });
+    setFormState((prev) => (prev ? { ...prev, cityId: selectedCityId } : prev));
+  };
+
+  const submitForm = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
+
+    if (isProfileChanged) {
+      const { gender, cityId } = formState;
+
+      if (!gender || cityId === undefined || !isCityIdValid) {
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    if (isAccountChanged) {
+      const accountPayload: UpdateAccountPayload = {};
+      const normalizedEmail = formState.email.trim().toLowerCase();
+
+      if (normalizedEmail !== initialState.email) {
+        accountPayload.email = normalizedEmail;
+      }
+
+      if (formState.password) {
+        accountPayload.password = formState.password;
+      }
+
+      const accountResult = await updateAccount(accountPayload);
+
+      if (!accountResult.ok) {
+        setIsSubmitting(false);
+        alert(accountResult.message);
+        return;
+      }
+    }
+
+    if (!isProfileChanged) {
+      setIsSubmitting(false);
+      setFormState((prev) =>
+        prev ? { ...prev, email: prev.email.trim().toLowerCase(), password: '' } : prev,
+      );
+      alert('Данные аккаунта успешно сохранены');
+      return;
+    }
+
+    const { gender, cityId } = formState;
+
+    if (!gender || cityId === undefined) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    const payload: UpdateProfilePayload = {
+      name: formState.name,
+      birthDate: formState.birthDate,
+      gender,
+      cityId,
+      photo: formState.avatar,
+      about: formState.about,
+    };
+
+    const result = await updateProfile(payload);
+
+    setIsSubmitting(false);
+
+    if (!result.ok) {
+      alert(result.message);
+      return;
+    }
+
+    const nextState = buildFormState(
+      formState.email,
+      payload.name,
+      payload.birthDate,
+      payload.gender,
+      payload.cityId,
+      payload.about,
+      payload.photo,
+    );
+
+    setFormState({ ...nextState, password: '' });
+    alert('Изменения успешно сохранены');
   };
 
   return (
@@ -121,10 +258,10 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
       <div className={styles.formAvatar}>
         <AvatarPicker
           value={formState.avatar}
-          size={'large'}
+          size="large"
           onChangeFile={handleOnChangeFile}
           triggerSlot={
-            <button className={styles.triggerBtn} type={'button'}>
+            <button className={styles.triggerBtn} type="button">
               <ImageDown />
             </button>
           }
@@ -133,34 +270,24 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
 
       <div className={styles.formContent}>
         <div className={styles.formFields}>
-          <FormField label={'Почта'}>
+          <FormField label="Почта">
             <Input
               value={formState.email}
+              type="email"
               onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-              type={'email'}
               rightSlot={<PencilLine className={styles.icon} />}
             />
           </FormField>
 
-          {visiblePasswordField ? (
-            <FormField label={'Пароль'}>
-              <PasswordInput
-                ref={passwordInputRef}
-                value={formState.password}
-                onChange={(password) => setFormState({ ...formState, password })}
-              />
-            </FormField>
-          ) : (
-            <button
-              className={styles.changePasswordBtn}
-              type={'button'}
-              onClick={handleChangePassword}
-            >
-              Изменить пароль
-            </button>
-          )}
+          <FormField label="Пароль">
+            <PasswordInput
+              value={formState.password}
+              onChange={(password) => setFormState({ ...formState, password })}
+              placeholder="Ваш пароль"
+            />
+          </FormField>
 
-          <FormField label={'Имя'}>
+          <FormField label="Имя">
             <Input
               value={formState.name}
               onChange={(e) => setFormState({ ...formState, name: e.target.value })}
@@ -170,19 +297,19 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
 
           <div className={styles.formRow}>
             <FormField
-              label={'Дата рождения'}
+              label="Дата рождения"
               className={clsx(styles.formRowItem, styles.formRowItemHalf)}
             >
               <Datepicker
                 value={formState.birthDate}
-                onChange={(e) => setFormState({ ...formState, birthDate: e })}
+                onChange={(value) => setFormState({ ...formState, birthDate: value })}
               />
             </FormField>
 
-            <FormField label={'Пол'} className={clsx(styles.formRowItem, styles.formRowItemHalf)}>
+            <FormField label="Пол" className={clsx(styles.formRowItem, styles.formRowItemHalf)}>
               <Select<UserGender>
                 name="gender"
-                size={'standard'}
+                size="standard"
                 options={genderOptions}
                 value={formState.gender}
                 onChange={handleGenderChange}
@@ -190,7 +317,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
             </FormField>
           </div>
 
-          <FormField label={'Город'}>
+          <FormField label="Город">
             <Select<number>
               name="city"
               options={cityOptions}
@@ -199,9 +326,9 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
             />
           </FormField>
 
-          <FormField label={'О себе'}>
+          <FormField label="О себе">
             <Textarea
-              name={'about'}
+              name="about"
               value={formState.about}
               onChange={(e) => setFormState({ ...formState, about: e.target.value })}
               rightSlot={<PencilLine className={styles.icon} />}
@@ -209,7 +336,7 @@ const ProfileUserForm: React.FC<ProfileUserFormProps> = ({ className }) => {
           </FormField>
         </div>
 
-        <Button type={'submit'} disabled={!isFormChanged}>
+        <Button type="submit" disabled={!canSubmit}>
           Сохранить
         </Button>
       </div>
