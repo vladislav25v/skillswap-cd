@@ -61,6 +61,7 @@ export function Header({ className }: HeaderProps) {
           email: account.email,
           name: user.name,
           gender: user.gender,
+          photo: user.photo,
         }
       : null;
 

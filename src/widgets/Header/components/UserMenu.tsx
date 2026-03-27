@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/app/providers/auth-context';
 import HeartIcon from '@/assets/heart.svg';
 import BellIcon from '@/assets/bell.svg';
+import Avatar from '@/shared/ui/Avatar/Avatar';
 import styles from './UserMenu.module.css';
 import UserDropdown from './UserDropdown';
 
@@ -12,6 +13,7 @@ interface UserMenuProps {
     email: string;
     gender?: 'male' | 'female' | 'other';
     name?: string;
+    photo?: string;
   };
 }
 
@@ -26,6 +28,7 @@ export const UserMenu = ({ user: propUser }: UserMenuProps) => {
 
   const effectiveName = authUser?.name || propUser.name;
   const effectiveEmail = account?.email || propUser.email;
+  const effectivePhoto = authUser?.photo || propUser.photo || '';
   const hasUnread = false;
 
   useEffect(() => {
@@ -83,12 +86,6 @@ export const UserMenu = ({ user: propUser }: UserMenuProps) => {
     return 'Пользователь';
   };
 
-  const getInitials = () => {
-    const name = getUserName();
-    if (!name) return '?';
-    return name.charAt(0).toUpperCase();
-  };
-
   return (
     <div className={styles.userMenuContainer}>
       <div className={styles.bellWrapper}>
@@ -135,9 +132,12 @@ export const UserMenu = ({ user: propUser }: UserMenuProps) => {
           aria-expanded={isDropdownOpen}
         >
           <span className={styles.userName}>{getUserName()}</span>
-          <div className={styles.avatar}>
-            <span className={styles.initials}>{getInitials()}</span>
-          </div>
+          <Avatar
+            src={effectivePhoto || undefined}
+            alt={getUserName()}
+            size="small"
+            className={styles.avatar}
+          />
         </button>
 
         {isDropdownOpen && <UserDropdown onClose={() => setIsDropdownOpen(false)} />}

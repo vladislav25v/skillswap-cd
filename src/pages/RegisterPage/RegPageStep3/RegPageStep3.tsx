@@ -17,6 +17,7 @@ import AuthInfoCard from '@/widgets/AuthInfoCard';
 import schoolBoard from '@/assets/school-board.svg';
 import RegStep3Form, { type SkillFormDataToApprove } from '@/widgets/RegStep3Form';
 import RegApproveSkillModal from '@/widgets/RegApproveSkillModal';
+import SkillCreatedSuccessNotificationModal from '@/widgets/SkillCreatedSuccessNotificationModal';
 
 export const RegPageStep3: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,16 +28,19 @@ export const RegPageStep3: React.FC = () => {
   const meta = useAppSelector(selectRegisterMeta);
   const [isModalOpen, setIModalOpen] = useState(false);
   const [skillData, setSkillData] = useState<SkillFormDataToApprove | null>(null);
+  const [isSkillCreatedSuccessModalOpen, setIsSkillCreatedSuccessModalOpen] = useState(false);
+  const [hasCompletedRegistration, setHasCompletedRegistration] = useState(false);
+  const [redirectPathAfterSuccess, setRedirectPathAfterSuccess] = useState('/');
 
   useEffect(() => {
     dispatch(setCurrentStep(3));
   }, [dispatch]);
 
-  if (!canOpenStep1) {
+  if (!hasCompletedRegistration && !canOpenStep1) {
     return <Navigate to="/register" replace />;
   }
 
-  if (!canOpenStep2) {
+  if (!hasCompletedRegistration && !canOpenStep2) {
     return <Navigate to="/register/step-2" replace />;
   }
 
@@ -63,13 +67,22 @@ export const RegPageStep3: React.FC = () => {
     }
 
     try {
+      const nextRedirectPath = meta.redirectPath || '/';
       const resultAction = await dispatch(submitRegistration());
       unwrapResult(resultAction);
       await restoreSession();
-      navigate(meta.redirectPath || '/', { replace: true });
+      setRedirectPathAfterSuccess(nextRedirectPath);
+      setHasCompletedRegistration(true);
+      setIModalOpen(false);
+      setIsSkillCreatedSuccessModalOpen(true);
     } catch {
       // submitError is stored in redux
     }
+  };
+
+  const handleSkillCreatedSuccessApprove = () => {
+    setIsSkillCreatedSuccessModalOpen(false);
+    navigate(redirectPathAfterSuccess, { replace: true });
   };
 
   return (
@@ -100,6 +113,11 @@ export const RegPageStep3: React.FC = () => {
           isSubmitting={meta.isSubmitting}
         />
       )}
+
+      <SkillCreatedSuccessNotificationModal
+        isOpen={isSkillCreatedSuccessModalOpen}
+        onClickBtn={handleSkillCreatedSuccessApprove}
+      />
     </>
   );
 };

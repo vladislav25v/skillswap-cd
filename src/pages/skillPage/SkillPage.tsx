@@ -126,6 +126,7 @@ export const SkillPage = () => {
                   skillId={pageViewModel.skillId}
                   ownerUserId={pageViewModel.ownerUserId}
                   className={styles.exchangeButton}
+                  onCreated={() => setIsVisibleSkillExchangeNotificationModal(true)}
                 />
               }
             />

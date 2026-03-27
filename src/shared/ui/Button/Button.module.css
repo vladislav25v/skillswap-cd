@@ -20,7 +20,7 @@
   color: var(--color-text-primary, #253017);
 }
 
-.primary:hover {
+.primary:hover:not(:disabled) {
   background-color: var(--color-accent-dark, #508826);
   transform: translateY(-1px);
 }
@@ -49,7 +49,7 @@
   border: 1px solid var(--color-toggle, #b2b9a9);
 }
 
-.secondary:hover {
+.secondary:hover:not(:disabled) {
   background-color: rgba(171, 210, 122, 0.1);
   border-color: var(--color-accent, #abd27a);
 }
@@ -81,7 +81,7 @@
   padding: 8px 16px;
 }
 
-.tertiary:hover {
+.tertiary:hover:not(:disabled) {
   color: var(--color-accent-dark, #508826);
   text-decoration-color: var(--color-accent-dark, #508826);
 }

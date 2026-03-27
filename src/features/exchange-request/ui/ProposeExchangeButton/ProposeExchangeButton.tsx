@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createExchangeRequest, getExchangeRequests } from '@/api';
 import { useAuth } from '@/app/providers/auth-context';
@@ -23,6 +23,31 @@ export const ProposeExchangeButton = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasDuplicateRequest, setHasDuplicateRequest] = useState(false);
+
+  useEffect(() => {
+    const loadDuplicateStatus = async () => {
+      if (!isAuthenticated || !user || user.id === ownerUserId) {
+        setHasDuplicateRequest(false);
+        return;
+      }
+
+      try {
+        const exchangeRequests = await getExchangeRequests();
+        setHasDuplicateRequest(
+          hasActiveExchangeDuplicate({
+            exchangeRequests,
+            skillId,
+            requesterUserId: user.id,
+          }),
+        );
+      } catch {
+        setHasDuplicateRequest(false);
+      }
+    };
+
+    void loadDuplicateStatus();
+  }, [isAuthenticated, ownerUserId, skillId, user]);
 
   const handleClick = async () => {
     if (!isAuthenticated || !user) {
@@ -39,6 +64,10 @@ export const ProposeExchangeButton = ({
       return;
     }
 
+    if (hasDuplicateRequest) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -50,7 +79,7 @@ export const ProposeExchangeButton = ({
       });
 
       if (duplicateExists) {
-        window.alert('Активная заявка на этот навык уже существует.');
+        setHasDuplicateRequest(true);
         return;
       }
 
@@ -64,8 +93,12 @@ export const ProposeExchangeButton = ({
         completedAt: null,
       });
 
+      setHasDuplicateRequest(true);
       await onCreated?.();
-      window.alert('Заявка на обмен отправлена.');
+
+      if (!onCreated) {
+        window.alert('Заявка на обмен отправлена.');
+      }
     } catch {
       window.alert('Не удалось отправить заявку на обмен.');
     } finally {
@@ -77,10 +110,10 @@ export const ProposeExchangeButton = ({
     <Button
       variant="primary"
       className={`${styles.button} ${className ?? ''}`.trim()}
-      disabled={isSubmitting}
+      disabled={isSubmitting || hasDuplicateRequest}
       onClick={handleClick}
     >
-      {isSubmitting ? 'Отправка...' : 'Предложить обмен'}
+      {isSubmitting ? 'Отправка...' : hasDuplicateRequest ? 'Обмен предложен' : 'Предложить обмен'}
     </Button>
   );
 };
