@@ -30,7 +30,7 @@ export const request = async <T>(path: string, options: RequestOptions = {}): Pr
   const response = await fetch(buildUrl(path, query), {
     ...init,
     headers: {
-      'Content-Type': 'application/json',
+      ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
       ...headers,
     },
     body: body === undefined ? undefined : JSON.stringify(body),
